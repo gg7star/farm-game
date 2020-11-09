@@ -126,6 +126,14 @@ const Home = () => {
               <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />
             </View>
 
+            <View style={HomeStyle.corner}>
+              <View>
+                <View style={[HomeStyle.categoryTab, {backgroundColor: '#ff9354'}]}>
+                    
+                </View>
+              </View>
+            </View>
+
           </ScrollView>
       </ImageBackground>
     </View>
@@ -186,5 +194,16 @@ const HomeStyle = StyleSheet.create({
     margin: '1%',
     borderColor: '#fff',
     borderWidth: 2,
+  },
+  corner: {
+    marginHorizontal: 8,
+    marginVertical: 16,
+    borderRadius: 8,
+    overflow: 'hidden',
+  },
+  categoryTab: {
+    width: '16.666666666666666666667%',
+    height: 55,
+    paddingVertical: 6,
   }
 })
