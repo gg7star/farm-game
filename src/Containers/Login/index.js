@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -33,7 +34,7 @@ const Login = () => {
     Actions.home()
   }
   return (
-    <View>
+    <SafeAreaView style={{flex: 1}}>
       <ImageBackground
         style={LoginStyle.bgImg}
         resizeMode="repeat"
@@ -95,7 +96,7 @@ const Login = () => {
             </View>
           </ScrollView>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   )
 }
 

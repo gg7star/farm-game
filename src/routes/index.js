@@ -7,6 +7,7 @@ import Home from '../Containers/Home/index.js';
 import MyFarm from '../Containers/MyFarm/index.js';
 import News from '../Containers/News/index.js';
 import Tutorial from '../Containers/Tutorial/index.js';
+import TutorialDetails from '../Containers/TutorialDetails/index.js';
 
 const Routes = () => (
    <Router>
@@ -17,6 +18,7 @@ const Routes = () => (
          <Scene key = "myfarm" component = {MyFarm} title = "My Farm" />
          <Scene key = "news" component = {News} title = "News" />
          <Scene key = "tutorial" component = {Tutorial} title = "Tutorial" />
+         <Scene key = "tutorialDetails" component = {TutorialDetails} title = "Tutorial Details" />
       </Scene>
    </Router>
 )

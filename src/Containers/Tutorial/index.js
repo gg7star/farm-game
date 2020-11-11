@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -46,7 +47,7 @@ const tutorialList = [
 const Tutorial = () => {
 
   return (
-    <View>
+    <SafeAreaView style={{flex: 1}}>
       <ImageBackground
         style={TutorialStyles.bgImg}
         resizeMode="repeat"
@@ -75,7 +76,7 @@ const Tutorial = () => {
             
           </ScrollView>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   )
 }
 

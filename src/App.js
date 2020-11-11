@@ -24,6 +24,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Routes from './routes/index'
+
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 const App: () => React$Node = () => {
   return (
     <Routes/>

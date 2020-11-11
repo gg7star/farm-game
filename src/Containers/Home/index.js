@@ -248,7 +248,7 @@ const Home = () => {
   if (loadTime) 
     return <Loader />
   return (
-    <View>
+    <SafeAreaView style={{flex: 1}}>
       <ImageBackground
         style={HomeStyle.bgImg}
         resizeMode="repeat"
@@ -349,7 +349,7 @@ const Home = () => {
           </ScrollView>          
       </ImageBackground>
       <Menu />
-    </View>
+    </SafeAreaView>
   )
 }
 

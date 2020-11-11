@@ -20,12 +20,7 @@ import Dash from 'react-native-dash';
 const TutorialPoint = ({item, index}) => {
 
   const tutorialClick = (id) => {
-    var nextLink = 'tutorial';
-    nextLink = nextLink + id.toString();
-
-    console.log(nextLink);
-
-    Actions.home()
+    Actions.tutorialDetails({param: id});
   }
 
   return (

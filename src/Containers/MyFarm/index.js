@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {
+  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -41,7 +42,7 @@ const farmList = [
 const MyFarm = () => {
 
   return (
-    <View>
+    <SafeAreaView style={{flex: 1}}>
       <ImageBackground
         style={MyFarmStyles.bgImg}
         resizeMode="repeat"
@@ -84,7 +85,7 @@ const MyFarm = () => {
             </View>
           </ScrollView>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   )
 }
 
