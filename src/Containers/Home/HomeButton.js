@@ -11,9 +11,9 @@ import {
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
 
-const HomeButton = ({item}) => {
+const HomeButton = ({item, handleClick, index}) => {
   return (
-    <TouchableOpacity style={[ButtonStyles.btn, {backgroundColor: item.bgColor}]}>
+    <TouchableOpacity style={[ButtonStyles.btn, {backgroundColor: item.bgColor}]} onPress={() => handleClick(index)}>
       {
         item.text.map((each) => (
           <Text style={ButtonStyles.text}>{each}</Text>
