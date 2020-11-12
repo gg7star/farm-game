@@ -12,7 +12,7 @@ import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimen
 import AutoHeightImage from 'react-native-auto-height-image';
 import { Actions } from 'react-native-router-flux';
 
-import MenuBtn from './MenuBtn.js';
+import MenuBtn from '../Containers/Home/MenuBtn.js';
 
 const menuList = [
   {

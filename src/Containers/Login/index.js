@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+// import { compose } from 'recompose';
+import { bindActionCreators } from 'redux';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,31 +11,43 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
-
 } from 'react-native';
-
 import LinearGradient from 'react-native-linear-gradient';
 import Dash from 'react-native-dash';
 import { responsiveWidth } from 'react-native-responsive-dimensions';
-
 import { Actions } from 'react-native-router-flux';
+import { loginWithAPI } from '../../services/apis/auth';
+import { apiMemberById } from '../../services/apis/users';
+import { setUser } from '../../redux/reducers/userSlice';
+
 
 const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleEmail = (e) => {
     setEmail(e);
-  }
+  };
 
   const handlePassword = (e) => {
     setPassword(e);
-  }
+  };
 
-  const doLogin = () => {
-    Actions.home()
-  }
+  const doLogin = async () => {
+    const response = await loginWithAPI({mail_address: email, password});
+    if (response && response.member) {
+      const userInfo = await apiMemberById(response.member.id);
+      if (userInfo) {
+        dispatch(setUser(userInfo));
+        Actions.home();
+      }
+    }
+    // Failed to login
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
@@ -99,8 +114,6 @@ const Login = () => {
     </SafeAreaView>
   )
 }
-
-export default Login;
 
 const LoginStyle = StyleSheet.create({
   bgImg: {
@@ -194,3 +207,16 @@ const LoginStyle = StyleSheet.create({
     marginVertical: 4,
   }
 })
+
+
+const mapStateToProps = (state) => ({
+  user: state.user || {},
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//   loginActions: bindActionCreators(userActions.login, dispatch),
+// });
+
+export default connect(mapStateToProps)(Login);
+
+// export default Login;
