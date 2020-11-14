@@ -33,7 +33,7 @@ import HomeButton from './HomeButton.js';
 import CategoryTab from './CategoryTab.js';
 import CategoryTabContent from './CategoryTabContent.js';
 import SubMenu from './SubMenu.js';
-import Menu from './Menu.js'
+import Menu from '../../Layouts/Menu.js';
 const homeBtnList = [
   {
     text: ['ゲーム', 'ガイド '],
