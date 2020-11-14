@@ -36,12 +36,8 @@ import HomeButton from './HomeButton.js';
 import CategoryTab from './CategoryTab.js';
 import CategoryTabContent from './CategoryTabContent.js';
 import SubMenu from './SubMenu.js';
-<<<<<<< HEAD
 import NotationModal from './NotationModal.js';
 
-=======
-import Menu from '../../Layouts/Menu.js';
->>>>>>> d9188726abd38b8e83d2728a4876f7f56766f92b
 const homeBtnList = [
   {
     text: ['ゲーム', 'ガイド '],
