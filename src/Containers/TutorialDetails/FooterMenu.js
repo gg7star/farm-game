@@ -19,27 +19,57 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const FooterMenu = ({index}) => {
 
-  const tutorialClick = (id) => {
+  const homeBtnClick = () => {
+    Actions.home();
+  }
+
+  const pageMoveClick = (id) => {
     Actions.tutorialDetails({param: id});
+  }
+
+  const goTutorial = () => {
+    Actions.tutorial();
   }
 
   return (
     <View style={FooterMenuStyles.bg}>
-      <TouchableOpacity style={[FooterMenuStyles.eachArea, FooterMenuStyles.width3]}>
+      <TouchableOpacity 
+        style={[FooterMenuStyles.eachArea, (index % 6) === 0 ? FooterMenuStyles.width3 : {width: '20%'}]}
+        onPress={() => {homeBtnClick()}}
+      >
         <LinearGradient colors={['#ffa84c', '#ff7b0d']} style={[FooterMenuStyles.btnGradient]}>
           <Text style={FooterMenuStyles.text}>HOME</Text>
         </LinearGradient>
       </TouchableOpacity>
-      <TouchableOpacity style={[FooterMenuStyles.eachArea, FooterMenuStyles.width3]}>
+
+      {
+        index > 0 && <TouchableOpacity 
+          style={[FooterMenuStyles.eachArea, index === 6 ? FooterMenuStyles.width3 : {width: '27%'}]}
+          onPress={() => {pageMoveClick(index - 1)}}
+        >
+          <LinearGradient colors={['#ffa84c', '#ff7b0d']} style={[FooterMenuStyles.btnGradient]}>
+            <Text style={FooterMenuStyles.text}>戻る</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      }
+      <TouchableOpacity 
+        style={[FooterMenuStyles.eachArea, (index % 6) === 0 ?  FooterMenuStyles.width3 : {width: '27%'}]}
+        onPress={() => {goTutorial()}}
+      >
         <LinearGradient colors={['#ffa84c', '#ff7b0d']} style={[FooterMenuStyles.btnGradient]}>
-          <Text style={FooterMenuStyles.text}>HOME</Text>
+          <Text style={FooterMenuStyles.text}>一覧へ</Text>
         </LinearGradient>
       </TouchableOpacity>
-      <TouchableOpacity style={[FooterMenuStyles.eachArea, FooterMenuStyles.width3]}>
-        <LinearGradient colors={['#ffa84c', '#ff7b0d']} style={[FooterMenuStyles.btnGradient]}>
-          <Text style={FooterMenuStyles.text}>HOME</Text>
-        </LinearGradient>
-      </TouchableOpacity>
+      {
+        index < 6 && <TouchableOpacity 
+          style={[FooterMenuStyles.eachArea, index === 0 ? FooterMenuStyles.width3 : {width: '27%'}]}
+          onPress={() => {pageMoveClick(index + 1)}}
+        >
+          <LinearGradient colors={['#ffa84c', '#ff7b0d']} style={[FooterMenuStyles.btnGradient]}>
+            <Text style={FooterMenuStyles.text}>進む</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      }
     </View>
   )
 }
@@ -83,5 +113,7 @@ const FooterMenuStyles = StyleSheet.create({
   },
   text: {
     color: '#630',
+    fontSize: 16,
+    fontWeight: 'bold'
   }
 })

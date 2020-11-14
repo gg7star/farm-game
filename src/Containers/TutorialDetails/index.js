@@ -13,8 +13,8 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import { responsiveWidth } from 'react-native-responsive-dimensions';
-
 import { Actions } from 'react-native-router-flux';
+import Dash from 'react-native-dash';
 
 import Header from '../../Components/Header';
 import FooterMenu from './FooterMenu.js';
@@ -63,25 +63,90 @@ const TutorialDetails = ({param}) => {
           <ScrollView style={{flexDirection: 'column'}}>
             <Header title={'ゲームガイド【' + (param + 1) +'/7】'} />
             
-              <View
-                style={TutorialDetailsStyles.corner}
+            <View
+              style={TutorialDetailsStyles.corner}
+            >
+              <View 
+                style={[TutorialDetailsStyles.prizeText,    
+                  TutorialDetailsStyles.topCorner]}
               >
-                <View 
-                  style={[TutorialDetailsStyles.prizeText,    
-                    TutorialDetailsStyles.topCorner]}
-                >
-                  <Text style={[TutorialDetailsStyles.headerText, TutorialDetailsStyles.contentTitle]}>
-                    {tutorialDetailsList[param].title}
-                  </Text>
-                </View>
-
-                {
-                  tutorialDetailsList[param].img.map((item) => (
-                    <AutoHeightImage width={(responsiveWidth(100) - 16)} source={{uri: item}} style={{borderRadius: 8}} />
-                  ))
-                }
-  
+                <Text style={[TutorialDetailsStyles.headerText, TutorialDetailsStyles.contentTitle]}>
+                  {tutorialDetailsList[param].title}
+                </Text>
               </View>
+
+              {
+                tutorialDetailsList[param].img.map((item) => (
+                  <AutoHeightImage width={(responsiveWidth(100) - 16)} source={{uri: item}} style={{borderRadius: 8}} />
+                ))
+              }
+
+              {
+                param === 3 && <View
+                  style={TutorialDetailsStyles.contentText}
+                >
+                  <Text style={{fontSize: 14}}>
+                    ナビキャラが「収穫しよう」って言ってるのに収穫ボタンが押せないのは、                  
+                    <Text 
+                      style={{fontSize: 14, color: 'rgba(232, 0, 3, 1.00)'}}
+                    >
+                      畑の成長が追いついてない
+                    </Text>
+                    <Text 
+                      style={{fontSize: 14}}
+                    >
+                      からなの；{'\n'}
+                    </Text>
+                  </Text>
+                  <Text style={{fontSize: 14}}>
+                    ナビキャラはゲームスタート時から適正な作業タイミングでアドバイスしてるけど、畑に来た時にいつも「遅れているよ」っていう言葉しか見ない人は、                  
+                    <Text 
+                      style={{fontSize: 14, color: 'rgba(232, 0, 3, 1.00)'}}
+                    >
+                      作業タイミングがズレている
+                    </Text>
+                    <Text 
+                      style={{fontSize: 14}}
+                    >
+                      んだよ；；
+                    </Text>
+                  </Text>
+                  <Text style={{fontSize: 14}}>
+                    特に植付けは大切で、大幅に遅れると成長しないうちに「収穫して」っていっちゃうの。{'\n'}でも、花が咲いていては収穫はできないから、                  
+                    <Text 
+                      style={{fontSize: 14, color: 'rgba(232, 0, 3, 1.00)'}}
+                    >
+                      一定の状態まで作物が成長しないと収穫作業はできない
+                    </Text>
+                    <Text 
+                      style={{fontSize: 14}}
+                    >
+                      の、畑の成長を待ってね。{'\n'}
+                    </Text>
+                  </Text>
+                  <Text style={{fontSize: 14}}>
+                    初めて畑っぴをやるなら、まずは                  
+                    <Text 
+                      style={{fontSize: 14, color: 'rgba(232, 0, 3, 1.00)'}}
+                    >
+                      栽培期間の短い作物から始めて、畑っぴに慣れていく
+                    </Text>
+                    <Text 
+                      style={{fontSize: 14}}
+                    >
+                      事をオススメするよ♪
+                    </Text>
+                  </Text>
+                  <Dash 
+                    style={{height: 0.3}}
+                    dashColor='rgb(142, 142, 142)'
+                    dashThickness={0.5} 
+                  />
+                </View>
+              }
+
+            </View>
+            <Text>{'\n\n'}</Text>
             
           </ScrollView>
           <FooterMenu index={param} />
@@ -129,4 +194,8 @@ const TutorialDetailsStyles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 4,
   },
+  contentText: {
+    marginBottom: 8,
+    padding: 8,
+  }
 })

@@ -40,6 +40,10 @@ const menuList = [
 const Menu = ({item}) => {
   const [myMenu, setMyMenu] = useState(false);
 
+  const goHome = () => {
+    Actions.home()
+  }
+
   const goMyFarm = () => {
     Actions.myfarm()
   }
@@ -50,8 +54,25 @@ const Menu = ({item}) => {
 
   return (
     <View>
+      {
+        myMenu && <View style={MenuStyles.modalContent}>
+          <TouchableOpacity style={MenuStyles.modalClose} onPress={() => setMyMenu(false)}>
+            <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png'}} style={{width: 37, height: 37}} />
+          </TouchableOpacity>
+          <View style={MenuStyles.menuBtn}>
+            {
+              menuList.map((item) => (
+                <View style={MenuStyles.eachBtn}>
+                  <MenuBtn item={item} />
+                </View>
+              ))
+            }
+          </View>
+          <AutoHeightImage width={responsiveWidth(90)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png'}} />
+        </View>
+      }
       <View style={MenuStyles.bg}>
-        <TouchableOpacity style={MenuStyles.eachMenu}>
+        <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goHome()}>
           <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt01.png'}} style={{width: 30, height: 30}} />
           <View style={MenuStyles.name}>
             <Text style={MenuStyles.text}>Home</Text>
@@ -79,24 +100,7 @@ const Menu = ({item}) => {
           <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/go_top.png'}} style={{width: 80, height: 90}} />
         </TouchableOpacity>
       </View>
-
-      {
-        myMenu && <View style={MenuStyles.modalContent}>
-          <TouchableOpacity style={MenuStyles.modalClose} onPress={() => setMyMenu(false)}>
-            <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png'}} style={{width: 37, height: 37}} />
-          </TouchableOpacity>
-          <View style={MenuStyles.menuBtn}>
-            {
-              menuList.map((item) => (
-                <View style={MenuStyles.eachBtn}>
-                  <MenuBtn item={item} />
-                </View>
-              ))
-            }
-          </View>
-          <AutoHeightImage width={responsiveWidth(90)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png'}} />
-        </View>
-      }
+     
     </View>
   )
 }
@@ -144,7 +148,7 @@ const MenuStyles = StyleSheet.create({
   },
   modalContent: {
     left: '5%',
-    top: -responsiveHeight(70),
+    top: -responsiveHeight(65),
     position: 'absolute',
     zIndex: 60,
     width: '90%',

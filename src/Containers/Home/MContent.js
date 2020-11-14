@@ -10,10 +10,24 @@ import {
 
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import Dash from 'react-native-dash';
+import { Actions } from 'react-native-router-flux';
 
 const MContent = ({item}) => {
+
+  const cropClick = () => {
+    if (item.option === '無料ゲーム'){
+      Actions.farmName();
+    } else if (item.option === '一発畑') {
+      Actions.cropDetails(item.id);
+    } else {
+      Actions.eventTitleAll();
+    }
+  }
   return (
-    <TouchableOpacity style={MContentStyles.bg}>
+    <TouchableOpacity 
+      style={MContentStyles.bg}
+      onPress={() => cropClick()}
+    >
       <View style={{flexDirection: 'row', height: 18}}>
         {
           item.option && <View style={MContentStyles.option}>
@@ -71,6 +85,12 @@ const MContent = ({item}) => {
         </View>
         <Text style={MContentStyles.mArrow}>▲</Text>
       </View>
+      <Dash 
+        style={{height: 0.3, marginTop: 4}}
+        dashColor='rgb(142, 142, 142)'
+        dashGap={0}
+        dashThickness={1} 
+      />
     </TouchableOpacity>
   )
 }

@@ -31,7 +31,8 @@ const TutorialPoint = ({item, index}) => {
       <Dash 
         style={{height: 0.3}}
         dashColor='rgb(142, 142, 142)'
-        dashThickness={0.5} />
+        dashThickness={0.5} 
+      />
     </View>
   )
 }

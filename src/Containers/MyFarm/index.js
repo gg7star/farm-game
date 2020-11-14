@@ -15,6 +15,8 @@ import { responsiveWidth } from 'react-native-responsive-dimensions';
 
 import { Actions } from 'react-native-router-flux';
 
+import Menu from '../../Components/Menu';
+
 import Farm from './Farm.js';
 
 const farmList = [
@@ -84,6 +86,7 @@ const MyFarm = () => {
               </ImageBackground>
             </View>
           </ScrollView>
+          <Menu />
       </ImageBackground>
     </SafeAreaView>
   )

@@ -19,6 +19,11 @@ const CategoryTabContent = ({item, index}) => {
         </View>
       }
       {
+        index === 4 && <View style={CategoryTabContentStyles.title}>
+          <Text style={CategoryTabContentStyles.titleText}>遊びやすい無料ゲーム♪</Text>
+        </View>
+      }
+      {
         item.map((eachItem, i) => (
           <MContent item={eachItem} />
         ))

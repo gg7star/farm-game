@@ -28,12 +28,16 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import { Actions } from 'react-native-router-flux';
+
+import Menu from '../../Components/Menu';
+
 import Loader from './Loader.js';
 import HomeButton from './HomeButton.js';
 import CategoryTab from './CategoryTab.js';
 import CategoryTabContent from './CategoryTabContent.js';
 import SubMenu from './SubMenu.js';
-import Menu from './Menu.js'
+import NotationModal from './NotationModal.js';
+
 const homeBtnList = [
   {
     text: ['ゲーム', 'ガイド '],
@@ -231,6 +235,7 @@ const Home = () => {
 
   const [loadTime, setLoadTime] = useState(true);
   const [tabItem, setTabItem] = useState(0);
+  const [notation, setNotation] = useState(false)
 
   useEffect(() => {
     setTimeout(() => setLoadTime(false), 1000)
@@ -240,10 +245,23 @@ const Home = () => {
     Actions.home()
   }
 
+  const eventImgClick = () => {
+    Actions.event()
+  }
+
   const homeBtnClick = (e) => {
     if (e === 0) {
       Actions.tutorial()
     }
+    else if (e === 1) {
+      setNotation(true);
+    }
+    else {
+      Actions.ranking()
+    }
+  }
+  const notationClose = () => {
+    setNotation(false);
   }
   if (loadTime) 
     return <Loader />
@@ -252,7 +270,6 @@ const Home = () => {
       <ImageBackground
         style={HomeStyle.bgImg}
         resizeMode="repeat"
-        // imageStyle={{ flex: 1 }}
         source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}>
           <ScrollView style={{flexDirection: 'column'}}>
             <View style={HomeStyle.header}>
@@ -298,7 +315,10 @@ const Home = () => {
                   ご確認のほどお願いいたします。
                 </Text>
               </View>
-              <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
+              <TouchableOpacity onPress={() => eventImgClick()}>
+                <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
+              </TouchableOpacity>
+              
               <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png'}} />
               <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />
             </View>
@@ -346,9 +366,13 @@ const Home = () => {
             </View>    
             <Text>{'\n\n'}</Text>               
 
-          </ScrollView>          
+          </ScrollView>  
+          {
+            notation && <NotationModal notationClose={notationClose} />
+          }          
+          <Menu />                  
       </ImageBackground>
-      <Menu />
+      
     </SafeAreaView>
   )
 }
@@ -358,7 +382,7 @@ export default Home;
 const HomeStyle = StyleSheet.create({
   bgImg: {
     width: '100%',
-    height: '100%',
+    height: '100%',    
   },
   header: {
     width: '100%',

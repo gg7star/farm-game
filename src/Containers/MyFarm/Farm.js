@@ -20,7 +20,10 @@ const Farm = ({item}) => {
           <View style={FarmStyles.nameArea}>
             <Text style={FarmStyles.name}>{item.name}</Text>
           </View>
-          <Image source={{uri: item.cropImg}} style={FarmStyles.crop} />
+          {
+            item.cropImg.length > 0 && <Image source={{uri: item.cropImg}} style={FarmStyles.crop} />
+          }
+          
         </ImageBackground>
       </View>
     </TouchableOpacity>
