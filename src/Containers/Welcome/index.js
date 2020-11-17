@@ -135,14 +135,14 @@ const Welcome = () => {
             {
               activeTab ?
               tab1ImgList.map((item, i) => (
-                <View>
-                  <AutoHeightImage width={responsiveWidth(100)} key={i}  source={{uri: item}} />
+                <View key={i}>
+                  <AutoHeightImage width={responsiveWidth(100)}  source={{uri: item}} />
                 </View>
               ))
               :
               tab2ImgList.map((item, i) => (
-                <View>
-                  <AutoHeightImage width={responsiveWidth(100)} key={10+i}  source={{uri: item}} />
+                <View key={i}>
+                  <AutoHeightImage width={responsiveWidth(100)}  source={{uri: item}} />
                 </View>
               ))
             }

@@ -90,10 +90,12 @@ const Ranking = () => {
               >
                 次の25件
               </Text>
-              <Image
-                style={RankingStyles.iconBg}
-                source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/images/icons-36-white.png'}}
-              />
+              <View style={RankingStyles.iconBg}>
+                <Image
+                  style={RankingStyles.iconNextImg}
+                  source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/images/icons-36-white.png'}}
+                />
+              </View>
             </LinearGradient>
           </TouchableOpacity>
           <Dash 
@@ -154,12 +156,18 @@ const RankingStyles = StyleSheet.create({
     marginHorizontal: 15
   },
   iconBg: {
-    width: 14,
-    height: 14,
-    position: 'absolute',
-    top: '30%',
-    right: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    width: 18,
+    height: 18,
+    position: 'absolute',
+    right: 10,
+    top: '25%',
     borderRadius: 9,
+    overflow: 'hidden'
+  },
+  iconNextImg: {
+    width: 776,
+    height: 18,
+    marginLeft: -108
   }
 })

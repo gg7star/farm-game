@@ -5,7 +5,7 @@ import {
   ScrollView,
   View,
   Text,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   ImageBackground,
 } from 'react-native';
 
@@ -14,7 +14,8 @@ import Dash from 'react-native-dash';
 
 import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
-import Panel from './Panel.js';
+
+import GameProgressBar from './GameProgressBar';
 
 const gameBgData = {
   sky: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/sky/A04.gif',
@@ -24,31 +25,28 @@ const gameBgData = {
   tree: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/tree/1110.gif',
   hatake: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/hatake/1101.gif',
 }
-const FarmName = () => {
+
+const FarmTop = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
-        style={FarmNameStyles.bgImg}
+        style={FarmTopStyles.bgImg}
         resizeMode="repeat"
         source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}>
           <ScrollView style={{flexDirection: 'column'}}>
             <View
-              style={FarmNameStyles.header}
+              style={FarmTopStyles.header}
             >
-              <View
-                style={FarmNameStyles.headerText}
+              <Text
+                style={FarmTopStyles.headerText}
               >
-                <Text
-                  style={FarmNameStyles.headerContent}
-                >
-                  無料ゲーム：博多ニワカそうすを栽培する
-                </Text>                
-              </View>
+                無料ゲーム：博多ニワカそうすを栽培する
+              </Text>
             </View>
 
             <GameBgImg item={gameBgData} />
-            <Panel />
+            <GameProgressBar />
             <GameMenu />
                       
           </ScrollView>
@@ -57,9 +55,9 @@ const FarmName = () => {
   )
 }
 
-export default FarmName;
+export default FarmTop;
 
-const FarmNameStyles = StyleSheet.create({
+const FarmTopStyles = StyleSheet.create({
   bgImg: {
     width: '100%',
     height: '100%',
@@ -77,17 +75,11 @@ const FarmNameStyles = StyleSheet.create({
     alignItems: 'center'
   },
   headerText: {
-    width: '80%',
-    marginVertical: 2,
-    backgroundColor: '#ffffff',
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  headerContent: {
-    fontSize: 14,
+    fontSize: 16,
     paddingVertical: 2,
     paddingHorizontal: '1%',
-    lineHeight: 28
+    lineHeight: 28,
+    color: '#fff',
+    fontWeight: 'bold'
   }
 })

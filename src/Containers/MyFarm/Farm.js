@@ -10,11 +10,14 @@ import {
 } from 'react-native';
 
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-
+import { Actions } from 'react-native-router-flux';
 
 const Farm = ({item}) => {
+  const goFarmTop = () => {
+    Actions.farmTop()
+  }
   return (
-    <TouchableOpacity style={FarmStyles.bg}>
+    <TouchableOpacity style={FarmStyles.bg} onPress={goFarmTop}>
       <View>
         <ImageBackground source={{uri: item.farmImg}} style={{width: '100%', aspectRatio: 1}}>
           <View style={FarmStyles.nameArea}>

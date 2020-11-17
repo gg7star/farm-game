@@ -298,7 +298,7 @@ const Home = () => {
             <View style={HomeStyle.topBtn}>
               {
                 homeBtnList.map((item, i) => (
-                  <HomeButton item={item} handleClick={homeBtnClick} index={i} />
+                  <HomeButton key={i} item={item} handleClick={homeBtnClick} index={i} />
                 ))
               }
             </View>
@@ -327,7 +327,7 @@ const Home = () => {
               <View style={{flexDirection: 'row'}}>
                 {
                   categoryTabList.map((item, i) => (
-                    <TouchableOpacity style={{width: '20%'}} onPress={() => setTabItem(i)}>
+                    <TouchableOpacity key={i} style={{width: '20%'}} onPress={() => setTabItem(i)}>
                       <CategoryTab item={item} />
                     </TouchableOpacity>
                   ))
@@ -336,7 +336,7 @@ const Home = () => {
 
               {
                 categories.map((item, i) => (
-                  tabItem === i && <View style={[HomeStyle.tabContent, {backgroundColor: categoryTabList[i].bgColor}]}>
+                  tabItem === i && <View key={i} style={[HomeStyle.tabContent, {backgroundColor: categoryTabList[i].bgColor}]}>
                     <CategoryTabContent item={item} index={i} />
                   </View>
                 ))
@@ -347,8 +347,8 @@ const Home = () => {
               <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
               <View style={HomeStyle.subMenuContent}>
                 {
-                  accountList.map((item) => (
-                    <SubMenu item={item} />
+                  accountList.map((item, i) => (
+                    <SubMenu key={i} item={item} />
                   ))
                 }
               </View>
@@ -358,8 +358,8 @@ const Home = () => {
               <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
               <View style={HomeStyle.subMenuContent}>
                 {
-                  supplyList.map((item) => (
-                    <SubMenu item={item} />
+                  supplyList.map((item, i) => (
+                    <SubMenu key={i} item={item} />
                   ))
                 }
               </View>

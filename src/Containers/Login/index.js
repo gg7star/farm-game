@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
-// import { compose } from 'recompose';
 import { bindActionCreators } from 'redux';
 import {
   SafeAreaView,
@@ -37,7 +36,7 @@ const Login = () => {
   };
 
   const doLogin = async () => {
-    const response = await loginWithAPI({mail_address: email, password});
+    const response = await loginWithAPI({mail_address: email, password: password});
     if (response && response.member) {
       const userInfo = await apiMemberById(response.member.id);
       if (userInfo) {
@@ -76,10 +75,13 @@ const Login = () => {
                     autoCapitalize = 'none'
                     onChangeText = {handleEmail} />
                   <Text>{'\n'}パスワード:</Text>
-                  <TextInput style = {LoginStyle.input}
+                  <TextInput 
+                    secureTextEntry={true}
+                    style = {LoginStyle.input}
                     underlineColorAndroid = 'transparent'
                     autoCapitalize = 'none'
-                    onChangeText = {handlePassword} />
+                    onChangeText = {handlePassword} 
+                  />
                   <Text>※半角英数字4文字以上8文字以内{'\n\n'}</Text>
                   <TouchableOpacity                  
                     onPress = {() => doLogin()}>

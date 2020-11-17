@@ -25,7 +25,7 @@ const CategoryTabContent = ({item, index}) => {
       }
       {
         item.map((eachItem, i) => (
-          <MContent item={eachItem} />
+          <MContent key={i} item={eachItem} />
         ))
       }
     </View>

@@ -13,7 +13,32 @@ import AutoHeightImage from 'react-native-auto-height-image';
 
 const GameBgImg = ({item}) => {
   return (
-    <View>
+    <View style={{height: 400}}>
+      <Image
+        source={{uri: item.sky}}
+        style={GameBgImgStyles.skyImg}
+      />
+      <Image
+        source={{uri: item.ground}}
+        style={GameBgImgStyles.screenImg}
+      />
+      <AutoHeightImage
+        width={responsiveWidth(41)}
+        source={{uri: item.house}}
+        style={GameBgImgStyles.houseImg}
+      />
+      <Image
+        source={{uri: item.river}}
+        style={GameBgImgStyles.screenImg}
+      />
+      <Image
+        source={{uri: item.tree}}
+        style={GameBgImgStyles.screenImg}
+      />
+      <Image
+        source={{uri: item.hatake}}
+        style={GameBgImgStyles.screenImg}
+      />
     </View>
   )
 }
@@ -21,15 +46,23 @@ const GameBgImg = ({item}) => {
 export default GameBgImg;
 
 const GameBgImgStyles = StyleSheet.create({
-  bg: {
-    height: 50,
-    zIndex: 100,
-    width: '100%',
+  skyImg: {
     position: 'absolute',
-    bottom: 0,
-    borderTopWidth: 1,
-    borderTopColor: '#388e3c',
-    backgroundColor: '#67b500',
-    flexDirection: 'row'
+    left: 0,
+    top: 0,
+    width: responsiveWidth(100),
+    height: 150,
   },
+  screenImg: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: responsiveWidth(100),
+    height: 400,
+  },
+  houseImg: {
+    position: 'absolute',
+    top: 70,
+    left: '48%',
+  }
 })

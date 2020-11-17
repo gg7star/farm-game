@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
 import {
   SafeAreaView,
   StyleSheet,
@@ -18,6 +19,7 @@ import { Actions } from 'react-native-router-flux';
 import Menu from '../../Components/Menu';
 
 import Farm from './Farm.js';
+import { apiMyFarm } from '../../services/apis/myfarm';
 
 const farmList = [
   {
@@ -41,7 +43,15 @@ const farmList = [
     cropImg: ''
   }
 ]
-const MyFarm = () => {
+const MyFarm = (props) => {
+  console.log('==== MyFarm: props: ', props);
+  const getFarms = async () => {
+    const myFarms = await apiMyFarm(11);
+
+    console.log('==== myFrams: ', myFarms);
+  }
+
+  getFarms();
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -78,8 +88,8 @@ const MyFarm = () => {
               <ImageBackground style={{width: '100%'}} imageStyle={{borderRadius: 8}} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/20150422/category_bg2.gif'}} resizeMode='repeat'>
                 <View style={MyFarmStyles.myFarmTable}>
                   {
-                    farmList.map((item) => (
-                      <Farm item={item} />
+                    farmList.map((item, i) => (
+                      <Farm key={i} item={item} />
                     ))
                   }
                 </View>
@@ -92,7 +102,7 @@ const MyFarm = () => {
   )
 }
 
-export default MyFarm;
+// export default MyFarm;
 
 const MyFarmStyles = StyleSheet.create({
   bgImg: {
@@ -142,3 +152,13 @@ const MyFarmStyles = StyleSheet.create({
     padding: '1%',
   }
 })
+
+const mapStateToProps = (state) => ({
+  user: state.user || {},
+});
+
+// const mapDispatchToProps = (dispatch) => ({
+//   loginActions: bindActionCreators(userActions.login, dispatch),
+// });
+
+export default connect(mapStateToProps)(MyFarm);

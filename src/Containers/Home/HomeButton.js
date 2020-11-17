@@ -15,8 +15,8 @@ const HomeButton = ({item, handleClick, index}) => {
   return (
     <TouchableOpacity style={[ButtonStyles.btn, {backgroundColor: item.bgColor}]} onPress={() => handleClick(index)}>
       {
-        item.text.map((each) => (
-          <Text style={ButtonStyles.text}>{each}</Text>
+        item.text.map((each, i) => (
+          <Text style={ButtonStyles.text} key={i}>{each}</Text>
         ))
       }
       

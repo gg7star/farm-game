@@ -7,7 +7,7 @@ export const getMemberInfoFromLocal = () => {
 };
 
 export async function apiActionMasters(searchParams) {
-  return await query(`/action_master/all`, {searchParams});
+  return await query(`/action_master/all`, { searchParams });
 }
 
 export async function apiActionMasterById(id) {

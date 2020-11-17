@@ -21,7 +21,7 @@ const GoodPointText = ({item}) => {
       <ItemTitle item={item} />
       {
         item.content.map((each, i) => (
-          <View>
+          <View key={i}>
             {
               i > 0 && <Dash 
                 style={{height: 0.3, marginTop: 8}}
