@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,6 +16,13 @@ import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
 
 import GameProgressBar from './GameProgressBar';
+import Weather from './Weather';
+import Nutrition from './Nutrition';
+import Moisture from './Moisture';
+import Calendar from './Calendar';
+import GameEngine from './GameEngine';
+import TopNana from './TopNana';
+import TopHatakeMenu from './TopHatakeMenu';
 
 const gameBgData = {
   sky: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/sky/A04.gif',
@@ -26,7 +33,66 @@ const gameBgData = {
   hatake: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/hatake/1101.gif',
 }
 
-const FarmTop = () => {
+const nanaSpot = 'スライムさん、こんにちは♪菜々と一緒にキャベツを作って餃子をゲットしよう♪\nまずはハウスの骨組みを建てよう！';
+
+const weatherList = [
+  {
+    date: '1月3日',
+    image: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather1.png'
+  },
+  {
+    date: '1月4日',
+    image: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather2.png'
+  },
+  {
+    date: '1月5日',
+    image: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather5.png'
+  },
+  {
+    date: '1月6日',
+    image: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather1.png'
+  },
+  {
+    date: '1月7日',
+    image: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather1.png'
+  },
+  {
+    date: '1月8日',
+    image: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather1.png'
+  },
+  {
+    date: '1月9日',
+    image: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather1.png'
+  }
+]
+
+const FarmTop = ({farmInfo}) => {
+
+  const [topNana, setTopNana] = useState(undefined);
+  const [curNanaTag, setCurNanaTag] = useState(undefined);
+  const [topHatakeMenu, setTopHatakeMenu] = useState(false);
+
+  const closeTopNana = () => {
+    setCurNanaTag(undefined);
+  }
+
+  const showNanaSpot = () => {
+    setCurNanaTag('nana');
+    setTopNana(nanaSpot);
+  }
+
+  const showWeather = () => {
+    setCurNanaTag('weather');
+    setTopNana(weatherList);
+  }
+
+  const showTopHatakeMenu = () => {
+    setTopHatakeMenu(true);
+  }
+
+  const closeTopHatakeMenu = () => {
+    setTopHatakeMenu(false);
+  }
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -41,11 +107,28 @@ const FarmTop = () => {
               <Text
                 style={FarmTopStyles.headerText}
               >
-                無料ゲーム：博多ニワカそうすを栽培する
+                {farmInfo.name}
               </Text>
             </View>
 
             <GameBgImg item={gameBgData} />
+            <Weather clickWeather={showWeather}  />
+            <Nutrition />
+            <Moisture />
+            <Calendar />
+            <GameEngine 
+              clickTopNana={showNanaSpot} 
+              clickTopHatakeMenu={showTopHatakeMenu} 
+            />
+
+            {
+              curNanaTag && <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
+            }
+
+            {
+              topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} />
+            }
+
             <GameProgressBar />
             <GameMenu />
                       

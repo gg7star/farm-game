@@ -28,7 +28,8 @@ const GameProgressBarStyles = StyleSheet.create({
     width: '100%',
     height: 8,
     backgroundColor: '#f90',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    zIndex: 100,
   },
   current: {
     backgroundColor: '#666',

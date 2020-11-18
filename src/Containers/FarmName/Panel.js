@@ -13,12 +13,20 @@ import {
 import { Actions } from 'react-native-router-flux';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const Panel = () => {
+import { loginWithAPI } from '../../services/apis/auth';
 
-  const [farmName, setFarmName] = useState('無料ゲーム：博多ニワカそうす農場');
+const Panel = ({item, name}) => {
+
+  console.log(18, item, name)
+
+  const [farmName, setFarmName] = useState(name);
 
   const inputFarmName = (e) => {
     setFarmName(e)
+  }
+
+  const submitFarm = () => {
+    console.log('Submit')
   }
 
   return (
@@ -39,12 +47,16 @@ const Panel = () => {
         <View style={{margin: 8}}>
           <Text>
             <Text style={{color: '#00cc33', fontSize: 12}}>★</Text>
-            <Text style={{color: '#666666', fontSize: 12}}>収穫目安</Text>
+            <Text style={{color: '#666666', fontSize: 12}}>
+            収穫目安
+            </Text>
             <Text style={{color: '#00cc33', fontSize: 12}}>★</Text>
           </Text>
           <Text>
             <Text style={{color: '#666666', fontSize: 12}}>現実時間の</Text>
-            <Text style={{color: '#ff5500', fontSize: 12}}>2日</Text>
+            <Text style={{color: '#ff5500', fontSize: 12}}>
+              {item.trainingGuide.split('前後')}
+            </Text>
             <Text style={{color: '#666666', fontSize: 12}}>前後</Text>
           </Text>
           <Text>
@@ -54,7 +66,9 @@ const Panel = () => {
           </Text>
           <Text>
             <Text style={{color: '#666666', fontSize: 12}}>現実時間の</Text>
-            <Text style={{color: '#ff5500', fontSize: 12}}>45分</Text>
+            <Text style={{color: '#ff5500', fontSize: 12}}>
+              {item.inGameDay}
+            </Text>
           </Text>
         </View>
       </View>
@@ -64,7 +78,10 @@ const Panel = () => {
         returnKeyType='next'
         onChange={inputFarmName}
       />
-      <TouchableOpacity style={[PanelStyles.submit, PanelStyles.shadow]}>
+      <TouchableOpacity 
+        style={[PanelStyles.submit, PanelStyles.shadow]}
+        onPress={submitFarm}
+      >
         <Text style={PanelStyles.submitText}>農場を作る</Text>
       </TouchableOpacity>
     </View>
@@ -97,7 +114,8 @@ const PanelStyles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 1.00)',
     fontWeight: 'bold',
     lineHeight: 40,
-    fontSize: 12
+    fontSize: 14,
+    marginLeft: 8,
   },
   content: {
     flexDirection: 'row',

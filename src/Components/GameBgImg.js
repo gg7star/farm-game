@@ -5,7 +5,7 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
@@ -22,11 +22,13 @@ const GameBgImg = ({item}) => {
         source={{uri: item.ground}}
         style={GameBgImgStyles.screenImg}
       />
-      <AutoHeightImage
-        width={responsiveWidth(41)}
-        source={{uri: item.house}}
-        style={GameBgImgStyles.houseImg}
-      />
+      <TouchableWithoutFeedback>
+        <AutoHeightImage
+          width={responsiveWidth(41)}
+          source={{uri: item.house}}
+          style={GameBgImgStyles.houseImg}
+        />
+      </TouchableWithoutFeedback>      
       <Image
         source={{uri: item.river}}
         style={GameBgImgStyles.screenImg}

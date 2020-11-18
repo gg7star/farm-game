@@ -33,7 +33,7 @@ const GameMenu = ({item}) => {
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={GameMenuStyles.btn}>
+      <TouchableOpacity style={GameMenuStyles.btn} onPress={goMyFarm}>
         <Text style={GameMenuStyles.text}>MY FARM</Text>
         <View style={GameMenuStyles.iconBg}>
           <Image

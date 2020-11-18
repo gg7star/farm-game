@@ -23,22 +23,26 @@ import { apiMyFarm } from '../../services/apis/myfarm';
 
 const farmList = [
   {
-    name: '無料ゲーム：白菜農場\n155日目',
+    name: '無料ゲーム：白菜農場',
+    date: '155日目',
     farmImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/364145.jpg',
     cropImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/1609/icon.png'
   },
   {
-    name: 'はちみつ(小瓶セット)農場\n7日目',
-    farmImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/364145.jpg',
-    cropImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/1609/icon.png'
+    name: 'はちみつ(小瓶セット)農場',
+    date: '7日目',
+    farmImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/53541.jpg',
+    cropImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/555/icon.png'
   },
   {
     name: '',
+    date: '',
     farmImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
     cropImg: ''
   },
   {
     name: '',
+    date: '',
     farmImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
     cropImg: ''
   }

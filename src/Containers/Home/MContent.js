@@ -16,7 +16,7 @@ const MContent = ({item}) => {
 
   const cropClick = () => {
     if (item.option === '無料ゲーム'){
-      Actions.farmName();
+      Actions.farmName({gameData: item});
     } else if (item.option === '一発畑') {
       Actions.cropDetails(item.id);
     } else {
@@ -30,7 +30,7 @@ const MContent = ({item}) => {
     >
       <View style={{flexDirection: 'row', height: 18}}>
         {
-          item.option && <View style={MContentStyles.option}>
+          (item.option && item.option.length > 1) && <View style={MContentStyles.option}>
             <Text style={MContentStyles.optionText}>{item.option}</Text>
           </View>
         }
@@ -132,7 +132,7 @@ const MContentStyles = StyleSheet.create({
   },
   mArrow: {
     right: 4,
-    top: 28,
+    top: 25,
     position: 'absolute',
     transform: [{rotate: '90deg'}]
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,6 +12,8 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Dash from 'react-native-dash';
 
+import { apiFarmNameByCropId } from '../../services/apis/un_page_data';
+
 import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
 import Panel from './Panel.js';
@@ -24,7 +26,21 @@ const gameBgData = {
   tree: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/tree/1110.gif',
   hatake: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/hatake/1101.gif',
 }
-const FarmName = () => {
+const FarmName = ({gameData}) => {
+
+  // const [farmNameData, setFarmNameData] = useState(undefined)
+
+  // const getFarmData = async () => {
+  //   const farmData = await apiFarmNameByCropId(cropId);
+  //   setFarmNameData(farmData);
+  //   console.log('==== farmData: ', farmData);
+  // }
+
+  // useEffect(() => {
+  //   getFarmData();
+  // }, []);
+
+  // // getFarmData();
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -42,13 +58,16 @@ const FarmName = () => {
                 <Text
                   style={FarmNameStyles.headerContent}
                 >
-                  無料ゲーム：博多ニワカそうすを栽培する
-                </Text>                
+                  {gameData.Mtitle}
+                </Text>              
               </View>
             </View>
 
             <GameBgImg item={gameBgData} />
-            <Panel />
+            <Panel 
+              item={gameData.Mcaption} 
+              name={gameData.Mtitle + '農場'} 
+            />
             <GameMenu />
                       
           </ScrollView>

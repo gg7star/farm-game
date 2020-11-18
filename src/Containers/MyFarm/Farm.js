@@ -14,14 +14,14 @@ import { Actions } from 'react-native-router-flux';
 
 const Farm = ({item}) => {
   const goFarmTop = () => {
-    Actions.farmTop()
+    Actions.farmTop({farmInfo: item})
   }
   return (
     <TouchableOpacity style={FarmStyles.bg} onPress={goFarmTop}>
       <View>
         <ImageBackground source={{uri: item.farmImg}} style={{width: '100%', aspectRatio: 1}}>
           <View style={FarmStyles.nameArea}>
-            <Text style={FarmStyles.name}>{item.name}</Text>
+          <Text style={FarmStyles.name}>{item.name}{'\n'}{item.date}</Text>
           </View>
           {
             item.cropImg.length > 0 && <Image source={{uri: item.cropImg}} style={FarmStyles.crop} />
