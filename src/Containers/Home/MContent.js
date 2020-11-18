@@ -77,7 +77,7 @@ const MContent = ({item}) => {
             </View>
           }
           {
-            item.Mcaption.content && <View style={{flexDirection: 'row'}}>
+            item.Mcaption.content && <View style={{flexDirection: 'row', width: '80%'}}>
               <Text style={MContentStyles.mContentText}>・ </Text>
               <Text style={MContentStyles.mContentText}>{item.Mcaption.content}</Text>
             </View>
@@ -128,7 +128,7 @@ const MContentStyles = StyleSheet.create({
     color: '#fff'
   },
   mContentText: {
-    fontSize: 11
+    fontSize: 11,
   },
   mArrow: {
     right: 4,
