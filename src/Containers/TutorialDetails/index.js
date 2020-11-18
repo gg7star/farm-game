@@ -76,8 +76,8 @@ const TutorialDetails = ({param}) => {
               </View>
 
               {
-                tutorialDetailsList[param].img.map((item) => (
-                  <AutoHeightImage width={(responsiveWidth(100) - 16)} source={{uri: item}} style={{borderRadius: 8}} />
+                tutorialDetailsList[param].img.map((item, i) => (
+                  <AutoHeightImage key={i} width={(responsiveWidth(100) - 16)} source={{uri: item}} style={{borderRadius: 8}} />
                 ))
               }
 

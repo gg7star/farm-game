@@ -48,11 +48,8 @@ const farmList = [
   }
 ]
 const MyFarm = (props) => {
-  console.log('==== MyFarm: props: ', props);
   const getFarms = async () => {
     const myFarms = await apiMyFarm(11);
-
-    console.log('==== myFrams: ', myFarms);
   }
 
   getFarms();

@@ -170,7 +170,7 @@ const Welcome = () => {
                   <ImageBackground style={{borderRadius: 10, padding: 10}} imageStyle={styles.accordionImgBg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png'}}>
                     {
                       accordionList.map((item, i) => (
-                        <AccordionItem item={item} top={i===0} bottom={(i+1)===accordionList.length} />
+                        <AccordionItem key={i} item={item} top={i===0} bottom={(i+1)===accordionList.length} />
                       ))
                     }
                   </ImageBackground>

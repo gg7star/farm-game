@@ -68,8 +68,8 @@ const EventTitleAll = () => {
                   style={{margin: 8}}
                 >
                   {
-                    eachData.map((item) => (
-                      <EventItem item={item} />
+                    eachData.map((item, i) => (
+                      <EventItem key={i} item={item} />
                     ))
                   }
                 </View>                         

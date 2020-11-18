@@ -16,9 +16,6 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import { loginWithAPI } from '../../services/apis/auth';
 
 const Panel = ({item, name}) => {
-
-  console.log(18, item, name)
-
   const [farmName, setFarmName] = useState(name);
 
   const inputFarmName = (e) => {

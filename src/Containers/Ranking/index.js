@@ -77,7 +77,7 @@ const Ranking = () => {
           <AutoHeightImage width={responsiveWidth(100)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/deco/listtop.png'}} />
           {
             rankList.map((item, i) => (
-              <RankItem item={item} index={i+1} />
+              <RankItem key={i} item={item} index={i+1} />
             ))
           }
           <TouchableOpacity>

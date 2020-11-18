@@ -37,8 +37,8 @@ const EventItem = ({item}) => {
       </View>
 
       {
-        item.eachList.map((each) => (
-          <View>
+        item.eachList.map((each, i) => (
+          <View key={i}>
             <Text
               style={[EventItemStyles.contentText, {color: item.clr}]}
             >

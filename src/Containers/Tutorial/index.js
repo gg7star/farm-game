@@ -67,7 +67,7 @@ const Tutorial = () => {
                 <View style={{margin: 8}}>
                   {
                     tutorialList.map((item, i) => (
-                      <TutorialPoint item={item} index={i} />
+                      <TutorialPoint key={i} item={item} index={i} />
                     ))
                   }
                 </View>
