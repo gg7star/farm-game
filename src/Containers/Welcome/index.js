@@ -10,13 +10,14 @@ import {
   TouchableOpacity,
   StatusBar,
   Dimensions,
+  Platform,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
-
 import { List } from 'react-native-paper';
+import { AdMobRewarded } from 'react-native-admob';
 
 import {
   Header,
@@ -27,6 +28,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import AccordionItem from './AccordionItem';
+import constants from '../../config/constants';
 
 const tab1ImgList = [
   'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/ftop/img_ftop2.png',
@@ -70,17 +72,61 @@ const Welcome = () => {
   const [activeTab, setActiveTab] = useState(true);
   const [expanded, setExpanded] = useState(false);
 
+  useEffect(() => {
+    // Init reward
+    // Test mode
+    AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
+    AdMobRewarded.setAdUnitID(constants[Platform.OS].reward.test);
+    // Real mode
+    // AdMobRewarded.setAdUnitID(constants[Platform.OS].reward.id);
+
+    /* Regisrer reward listerners */
+    AdMobRewarded.addEventListener('rewarded', reward =>
+      console.log('AdMobRewarded => rewarded', reward),
+    );
+    AdMobRewarded.addEventListener('adLoaded', () =>
+      console.log('AdMobRewarded => adLoaded'),
+    );
+    AdMobRewarded.addEventListener('adFailedToLoad', error =>
+      console.warn(error),
+    );
+    AdMobRewarded.addEventListener('adOpened', () =>
+      console.log('AdMobRewarded => adOpened'),
+    );
+    AdMobRewarded.addEventListener('videoStarted', () =>
+      console.log('AdMobRewarded => videoStarted'),
+    );
+    AdMobRewarded.addEventListener('adClosed', () => {
+      console.log('AdMobRewarded => adClosed');
+      // AdMobRewarded.requestAd().catch(error => console.warn(error));
+      Actions.login();
+    });
+    AdMobRewarded.addEventListener('adLeftApplication', () =>
+      console.log('AdMobRewarded => adLeftApplication'),
+    );
+
+    // AdMobRewarded.requestAd().catch(error => console.warn(error));
+  }, [])
+
   const toggleExpand = () => {
     setExpanded(!expanded);
   }
 
+  const showRewarded = () => {
+    AdMobRewarded.showAd().catch((error) =>
+      console.warn('===== reward error: ', error),
+    );
+    // or
+    // AdMobRewarded.requestAd(AdMobRewarded.showAd);
+  }
+
   const goLogin = () => {
-    Actions.login()
+    showRewarded()
   }
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>         
+      <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
 
         <ScrollView style={{flexDirection: 'column'}}>
 

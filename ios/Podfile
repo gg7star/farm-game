@@ -6,6 +6,8 @@ platform :ios, '10.0'
 target 'HatakeGame' do
   config = use_native_modules!
 
+  pod 'Google-Mobile-Ads-SDK'
+  
   use_react_native!(:path => config["reactNativePath"])
 
   target 'HatakeGameTests' do
