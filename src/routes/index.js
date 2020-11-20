@@ -20,6 +20,8 @@ import Profile from '../Containers/Profile';
 import WaitDelivery from '../Containers/WaitDelivery';
 import WaitDelivery2 from '../Containers/WaitDelivery/WaitDelivery2';
 import AddressList from '../Containers/AddressList';
+import AddressInput from '../Containers/AddressInput';
+import AddressCheck from '../Containers/AddressInput/AddressCheck';
 
 const Routes = () => (
 	<Router>
@@ -43,6 +45,8 @@ const Routes = () => (
 			<Scene key = "waitDelivery" component = {WaitDelivery} title = "WaitDelivery" />
 			<Scene key = "waitDelivery2" component = {WaitDelivery2} title = "WaitDelivery2" />
 			<Scene key = "addressList" component = {AddressList} title = "AddressList" />
+			<Scene key = "addressInput" component = {AddressInput} title = "AddressInput" />
+			<Scene key = "addressCheck" component = {AddressCheck} title = "AddressCheck" />
 		</Scene>
 	</Router>
 )

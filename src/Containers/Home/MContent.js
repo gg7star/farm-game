@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import Dash from 'react-native-dash';
 import { Actions } from 'react-native-router-flux';
 
@@ -43,9 +42,9 @@ const MContent = ({item}) => {
             dashThickness={1} />
         </View>
       </View>
-      <View style={{marginTop: 6, flexDirection: 'row'}}>
+      <View style={{marginTop: 6, flexDirection: 'row', alignItems: 'center'}}>
         <Image source={{uri: item.Mimg}} style={MContentStyles.mimg} />
-        <View>
+        <View style={{width: '75%'}}>
           {
             item.Mcaption.harvestGuide && <View style={{flexDirection: 'row'}}>
               <Text style={MContentStyles.mContentText}>・収穫目安P：</Text>
@@ -131,9 +130,6 @@ const MContentStyles = StyleSheet.create({
     fontSize: 11,
   },
   mArrow: {
-    right: 4,
-    top: 25,
-    position: 'absolute',
     transform: [{rotate: '90deg'}]
   }
 })

@@ -5,9 +5,9 @@ export async function signupWithAPI(data) {
 }
 
 export async function loginWithAPI(data) {
-  // console.log('===== loginWithAPI: data: ', data);
+  console.log('===== loginWithAPI: data: ', data);
   const res = await jsonQuery('/auth/login/', 'POST', data, false);
-  // console.log('===== loginWithAPI: res: ', res);
+  console.log('===== loginWithAPI: res: ', res);
   await setLocalToken(JSON.stringify(res));
   return res;
 }

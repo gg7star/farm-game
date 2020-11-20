@@ -36,14 +36,15 @@ const Login = () => {
   };
 
   const doLogin = async () => {
-    const response = await loginWithAPI({mail_address: email, password: password});
-    if (response && response.member) {
-      const userInfo = await apiMemberById(response.member.id);
-      if (userInfo) {
-        dispatch(setUser(userInfo));
-        Actions.home();
-      }
-    }
+    Actions.home();
+    // const response = await loginWithAPI({mail_address: email, password: password});
+    // if (response && response.member) {
+    //   const userInfo = await apiMemberById(response.member.id);
+    //   if (userInfo) {
+    //     dispatch(setUser(userInfo));
+    //     Actions.home();
+    //   }
+    // }
     // Failed to login
   };
 
