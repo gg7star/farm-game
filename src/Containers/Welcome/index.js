@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -28,7 +28,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import AccordionItem from './AccordionItem';
-import constants from '../../config/constants';
+import { admob as AdMobConstant } from '../../config/constants';
 
 const tab1ImgList = [
   'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/ftop/img_ftop2.png',
@@ -73,10 +73,11 @@ const Welcome = () => {
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
+    console.log('===== AdMobConstant: ', AdMobConstant)
     // Init reward
     // Test mode
     AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
-    AdMobRewarded.setAdUnitID(constants[Platform.OS].reward.test);
+    AdMobRewarded.setAdUnitID(AdMobConstant[Platform.OS].reward.test);
     // Real mode
     // AdMobRewarded.setAdUnitID(constants[Platform.OS].reward.id);
 
@@ -98,39 +99,33 @@ const Welcome = () => {
     );
     AdMobRewarded.addEventListener('adClosed', () => {
       console.log('AdMobRewarded => adClosed');
-      // AdMobRewarded.requestAd().catch(error => console.warn(error));
       Actions.login();
     });
     AdMobRewarded.addEventListener('adLeftApplication', () =>
       console.log('AdMobRewarded => adLeftApplication'),
     );
-
-    // AdMobRewarded.requestAd().catch(error => console.warn(error));
-  }, [])
+  }, []);
 
   const toggleExpand = () => {
     setExpanded(!expanded);
-  }
+  };
 
-  const showRewarded = () => {
-    AdMobRewarded.showAd().catch((error) =>
-      console.warn('===== reward error: ', error),
-    );
-    // or
-    // AdMobRewarded.requestAd(AdMobRewarded.showAd);
-  }
+  const showRewarded = async () => {
+    await AdMobRewarded.requestAd(); //.catch(error => console.warn(error));
+    await AdMobRewarded.showAd(); //.catch((error) => console.warn('===== reward error: ', error));
+  };
 
-  const goLogin = () => {
-    showRewarded()
-  }
+  const goLogin = async () => {
+    await showRewarded();
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
-
         <ScrollView style={{flexDirection: 'column'}}>
 
-          <ImageBackground style={styles.headerLogin} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg4.gif'}}>
+          <ImageBackground
+            style={styles.headerLogin} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg4.gif'}}>
             <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/logo2.png'}} style={styles.logo} resizeMode='cover' />
             <Text style={styles.logoText}>～手のひらの小さな農園～</Text>
             <TouchableOpacity onPress={goLogin}  style={styles.logoTouch}>
