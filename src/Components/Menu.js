@@ -61,8 +61,8 @@ const Menu = ({item}) => {
           </TouchableOpacity>
           <View style={MenuStyles.menuBtn}>
             {
-              menuList.map((item) => (
-                <View style={MenuStyles.eachBtn}>
+              menuList.map((item, i) => (
+                <View key={i} style={MenuStyles.eachBtn}>
                   <MenuBtn item={item} />
                 </View>
               ))
