@@ -59,7 +59,7 @@ const Tutorial = () => {
                 style={TutorialStyles.corner}
               >
                 <View style={[TutorialStyles.prizeText, TutorialStyles.topCorner]}>
-                  <Text style={[TutorialStyles.headerText, TutorialStyles.contentTitle]}>
+                  <Text style={TutorialStyles.contentTitle}>
                     ◆下のリンクから各説明ページに行けるよ♪
                   </Text>
                 </View>
@@ -105,11 +105,6 @@ const TutorialStyles = StyleSheet.create({
   topCorner: {
     borderTopRightRadius: 8,
     borderTopLeftRadius: 8,
-  },
-  headerText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
   contentTitle: {
     color: '#fff',

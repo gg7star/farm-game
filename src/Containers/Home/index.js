@@ -900,7 +900,7 @@ const accountList = [
   },
   {
     name: '送付手続き待ち',
-    link: 'wait_delivery'
+    link: 'waitDelivery'
   }
 ]
 
@@ -960,7 +960,7 @@ const Home = () => {
   const [notation, setNotation] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setLoadTime(false), 3000)
+    setTimeout(() => setLoadTime(false), 100)
   }, [])
 
   const eventImgClick = () => {
@@ -988,7 +988,7 @@ const Home = () => {
       <ImageBackground
         style={HomeStyle.bgImg}
         resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}>
+        source={require('../../assets/images/bg_pattern.png')}>
           <ScrollView style={{flexDirection: 'column'}}>
             <View style={HomeStyle.header}>
               <View style={HomeStyle.headerNews}>

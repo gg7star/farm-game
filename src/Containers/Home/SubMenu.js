@@ -10,13 +10,18 @@ import {
 
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
+import { Actions } from 'react-native-router-flux';
 
 const SubMenu = ({item}) => {
+
+  const goNext = () => {
+    Actions[item.link]();
+  }
   return (
-    <View style={SubMenuStyles.bg}>
+    <TouchableOpacity style={SubMenuStyles.bg} onPress={goNext}>
       <Text style={SubMenuStyles.text}>{item.name}</Text>
       <Text style={SubMenuStyles.mArrow}>▲</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

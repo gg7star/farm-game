@@ -26,7 +26,7 @@ const News = () => {
       <ImageBackground
         style={NewsStyles.bgImg}
         resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}>
+        source={require('../../assets/images/bg_pattern.png')}>
           <ScrollView style={{flexDirection: 'column'}}>
             <Header title='お知らせ' />
             
