@@ -22,7 +22,13 @@ import Header from '../../Components/Header.js';
 import HeaderBrownBar from '../../Components/HeaderBrownBar.js';
 
 import { apiAddressList } from '../../services/apis/address_list';
+import EachAddress from './EachAddress';
 
+const addresses = [
+  {
+    name: 'AAA'
+  }
+]
 const AddressList = () => {
 
   const getAddressList = async () => {
@@ -31,7 +37,7 @@ const AddressList = () => {
     console.log(addresses);
   };
 
-  getAddressList();
+  // getAddressList();
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -49,8 +55,12 @@ const AddressList = () => {
               style = {AddressListStyles.subTitle}>
               <Text style={{color: '#fff'}}>お届け先の登録/変更</Text>
             </LinearGradient>
+            {
+              addresses.map((item, i) => (
+                <EachAddress key={i} item={item} />
+              ))
+            }
           </View>
-          
         </ScrollView>   
         
       </ImageBackground>
