@@ -16,6 +16,7 @@
     "axios": "^0.21.0",
     "react": "16.13.1",
     "react-native": "0.63.2",
+    "react-native-admob": "^2.0.0-beta.6",
     "react-native-auto-height-image": "^3.2.3",
     "react-native-cropping": "^0.0.4",
     "react-native-dash": "^0.0.11",

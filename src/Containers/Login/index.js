@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -20,12 +20,21 @@ import { apiMemberById } from '../../services/apis/users';
 import { setUser } from '../../redux/reducers/userSlice';
 
 
-const Login = () => {
+const Login = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log('===== props.user: ', props.user);
+    const user = props.user && props.user.user;
+    console.log('===== user.mail_addres: ', user.mail_address);
+    console.log('===== user.password: ', user.password);
+    user && user.mail_address && setEmail(user.mail_address);
+    user && user.password && setPassword(user.password);
+  }, []);
 
   const handleEmail = (e) => {
     setEmail(e);
@@ -74,6 +83,7 @@ const Login = () => {
                   style={LoginStyle.input}
                   underlineColorAndroid='transparent'
                   autoCapitalize="none"
+                  value={email}
                   onChangeText={handleEmail}
                 />
                 <Text>{'\n'}パスワード:</Text>
@@ -82,6 +92,7 @@ const Login = () => {
                   style = {LoginStyle.input}
                   underlineColorAndroid = 'transparent'
                   autoCapitalize = 'none'
+                  value={password}
                   onChangeText = {handlePassword} 
                 />
                 <Text>※半角英数字4文字以上8文字以内{'\n\n'}</Text>
@@ -225,5 +236,3 @@ const mapStateToProps = (state) => ({
 // });
 
 export default connect(mapStateToProps)(Login);
-
-// export default Login;
