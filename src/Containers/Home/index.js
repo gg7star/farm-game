@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,14 +7,13 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 import Menu from '../../Components/Menu';
 
@@ -28,39 +27,39 @@ import NotationModal from './NotationModal.js';
 const homeBtnList = [
   {
     text: ['ゲーム', 'ガイド '],
-    bgColor: '#23A029'
+    bgColor: '#23A029',
   },
   {
     text: [' 表記に', 'ついて'],
-    bgColor: '#B37A00'
+    bgColor: '#B37A00',
   },
   {
     text: [' MPT', 'ランキング '],
-    bgColor: '#67B500'
-  }
+    bgColor: '#67B500',
+  },
 ];
 
 const categoryTabList = [
   {
     title: '果物',
-    bgColor: '#FF9354'
+    bgColor: '#FF9354',
   },
   {
     title: '野菜',
-    bgColor: '#FFC638'
+    bgColor: '#FFC638',
   },
   {
     title: '動物・\nその他',
-    bgColor: '#53C93C'
+    bgColor: '#53C93C',
   },
   {
     title: 'イベント',
-    bgColor: '#46CEF0'
+    bgColor: '#46CEF0',
   },
   {
     title: '無料ｹﾞｰﾑ',
-    bgColor: '#B84DFF'
-  }
+    bgColor: '#B84DFF',
+  },
 ];
 
 const categories = [
@@ -884,34 +883,34 @@ const categories = [
 const accountList = [
   {
     name: '所持P:70327っぴ',
-    link: 'point'
+    link: 'point',
   },
   {
     name: '作物出荷情報',
-    link: 'news'
+    link: 'news',
   },
   {
     name: 'ﾕｰｻﾞｰ情報の確認',
-    link: 'profile'
+    link: 'profile',
   },
   {
     name: 'ランキング',
-    link: 'ranking'
+    link: 'ranking',
   },
   {
     name: '送付手続き待ち',
-    link: 'waitDelivery'
-  }
-]
+    link: 'waitDelivery',
+  },
+];
 
 const supplyList = [
   {
     name: 'お問い合わせ',
-    link: '/support/contact'
+    link: 'contact',
   },
   {
     name: 'ヤマトメールサービス',
-    link: '/yamato'
+    link: 'yamato',
   },
   {
     name: 'Twitter',
@@ -923,172 +922,170 @@ const supplyList = [
   },
   {
     name: 'ご利用規約',
-    link: '/support/kiyaku1'
+    link: '/support/kiyaku1',
   },
   {
     name: '対応機種',
-    link: '/support/kisyu'
+    link: '/support/kisyu',
   },
   {
     name: '個人情報保護方針',
-    link: '/support/privacy'
+    link: '/support/privacy',
   },
   {
     name: '特定商取引法表示',
-    link: '/support/tokutei'
+    link: '/support/tokutei',
   },
   {
     name: '運営会社',
-    link: '/support/company'
+    link: '/support/company',
   },
   {
     name: 'ログアウト',
-    link: '/doLogout'
+    link: '/doLogout',
   },
   {
     name: '会員解除',
-    link: '/regist/leave'
-  }
-]
-
-
+    link: '/regist/leave',
+  },
+];
 
 const Home = () => {
-
   const [loadTime, setLoadTime] = useState(true);
   const [tabItem, setTabItem] = useState(0);
-  const [notation, setNotation] = useState(false)
+  const [notation, setNotation] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setLoadTime(false), 100)
-  }, [])
+    setTimeout(() => setLoadTime(false), 100);
+  }, []);
 
   const eventImgClick = () => {
-    Actions.event()
-  }
+    Actions.event();
+  };
 
   const homeBtnClick = (e) => {
     if (e === 0) {
-      Actions.tutorial()
-    }
-    else if (e === 1) {
+      Actions.tutorial();
+    } else if (e === 1) {
       setNotation(true);
+    } else {
+      Actions.ranking();
     }
-    else {
-      Actions.ranking()
-    }
-  }
+  };
   const notationClose = () => {
     setNotation(false);
-  }
-  if (loadTime) 
-    return <Loader />
+  };
+  if (loadTime) return <Loader />;
   return (
     <SafeAreaView style={{flex: 1}}>
       <ImageBackground
         style={HomeStyle.bgImg}
         resizeMode="repeat"
         source={require('../../assets/images/bg_pattern.png')}>
-          <ScrollView style={{flexDirection: 'column'}}>
-            <View style={HomeStyle.header}>
-              <View style={HomeStyle.headerNews}>
-
-              </View>
-              <View style={HomeStyle.headerAccount}>
-                <Text 
+        <ScrollView>
+          <View style={HomeStyle.header}>
+            <View style={HomeStyle.headerNews}></View>
+            <View style={HomeStyle.headerAccount}>
+              <Text
                 style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
-                  会員番号:000011
+                会員番号:000011
+              </Text>
+              <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
+                <Text style={{color: '#67b500', fontSize: 12}}>[管理者]</Text>
+                <Text style={{color: '#212121', fontSize: 12}}>
+                  スライムさん
                 </Text>
-                <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
-                  <Text style={{color: '#67b500', fontSize: 12}}>
-                    [管理者]
-                  </Text>    
-                  <Text 
-                  style={{color: '#212121', fontSize: 12}}>
-                    スライムさん
-                  </Text>
+              </View>
+            </View>
+          </View>
+
+          <AutoHeightImage
+            width={responsiveWidth(100)}
+            source={{
+              uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/top_img.png'
+            }}
+          />
+
+          <View style={HomeStyle.topBtn}>
+            {homeBtnList.map((item, i) => (
+              <HomeButton
+                key={i}
+                item={item}
+                handleClick={homeBtnClick}
+                index={i}
+              />
+            ))}
+          </View>
+
+          <View style={{alignItems: 'center'}}>
+            <View style={HomeStyle.introPart}>
+              <Text style={HomeStyle.introText}>
+                サービス終了日の4月30日が近づいてまいりました。
+                {'\n'}
+                今一度今後のスケジュールをご確認くださるようお願いいたします。
+                {'\n'}{'\n'}
+                4月8日(水）12：00を最終出荷手続き日とさせていただいております。
+                {'\n'}
+                ご確認のほどお願いいたします。
+              </Text>
+            </View>
+            <TouchableOpacity onPress={() => eventImgClick()}>
+              <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
+            </TouchableOpacity>
+            
+            <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png'}} />
+            <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />
+          </View>
+
+          <View style={HomeStyle.corner}>
+            <View style={{flexDirection: 'row'}}>
+              {
+                categoryTabList.map((item, i) => (
+                  <TouchableOpacity key={i} style={{width: '20%'}} onPress={() => setTabItem(i)}>
+                    <CategoryTab item={item} />
+                  </TouchableOpacity>
+                ))
+              }
+            </View>
+
+            {
+              categories.map((item, i) => (
+                tabItem === i && <View key={i} style={[HomeStyle.tabContent, {backgroundColor: categoryTabList[i].bgColor}]}>
+                  <CategoryTabContent item={item} index={i} />
                 </View>
-              </View>
-            </View>
+              ))
+            }
+          </View>
 
-            <AutoHeightImage width={responsiveWidth(100)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/top_img.png'}} />
-
-            <View style={HomeStyle.topBtn}>
+          <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+            <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
+            <View style={HomeStyle.subMenuContent}>
               {
-                homeBtnList.map((item, i) => (
-                  <HomeButton key={i} item={item} handleClick={homeBtnClick} index={i} />
+                accountList.map((item, i) => (
+                  <SubMenu key={i} item={item} />
                 ))
               }
             </View>
+          </View>
 
-            <View style={{alignItems: 'center',}}>
-              <View style={HomeStyle.introPart}>
-                <Text style={HomeStyle.introText}>
-                  サービス終了日の4月30日が近づいてまいりました。
-                  {'\n'}
-                  今一度今後のスケジュールをご確認くださるようお願いいたします。
-                  {'\n'}{'\n'}
-                  4月8日(水）12：00を最終出荷手続き日とさせていただいております。
-                  {'\n'}
-                  ご確認のほどお願いいたします。
-                </Text>
-              </View>
-              <TouchableOpacity onPress={() => eventImgClick()}>
-                <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
-              </TouchableOpacity>
-              
-              <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png'}} />
-              <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />
-            </View>
-
-            <View style={HomeStyle.corner}>
-              <View style={{flexDirection: 'row'}}>
-                {
-                  categoryTabList.map((item, i) => (
-                    <TouchableOpacity key={i} style={{width: '20%'}} onPress={() => setTabItem(i)}>
-                      <CategoryTab item={item} />
-                    </TouchableOpacity>
-                  ))
-                }
-              </View>
-
+          <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+            <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
+            <View style={HomeStyle.subMenuContent}>
               {
-                categories.map((item, i) => (
-                  tabItem === i && <View key={i} style={[HomeStyle.tabContent, {backgroundColor: categoryTabList[i].bgColor}]}>
-                    <CategoryTabContent item={item} index={i} />
-                  </View>
+                supplyList.map((item, i) => (
+                  <SubMenu key={i} item={item} />
                 ))
               }
             </View>
+          </View>    
+          <Text>{'\n\n'}</Text>               
 
-            <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
-              <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
-              <View style={HomeStyle.subMenuContent}>
-                {
-                  accountList.map((item, i) => (
-                    <SubMenu key={i} item={item} />
-                  ))
-                }
-              </View>
-            </View>
-
-            <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
-              <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
-              <View style={HomeStyle.subMenuContent}>
-                {
-                  supplyList.map((item, i) => (
-                    <SubMenu key={i} item={item} />
-                  ))
-                }
-              </View>
-            </View>    
-            <Text>{'\n\n'}</Text>               
-
-          </ScrollView>  
-          {
-            notation && <NotationModal notationClose={notationClose} />
-          }          
-          <Menu />                  
+        </ScrollView>  
+        {
+          notation && <NotationModal notationClose={notationClose} />
+        }          
+        <Menu />                  
       </ImageBackground>
       
     </SafeAreaView>

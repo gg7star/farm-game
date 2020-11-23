@@ -29,11 +29,13 @@ const Login = (props) => {
 
   useEffect(() => {
     console.log('===== props.user: ', props.user);
-    const user = props.user;
-    user && user.email && setEmail(user.email);
-    const password = props.password;
+    const user = props.user && props.user.user;
+    console.log('===== user.mail_addres: ', user.mail_address);
+    console.log('===== user.password: ', user.password);
+    user && user.mail_address && setEmail(user.mail_address);
     user && user.password && setPassword(user.password);
   }, []);
+
   const handleEmail = (e) => {
     setEmail(e);
   };
@@ -43,88 +45,95 @@ const Login = (props) => {
   };
 
   const doLogin = async () => {
-    Actions.home();
-    // const response = await loginWithAPI({mail_address: email, password: password});
-    // if (response && response.member) {
-    //   const userInfo = await apiMemberById(response.member.id);
-    //   if (userInfo) {
-    //     dispatch(setUser(userInfo));
-    //     Actions.home();
-    //   }
-    // }
+    // Actions.home();
+    const response = await loginWithAPI({
+      mail_address: email,
+      password: password,
+    });
+    if (response && response.member) {
+      const userInfo = await apiMemberById(response.member.id);
+      if (userInfo) {
+        dispatch(setUser(userInfo));
+        Actions.home();
+      }
+    }
     // Failed to login
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={LoginStyle.safeArea}>
       <ImageBackground
         style={LoginStyle.bgImg}
         resizeMode="repeat"
         source={require('../../assets/images/bg_pattern.png')}>
-          <ScrollView style={{flexDirection: 'column'}}>
-            <View style={LoginStyle.header}>
-              <Text style={LoginStyle.headerText}>ログイン</Text>
-            </View>
-            
-            <View style={{width: '100%'}}>
-              <View
-                style={LoginStyle.formPart}
-              >
-                <View style={[LoginStyle.prizeText, LoginStyle.topCorner]}>
-                  <Text style={[LoginStyle.headerText, LoginStyle.formTitle]}>
-                    ◆入力事項
-                  </Text>
-                </View>
-                <View style={LoginStyle.inputPart}>
-                  <Text>メールアドレス:</Text>
-                  <TextInput style = {LoginStyle.input}
-                    underlineColorAndroid = 'transparent'
-                    autoCapitalize = 'none'
-                    onChangeText = {handleEmail} />
-                  <Text>{'\n'}パスワード:</Text>
-                  <TextInput 
-                    secureTextEntry={true}
-                    style = {LoginStyle.input}
-                    underlineColorAndroid = 'transparent'
-                    autoCapitalize = 'none'
-                    onChangeText = {handlePassword} 
-                  />
-                  <Text>※半角英数字4文字以上8文字以内{'\n\n'}</Text>
-                  <TouchableOpacity                  
-                    onPress = {() => doLogin()}>
-                    <LinearGradient 
-                      colors={['#eeeeee', '#cccccc']}
-                      style = {LoginStyle.submitButton}>
-                      <Text style={{color: '#333'}}>ログインする</Text>
-                    </LinearGradient>
-                  </TouchableOpacity>
-                </View>
-                <View style={LoginStyle.prizeText}>
-                  <Text style={[LoginStyle.headerText, LoginStyle.formTitle]}>
-                    ◆パスワードを忘れた方
-                  </Text>
-                </View>
-                <View style={LoginStyle.forgotPasswordPart}>
-                  <TouchableOpacity style={LoginStyle.forgotPasswordBtn}>
-                    <Text style={LoginStyle.forgotPasswordText}>
-                      パスワードを忘れた方はコチラ ▶
-                    </Text>
-                  </TouchableOpacity>
-                  <Dash 
-                  style={{height: 0.3}}
-                  dashColor='rgb(142, 142, 142)'
-                  dashThickness={1} />
-                  <Text style={{height: 8}}>{'\n'}</Text>
-                </View>              
+        <ScrollView>
+          <View style={LoginStyle.header}>
+            <Text style={LoginStyle.headerText}>ログイン</Text>
+          </View>
+          <View style={{width: '100%'}}>
+            <View style={LoginStyle.formPart}>
+              <View style={[LoginStyle.prizeText, LoginStyle.topCorner]}>
+                <Text style={[LoginStyle.headerText, LoginStyle.formTitle]}>
+                  ◆入力事項
+                </Text>
               </View>
+              <View style={LoginStyle.inputPart}>
+                <Text>メールアドレス:</Text>
+                <TextInput
+                  style={LoginStyle.input}
+                  underlineColorAndroid='transparent'
+                  autoCapitalize="none"
+                  value={email}
+                  onChangeText={handleEmail}
+                />
+                <Text>{'\n'}パスワード:</Text>
+                <TextInput 
+                  secureTextEntry={true}
+                  style = {LoginStyle.input}
+                  underlineColorAndroid = 'transparent'
+                  autoCapitalize = 'none'
+                  value={password}
+                  onChangeText = {handlePassword} 
+                />
+                <Text>※半角英数字4文字以上8文字以内{'\n\n'}</Text>
+                <TouchableOpacity                  
+                  onPress = {() => doLogin()}>
+                  <LinearGradient 
+                    colors={['#eeeeee', '#cccccc']}
+                    style = {LoginStyle.submitButton}>
+                    <Text style={{color: '#333'}}>ログインする</Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </View>
+              <View style={LoginStyle.prizeText}>
+                <Text style={[LoginStyle.headerText, LoginStyle.formTitle]}>
+                  ◆パスワードを忘れた方
+                </Text>
+              </View>
+              <View style={LoginStyle.forgotPasswordPart}>
+                <TouchableOpacity style={LoginStyle.forgotPasswordBtn}>
+                  <Text style={LoginStyle.forgotPasswordText}>
+                    パスワードを忘れた方はコチラ ▶
+                  </Text>
+                </TouchableOpacity>
+                <Dash 
+                style={{height: 0.3}}
+                dashColor='rgb(142, 142, 142)'
+                dashThickness={1} />
+                <Text style={{height: 8}}>{'\n'}</Text>
+              </View>              
             </View>
-          </ScrollView>
+          </View>
+        </ScrollView>
       </ImageBackground>
     </SafeAreaView>
   )
 }
 
 const LoginStyle = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   bgImg: {
     width: '100%',
     height: '100%',

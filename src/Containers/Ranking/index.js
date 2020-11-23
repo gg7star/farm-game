@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,22 +8,12 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-  StatusBar,
-  Dimensions,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
-import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
-import Icon from 'react-native-vector-icons'
-import { List } from 'react-native-paper';
 
-import {
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import Dash from 'react-native-dash';
 
 import Header from '../../Components/Header.js';
@@ -33,90 +23,89 @@ import RankItem from './RankItem.js';
 
 const rankList = [
   {
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/myMenu/1.jpg',
+    img:
+      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/myMenu/1.jpg',
     title: '消えソール ',
-    content: '271mpt　[収穫数:1]'
+    content: '271mpt　[収穫数:1]',
   },
   {
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/myMenu/1.jpg',
+    img:
+      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/myMenu/1.jpg',
     title: 'ひぃろ',
-    content: '150mpt　[収穫数:1]'
+    content: '150mpt　[収穫数:1]',
   },
   {
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/myMenu/1.jpg',
+    img:
+      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/myMenu/1.jpg',
     title: 'mako',
-    content: '144mpt　[収穫数:1]'
+    content: '144mpt　[収穫数:1]',
   },
-]
+];
 
 const Ranking = () => {
-
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={RankingStyles.safeArea}>
       <ImageBackground
         style={RankingStyles.bgImg}
         resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/01home/backimg-bg.png'}}>
-        <ScrollView style={{flexDirection: 'column'}}>
-          <HeaderBrownBar /> 
-          <Header title='月間ランキング' />
-          
+        source={require('../../assets/images/backimg-bg.png')}>
+        <ScrollView>
+          <HeaderBrownBar />
+          <Header title="月間ランキング" />
           <TouchableOpacity>
-            <RankBtn name='月間' />
+            <RankBtn name="月間" />
           </TouchableOpacity>
-          <View
-            style={{flexDirection: 'row'}}
-          >
+          <View style={{flexDirection: 'row'}}>
             <TouchableOpacity style={{width: '50%'}}>
-              <RankBtn name='11月前半' />
+              <RankBtn name="11月前半" />
             </TouchableOpacity>
             <TouchableOpacity style={{width: '50%'}}>
-              <RankBtn name='11月後半' />
+              <RankBtn name="11月後半" />
             </TouchableOpacity>
           </View>
-          <AutoHeightImage width={responsiveWidth(100)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/deco/listtop.png'}} />
-          {
-            rankList.map((item, i) => (
-              <RankItem key={i} item={item} index={i+1} />
-            ))
-          }
+          <AutoHeightImage
+            width={responsiveWidth(100)}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/deco/listtop.png'
+            }}
+          />
+          {rankList.map((item, i) => (
+            <RankItem key={i} item={item} index={i + 1} />
+          ))}
           <TouchableOpacity>
-            <LinearGradient 
+            <LinearGradient
               colors={['#f9f9f9', '#eeeeee']}
-              style={RankingStyles.pageNav}
-            >
-              <Text
-                style={RankingStyles.pageNavText}
-              >
-                次の25件
-              </Text>
+              style={RankingStyles.pageNav}>
+              <Text style={RankingStyles.pageNavText}>次の25件</Text>
               <View style={RankingStyles.iconBg}>
                 <Image
                   style={RankingStyles.iconNextImg}
-                  source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/images/icons-36-white.png'}}
+                  source={{
+                    uri:
+                      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/images/icons-36-white.png'
+                  }}
                 />
               </View>
             </LinearGradient>
           </TouchableOpacity>
-          <Dash 
-            style={{height: 2}}
-            dashColor='#663300'
-            dashGap={0}
-          />
-        </ScrollView>   
-        
+          <Dash style={{height: 2}} dashColor="#663300" dashGap={0} />
+        </ScrollView>
       </ImageBackground>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 export default Ranking;
 
 const RankingStyles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   headerLogin: {
     height: 47,
     margin: 0,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   logo: {
     width: 95,
@@ -124,7 +113,7 @@ const RankingStyles = StyleSheet.create({
     marginTop: 2,
     marginRight: 5,
     marginLeft: 5,
-    marginBottom: 5
+    marginBottom: 5,
   },
   logoText: {
     color: '#ccff33',
@@ -132,12 +121,12 @@ const RankingStyles = StyleSheet.create({
     display: 'flex',
     marginTop: 30,
     marginLeft: -10,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   logoTouch: {
     bottom: 2,
     right: 0,
-    position: 'absolute'
+    position: 'absolute',
   },
   loginBtn: {
     width: 38,
@@ -145,15 +134,15 @@ const RankingStyles = StyleSheet.create({
   },
   bgImg: {
     width: '100%',
-    height: '100%',    
+    height: '100%',
   },
   pageNav: {
     borderWidth: 0.5,
-    borderColor: '#aaa'
+    borderColor: '#aaa',
   },
   pageNavText: {
     marginVertical: 8,
-    marginHorizontal: 15
+    marginHorizontal: 15,
   },
   iconBg: {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -163,11 +152,11 @@ const RankingStyles = StyleSheet.create({
     right: 10,
     top: '25%',
     borderRadius: 9,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   iconNextImg: {
     width: 776,
     height: 18,
-    marginLeft: -108
-  }
-})
+    marginLeft: -108,
+  },
+});

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, {useState} from 'react';
 
 import {
   SafeAreaView,
@@ -10,12 +9,10 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-  StatusBar,
-  Dimensions,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
-import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 import RadioButton from 'react-native-radio-button';
 import RNPickerSelect from 'react-native-picker-select';
@@ -26,42 +23,40 @@ import HeaderBrownBar from '../../Components/HeaderBrownBar.js';
 const prefectures = [
   {label: 'Football', value: 'football'},
   {label: 'Baseball', value: 'baseball'},
-  {label: 'Volleyball', value: 'volleyball'}
-]
+  {label: 'Volleyball', value: 'volleyball'},
+];
 
 const AddressInput = () => {
-
   const goAddressCheck = () => {
     Actions.addressCheck();
-  }
+  };
 
   const [slt, setSlt] = useState(false);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={AddressInput.safeArea}>
       <ImageBackground
         style={AddressInputStyles.bgImg}
         resizeMode="repeat"
-        source={require('../../assets/images/backimg-bg.png')}
-      >
-        <ScrollView style={{flexDirection: 'column'}}>
-          <HeaderBrownBar /> 
-          <Header title='お届け先住所入力' />
+        source={require('../../assets/images/backimg-bg.png')}>
+        <ScrollView>
+          <HeaderBrownBar />
+          <Header title="お届け先住所入力" />
 
-          <AutoHeightImage 
-            width={responsiveWidth(100)} 
+          <AutoHeightImage
+            width={responsiveWidth(100)}
             source={require('../../assets/images/listtop.png')}
           />
 
           <View style={[AddressInputStyles.content, AddressInputStyles.shadow]}>
-            <LinearGradient 
+            <LinearGradient
               colors={['#6facd5', '#497bae']}
-              style = {AddressInputStyles.subTitle}>
+              style={AddressInputStyles.subTitle}>
               <Text style={AddressInputStyles.subTitleText}>種別</Text>
             </LinearGradient>
-            <LinearGradient 
+            <LinearGradient
               colors={['#f9f9f9', '#eeeeee']}
-              style = {AddressInputStyles.subTitle}>
+              style={AddressInputStyles.subTitle}>
               <View style={AddressInputStyles.inputArea}>
                 <RadioButton
                   size={12}
@@ -69,9 +64,8 @@ const AddressInput = () => {
                   isSelected={slt}
                   onPress={() => setSlt(!slt)}
                 />
-                <Text 
-                  style={[AddressInputStyles.contentText, {marginLeft: 16}]}
-                >
+                <Text
+                  style={[AddressInputStyles.contentText, {marginLeft: 16}]}>
                   本人
                 </Text>
               </View>
@@ -83,94 +77,72 @@ const AddressInput = () => {
                   isSelected={!slt}
                   onPress={() => setSlt(!slt)}
                 />
-                <Text 
-                  style={[AddressInputStyles.contentText, {marginLeft: 16}]}
-                >
+                <Text
+                  style={[AddressInputStyles.contentText, {marginLeft: 16}]}>
                   本人以外
                 </Text>
               </View>
-              <Text 
-                style={[AddressInputStyles.contentText, {marginVertical: 8}]}
-              >
+              <Text
+                style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
                 ※本人…畑っぴをご利用されているご自身{'\n'}
                 ※本人以外…プレゼント、ご家族ご友人宛てなど
               </Text>
             </LinearGradient>
             <LinearGradient 
               colors={['#6facd5', '#497bae']}
-              style = {AddressInputStyles.subTitle}>
+              style={AddressInputStyles.subTitle}>
               <Text style={AddressInputStyles.subTitleText}>お名前(漢字)</Text>
             </LinearGradient>
 
-            <LinearGradient 
+            <LinearGradient
               colors={['#f9f9f9', '#eeeeee']}
-              style = {AddressInputStyles.subTitle}>
-              <Text 
-                style={[AddressInputStyles.contentText, {marginTop: 8}]}
-              >
+              style={AddressInputStyles.subTitle}>
+              <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
                 姓:
               </Text>
               <View style={AddressInputStyles.inputArea}>
-                <Text 
-                  style={AddressInputStyles.contentText}
-                >
-                  はだ
-                </Text>
+                <Text style={AddressInputStyles.contentText}>はだ</Text>
               </View>
-              <Text 
-                style={[AddressInputStyles.contentText, {marginTop: 8}]}
-              >
+              <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
                 名:
               </Text>
 
               <View style={AddressInputStyles.inputArea}>
-                <Text 
-                  style={AddressInputStyles.contentText}
-                >
-                  あきら
-                </Text>
+                <Text style={AddressInputStyles.contentText}>あきら</Text>
               </View>
             </LinearGradient>
 
-            <LinearGradient 
+            <LinearGradient
               colors={['#6facd5', '#497bae']}
-              style = {AddressInputStyles.subTitle}>
-              <Text style={AddressInputStyles.subTitleText}>お名前(カタカナ)</Text>
+              style={AddressInputStyles.subTitle}>
+              <Text style={AddressInputStyles.subTitleText}>
+                お名前(カタカナ)
+              </Text>
             </LinearGradient>
             <LinearGradient 
               colors={['#f9f9f9', '#eeeeee']}
-              style = {AddressInputStyles.subTitle}>
-              <Text 
-                style={[AddressInputStyles.contentText, {marginTop: 8}]}
-              >
+              style={AddressInputStyles.subTitle}>
+              <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
                 セイ:
               </Text>
               <View style={AddressInputStyles.inputArea}>
-                <Text 
-                  style={AddressInputStyles.contentText}
-                >
-                  はだ
-                </Text>
+                <Text style={AddressInputStyles.contentText}>はだ</Text>
               </View>
-              <Text 
-                style={[AddressInputStyles.contentText, {marginTop: 8}]}
-              >
+              <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
                 メイ:
               </Text>
 
               <View style={AddressInputStyles.inputArea}>
-                <Text 
-                  style={AddressInputStyles.contentText}
-                >
-                  あきら
-                </Text>
+                <Text style={AddressInputStyles.contentText}>あきら</Text>
               </View>
             </LinearGradient>
 
-            <LinearGradient 
+            <LinearGradient
               colors={['#6facd5', '#497bae']}
-              style = {AddressInputStyles.subTitle}>
-              <Text style={AddressInputStyles.subTitleText}>メールアドレス</Text>
+              style={AddressInputStyles.subTitle}>
+              <Text style={AddressInputStyles.subTitleText}>
+                メールアドレス
+              </Text>
             </LinearGradient>
             <LinearGradient 
               colors={['#f9f9f9', '#eeeeee']}
@@ -354,7 +326,10 @@ const AddressInput = () => {
 
 export default AddressInput;
 
-const AddressInputStyles = StyleSheet.create({  
+const AddressInputStyles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   bgImg: {
     width: '100%',
     height: '100%',    
@@ -369,7 +344,7 @@ const AddressInputStyles = StyleSheet.create({
     shadowOffset: {
       height: 1,
       width: 4,
-    }
+    },
   },
   subTitle: {
     paddingHorizontal: 15,
@@ -378,7 +353,7 @@ const AddressInputStyles = StyleSheet.create({
   subTitleText: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#fff',
   },
   contentText: {
     color: '#222',
@@ -410,7 +385,7 @@ const AddressInputStyles = StyleSheet.create({
   iconNextImg: {
     width: 776,
     height: 18,
-    marginLeft: -108
+    marginLeft: -108,
   },
   regist: {
     marginHorizontal: '5%',
@@ -418,12 +393,12 @@ const AddressInputStyles = StyleSheet.create({
     borderRadius: 8,
     borderColor: '#600',
     borderWidth: 3,
-    marginVertical: 8
+    marginVertical: 8,
   },
   registBg: {
     width: '100%',
     paddingVertical: 10,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   addressCheckBg: {
     width: '90%',
@@ -435,5 +410,5 @@ const AddressInputStyles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: 'center',
     borderRadius: 12,
-  }
-})
+  },
+});
