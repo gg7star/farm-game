@@ -1,4 +1,4 @@
-import { jsonQuery, query, getLocalToken, generatePagenationParameters } from "./common";
+import {jsonQuery, query, getLocalToken} from './common';
 
 export const getMemberInfoFromLocal = () => {
   const token = getLocalToken();
@@ -7,7 +7,7 @@ export const getMemberInfoFromLocal = () => {
 };
 
 export async function apiActionMasters(searchParams) {
-  return await query(`/action_master/all`, { searchParams });
+  return await query(`/action_master/all`, {searchParams});
 }
 
 export async function apiActionMasterById(id) {

@@ -1,4 +1,4 @@
-import { jsonQuery, query, setLocalToken } from './common';
+import {jsonQuery, query, setLocalToken} from './common';
 
 export async function signupWithAPI(data) {
   return await jsonQuery('/auth/register/', 'POST', data, false);

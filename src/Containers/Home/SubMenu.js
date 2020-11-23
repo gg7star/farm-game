@@ -1,29 +1,19 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 const SubMenu = ({item}) => {
-
   const goNext = () => {
     Actions[item.link]();
-  }
+  };
   return (
     <TouchableOpacity style={SubMenuStyles.bg} onPress={goNext}>
       <Text style={SubMenuStyles.text}>{item.name}</Text>
       <Text style={SubMenuStyles.mArrow}>▲</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 export default SubMenu;
 

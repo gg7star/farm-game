@@ -50,9 +50,9 @@ const AddressList = () => {
           <Header title='送付先情報' />
 
           <View style={[AddressListStyles.content, AddressListStyles.shadow]}>
-            <LinearGradient 
+            <LinearGradient
               colors={['#6facd5', '#497bae']}
-              style = {AddressListStyles.subTitle}>
+              style={AddressListStyles.subTitle}>
               <Text style={{color: '#fff'}}>お届け先の登録/変更</Text>
             </LinearGradient>
             {
@@ -85,15 +85,15 @@ const AddressListStyles = StyleSheet.create({
     shadowOffset: {
       height: 1,
       width: 4,
-    }
+    },
   },
   subTitle: {
     paddingHorizontal: 15,
     paddingVertical: 8,
     borderTopRightRadius: 8,
     borderTopLeftRadius: 8,
-  }
-})
+  },
+});
 
 // const mapStateToProps = (state) => ({
 //   user: state.user || {},

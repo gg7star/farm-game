@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, {useState} from 'react';
 
 import {
   SafeAreaView,
@@ -10,52 +9,41 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-  StatusBar,
-  Dimensions,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
-import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
-import AutoHeightImage from 'react-native-auto-height-image';
 
 const AddressCheck = () => {
-
   const [slt, setSlt] = useState(false);
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={AddressCheckStyles.safeArea}>
       <ImageBackground
         style={AddressCheckStyles.bgImg}
         resizeMode="repeat"
-        source={require('../../assets/images/backimg-bg.png')}
-      >
-        <ScrollView style={{flexDirection: 'column'}}>
-
+        source={require('../../assets/images/backimg-bg.png')}>
+        <ScrollView>
           <LinearGradient 
             colors={['#6c0', '#390']}
-            style = {AddressCheckStyles.header}
-          >
+            style={AddressCheckStyles.header}>
             <TouchableOpacity
-              style = {[AddressCheckStyles.contact, AddressCheckStyles.shadow]}
-            >
-              <Text style = {AddressCheckStyles.contactText}>
-                お問い合わせ
-              </Text>
+              style={[AddressCheckStyles.contact, AddressCheckStyles.shadow]}>
+              <Text style={AddressCheckStyles.contactText}>お問い合わせ</Text>
             </TouchableOpacity>
-            <View style = {AddressCheckStyles.title}>
-              <Text style = {[AddressCheckStyles.contactText, {fontSize: 14}]}>
+            <View style={AddressCheckStyles.title}>
+              <Text style={[AddressCheckStyles.contactText, {fontSize: 14}]}>
                 お届け先
               </Text>
             </View>
             <View style={AddressCheckStyles.logo}>
               <TouchableOpacity>
-                <Image 
+                <Image
                   style={{width: 30, height: 30}}
                   source={require('../../assets/images/flogo.png')}
                 />
               </TouchableOpacity>
               <TouchableOpacity>
-                <Image 
+                <Image
                   style={{width: 30, height: 30}}
                   source={require('../../assets/images/tlogo.png')}
                 />
@@ -65,42 +53,38 @@ const AddressCheck = () => {
 
           <LinearGradient 
             colors={['#f9f9f9', '#eeeeee']}
-            style = {AddressCheckStyles.subTitle}>
-            <Text 
-              style={[AddressCheckStyles.contentText, {marginTop: 8}]}
-            >
+            style={AddressCheckStyles.subTitle}>
+            <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
               名前：はだ　あきら様
             </Text>
           </LinearGradient>
 
-          <LinearGradient 
+          <LinearGradient
             colors={['#f9f9f9', '#eeeeee']}
-            style = {AddressCheckStyles.subTitle}>
-            <Text 
-              style={[AddressCheckStyles.contentText, {marginTop: 8}]}
-            >
+            style={AddressCheckStyles.subTitle}>
+            <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
               カナ：はだ　あきら様
             </Text>
           </LinearGradient>
 
           <View style={{flexDirection: 'row', width: '100%'}}>
-            <TouchableOpacity
-              style = {AddressCheckStyles.submit}
-            >
-              <LinearGradient 
+            <TouchableOpacity style={AddressCheckStyles.submit}>
+              <LinearGradient
                 colors={['#5f9cc5', '#396b9e']}
-                style = {[AddressCheckStyles.submitBtn, AddressCheckStyles.shadow]}
-              >
-                <Text 
-                  style={[AddressCheckStyles.contentText, {marginVertical: 8, color: '#fff'}]}
-                >
+                style={[
+                  AddressCheckStyles.submitBtn,
+                  AddressCheckStyles.shadow,
+                ]}>
+                <Text
+                  style={[
+                    AddressCheckStyles.contentText,
+                    {marginVertical: 8, color: '#fff'},
+                  ]}>
                   確定する
                 </Text>
-              </LinearGradient>              
+              </LinearGradient>
             </TouchableOpacity>
-            <TouchableOpacity
-              style = {AddressCheckStyles.submit}
-            >
+            <TouchableOpacity style={AddressCheckStyles.submit}>
               <LinearGradient 
                 colors={['#ffefaa', '#ffe155']}
                 style = {[AddressCheckStyles.submitBtn, AddressCheckStyles.shadow, {borderColor: '#f4c63f'}]}
@@ -123,10 +107,13 @@ const AddressCheck = () => {
 
 export default AddressCheck;
 
-const AddressCheckStyles = StyleSheet.create({  
+const AddressCheckStyles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   bgImg: {
     width: '100%',
-    height: '100%',    
+    height: '100%',
   },
   header: {
     flexDirection: 'row',
