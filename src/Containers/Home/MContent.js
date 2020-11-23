@@ -15,7 +15,8 @@ const MContent = ({item}) => {
 
   const cropClick = () => {
     if (item.option === '無料ゲーム'){
-      Actions.farmName({gameData: item});
+      // Actions.farmName({gameData: item});
+      Actions.admob({nextPage: 'farmName', state: {gameData: item}});
     } else if (item.option === '一発畑') {
       Actions.cropDetails(item.id);
     } else {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -20,13 +20,20 @@ import { apiMemberById } from '../../services/apis/users';
 import { setUser } from '../../redux/reducers/userSlice';
 
 
-const Login = () => {
+const Login = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    console.log('===== props.user: ', props.user);
+    const user = props.user;
+    user && user.email && setEmail(user.email);
+    const password = props.password;
+    user && user.password && setPassword(user.password);
+  }, []);
   const handleEmail = (e) => {
     setEmail(e);
   };
@@ -220,5 +227,3 @@ const mapStateToProps = (state) => ({
 // });
 
 export default connect(mapStateToProps)(Login);
-
-// export default Login;
