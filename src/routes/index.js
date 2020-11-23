@@ -24,6 +24,7 @@ import AddressInput from '../Containers/AddressInput';
 import AddressCheck from '../Containers/AddressInput/AddressCheck';
 import Contact from '../Containers/Contact';
 import Yamato from '../Containers/Yamato';
+import MyMenu from '../Containers/MyMenu';
 
 const Routes = () => (
   <Router>
@@ -63,6 +64,7 @@ const Routes = () => (
       <Scene key="addressCheck" component={AddressCheck} title="AddressCheck" />
       <Scene key="contact" component={Contact} title="Contact" />
       <Scene key="yamato" component={Yamato} title="Yamato" />
+      <Scene key="myMenu" component={MyMenu} title="MyMenu" />
     </Scene>
   </Router>
 );
