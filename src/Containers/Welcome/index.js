@@ -17,7 +17,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 import { List } from 'react-native-paper';
-import { AdMobRewarded } from 'react-native-admob';
 
 import {
   Header,
@@ -28,7 +27,6 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import AccordionItem from './AccordionItem';
-import { admob as AdMobConstant } from '../../config/constants';
 
 const tab1ImgList = [
   'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/ftop/img_ftop2.png',
@@ -72,51 +70,13 @@ const Welcome = () => {
   const [activeTab, setActiveTab] = useState(true);
   const [expanded, setExpanded] = useState(false);
 
-  useEffect(() => {
-    console.log('===== AdMobConstant: ', AdMobConstant)
-    // Init reward
-    // Test mode
-    AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
-    AdMobRewarded.setAdUnitID(AdMobConstant[Platform.OS].reward.test);
-    // Real mode
-    // AdMobRewarded.setAdUnitID(constants[Platform.OS].reward.id);
-
-    /* Regisrer reward listerners */
-    AdMobRewarded.addEventListener('rewarded', reward =>
-      console.log('AdMobRewarded => rewarded', reward),
-    );
-    AdMobRewarded.addEventListener('adLoaded', () =>
-      console.log('AdMobRewarded => adLoaded'),
-    );
-    AdMobRewarded.addEventListener('adFailedToLoad', error =>
-      console.warn(error),
-    );
-    AdMobRewarded.addEventListener('adOpened', () =>
-      console.log('AdMobRewarded => adOpened'),
-    );
-    AdMobRewarded.addEventListener('videoStarted', () =>
-      console.log('AdMobRewarded => videoStarted'),
-    );
-    AdMobRewarded.addEventListener('adClosed', () => {
-      console.log('AdMobRewarded => adClosed');
-      Actions.login();
-    });
-    AdMobRewarded.addEventListener('adLeftApplication', () =>
-      console.log('AdMobRewarded => adLeftApplication'),
-    );
-  }, []);
-
   const toggleExpand = () => {
     setExpanded(!expanded);
   };
 
-  const showRewarded = async () => {
-    await AdMobRewarded.requestAd(); //.catch(error => console.warn(error));
-    await AdMobRewarded.showAd(); //.catch((error) => console.warn('===== reward error: ', error));
-  };
-
-  const goLogin = async () => {
-    await showRewarded();
+  const goLogin = () => {
+    Actions.admob({nextPage: 'login'});
+    // Actions.login();
   };
 
   return (

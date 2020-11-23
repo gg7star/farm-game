@@ -22,6 +22,7 @@ import WaitDelivery2 from '../Containers/WaitDelivery/WaitDelivery2';
 import AddressList from '../Containers/AddressList';
 import AddressInput from '../Containers/AddressInput';
 import AddressCheck from '../Containers/AddressInput/AddressCheck';
+import AdMob from '../Containers/AdMob';
 
 const Routes = () => (
 	<Router>
@@ -47,6 +48,7 @@ const Routes = () => (
 			<Scene key = "addressList" component = {AddressList} title = "AddressList" />
 			<Scene key = "addressInput" component = {AddressInput} title = "AddressInput" />
 			<Scene key = "addressCheck" component = {AddressCheck} title = "AddressCheck" />
+			<Scene key="admob" component={AdMob} hideNavBar />
 		</Scene>
 	</Router>
 )
