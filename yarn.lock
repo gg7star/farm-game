@@ -5584,7 +5584,7 @@ jest@^26.6.2:
     import-local "^3.0.2"
     jest-cli "^26.6.3"
 
-jetifier@^1.6.2:
+jetifier@^1.6.2, jetifier@^1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.6.tgz#fec8bff76121444c12dc38d2dad6767c421dab68"
   integrity sha512-JNAkmPeB/GS2tCRqUzRPsTOHpGDah7xP18vGJfIjZC+W2sxEHbxgJxetIjIqhjQ3yYbYNEELkM/spKLtwoOSUQ==
@@ -7969,9 +7969,9 @@ react-timer-mixin@^0.13.1:
   resolved "https://registry.yarnpkg.com/react-timer-mixin/-/react-timer-mixin-0.13.4.tgz#75a00c3c94c13abe29b43d63b4c65a88fc8264d3"
   integrity sha512-4+ow23tp/Tv7hBM5Az5/Be/eKKF7DIvJ09voz5LyHGQaqqz9WV8YMs31eFvcYQs7d451LSg7kDJV70XYN/Ug/Q==
 
-"react-tools@git://github.com/facebook/react.git#b4e74e38e43ac53af8acd62c78c9213be0194245":
+"react-tools@git://github.com/facebook/react#b4e74e38e43ac53af8acd62c78c9213be0194245":
   version "0.14.0-beta1"
-  resolved "git://github.com/facebook/react.git#b4e74e38e43ac53af8acd62c78c9213be0194245"
+  resolved "git://github.com/facebook/react#b4e74e38e43ac53af8acd62c78c9213be0194245"
   dependencies:
     commoner "^0.10.0"
     jstransform "^11.0.0"
