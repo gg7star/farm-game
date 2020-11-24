@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Scene } from 'react-native-router-flux';
+import {Router, Scene} from 'react-native-router-flux';
 
 import Welcome from '../Containers/Welcome';
 import Login from '../Containers/Login';
@@ -25,6 +25,7 @@ import AddressCheck from '../Containers/AddressInput/AddressCheck';
 import Contact from '../Containers/Contact';
 import Yamato from '../Containers/Yamato';
 import MyMenu from '../Containers/MyMenu';
+import AdMob from '../Containers/AdMob';
 
 const Routes = () => (
   <Router>
@@ -65,6 +66,7 @@ const Routes = () => (
       <Scene key="contact" component={Contact} title="Contact" />
       <Scene key="yamato" component={Yamato} title="Yamato" />
       <Scene key="myMenu" component={MyMenu} title="MyMenu" />
+      <Scene key="admob" component={AdMob} hideNavBar />
     </Scene>
   </Router>
 );

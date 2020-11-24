@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,12 +10,12 @@ import {
   TouchableOpacity,
   StatusBar,
   Dimensions,
+  Platform,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
-
 import { List } from 'react-native-paper';
 
 import {
@@ -72,19 +72,20 @@ const Welcome = () => {
 
   const toggleExpand = () => {
     setExpanded(!expanded);
-  }
+  };
 
   const goLogin = () => {
-    Actions.login()
-  }
+    Actions.admob({nextPage: 'login'});
+    // Actions.login();
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>         
-
+      <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
         <ScrollView style={{flexDirection: 'column'}}>
 
-          <ImageBackground style={styles.headerLogin} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg4.gif'}}>
+          <ImageBackground
+            style={styles.headerLogin} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg4.gif'}}>
             <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/logo2.png'}} style={styles.logo} resizeMode='cover' />
             <Text style={styles.logoText}>～手のひらの小さな農園～</Text>
             <TouchableOpacity onPress={goLogin}  style={styles.logoTouch}>
