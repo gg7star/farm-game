@@ -14,7 +14,7 @@ import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
-import RadioButton from 'react-native-radio-button';
+// import RadioButton from 'react-native-radio-button';
 import RNPickerSelect from 'react-native-picker-select';
 
 import Header from '../../Components/Header.js';
@@ -58,12 +58,12 @@ const AddressInput = () => {
               colors={['#f9f9f9', '#eeeeee']}
               style={AddressInputStyles.subTitle}>
               <View style={AddressInputStyles.inputArea}>
-                <RadioButton
+                {/* <RadioButton
                   size={12}
                   animaton={'bounceIn'}
                   isSelected={slt}
                   onPress={() => setSlt(!slt)}
-                />
+                /> */}
                 <Text
                   style={[AddressInputStyles.contentText, {marginLeft: 16}]}>
                   本人
@@ -71,12 +71,12 @@ const AddressInput = () => {
               </View>
 
               <View style={AddressInputStyles.inputArea}>
-                <RadioButton
+                {/* <RadioButton
                   size={12}
                   animaton={'bounceIn'}
                   isSelected={!slt}
                   onPress={() => setSlt(!slt)}
-                />
+                /> */}
                 <Text
                   style={[AddressInputStyles.contentText, {marginLeft: 16}]}>
                   本人以外
