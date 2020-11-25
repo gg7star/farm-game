@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -29,10 +29,22 @@ import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store } from './redux/store';
+import {Actions} from 'react-native-router-flux';
+import SplashScreen from 'react-native-splash-screen';
 
 let persistor = persistStore(store);
 
 const App: () => React$Node = () => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log('===== hide splash screen');
+      SplashScreen.hide();
+      setVisible(true);
+    }, 2500);
+  }, []);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

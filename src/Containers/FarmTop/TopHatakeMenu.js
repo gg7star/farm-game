@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback
 } from 'react-native';
-
+import {Actions} from 'react-native-router-flux';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
@@ -46,7 +46,12 @@ const todoIconList = [
     icon : 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0800.gif'
   }
 ]
+
 const TopHatakeMenu = ({handleClick}) => {
+  const handleClickAction = () => {
+    // Add admob
+    Actions.admob();
+  };
 
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
@@ -61,22 +66,26 @@ const TopHatakeMenu = ({handleClick}) => {
             <View style={{flexDirection: 'row'}}>
               {
                 todoIconList.map((item, i) => (
-                  i < 4 && <AutoHeightImage
-                    key={i}
-                    width={responsiveWidth(15)}
-                    source={{uri: item.icon}}
-                  />
+                  i < 4 && <TouchableOpacity onPress={handleClickAction}>
+                    <AutoHeightImage
+                      key={i}
+                      width={responsiveWidth(15)}
+                      source={{uri: item.icon}}
+                    />
+                  </TouchableOpacity>
                 ))
               }
             </View>
             <View style={{flexDirection: 'row'}}>
               {
                 todoIconList.map((item, i) => (
-                  (i >= 4 && i < 7) && <AutoHeightImage
-                    key={i}
-                    width={responsiveWidth(15)}
-                    source={{uri: item.icon}}
-                  />
+                  (i >= 4 && i < 7) && <TouchableOpacity>
+                    <AutoHeightImage
+                      key={i}
+                      width={responsiveWidth(15)}
+                      source={{uri: item.icon}}
+                    />
+                  </TouchableOpacity>
                 ))
               }
             </View>

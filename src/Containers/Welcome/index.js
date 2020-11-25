@@ -75,8 +75,8 @@ const Welcome = () => {
   };
 
   const goLogin = () => {
-    Actions.admob({nextPage: 'login'});
-    // Actions.login();
+    // Actions.admob({nextPage: 'login'});
+    Actions.login();
   };
 
   return (

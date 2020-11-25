@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Platform, Text, TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux';
-import {AdMobRewarded} from 'react-native-admob';
+import {AdMobRewarded, AdMobInterstitial} from 'react-native-admob';
 
 const ADMOB_CONFIG = {
   name: 'Farm',
@@ -12,12 +12,22 @@ const ADMOB_CONFIG = {
       test_id: 'ca-app-pub-3940256099942544/5224354917',
       unitName: 'Hatakeppi',
     },
+    interstitial: {
+      live_id: 'ca-app-pub-3940256099942544/1033173712',
+      test_id: 'ca-app-pub-3940256099942544/1033173712',
+      unitName: 'Hatakeppi',
+    },
   },
   android: {
     id: 'ca-app-pub-4866324751233603~8927002753',
     reward: {
       live_id: 'ca-app-pub-4866324751233603/4353155315',
       test_id: 'ca-app-pub-3940256099942544/5224354917',
+      unitName: 'Hatakeppi',
+    },
+    interstitial: {
+      live_id: 'ca-app-pub-3940256099942544/1033173712',
+      test_id: 'ca-app-pub-3940256099942544/1033173712',
       unitName: 'Hatakeppi',
     },
   },
@@ -51,8 +61,7 @@ const AdMob = (props) => {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(ADMOB_STATUS.LOADING);
 
-  useEffect(() => {
-    // Init reward
+  const initAdMobRewarded = () => {
     // Test mode
     AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
     AdMobRewarded.setAdUnitID(ADMOB_CONFIG[Platform.OS].reward.test_id);
@@ -99,12 +108,53 @@ const AdMob = (props) => {
       console.log('AdMobRewarded => adLeftApplication');
       setStatus(ADMOB_STATUS.LEFT_APPLICATION);
     });
+  };
 
-    showRewarded();
+  const initAdMobInterstitial = () => {
+    // Test mode
+    AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    AdMobInterstitial.setAdUnitID(
+      ADMOB_CONFIG[Platform.OS].interstitial.test_id,
+    );
+    // Live mode
+    // AdMobInterstitial.setAdUnitID(constants[Platform.OS].interstitial.live_id);
+
+    AdMobInterstitial.addEventListener('adLoaded', () => {
+      console.log('AdMobInterstitial adLoaded');
+      setStatus(ADMOB_STATUS.LOADED);
+    });
+    AdMobInterstitial.addEventListener('adFailedToLoad', error => {
+      console.warn(error);
+      setStatus(ADMOB_STATUS.FAILED_TO_LOADE);
+    });
+    AdMobInterstitial.addEventListener('adOpened', () => {
+      console.log('AdMobInterstitial => adOpened');
+      setStatus(ADMOB_STATUS.OPENED);
+    });
+    AdMobInterstitial.addEventListener('adClosed', () => {
+      console.log('AdMobInterstitial => adClosed');
+      setStatus(ADMOB_STATUS.CLOSED);
+      // AdMobInterstitial.requestAd().catch(error => console.warn(error));
+    });
+    AdMobInterstitial.addEventListener('adLeftApplication', () => {
+      console.log('AdMobInterstitial => adLeftApplication');
+      setStatus(ADMOB_STATUS.LEFT_APPLICATION);
+    });
+  };
+
+  useEffect(() => {
+    // Init reward
+    initAdMobRewarded();
+    // showRewarded();
+
+    // Init initerstitial
+    initAdMobInterstitial();
+    showInterstitial();
 
     return () => {
       console.log('====== removeAllListeners');
       AdMobRewarded.removeAllListeners();
+      AdMobInterstitial.removeAllListeners();
     };
   }, []);
 
@@ -131,9 +181,24 @@ const AdMob = (props) => {
     // await AdMobRewarded.showAd(); //.catch((error) => console.warn('===== reward error: ', error));
   };
 
+  const showInterstitial = () => {
+    // AdMobInterstitial.showAd().catch((err) => console.warn(err));
+
+    AdMobInterstitial.requestAd()
+      .then(() => {
+        AdMobInterstitial.showAd();
+      })
+      .catch((err) => {
+        console.warn('===== reward error: ', err);
+        // setLoading(false);
+        setStatus(ADMOB_STATUS.FAILED_TO_LOADE.status);
+        setError(error);
+      });
+  };
+
   const onGoBack = () => {
     Actions.pop();
-    Actions[props.nextPage](props.state ? {...props.state} : {});
+    props.nextPage && Actions[props.nextPage](props.state ? {...props.state} : {});
   };
 
   const onClickScreen = () => {
