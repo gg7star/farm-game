@@ -1,5 +1,5 @@
 export const ADMOB_CONFIG = {
-  name: 'Farm',
+  name: 'ポチくる',
   ios: {
     id: 'ca-app-pub-4866324751233603~4180080712',
     reward: {
@@ -8,9 +8,14 @@ export const ADMOB_CONFIG = {
       unitName: 'Hatakeppi',
     },
     interstitial: {
-      live_id: 'ca-app-pub-3940256099942544/1033173712',
+      live_id: 'ca-app-pub-4866324751233603/3945019254',
       test_id: 'ca-app-pub-3940256099942544/1033173712',
-      unitName: 'Hatakeppi',
+      unitName: 'Hatakeppi_Interstitial',
+    },
+    banner: {
+      live_id: 'ca-app-pub-4866324751233603/3550461100',
+      test_id: 'ca-app-pub-3940256099942544/2934735716',
+      unitName: 'Hatakeppi_Interstitial',
     },
   },
   android: {
@@ -21,15 +26,20 @@ export const ADMOB_CONFIG = {
       unitName: 'Hatakeppi',
     },
     interstitial: {
-      live_id: 'ca-app-pub-3940256099942544/1033173712',
+      live_id: 'ca-app-pub-4866324751233603/9923270094',
       test_id: 'ca-app-pub-3940256099942544/1033173712',
-      unitName: 'Hatakeppi',
+      unitName: 'Hatakeppi_Interstitial',
+    },
+    banner: {
+      live_id: 'ca-app-pub-4866324751233603/1127284225',
+      test_id: 'ca-app-pub-3940256099942544/2934735716',
+      unitName: 'Hatakeppi_Interstitial',
     },
   },
 };
 
-const ADMOB_STATUS = {
-  LOADING: {status: 'adLoading', description: 'Loading advertising...'},
+export const ADMOB_STATUS = {
+  LOADING: { status: 'adLoading', description: 'Loading advertising...' },
   REWARED: {status: 'rewarded', description: 'Rewarded advertising.'},
   OPENED: {status: 'adOpened', description: 'Opened the advertising.'},
   LOADED: {status: 'adLoaded', description: 'Loaded the advertising.'},

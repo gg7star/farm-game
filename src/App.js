@@ -6,31 +6,18 @@
  * @flow strict-local
  */
 
-import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, StyleSheet, Platform } from 'react-native';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Routes from './routes/index';
-import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-import { store } from './redux/store';
-import {Actions} from 'react-native-router-flux';
+import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
+import { useDarkMode } from 'react-native-dark-mode';
+import { AdMobBanner } from 'react-native-admob';
+import { store } from './redux/store';
+import {ADMOB_CONFIG, ADMOB_STATUS} from './config/constants';
 
 let persistor = persistStore(store);
 
@@ -39,20 +26,45 @@ const App: () => React$Node = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      console.log('===== hide splash screen');
       SplashScreen.hide();
       setVisible(true);
     }, 2500);
   }, []);
 
+  const isDarkMode = useDarkMode();
+
+  const handleAdFailedToLoad = (error) => {
+    console.log('===== AdMobBanner: error: ', error);
+  };
+
+  const renderAdmob = () => {
+    const adMobId = ADMOB_CONFIG[Platform.OS].banner.test_id;
+
+    return (
+      <AdMobBanner
+        adSize="fullBanner"
+        adUnitID={adMobId}
+        testDevices={[AdMobBanner.simulatorId]}
+        onAdFailedToLoad={(error) => handleAdFailedToLoad(error)}
+      />
+    );
+  };
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <SafeAreaView style={{ flex: 0, backgroundColor: "#FFFFFF" }} />
+        <SafeAreaView
+          style={{
+            flex: 0,
+            backgroundColor: isDarkMode ? '#000000' : '#FFFFFF',
+          }}
+        />
         <SafeAreaView style={{ flex: 1 }}>
           <Routes />
         </SafeAreaView>
-        <SafeAreaView style={{ flex: 0, backgroundColor: '#000000' }} />
+        <SafeAreaView style={{ flex: 0, backgroundColor: '#000000' }}>
+          {renderAdmob()}
+        </SafeAreaView>
       </PersistGate>
     </Provider>
   );
