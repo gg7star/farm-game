@@ -48,7 +48,11 @@ const App: () => React$Node = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Routes />
+        <SafeAreaView style={{ flex: 0, backgroundColor: "#FFFFFF" }} />
+        <SafeAreaView style={{ flex: 1 }}>
+          <Routes />
+        </SafeAreaView>
+        <SafeAreaView style={{ flex: 0, backgroundColor: '#000000' }} />
       </PersistGate>
     </Provider>
   );

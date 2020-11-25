@@ -4,7 +4,7 @@ import {Actions} from 'react-native-router-flux';
 import {AdMobRewarded, AdMobInterstitial} from 'react-native-admob';
 
 const ADMOB_CONFIG = {
-  name: 'Farm',
+  name: 'ポチくる',
   ios: {
     id: 'ca-app-pub-4866324751233603~4180080712',
     reward: {
@@ -13,9 +13,9 @@ const ADMOB_CONFIG = {
       unitName: 'Hatakeppi',
     },
     interstitial: {
-      live_id: 'ca-app-pub-3940256099942544/1033173712',
+      live_id: 'ca-app-pub-4866324751233603/3945019254',
       test_id: 'ca-app-pub-3940256099942544/1033173712',
-      unitName: 'Hatakeppi',
+      unitName: 'Hatakeppi_Interstitial',
     },
   },
   android: {
@@ -26,9 +26,14 @@ const ADMOB_CONFIG = {
       unitName: 'Hatakeppi',
     },
     interstitial: {
-      live_id: 'ca-app-pub-3940256099942544/1033173712',
+      live_id: 'ca-app-pub-4866324751233603/9923270094',
       test_id: 'ca-app-pub-3940256099942544/1033173712',
-      unitName: 'Hatakeppi',
+      unitName: 'Hatakeppi_Interstitial',
+    },
+    banner: {
+      live_id: 'ca-app-pub-4866324751233603/1127284225',
+      test_id: 'ca-app-pub-3940256099942544/1033173712',
+      unitName: 'Hatakeppi_Interstitial',
     },
   },
 };
