@@ -8,17 +8,17 @@ import {
   TouchableOpacity,
   Linking,
 } from 'react-native';
-import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import Header from '../../Components/Header.js';
+import Header from '../../Components/Header';
+import Menu3 from '../../Components/Menu3';
 
 const Yamato = () => {
   const openLink = () => {
     Linking.openURL(
-      'http://cmypage.kuronekoyamato.co.jp/portal/custtempregpage'
+      'http://cmypage.kuronekoyamato.co.jp/portal/custtempregpage',
     );
   };
   return (
@@ -162,6 +162,7 @@ const Yamato = () => {
             </Text>
           </TouchableOpacity>
         </ScrollView>
+        <Menu3 />
       </ImageBackground>
     </SafeAreaView>
   );

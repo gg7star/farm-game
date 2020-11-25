@@ -87,7 +87,7 @@ const Login = (props) => {
                   onChangeText={handleEmail}
                 />
                 <Text>{'\n'}パスワード:</Text>
-                <TextInput 
+                <TextInput
                   secureTextEntry={true}
                   style = {LoginStyle.input}
                   underlineColorAndroid = 'transparent'
@@ -96,8 +96,7 @@ const Login = (props) => {
                   onChangeText = {handlePassword} 
                 />
                 <Text>※半角英数字4文字以上8文字以内{'\n\n'}</Text>
-                <TouchableOpacity                  
-                  onPress = {() => doLogin()}>
+                <TouchableOpacity onPress={() => doLogin()}>
                   <LinearGradient 
                     colors={['#eeeeee', '#cccccc']}
                     style = {LoginStyle.submitButton}>

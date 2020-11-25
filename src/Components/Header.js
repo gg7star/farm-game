@@ -1,18 +1,13 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
 const Header = ({title}) => {
-
   return (
     <View style={HeaderStyles.header}>
-      <Text style={HeaderStyles.headerText}>{title}</Text>              
+      <Text style={HeaderStyles.headerText}>{title}</Text>
     </View>
-  )
-}
+  );
+};
 
 export default Header;
 
@@ -32,5 +27,5 @@ const HeaderStyles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-  }
-})
+  },
+});

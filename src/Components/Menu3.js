@@ -3,30 +3,42 @@ import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
 
-const GameMenu = ({item}) => {
+const Menu3 = ({item}) => {
   const goHome = () => {
     Actions.home();
   };
   const goMyFarm = () => {
     Actions.myfarm();
   };
+  const goMyMenu = () => {
+    Actions.myMenu();
+  };
 
   return (
-    <View style={GameMenuStyles.bg}>
-      <TouchableOpacity style={GameMenuStyles.btn} onPress={goHome}>
-        <Text style={GameMenuStyles.text}>Home</Text>
-        <View style={GameMenuStyles.iconBg}>
+    <View style={Menu3Styles.bg}>
+      <TouchableOpacity style={Menu3Styles.btn} onPress={goHome}>
+        <Text style={Menu3Styles.text}>Home</Text>
+        <View style={Menu3Styles.iconBg}>
           <Image
-            style={GameMenuStyles.iconHomeImg}
+            style={Menu3Styles.iconHomeImg}
             source={require('../assets/images/icons-18-white.png')}
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={GameMenuStyles.btn} onPress={goMyFarm}>
-        <Text style={GameMenuStyles.text}>MY FARM</Text>
-        <View style={GameMenuStyles.iconBg}>
+      <TouchableOpacity style={Menu3Styles.btn} onPress={goMyFarm}>
+        <Text style={Menu3Styles.text}>MY FARM</Text>
+        <View style={Menu3Styles.iconBg}>
           <Image
-            style={GameMenuStyles.iconFarmImg}
+            style={Menu3Styles.iconFarmImg}
+            source={require('../assets/images/icons-18-white.png')}
+          />
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={Menu3Styles.btn} onPress={goMyMenu}>
+        <Text style={Menu3Styles.text}>MY MENU</Text>
+        <View style={Menu3Styles.iconBg}>
+          <Image
+            style={Menu3Styles.iconMyMenuImg}
             source={require('../assets/images/icons-18-white.png')}
           />
         </View>
@@ -35,9 +47,9 @@ const GameMenu = ({item}) => {
   );
 };
 
-export default GameMenu;
+export default Menu3;
 
-const GameMenuStyles = StyleSheet.create({
+const Menu3Styles = StyleSheet.create({
   bg: {
     zIndex: 100,
     width: '100%',
@@ -48,10 +60,10 @@ const GameMenuStyles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   btn: {
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
+    borderLeftWidth: 0.5,
+    borderRightWidth: 0.5,
     borderColor: '#222',
-    width: '50%',
+    width: '33.33%',
     alignItems: 'center',
     backgroundColor: '#390',
   },
@@ -80,4 +92,9 @@ const GameMenuStyles = StyleSheet.create({
     height: 18,
     marginLeft: -432,
   },
-})
+  iconMyMenuImg: {
+    width: 776,
+    height: 18,
+    marginLeft: -540,
+  },
+});
