@@ -56,43 +56,42 @@ const MyMenu = () => {
     Actions.home();
   };
   return (
-    <SafeAreaView style={MyMenuStyles.safeArea}>
+    <ImageBackground
+      style={MyMenuStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/category_bg.gif')}>
       <ImageBackground
-        style={MyMenuStyles.bgImg}
-        resizeMode="repeat"
-        source={require('../../assets/images/category_bg.gif')}>
-        <ImageBackground
-          style={MyMenuStyles.headerLogin}
-          source={require('../../assets/images/category_bg4.gif')}>
-          <TouchableOpacity onPress={goHome}>
-            <Image
-              style={MyMenuStyles.logo}
-              source={require('../../assets/images/logo.png')}
-            />
-          </TouchableOpacity>
-        </ImageBackground>
-        <Dash dashColor="#ffff99" dashThickness={1} dashGap={0} />
-        <ScrollView>
-          <View style={MyMenuStyles.content}>
-            <View style={MyMenuStyles.contentHeaderBg}>
-              <ImageBackground
-                style={MyMenuStyles.contentHeader}
-                source={require('../../assets/images/category_bg3.gif')}>
-                <Text style={MyMenuStyles.contentHeaderText}>MY MENU</Text>
-              </ImageBackground>
-            </View>
+        style={MyMenuStyles.headerLogin}
+        source={require('../../assets/images/category_bg4.gif')}>
+        <TouchableOpacity onPress={goHome}>
+          <Image
+            style={MyMenuStyles.logo}
+            source={require('../../assets/images/logo.png')}
+          />
+        </TouchableOpacity>
+      </ImageBackground>
+      <Dash dashColor="#ffff99" dashThickness={1} dashGap={0} />
+      <ScrollView>
+        <View style={MyMenuStyles.content}>
+          <View style={MyMenuStyles.contentHeaderBg}>
             <ImageBackground
-              style={MyMenuStyles.contentBg}
-              resizeMode="repeat"
-              source={require('../../assets/images/category_bg2.gif')}>
-              {menuList.map((item, i) => (
-                <MyMenuBtn key={i} item={item} />
-              ))}
+              style={MyMenuStyles.contentHeader}
+              source={require('../../assets/images/category_bg3.gif')}>
+              <Text style={MyMenuStyles.contentHeaderText}>MY MENU</Text>
             </ImageBackground>
           </View>
-        </ScrollView>
-      </ImageBackground>
-    </SafeAreaView>
+          <ImageBackground
+            style={MyMenuStyles.contentBg}
+            resizeMode="repeat"
+            source={require('../../assets/images/category_bg2.gif')}>
+            {menuList.map((item, i) => (
+              <MyMenuBtn key={i} item={item} />
+            ))}
+          </ImageBackground>
+        </View>
+      </ScrollView>
+    </ImageBackground>
+  
   );
 };
 

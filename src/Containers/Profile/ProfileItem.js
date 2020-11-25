@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   Image,
   ImageBackground,
   TouchableOpacity,
-  StatusBar,
-  Dimensions,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 const ProfileItem = ({item}) => {
-
   const goNext = () => {
     Actions[item.link]();
-  }
+  };
 
   return (
     <TouchableOpacity onPress={goNext}>
       <ImageBackground
         style={ProfileItemStyles.contentBg}
         resizeMode="repeat"
-        source={require('../../assets/images/listbg02.gif')}
-      >
-        <Text style={ProfileItemStyles.contentText}>
-          {item.name}
-        </Text>
+        source={require('../../assets/images/listbg02.gif')}>
+        <Text style={ProfileItemStyles.contentText}>{item.name}</Text>
         <View style={ProfileItemStyles.iconBg}>
           <Image
             style={ProfileItemStyles.iconNextImg}
@@ -37,9 +29,8 @@ const ProfileItem = ({item}) => {
         </View>
       </ImageBackground>
     </TouchableOpacity>
-    
-  )
-}
+  );
+};
 
 export default ProfileItem;
 

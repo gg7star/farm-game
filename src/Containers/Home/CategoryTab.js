@@ -8,9 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-
-
 const CategoryTab = ({item}) => {
   return (
     <View style={[CategoryTabStyles.bg, {backgroundColor: item.bgColor}]}>
@@ -18,8 +15,8 @@ const CategoryTab = ({item}) => {
         <Text>{item.title}</Text>
       </View>
     </View>
-  )
-}
+  );
+};
 
 export default CategoryTab;
 

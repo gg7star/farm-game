@@ -83,103 +83,99 @@ const goodPointTextData = {
 const CropDetails = ({param}) => {
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View>
-        <ImageBackground
-          style={CropDetailsStyles.bgImg}
-          resizeMode="repeat"
-          source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}
+    <ImageBackground
+      style={CropDetailsStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/bg_pattern.png')}>
+      <ScrollView>
+        <Header title="商品詳細" />
+        <FirstView item={firstViewData} />
+        <PrizePhoto item={prizePhotoData} />
+        <PrizeText item={prizeTextData} />
+        <GoodPointText item={goodPointTextData} />
+        <FarmerText item={farmerTextData} />
+        <View style={{height: 200}} />            
+      </ScrollView>
+
+      <View
+        style={CropDetailsStyles.gameText}
+      >
+        <View
+          style={CropDetailsStyles.gameTextTitle}
         >
-          <ScrollView style={{flexDirection: 'column'}}>
-            <Header title='商品詳細' />
-            <FirstView item={firstViewData} />
-            <PrizePhoto item={prizePhotoData} />
-            <PrizeText item={prizeTextData} />
-            <GoodPointText item={goodPointTextData} />
-            <FarmerText item={farmerTextData} />
-            <View style={{height: 200}} />            
-          </ScrollView>
-
-          <View
-            style={CropDetailsStyles.gameText}
-          >
-            <View
-              style={CropDetailsStyles.gameTextTitle}
-            >
-              <Text style={{color: '#333'}}>
-                ゲーム詳細
-              </Text>
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              <View style={CropDetailsStyles.gameTextContent}>
-                <Text style={CropDetailsStyles.bottomText}>
-                  開始期限：
-                </Text>
-                <Text style={CropDetailsStyles.bottomText}>
-                  20年04月08日 10時まで
-                </Text>
-              </View>
-              <View style={CropDetailsStyles.gameTextContent}>
-                <Text style={CropDetailsStyles.bottomText}>
-                  残り開始可能数：
-                </Text>
-                <Text style={CropDetailsStyles.bottomText}>
-                  制限なし
-                </Text>
-              </View>
-            </View>
-
-            <View style={{flexDirection: 'row'}}>
-              <View style={{width: '60%'}}>
-                <Text style={CropDetailsStyles.bottomText}>
-                  【収穫目安P】4600っぴ
-                </Text>
-              </View>
-              <View style={{width: '40%'}}>
-                <Text style={CropDetailsStyles.bottomText}>
-                  【獲得mpt】-mpt
-                </Text>
-              </View>
-            </View>
-
-            <View style={{flexDirection: 'row'}}>
-              <View style={{width: '50%'}}>
-                <Text style={CropDetailsStyles.bottomText}>
-                【育成目安】-日前後
-                </Text>
-              </View>
-              <View style={{width: '50%'}}>
-                <Text style={CropDetailsStyles.bottomText}>
-                【ゲーム内の一日】-分
-                </Text>
-              </View>
-            </View>
-
-          </View>
-
-          {/* PlayBtn */}
-          <View style={CropDetailsStyles.playBtnBox}>
-            <View
-              style={CropDetailsStyles.playBtnCenter}
-            >
-              <Text
-                style={{color: 'rgba(200, 0, 3, 1.00)'}}
-              >
-                現在は購入出来ません
-              </Text>
-            </View>
-            <Text
-              style={{color: '#ff9800', marginLeft: -2}}
-            >
-              ▶
+          <Text style={{color: '#333'}}>
+            ゲーム詳細
+          </Text>
+        </View>
+        <View style={{flexDirection: 'row'}}>
+          <View style={CropDetailsStyles.gameTextContent}>
+            <Text style={CropDetailsStyles.bottomText}>
+              開始期限：
             </Text>
-
+            <Text style={CropDetailsStyles.bottomText}>
+              20年04月08日 10時まで
+            </Text>
           </View>
+          <View style={CropDetailsStyles.gameTextContent}>
+            <Text style={CropDetailsStyles.bottomText}>
+              残り開始可能数：
+            </Text>
+            <Text style={CropDetailsStyles.bottomText}>
+              制限なし
+            </Text>
+          </View>
+        </View>
 
-          <Menu />
-        </ImageBackground>
+        <View style={{flexDirection: 'row'}}>
+          <View style={{width: '60%'}}>
+            <Text style={CropDetailsStyles.bottomText}>
+              【収穫目安P】4600っぴ
+            </Text>
+          </View>
+          <View style={{width: '40%'}}>
+            <Text style={CropDetailsStyles.bottomText}>
+              【獲得mpt】-mpt
+            </Text>
+          </View>
+        </View>
+
+        <View style={{flexDirection: 'row'}}>
+          <View style={{width: '50%'}}>
+            <Text style={CropDetailsStyles.bottomText}>
+            【育成目安】-日前後
+            </Text>
+          </View>
+          <View style={{width: '50%'}}>
+            <Text style={CropDetailsStyles.bottomText}>
+            【ゲーム内の一日】-分
+            </Text>
+          </View>
+        </View>
+
       </View>
-    </SafeAreaView>
+
+      {/* PlayBtn */}
+      <View style={CropDetailsStyles.playBtnBox}>
+        <View
+          style={CropDetailsStyles.playBtnCenter}
+        >
+          <Text
+            style={{color: 'rgba(200, 0, 3, 1.00)'}}
+          >
+            現在は購入出来ません
+          </Text>
+        </View>
+        <Text
+          style={{color: '#ff9800', marginLeft: -2}}
+        >
+          ▶
+        </Text>
+
+      </View>
+
+      <Menu />
+    </ImageBackground>
+
   )
 }
 

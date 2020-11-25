@@ -48,45 +48,40 @@ const contentList = [
 
 const Profile = () => {
   return (
-    <SafeAreaView style={ProfileStyles.safeArea}>
-      <ImageBackground
-        style={ProfileStyles.bgImg}
-        resizeMode="repeat"
-        source={require('../../assets/images/backimg-bg.png')}>
-        <ScrollView>
-          <HeaderBrownBar />
-          <Header title="プロフィール" />
+    <ImageBackground
+      style={ProfileStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/backimg-bg.png')}>
+      <ScrollView>
+        <HeaderBrownBar />
+        <Header title="プロフィール" />
 
-          <AutoHeightImage
-            width={responsiveWidth(100)}
-            source={require('../../assets/images/listtop.png')}
-          />
+        <AutoHeightImage
+          width={responsiveWidth(100)}
+          source={require('../../assets/images/listtop.png')}
+        />
 
-          <View style={ProfileStyles.content}>
-            <ImageBackground
-              style={ProfileStyles.contentBg}
-              resizeMode="repeat"
-              source={require('../../assets/images/listbg02.gif')}>
-              <Text style={ProfileStyles.contentText}>
-                スライム さん [会員番号：11]
-              </Text>
-            </ImageBackground>
-            {contentList.map((item, i) => (
-              <ProfileItem key={i} item={item} />
-            ))}
-          </View>
-        </ScrollView>
-      </ImageBackground>
-    </SafeAreaView>
+        <View style={ProfileStyles.content}>
+          <ImageBackground
+            style={ProfileStyles.contentBg}
+            resizeMode="repeat"
+            source={require('../../assets/images/listbg02.gif')}>
+            <Text style={ProfileStyles.contentText}>
+              スライム さん [会員番号：11]
+            </Text>
+          </ImageBackground>
+          {contentList.map((item, i) => (
+            <ProfileItem key={i} item={item} />
+          ))}
+        </View>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 export default Profile;
 
 const ProfileStyles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   bgImg: {
     width: '100%',
     height: '100%',

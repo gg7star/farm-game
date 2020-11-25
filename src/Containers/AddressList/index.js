@@ -21,52 +21,50 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import Header from '../../Components/Header.js';
 import HeaderBrownBar from '../../Components/HeaderBrownBar.js';
 
-import { apiAddressList } from '../../services/apis/address_list';
+import {apiAddressList} from '../../services/apis/address_list';
 import EachAddress from './EachAddress';
 
 const addresses = [
   {
-    name: 'AAA'
-  }
-]
+    name: 'AAA',
+  },
+];
 const AddressList = () => {
 
   const getAddressList = async () => {
     const addresses = await apiAddressList('11');
-    
     console.log(addresses);
   };
 
   // getAddressList();
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        style={AddressListStyles.bgImg}
-        resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/01home/backimg-bg.png'}}>
-        <ScrollView style={{flexDirection: 'column'}}>
-          <HeaderBrownBar /> 
-          <Header title='送付先情報' />
+    <ImageBackground
+      style={AddressListStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/backimg-bg.png')}>
+      <ScrollView>
+        <HeaderBrownBar />
+        <Header title="送付先情報" />
 
-          <View style={[AddressListStyles.content, AddressListStyles.shadow]}>
-            <LinearGradient
-              colors={['#6facd5', '#497bae']}
-              style={AddressListStyles.subTitle}>
-              <Text style={{color: '#fff'}}>お届け先の登録/変更</Text>
-            </LinearGradient>
-            {
-              addresses.map((item, i) => (
-                <EachAddress key={i} item={item} />
-              ))
-            }
-          </View>
-        </ScrollView>   
-        
-      </ImageBackground>
-    </SafeAreaView>
-  )
-}
+        <View style={[AddressListStyles.content, AddressListStyles.shadow]}>
+          <LinearGradient
+            colors={['#6facd5', '#497bae']}
+            style={AddressListStyles.subTitle}>
+            <Text style={{color: '#fff'}}>お届け先の登録/変更</Text>
+          </LinearGradient>
+          {
+            addresses.map((item, i) => (
+              <EachAddress key={i} item={item} />
+            ))
+          }
+        </View>
+      </ScrollView>   
+      
+    </ImageBackground>
+
+  );
+};
 
 export default AddressList;
 

@@ -6,18 +6,18 @@
  * @flow strict-local
  */
 
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Platform } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, StyleSheet, Platform} from 'react-native';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Routes from './routes/index';
-import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react';
-import { Provider } from 'react-redux';
+import {persistStore} from 'redux-persist';
+import {PersistGate} from 'redux-persist/integration/react';
+import {Provider} from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
-import { useDarkMode } from 'react-native-dark-mode';
-import { AdMobBanner } from 'react-native-admob';
-import { store } from './redux/store';
-import {ADMOB_CONFIG, ADMOB_STATUS} from './config/constants';
+import {useDarkMode} from 'react-native-dark-mode';
+import {AdMobBanner} from 'react-native-admob';
+import {store} from './redux/store';
+import {ADMOB_CONFIG} from './config/constants';
 
 let persistor = persistStore(store);
 
@@ -59,10 +59,10 @@ const App: () => React$Node = () => {
             backgroundColor: isDarkMode ? '#000000' : '#FFFFFF',
           }}
         />
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{flex: 1}}>
           <Routes />
         </SafeAreaView>
-        <SafeAreaView style={{ flex: 0, backgroundColor: '#000000' }}>
+        <SafeAreaView style={{flex: 0, backgroundColor: '#000000'}}>
           {renderAdmob()}
         </SafeAreaView>
       </PersistGate>

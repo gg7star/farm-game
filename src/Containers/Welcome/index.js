@@ -79,7 +79,7 @@ const Welcome = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    // <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
         <ScrollView style={{flexDirection: 'column'}}>
 
@@ -185,7 +185,7 @@ const Welcome = () => {
         </ScrollView>   
         
       </View>
-    </SafeAreaView>
+    
   )
 }
 

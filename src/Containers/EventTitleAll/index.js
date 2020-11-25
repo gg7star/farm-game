@@ -32,52 +32,51 @@ const eachData = [
 const EventTitleAll = () => {
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        style={EventTitleAllStyles.bgImg}
-        resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}>
-          <ScrollView style={{flexDirection: 'column'}}>
-            <Header title='称号保持者' />
-            
-              <View
-                style={EventTitleAllStyles.corner}
-              >
-                <View style={[EventTitleAllStyles.subTitle, EventTitleAllStyles.topCorner]}>
-                  <Text style={[EventTitleAllStyles.headerText, EventTitleAllStyles.contentTitle]}>
-                    畑っぴにずっとその名を刻み続ける{'\n'}タイトルホルダーの皆さんです！
-                  </Text>
-                </View>
+    <ImageBackground
+      style={EventTitleAllStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/bg_pattern.png')}>
+        <ScrollView style={{flexDirection: 'column'}}>
+          <Header title='称号保持者' />
+          
+            <View
+              style={EventTitleAllStyles.corner}
+            >
+              <View style={[EventTitleAllStyles.subTitle, EventTitleAllStyles.topCorner]}>
+                <Text style={[EventTitleAllStyles.headerText, EventTitleAllStyles.contentTitle]}>
+                  畑っぴにずっとその名を刻み続ける{'\n'}タイトルホルダーの皆さんです！
+                </Text>
+              </View>
 
-                <View style={{margin: 8}}>
-                  <Text
-                    style={{fontSize: 14, lineHeight: 20}}
-                  >
-                    称号保持者には、特待イベントや{'\n'}
-                    お得な畑など、嬉しい特典があるかも？
-                  </Text>
-                </View>
-
-                <View style={EventTitleAllStyles.subTitle}>
-                  <Text style={[EventTitleAllStyles.headerText, EventTitleAllStyles.contentTitle]}>
-                    各称号保持者
-                  </Text>
-                </View>
-
-                <View
-                  style={{margin: 8}}
+              <View style={{margin: 8}}>
+                <Text
+                  style={{fontSize: 14, lineHeight: 20}}
                 >
-                  {
-                    eachData.map((item, i) => (
-                      <EventItem key={i} item={item} />
-                    ))
-                  }
-                </View>                         
-              </View>            
-          </ScrollView>
-          <Menu />
-      </ImageBackground>
-    </SafeAreaView>
+                  称号保持者には、特待イベントや{'\n'}
+                  お得な畑など、嬉しい特典があるかも？
+                </Text>
+              </View>
+
+              <View style={EventTitleAllStyles.subTitle}>
+                <Text style={[EventTitleAllStyles.headerText, EventTitleAllStyles.contentTitle]}>
+                  各称号保持者
+                </Text>
+              </View>
+
+              <View
+                style={{margin: 8}}
+              >
+                {
+                  eachData.map((item, i) => (
+                    <EventItem key={i} item={item} />
+                  ))
+                }
+              </View>                         
+            </View>            
+        </ScrollView>
+        <Menu />
+    </ImageBackground>
+  
   )
 }
 

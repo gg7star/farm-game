@@ -31,51 +31,50 @@ const Point = () => {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        style={PointStyles.bgImg}
-        resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/01home/backimg-bg.png'}}>
-        <ScrollView style={{flexDirection: 'column'}}>
-          <HeaderBrownBar /> 
-          <Header title='ポイント購入' />
+    <ImageBackground
+      style={PointStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/backimg-bg.png')}>
+      <ScrollView>
+        <HeaderBrownBar /> 
+        <Header title='ポイント購入' />
 
-          <View style={PointStyles.name}>
-            <Text style={PointStyles.nameText}>
-              {pointData.name}
+        <View style={PointStyles.name}>
+          <Text style={PointStyles.nameText}>
+            {pointData.name}
+          </Text>
+        </View>
+
+        <AutoHeightImage width={responsiveWidth(100)} source={require('../../assets/images/listtop.png')} />
+
+        <View style={PointStyles.content}>
+          <LinearGradient colors={['#fffadf', '#fff3a5']}>
+            <Text style={PointStyles.dateText}>{pointData.date}</Text>
+          </LinearGradient>  
+          <LinearGradient colors={['#6facd5', '#497bae']}>
+            <Text style={[PointStyles.dateText, {color: '#fff'}]}>
+              ポイント購入履歴
             </Text>
-          </View>
-
-          <AutoHeightImage width={responsiveWidth(100)} source={require('../../assets/images/listtop.png')} />
-
-          <View style={PointStyles.content}>
-            <LinearGradient colors={['#fffadf', '#fff3a5']}>
-              <Text style={PointStyles.dateText}>{pointData.date}</Text>
-            </LinearGradient>  
-            <LinearGradient colors={['#6facd5', '#497bae']}>
-              <Text style={[PointStyles.dateText, {color: '#fff'}]}>
-                ポイント購入履歴
+          </LinearGradient>
+          <LinearGradient colors={['#ffefaa', '#ffe155']}>
+            <TouchableOpacity style={PointStyles.history} onPress={goHistory}>
+              <Text style={PointStyles.historyText}>
+                購入したポイントをみる
               </Text>
-            </LinearGradient>
-            <LinearGradient colors={['#ffefaa', '#ffe155']}>
-              <TouchableOpacity style={PointStyles.history} onPress={goHistory}>
-                <Text style={PointStyles.historyText}>
-                  購入したポイントをみる
-                </Text>
-                <View style={PointStyles.iconBg}>
-                  <Image
-                    style={PointStyles.iconNextImg}
-                    source={require('../../assets/images/icons-36-white.png')}
-                  />
-                </View>
-              </TouchableOpacity>
-            </LinearGradient>        
-          </View>
-          
-        </ScrollView>   
+              <View style={PointStyles.iconBg}>
+                <Image
+                  style={PointStyles.iconNextImg}
+                  source={require('../../assets/images/icons-36-white.png')}
+                />
+              </View>
+            </TouchableOpacity>
+          </LinearGradient>        
+        </View>
         
-      </ImageBackground>
-    </SafeAreaView>
+      </ScrollView>   
+      
+    </ImageBackground>
+  
   )
 }
 

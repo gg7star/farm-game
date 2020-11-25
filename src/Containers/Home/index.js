@@ -977,118 +977,116 @@ const Home = () => {
   };
   if (loadTime) return <Loader />;
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        style={HomeStyle.bgImg}
-        resizeMode="repeat"
-        source={require('../../assets/images/bg_pattern.png')}>
-        <ScrollView>
-          <View style={HomeStyle.header}>
-            <View style={HomeStyle.headerNews}></View>
-            <View style={HomeStyle.headerAccount}>
-              <Text
-                style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
-                会員番号:000011
-              </Text>
-              <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
-                <Text style={{color: '#67b500', fontSize: 12}}>[管理者]</Text>
-                <Text style={{color: '#212121', fontSize: 12}}>
-                  スライムさん
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          <AutoHeightImage
-            width={responsiveWidth(100)}
-            source={{
-              uri:
-              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/top_img.png'
-            }}
-          />
-
-          <View style={HomeStyle.topBtn}>
-            {homeBtnList.map((item, i) => (
-              <HomeButton
-                key={i}
-                item={item}
-                handleClick={homeBtnClick}
-                index={i}
-              />
-            ))}
-          </View>
-
-          <View style={{alignItems: 'center'}}>
-            <View style={HomeStyle.introPart}>
-              <Text style={HomeStyle.introText}>
-                サービス終了日の4月30日が近づいてまいりました。
-                {'\n'}
-                今一度今後のスケジュールをご確認くださるようお願いいたします。
-                {'\n'}{'\n'}
-                4月8日(水）12：00を最終出荷手続き日とさせていただいております。
-                {'\n'}
-                ご確認のほどお願いいたします。
+    <ImageBackground
+      style={HomeStyle.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/bg_pattern.png')}>
+      <ScrollView>
+        <View style={HomeStyle.header}>
+          <View style={HomeStyle.headerNews}></View>
+          <View style={HomeStyle.headerAccount}>
+            <Text
+              style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
+              会員番号:000011
+            </Text>
+            <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
+              <Text style={{color: '#67b500', fontSize: 12}}>[管理者]</Text>
+              <Text style={{color: '#212121', fontSize: 12}}>
+                スライムさん
               </Text>
             </View>
-            <TouchableOpacity onPress={() => eventImgClick()}>
-              <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
-            </TouchableOpacity>
-            
-            <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png'}} />
-            <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />
           </View>
+        </View>
 
-          <View style={HomeStyle.corner}>
-            <View style={{flexDirection: 'row'}}>
-              {
-                categoryTabList.map((item, i) => (
-                  <TouchableOpacity key={i} style={{width: '20%'}} onPress={() => setTabItem(i)}>
-                    <CategoryTab item={item} />
-                  </TouchableOpacity>
-                ))
-              }
-            </View>
+        <AutoHeightImage
+          width={responsiveWidth(100)}
+          source={{
+            uri:
+            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/top_img.png'
+          }}
+        />
 
+        <View style={HomeStyle.topBtn}>
+          {homeBtnList.map((item, i) => (
+            <HomeButton
+              key={i}
+              item={item}
+              handleClick={homeBtnClick}
+              index={i}
+            />
+          ))}
+        </View>
+
+        <View style={{alignItems: 'center'}}>
+          <View style={HomeStyle.introPart}>
+            <Text style={HomeStyle.introText}>
+              サービス終了日の4月30日が近づいてまいりました。
+              {'\n'}
+              今一度今後のスケジュールをご確認くださるようお願いいたします。
+              {'\n'}{'\n'}
+              4月8日(水）12：00を最終出荷手続き日とさせていただいております。
+              {'\n'}
+              ご確認のほどお願いいたします。
+            </Text>
+          </View>
+          <TouchableOpacity onPress={() => eventImgClick()}>
+            <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
+          </TouchableOpacity>
+          
+          <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png'}} />
+          <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />
+        </View>
+
+        <View style={HomeStyle.corner}>
+          <View style={{flexDirection: 'row'}}>
             {
-              categories.map((item, i) => (
-                tabItem === i && <View key={i} style={[HomeStyle.tabContent, {backgroundColor: categoryTabList[i].bgColor}]}>
-                  <CategoryTabContent item={item} index={i} />
-                </View>
+              categoryTabList.map((item, i) => (
+                <TouchableOpacity key={i} style={{width: '20%'}} onPress={() => setTabItem(i)}>
+                  <CategoryTab item={item} />
+                </TouchableOpacity>
               ))
             }
           </View>
 
-          <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
-            <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
-            <View style={HomeStyle.subMenuContent}>
-              {
-                accountList.map((item, i) => (
-                  <SubMenu key={i} item={item} />
-                ))
-              }
-            </View>
+          {
+            categories.map((item, i) => (
+              tabItem === i && <View key={i} style={[HomeStyle.tabContent, {backgroundColor: categoryTabList[i].bgColor}]}>
+                <CategoryTabContent item={item} index={i} />
+              </View>
+            ))
+          }
+        </View>
+
+        <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+          <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
+          <View style={HomeStyle.subMenuContent}>
+            {
+              accountList.map((item, i) => (
+                <SubMenu key={i} item={item} />
+              ))
+            }
           </View>
+        </View>
 
-          <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
-            <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
-            <View style={HomeStyle.subMenuContent}>
-              {
-                supplyList.map((item, i) => (
-                  <SubMenu key={i} item={item} />
-                ))
-              }
-            </View>
-          </View>    
-          <Text>{'\n\n'}</Text>               
+        <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+          <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
+          <View style={HomeStyle.subMenuContent}>
+            {
+              supplyList.map((item, i) => (
+                <SubMenu key={i} item={item} />
+              ))
+            }
+          </View>
+        </View>    
+        <Text>{'\n\n'}</Text>               
 
-        </ScrollView>  
-        {
-          notation && <NotationModal notationClose={notationClose} />
-        }          
-        <Menu />                  
-      </ImageBackground>
-      
-    </SafeAreaView>
+      </ScrollView>  
+      {
+        notation && <NotationModal notationClose={notationClose} />
+      }          
+      <Menu />                  
+    </ImageBackground>
+    
   )
 }
 

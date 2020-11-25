@@ -84,57 +84,50 @@ const FarmTop = ({farmInfo}) => {
   const showWeather = () => {
     setCurNanaTag('weather');
     setTopNana(weatherList);
-  }
+  };
 
   const showTopHatakeMenu = () => {
     setTopHatakeMenu(true);
-  }
+  };
 
   const closeTopHatakeMenu = () => {
     setTopHatakeMenu(false);
-  }
+  };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        style={FarmTopStyles.bgImg}
-        resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}>
-          <ScrollView style={{flexDirection: 'column'}}>
-            <View
-              style={FarmTopStyles.header}
-            >
-              <Text
-                style={FarmTopStyles.headerText}
-              >
-                {farmInfo.name}
-              </Text>
-            </View>
+    <ImageBackground
+      style={FarmTopStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/bg_pattern.png')}>
+      <ScrollView style={{flexDirection: 'column'}}>
+        <View style={FarmTopStyles.header}>
+          <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
+        </View>
 
-            <GameBgImg item={gameBgData} />
-            <Weather clickWeather={showWeather}  />
-            <Nutrition />
-            <Moisture />
-            <Calendar />
-            <GameEngine 
-              clickTopNana={showNanaSpot} 
-              clickTopHatakeMenu={showTopHatakeMenu} 
-            />
+        <GameBgImg item={gameBgData} />
+        <Weather clickWeather={showWeather} />
+        <Nutrition />
+        <Moisture />
+        <Calendar />
+        <GameEngine
+          clickTopNana={showNanaSpot}
+          clickTopHatakeMenu={showTopHatakeMenu}
+        />
 
-            {
-              curNanaTag && <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
-            }
+        {
+          curNanaTag && <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
+        }
 
-            {
-              topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} />
-            }
+        {
+          topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} />
+        }
 
-            <GameProgressBar />
-            <GameMenu />
-                      
-          </ScrollView>
-      </ImageBackground>
-    </SafeAreaView>
+        <GameProgressBar />
+        <GameMenu />
+                  
+      </ScrollView>
+    </ImageBackground>
+  
   )
 }
 

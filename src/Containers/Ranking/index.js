@@ -44,64 +44,59 @@ const rankList = [
 
 const Ranking = () => {
   return (
-    <SafeAreaView style={RankingStyles.safeArea}>
-      <ImageBackground
-        style={RankingStyles.bgImg}
-        resizeMode="repeat"
-        source={require('../../assets/images/backimg-bg.png')}>
-        <ScrollView>
-          <HeaderBrownBar />
-          <Header title="月間ランキング" />
-          <TouchableOpacity>
-            <RankBtn name="月間" />
+    <ImageBackground
+      style={RankingStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/backimg-bg.png')}>
+      <ScrollView>
+        <HeaderBrownBar />
+        <Header title="月間ランキング" />
+        <TouchableOpacity>
+          <RankBtn name="月間" />
+        </TouchableOpacity>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity style={{width: '50%'}}>
+            <RankBtn name="11月前半" />
           </TouchableOpacity>
-          <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity style={{width: '50%'}}>
-              <RankBtn name="11月前半" />
-            </TouchableOpacity>
-            <TouchableOpacity style={{width: '50%'}}>
-              <RankBtn name="11月後半" />
-            </TouchableOpacity>
-          </View>
-          <AutoHeightImage
-            width={responsiveWidth(100)}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/deco/listtop.png'
-            }}
-          />
-          {rankList.map((item, i) => (
-            <RankItem key={i} item={item} index={i + 1} />
-          ))}
-          <TouchableOpacity>
-            <LinearGradient
-              colors={['#f9f9f9', '#eeeeee']}
-              style={RankingStyles.pageNav}>
-              <Text style={RankingStyles.pageNavText}>次の25件</Text>
-              <View style={RankingStyles.iconBg}>
-                <Image
-                  style={RankingStyles.iconNextImg}
-                  source={{
-                    uri:
-                      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/images/icons-36-white.png'
-                  }}
-                />
-              </View>
-            </LinearGradient>
+          <TouchableOpacity style={{width: '50%'}}>
+            <RankBtn name="11月後半" />
           </TouchableOpacity>
-          <Dash style={{height: 2}} dashColor="#663300" dashGap={0} />
-        </ScrollView>
-      </ImageBackground>
-    </SafeAreaView>
+        </View>
+        <AutoHeightImage
+          width={responsiveWidth(100)}
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/deco/listtop.png'
+          }}
+        />
+        {rankList.map((item, i) => (
+          <RankItem key={i} item={item} index={i + 1} />
+        ))}
+        <TouchableOpacity>
+          <LinearGradient
+            colors={['#f9f9f9', '#eeeeee']}
+            style={RankingStyles.pageNav}>
+            <Text style={RankingStyles.pageNavText}>次の25件</Text>
+            <View style={RankingStyles.iconBg}>
+              <Image
+                style={RankingStyles.iconNextImg}
+                source={{
+                  uri:
+                    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/images/icons-36-white.png'
+                }}
+              />
+            </View>
+          </LinearGradient>
+        </TouchableOpacity>
+        <Dash style={{height: 2}} dashColor="#663300" dashGap={0} />
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 export default Ranking;
 
 const RankingStyles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   headerLogin: {
     height: 47,
     margin: 0,

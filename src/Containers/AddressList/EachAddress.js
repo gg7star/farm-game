@@ -19,11 +19,9 @@ import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWi
 import AutoHeightImage from 'react-native-auto-height-image';
 
 const EachAddress = ({item}) => {
-
   const goAddressInput = () => {
     Actions.addressInput();
-  }
-
+  };
   return (
     <TouchableOpacity onPress={goAddressInput}>
       <LinearGradient

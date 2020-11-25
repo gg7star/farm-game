@@ -30,42 +30,81 @@ import AdMob from '../Containers/AdMob';
 const Routes = () => (
   <Router>
     <Scene key="root">
-      <Scene key="welcome" component={Welcome} title="Welcome" initial={true} />
-      <Scene key="login" component={Login} title="Login" />
-      <Scene key="home" component={Home} title="Home" />
-      <Scene key="myfarm" component={MyFarm} title="My Farm" />
-      <Scene key="news" component={News} title="News" />
-      <Scene key="tutorial" component={Tutorial} title="Tutorial" />
+      <Scene
+        key="welcome"
+        component={Welcome}
+        title="Welcome"
+        hideNavBar
+        initial={true}
+      />
+      <Scene key="login" component={Login} title="Login" hideNavBar />
+      <Scene key="home" component={Home} title="Home" hideNavBar />
+      <Scene key="myfarm" component={MyFarm} title="My Farm" hideNavBar />
+      <Scene key="news" component={News} title="News" hideNavBar />
+      <Scene key="tutorial" component={Tutorial} title="Tutorial" hideNavBar />
       <Scene
         key="tutorialDetails"
         component={TutorialDetails}
         title="Tutorial Details"
+        hideNavBar
       />
-      <Scene key="ranking" component={Ranking} title="Ranking" />
-      <Scene key="event" component={Event} title="Event" />
+      <Scene key="ranking" component={Ranking} title="Ranking" hideNavBar />
+      <Scene key="event" component={Event} title="Event" hideNavBar />
       <Scene
         key="eventTitleAll"
         component={EventTitleAll}
         title="EventTitleAll"
+        hideNavBar
       />
-      <Scene key="cropDetails" component={CropDetails} title="CropDetails" />
-      <Scene key="farmName" component={FarmName} title="FarmName" />
-      <Scene key="farmTop" component={FarmTop} title="FarmTop" />
-      <Scene key="point" component={Point} title="Point" />
-      <Scene key="pointHistory" component={PointHistory} title="PointHistory" />
-      <Scene key="profile" component={Profile} title="Profile" />
-      <Scene key="waitDelivery" component={WaitDelivery} title="WaitDelivery" />
+      <Scene
+        key="cropDetails"
+        component={CropDetails}
+        title="CropDetails"
+        hideNavBar
+      />
+      <Scene key="farmName" component={FarmName} title="FarmName" hideNavBar />
+      <Scene key="farmTop" component={FarmTop} title="FarmTop" hideNavBar />
+      <Scene key="point" component={Point} title="Point" hideNavBar />
+      <Scene
+        key="pointHistory"
+        component={PointHistory}
+        title="PointHistory"
+        hideNavBar
+      />
+      <Scene key="profile" component={Profile} title="Profile" hideNavBar />
+      <Scene
+        key="waitDelivery"
+        component={WaitDelivery}
+        title="WaitDelivery"
+        hideNavBar
+      />
       <Scene
         key="waitDelivery2"
         component={WaitDelivery2}
         title="WaitDelivery2"
+        hideNavBar
       />
-      <Scene key="addressList" component={AddressList} title="AddressList" />
-      <Scene key="addressInput" component={AddressInput} title="AddressInput" />
-      <Scene key="addressCheck" component={AddressCheck} title="AddressCheck" />
-      <Scene key="contact" component={Contact} title="Contact" />
-      <Scene key="yamato" component={Yamato} title="Yamato" />
-      <Scene key="myMenu" component={MyMenu} title="MyMenu" />
+      <Scene
+        key="addressList"
+        component={AddressList}
+        title="AddressList"
+        hideNavBar
+      />
+      <Scene
+        key="addressInput"
+        component={AddressInput}
+        title="AddressInput"
+        hideNavBar
+      />
+      <Scene
+        key="addressCheck"
+        component={AddressCheck}
+        title="AddressCheck"
+        hideNavBar
+      />
+      <Scene key="contact" component={Contact} title="Contact" hideNavBar />
+      <Scene key="yamato" component={Yamato} title="Yamato" hideNavBar />
+      <Scene key="myMenu" component={MyMenu} title="MyMenu" hideNavBar />
       <Scene key="admob" component={AdMob} hideNavBar />
     </Scene>
   </Router>

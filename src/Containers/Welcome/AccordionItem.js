@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   Image,
@@ -10,20 +8,40 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-
 const AccordionItem = ({item, top, bottom}) => {
-
   return (
-    <View style={[styles.accordionBody, top && styles.topItem, bottom && styles.bottomItem]}>
-      <TouchableOpacity >
-        <ImageBackground style={[styles.accordionBg, styles.accordion, top && styles.topItem, bottom && styles.bottomItem]} imageStyle={[top && styles.topItem, bottom && {marginBottom: 10}]} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png'}}>
+    <View
+      style={[
+        styles.accordionBody,
+        top && styles.topItem,
+        bottom && styles.bottomItem,
+      ]}>
+      <TouchableOpacity>
+        <ImageBackground
+          style={[
+            styles.accordionBg,
+            styles.accordion,
+            top && styles.topItem,
+            bottom && styles.bottomItem,
+          ]}
+          imageStyle={[top && styles.topItem, bottom && {marginBottom: 10}]}
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png',
+          }}>
           <Text>{item.title}</Text>
-          <Image style={styles.listMark} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/list_mark1.png'}} />
+          <Image
+            style={styles.listMark}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/list_mark1.png',
+            }}
+          />
         </ImageBackground>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 export default AccordionItem;
 

@@ -39,48 +39,47 @@ const WaitDelivery2 = () => {
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        style={WaitDelivery2Styles.bgImg}
-        resizeMode="repeat"
-        source={require('../../assets/images/bg_pattern.png')}>
-          <ScrollView style={{flexDirection: 'column'}}>
-            <Header title='送付手続き' />
-            
-            <View style={[WaitDelivery2Styles.content, WaitDelivery2Styles.shadow]}>
-              <View style={{margin: 8}}>
-                <View style={{alignItems: 'flex-start'}}>
-                  <TouchableOpacity  style={WaitDelivery2Styles.waitDelivery1} onPress={goWaitDelivery}>
-                    <Text style={WaitDelivery2Styles.waitDeliveryText}>
-                      手続き済みの作物 ▶
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-                <Dash 
-                  style={{height: 0.3, marginVertical: 4}}
-                  dashColor='rgb(142, 142, 142)'
-                  dashThickness={1} 
-                />
-              </View>
-              <View 
-                style={WaitDelivery2Styles.prizeText}
-              >
-                <Text style={WaitDelivery2Styles.subTitle}>
-                  手続き待ちの作物一覧
+    <ImageBackground
+      style={WaitDelivery2Styles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/bg_pattern.png')}>
+      <ScrollView style={{flexDirection: 'column'}}>
+        <Header title='送付手続き' />
+        
+        <View style={[WaitDelivery2Styles.content, WaitDelivery2Styles.shadow]}>
+          <View style={{margin: 8}}>
+            <View style={{alignItems: 'flex-start'}}>
+              <TouchableOpacity  style={WaitDelivery2Styles.waitDelivery1} onPress={goWaitDelivery}>
+                <Text style={WaitDelivery2Styles.waitDeliveryText}>
+                  手続き済みの作物 ▶
                 </Text>
-              </View>
-              <View style={{margin: 8}}>
-                {
-                  deliveryList.map((item, i) => (
-                    <WaitDelivery2Item key={i} item={item} />
-                  ))
-                }
-              </View>
+              </TouchableOpacity>
             </View>
-          </ScrollView>
-          <Menu />
-      </ImageBackground>
-    </SafeAreaView>
+            <Dash 
+              style={{height: 0.3, marginVertical: 4}}
+              dashColor='rgb(142, 142, 142)'
+              dashThickness={1} 
+            />
+          </View>
+          <View 
+            style={WaitDelivery2Styles.prizeText}
+          >
+            <Text style={WaitDelivery2Styles.subTitle}>
+              手続き待ちの作物一覧
+            </Text>
+          </View>
+          <View style={{margin: 8}}>
+            {
+              deliveryList.map((item, i) => (
+                <WaitDelivery2Item key={i} item={item} />
+              ))
+            }
+          </View>
+        </View>
+      </ScrollView>
+      <Menu />
+    </ImageBackground>
+
   )
 }
 

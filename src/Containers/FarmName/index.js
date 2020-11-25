@@ -43,38 +43,24 @@ const FarmName = ({gameData}) => {
   // // getFarmData();
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <ImageBackground
-        style={FarmNameStyles.bgImg}
-        resizeMode="repeat"
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}>
-          <ScrollView style={{flexDirection: 'column'}}>
-            <View
-              style={FarmNameStyles.header}
-            >
-              <View
-                style={FarmNameStyles.headerText}
-              >
-                <Text
-                  style={FarmNameStyles.headerContent}
-                >
-                  {gameData.Mtitle}
-                </Text>              
-              </View>
-            </View>
+    <ImageBackground
+      style={FarmNameStyles.bgImg}
+      resizeMode="repeat"
+      source={require('../../assets/images/bg_pattern.png')}>
+      <ScrollView>
+        <View style={FarmNameStyles.header}>
+          <View style={FarmNameStyles.headerText}>
+            <Text style={FarmNameStyles.headerContent}>{gameData.Mtitle}</Text>
+          </View>
+        </View>
 
-            <GameBgImg item={gameBgData} />
-            <Panel 
-              item={gameData.Mcaption} 
-              name={gameData.Mtitle + '農場'} 
-            />
-            <GameMenu />
-                      
-          </ScrollView>
-      </ImageBackground>
-    </SafeAreaView>
-  )
-}
+        <GameBgImg item={gameBgData} />
+        <Panel item={gameData.Mcaption} name={gameData.Mtitle + '農場'} />
+        <GameMenu />
+      </ScrollView>
+    </ImageBackground>
+  );
+};
 
 export default FarmName;
 
