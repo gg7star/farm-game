@@ -79,7 +79,7 @@ const TopHatakeMenu = ({handleClick}) => {
             <View style={{flexDirection: 'row'}}>
               {
                 todoIconList.map((item, i) => (
-                  (i >= 4 && i < 7) && <TouchableOpacity>
+                  (i >= 4 && i < 7) && <TouchableOpacity onPress={handleClickAction}>
                     <AutoHeightImage
                       key={i}
                       width={responsiveWidth(15)}
