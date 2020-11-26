@@ -114,4 +114,3 @@ or if image isn't loading on iPhone 8, please refer https://github.com/facebook/
   
   After you install npm package, please replace files in `node_modules/react-native-admob` with files in `customize_rn_packages/react-native-admob/` directory.
   After that, please try to build android apk, again.
-   
