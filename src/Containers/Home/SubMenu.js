@@ -1,11 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {Linking, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
 
 const SubMenu = ({item}) => {
   const goNext = () => {
-    Actions[item.link]();
+    if (item.name === 'facebook' || item.name === 'Twitter') {
+      Linking.openURL(item.link);
+    } else {
+      Actions[item.link]();
+    }
   };
   return (
     <TouchableOpacity style={SubMenuStyles.bg} onPress={goNext}>
@@ -29,7 +33,7 @@ const SubMenuStyles = StyleSheet.create({
   text: {
     paddingLeft: 8,
     fontSize: 12,
-    paddingVertical: 10
+    paddingVertical: 10,
   },
   mArrow: {
     right: 4,

@@ -914,15 +914,15 @@ const supplyList = [
   },
   {
     name: 'Twitter',
-    link: 'https://twitter.com/hatakeppi'
+    link: 'https://twitter.com/hatakeppi',
   },
   {
     name: 'facebook',
-    link: 'https://www.facebook.com/profile.php?id=100009453335924'
+    link: 'https://www.facebook.com/profile.php?id=100009453335924',
   },
   {
     name: 'ご利用規約',
-    link: '/support/kiyaku1',
+    link: 'kiyaku',
   },
   {
     name: '対応機種',

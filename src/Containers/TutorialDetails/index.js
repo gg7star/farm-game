@@ -51,7 +51,6 @@ const tutorialDetailsList = [
 ]
 
 const TutorialDetails = ({param}) => {
-
   return (
     <ImageBackground
       style={TutorialDetailsStyles.bgImg}

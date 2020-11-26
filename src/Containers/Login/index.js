@@ -19,7 +19,6 @@ import { loginWithAPI } from '../../services/apis/auth';
 import { apiMemberById } from '../../services/apis/users';
 import { setUser } from '../../redux/reducers/userSlice';
 
-
 const Login = (props) => {
 
   const [email, setEmail] = useState('');
@@ -45,18 +44,18 @@ const Login = (props) => {
   };
 
   const doLogin = async () => {
-    // Actions.home();
-    const response = await loginWithAPI({
-      mail_address: email,
-      password: password,
-    });
-    if (response && response.member) {
-      const userInfo = await apiMemberById(response.member.id);
-      if (userInfo) {
-        dispatch(setUser(userInfo));
-        Actions.home();
-      }
-    }
+    Actions.home();
+    // const response = await loginWithAPI({
+    //   mail_address: email,
+    //   password: password,
+    // });
+    // if (response && response.member) {
+    //   const userInfo = await apiMemberById(response.member.id);
+    //   if (userInfo) {
+    //     dispatch(setUser(userInfo));
+    //     Actions.home();
+    //   }
+    // }
   };
 
   return (
@@ -125,8 +124,8 @@ const Login = (props) => {
         </ScrollView>
       </ImageBackground>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const LoginStyle = StyleSheet.create({
   safeArea: {
@@ -221,8 +220,8 @@ const LoginStyle = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     marginVertical: 4,
-  }
-})
+  },
+});
 
 
 const mapStateToProps = (state) => ({

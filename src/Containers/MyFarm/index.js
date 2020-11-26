@@ -150,8 +150,8 @@ const MyFarmStyles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     padding: '1%',
-  }
-})
+  },
+});
 
 const mapStateToProps = (state) => ({
   user: state.user || {},

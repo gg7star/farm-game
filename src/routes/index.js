@@ -26,6 +26,7 @@ import Contact from '../Containers/Contact';
 import Yamato from '../Containers/Yamato';
 import MyMenu from '../Containers/MyMenu';
 import AdMob from '../Containers/AdMob';
+import Kiyaku from '../Containers/Kiyaku';
 
 const Routes = () => (
   <Router>
@@ -106,6 +107,7 @@ const Routes = () => (
       <Scene key="yamato" component={Yamato} title="Yamato" hideNavBar />
       <Scene key="myMenu" component={MyMenu} title="MyMenu" hideNavBar />
       <Scene key="admob" component={AdMob} hideNavBar />
+      <Scene key="kiyaku" component={Kiyaku} hideNavBar />
     </Scene>
   </Router>
 );

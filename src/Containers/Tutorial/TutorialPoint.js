@@ -13,7 +13,7 @@ import {
 
 import { responsiveWidth } from 'react-native-responsive-dimensions';
 
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 import Dash from 'react-native-dash';
 
