@@ -44,7 +44,7 @@ const accordionList = [
   },
   {
     title: 'ご利用規約',
-    link: 'kiyaku1',
+    link: 'kiyaku',
   },
   {
     title: '対応機種',

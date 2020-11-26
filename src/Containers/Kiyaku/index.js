@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -8,13 +7,8 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-  StatusBar,
-  Dimensions,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
-import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
-import AutoHeightImage from 'react-native-auto-height-image';
 
 import Header from '../../Components/Header.js';
 import HeaderBrownBar from '../../Components/HeaderBrownBar.js';

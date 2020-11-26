@@ -7,8 +7,12 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from 'react-native';
+import {Actions} from 'react-native-router-flux';
 
 const AccordionItem = ({item, top, bottom}) => {
+  const goNext = () => {
+    Actions[item.link]();
+  };
   return (
     <View
       style={[
@@ -16,7 +20,7 @@ const AccordionItem = ({item, top, bottom}) => {
         top && styles.topItem,
         bottom && styles.bottomItem,
       ]}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={goNext}>
         <ImageBackground
           style={[
             styles.accordionBg,
