@@ -1,109 +1,149 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 import MenuBtn from './MenuBtn.js';
 
 const menuList = [
   {
     title: 'profile',
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/btnA_01.png'
+    img: require('../assets/images/mymenu/btnA_01.png'),
   },
   {
-    title: 'profile',
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/btnA_03.png'
+    title: 'news',
+    img: require('../assets/images/mymenu/btnA_03.png'),
   },
   {
-    title: 'profile',
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/btnA_05.png'
+    title: 'waitDelivery',
+    img: require('../assets/images/mymenu/btnA_05.png'),
   },
   {
-    title: 'profile',
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/btnA_06.png'
+    title: 'addressList',
+    img: require('../assets/images/mymenu/btnA_06.png'),
   },
   {
-    title: 'profile',
-    img: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/btnA_07.png'
-  }
+    title: 'growthList',
+    img: require('../assets/images/mymenu/btnA_07.png'),
+  },
 ];
 
-const Menu = ({item}) => {
+const Menu = () => {
   const [myMenu, setMyMenu] = useState(false);
 
   const goHome = () => {
-    Actions.home()
-  }
+    Actions.home();
+  };
 
   const goMyFarm = () => {
-    Actions.myfarm()
-  }
+    Actions.myfarm();
+  };
 
   const goNews = () => {
-    Actions.news()
-  }
+    Actions.news();
+  };
 
   return (
     <View>
-      {
-        myMenu && <View style={MenuStyles.modalContent}>
-          <TouchableOpacity style={MenuStyles.modalClose} onPress={() => setMyMenu(false)}>
-            <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png'}} style={{width: 37, height: 37}} />
+      {myMenu && <View style={MenuStyles.modalContent}>
+          <TouchableOpacity
+            style={MenuStyles.modalClose}
+            onPress={() => setMyMenu(false)}>
+            <Image
+              source={{
+                uri:
+                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png',
+              }}
+              style={{width: 37, height: 37}}
+            />
           </TouchableOpacity>
           <View style={MenuStyles.menuBtn}>
-            {
-              menuList.map((item, i) => (
-                <View key={i} style={MenuStyles.eachBtn}>
-                  <MenuBtn item={item} />
-                </View>
-              ))
-            }
+            {menuList.map((item, i) => (
+              <View key={i} style={MenuStyles.eachBtn}>
+                <MenuBtn item={item} />
+              </View>
+            ))}
           </View>
-          <AutoHeightImage width={responsiveWidth(90)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png'}} />
+          <AutoHeightImage
+            width={responsiveWidth(90)}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png',
+            }}
+          />
         </View>
       }
       <View style={MenuStyles.bg}>
         <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goHome()}>
-          <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt01.png'}} style={{width: 30, height: 30}} />
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt01.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
           <View style={MenuStyles.name}>
             <Text style={MenuStyles.text}>Home</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goMyFarm()}>
-          <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt04.png'}} style={{width: 30, height: 30}} />
+        <TouchableOpacity
+          style={MenuStyles.eachMenu}
+          onPress={() => goMyFarm()}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt04.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
           <View style={MenuStyles.name}>
             <Text style={MenuStyles.text}>MY FARM</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => setMyMenu(true)}>
-          <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt03.png'}} style={{width: 30, height: 30}} />
+        <TouchableOpacity
+          style={MenuStyles.eachMenu}
+          onPress={() => setMyMenu(true)}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt03.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
           <View style={MenuStyles.name}>
             <Text style={MenuStyles.text}>MY MENU</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goNews()}>
-          <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png'}} style={{width: 30, height: 30}} />
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
           <View style={MenuStyles.name}>
             <Text style={MenuStyles.text}>お知らせ</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={MenuStyles.pageTop}>
-          <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/go_top.png'}} style={{width: 80, height: 90}} />
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/go_top.png',
+            }}
+            style={{width: 80, height: 90}}
+          />
         </TouchableOpacity>
       </View>
-     
     </View>
-  )
-}
+  );
+};
 
 export default Menu;
 
@@ -117,7 +157,7 @@ const MenuStyles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#388e3c',
     backgroundColor: '#67b500',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   eachMenu: {
     width: '25%',
@@ -135,7 +175,7 @@ const MenuStyles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: '#630'
+    color: '#630',
   },
   pageTop: {
     width: '25%',
@@ -168,10 +208,10 @@ const MenuStyles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   eachBtn: {
     width: '25%',
-    marginHorizontal: 10
-  }
-})
+    marginHorizontal: 10,
+  },
+});

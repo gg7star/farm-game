@@ -1,22 +1,19 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
+import {Actions} from 'react-native-router-flux';
 
 const MenuBtn = ({item}) => {
+  const goNext = () => {
+    Actions[item.title]();
+  };
   return (
-    <TouchableOpacity>
-      <AutoHeightImage width={responsiveWidth(25)} source={{uri: item.img}} />
+    <TouchableOpacity onPress={goNext}>
+      <AutoHeightImage width={responsiveWidth(25)} source={item.img} />
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 export default MenuBtn;

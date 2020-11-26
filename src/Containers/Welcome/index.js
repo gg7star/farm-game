@@ -40,29 +40,29 @@ const tab2ImgList = [
 const accordionList = [
   {
     title: 'お問い合わせ',
-    link: ''
+    link: 'contact',
   },
   {
     title: 'ご利用規約',
-    link: ''
+    link: 'kiyaku1',
   },
   {
     title: '対応機種',
-    link: ''
+    link: 'kisyu',
   },
   {
     title: '個人情報保護方針',
-    link: ''
+    link: 'privacy',
   },
   {
     title: '特定商取引法表示',
-    link: ''
+    link: 'tokutei',
   },
   {
     title: '運営会社',
-    link: ''
-  }
-]
+    link: 'company',
+  },
+];
 
 const Welcome = () => {
 

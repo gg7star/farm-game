@@ -1,0 +1,193 @@
+import React, {useState} from 'react';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
+
+import {
+  responsiveHeight,
+  responsiveWidth,
+} from 'react-native-responsive-dimensions';
+import AutoHeightImage from 'react-native-auto-height-image';
+import {Actions} from 'react-native-router-flux';
+
+import MenuBtn from './MenuBtn.js';
+
+const menuList = [
+  {
+    title: 'profile',
+    img: require('../assets/images/mymenu/btnA_01.png'),
+  },
+  {
+    title: 'news',
+    img: require('../assets/images/mymenu/btnA_03.png'),
+  },
+  {
+    title: 'waitDelivery',
+    img: require('../assets/images/mymenu/btnA_05.png'),
+  },
+  {
+    title: 'addressList',
+    img: require('../assets/images/mymenu/btnA_06.png'),
+  },
+  {
+    title: 'growthList',
+    img: require('../assets/images/mymenu/btnA_07.png'),
+  },
+];
+
+const MenuBrown = () => {
+  const goHome = () => {
+    Actions.home();
+  };
+
+  const goMyMenu = () => {
+    Actions.myMenu();
+  };
+
+  const goMyFarm = () => {
+    Actions.myfarm();
+  };
+
+  const goNews = () => {
+    Actions.news();
+  };
+
+  return (
+    <View>
+      <View style={MenuBrownStyles.bg}>
+        <TouchableOpacity
+          style={MenuBrownStyles.eachMenu}
+          onPress={() => goHome()}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt01.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
+          <View style={MenuBrownStyles.name}>
+            <Text style={MenuBrownStyles.text}>Home</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={MenuBrownStyles.eachMenu}
+          onPress={() => goMyFarm()}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt04.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
+          <View style={MenuBrownStyles.name}>
+            <Text style={MenuBrownStyles.text}>MY FARM</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={MenuBrownStyles.eachMenu} onPress={goMyMenu}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt03.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
+          <View style={MenuBrownStyles.name}>
+            <Text style={MenuBrownStyles.text}>MY MENU</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={MenuBrownStyles.eachMenu}
+          onPress={() => goNews()}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
+            }}
+            style={{width: 30, height: 30}}
+          />
+          <View style={MenuBrownStyles.name}>
+            <Text style={MenuBrownStyles.text}>お知らせ</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={MenuBrownStyles.pageTop}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/go_top.png',
+            }}
+            style={{width: 80, height: 90}}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
+
+export default MenuBrown;
+
+const MenuBrownStyles = StyleSheet.create({
+  bg: {
+    height: 50,
+    zIndex: 100,
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    borderTopWidth: 1,
+    borderTopColor: '#388e3c',
+    backgroundColor: '#67b500',
+    flexDirection: 'row',
+  },
+  eachMenu: {
+    width: '25%',
+    zIndex: 10,
+    backgroundColor: '#67b500',
+    borderRightColor: '#388e3c',
+    borderRightWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  name: {
+    backgroundColor: '#fff',
+    borderRadius: 15,
+    width: '90%',
+    alignItems: 'center',
+  },
+  text: {
+    color: '#630',
+  },
+  pageTop: {
+    width: '25%',
+    height: 90,
+    zIndex: 1,
+    bottom: 25,
+    right: 0,
+    position: 'absolute',
+    alignItems: 'center',
+  },
+  modalContent: {
+    left: '5%',
+    top: -responsiveHeight(65),
+    position: 'absolute',
+    zIndex: 60,
+    width: '90%',
+  },
+  modalClose: {
+    position: 'absolute',
+    right: '6%',
+    top: '3%',
+    zIndex: 200,
+  },
+  menuBtn: {
+    position: 'absolute',
+    zIndex: 100,
+    top: '15%',
+    width: '88%',
+    left: '6%',
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+  },
+  eachBtn: {
+    width: '25%',
+    marginHorizontal: 10,
+  },
+});
