@@ -57,7 +57,6 @@ const Login = (props) => {
         Actions.home();
       }
     }
-    // Failed to login
   };
 
   return (

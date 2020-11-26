@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   Text,
@@ -11,11 +10,9 @@ import {
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import Dash from 'react-native-dash';
-import LinearGradient from 'react-native-linear-gradient';
-import {responsiveWidth} from 'react-native-responsive-dimensions';
-import AutoHeightImage from 'react-native-auto-height-image';
 
 import MyMenuBtn from './MyMenuBtn';
+import MenuBrown from '../../Components/MenuBrown';
 
 const menuList = [
   {
@@ -90,8 +87,8 @@ const MyMenu = () => {
           </ImageBackground>
         </View>
       </ScrollView>
+      <MenuBrown />
     </ImageBackground>
-  
   );
 };
 

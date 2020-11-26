@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 
 import {
   responsiveHeight,
@@ -7,31 +14,6 @@ import {
 } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 import {Actions} from 'react-native-router-flux';
-
-import MenuBtn from './MenuBtn.js';
-
-const menuList = [
-  {
-    title: 'profile',
-    img: require('../assets/images/mymenu/btnA_01.png'),
-  },
-  {
-    title: 'news',
-    img: require('../assets/images/mymenu/btnA_03.png'),
-  },
-  {
-    title: 'waitDelivery',
-    img: require('../assets/images/mymenu/btnA_05.png'),
-  },
-  {
-    title: 'addressList',
-    img: require('../assets/images/mymenu/btnA_06.png'),
-  },
-  {
-    title: 'growthList',
-    img: require('../assets/images/mymenu/btnA_07.png'),
-  },
-];
 
 const MenuBrown = () => {
   const goHome = () => {
@@ -46,84 +28,68 @@ const MenuBrown = () => {
     Actions.myfarm();
   };
 
-  const goNews = () => {
-    Actions.news();
+  const goFirstGuide = () => {
+    Actions.firstGuide();
   };
 
   return (
-    <View>
-      <View style={MenuBrownStyles.bg}>
-        <TouchableOpacity
-          style={MenuBrownStyles.eachMenu}
-          onPress={() => goHome()}>
-          <Image
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt01.png',
-            }}
-            style={{width: 30, height: 30}}
-          />
-          <View style={MenuBrownStyles.name}>
-            <Text style={MenuBrownStyles.text}>Home</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={MenuBrownStyles.eachMenu}
-          onPress={() => goMyFarm()}>
-          <Image
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt04.png',
-            }}
-            style={{width: 30, height: 30}}
-          />
-          <View style={MenuBrownStyles.name}>
-            <Text style={MenuBrownStyles.text}>MY FARM</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={MenuBrownStyles.eachMenu} onPress={goMyMenu}>
-          <Image
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt03.png',
-            }}
-            style={{width: 30, height: 30}}
-          />
-          <View style={MenuBrownStyles.name}>
-            <Text style={MenuBrownStyles.text}>MY MENU</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={MenuBrownStyles.eachMenu}
-          onPress={() => goNews()}>
-          <Image
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
-            }}
-            style={{width: 30, height: 30}}
-          />
-          <View style={MenuBrownStyles.name}>
-            <Text style={MenuBrownStyles.text}>お知らせ</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={MenuBrownStyles.pageTop}>
-          <Image
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/go_top.png',
-            }}
-            style={{width: 80, height: 90}}
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
+    <ImageBackground
+      style={MenuBrownStyles.bgImg}
+      source={require('../assets/images/category_bg4.gif')}>
+      <TouchableOpacity
+        style={MenuBrownStyles.eachMenu}
+        onPress={() => goHome()}>
+        <Image
+          source={require('../assets/images/footer_h.png')}
+          style={{width: 30, height: 28}}
+        />
+        <View style={MenuBrownStyles.name}>
+          <Text style={MenuBrownStyles.text}>Home</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={MenuBrownStyles.eachMenu}
+        onPress={() => goMyFarm()}>
+        <Image
+          source={require('../assets/images/footer_f.png')}
+          style={{width: 30, height: 28}}
+        />
+        <View style={MenuBrownStyles.name}>
+          <Text style={MenuBrownStyles.text}>MY FARM</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity style={MenuBrownStyles.eachMenu} onPress={goMyMenu}>
+        <Image
+          source={require('../assets/images/footer_m.png')}
+          style={{width: 30, height: 28}}
+        />
+        <View style={MenuBrownStyles.name}>
+          <Text style={MenuBrownStyles.text}>MY MENU</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={MenuBrownStyles.eachMenu}
+        onPress={() => goFirstGuide()}>
+        <Image
+          source={require('../assets/images/footer_g.png')}
+          style={{width: 30, height: 28}}
+        />
+        <View style={MenuBrownStyles.name}>
+          <Text style={MenuBrownStyles.text}>ｹﾞｰﾑｶﾞｲﾄﾞ</Text>
+        </View>
+      </TouchableOpacity>
+    </ImageBackground>
   );
 };
 
 export default MenuBrown;
 
 const MenuBrownStyles = StyleSheet.create({
+  bgImg: {
+    height: 44,
+    zIndex: 1000,
+    flexDirection: 'row'
+  },
   bg: {
     height: 50,
     zIndex: 100,
@@ -138,20 +104,19 @@ const MenuBrownStyles = StyleSheet.create({
   eachMenu: {
     width: '25%',
     zIndex: 10,
-    backgroundColor: '#67b500',
-    borderRightColor: '#388e3c',
+    borderTopColor: '#ffff99',
+    borderTopWidth: 1,
+    borderRightColor: '#ffff99',
     borderRightWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   name: {
-    backgroundColor: '#fff',
-    borderRadius: 15,
     width: '90%',
     alignItems: 'center',
   },
   text: {
-    color: '#630',
+    color: '#fff',
   },
   pageTop: {
     width: '25%',
