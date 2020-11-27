@@ -50,7 +50,8 @@ const todoIconList = [
 const TopHatakeMenu = ({handleClick}) => {
   const handleClickAction = () => {
     // Add admob
-    Actions.admob();
+    //Actions.admob({nextPage: 'farmName', state: {gameData: item}});
+    Actions.admob({nextPage: 'home'});
   };
 
   return (

@@ -28,6 +28,7 @@ import MyMenu from '../Containers/MyMenu';
 import AdMob from '../Containers/AdMob';
 import Kiyaku from '../Containers/Kiyaku';
 import FirstGuide from '../Containers/FirstGuide';
+import FirstGuidePage1 from '../Containers/FirstGuide/FirstGuidePage1';
 
 const Routes = () => (
   <Router>
@@ -110,6 +111,7 @@ const Routes = () => (
       <Scene key="admob" component={AdMob} hideNavBar />
       <Scene key="kiyaku" component={Kiyaku} hideNavBar />
       <Scene key="firstGuide" component={FirstGuide} hideNavBar />
+      <Scene key="firstGuidePage1" component={FirstGuidePage1} hideNavBar />
     </Scene>
   </Router>
 );

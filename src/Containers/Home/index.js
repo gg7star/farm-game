@@ -1029,9 +1029,9 @@ const Home = () => {
               ご確認のほどお願いいたします。
             </Text>
           </View>
-          <TouchableOpacity onPress={() => eventImgClick()}>
+          {/* <TouchableOpacity onPress={() => eventImgClick()}>
             <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           
           <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png'}} />
           <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />

@@ -33,22 +33,22 @@ const App: () => React$Node = () => {
 
   const isDarkMode = useDarkMode();
 
-  const handleAdFailedToLoad = (error) => {
-    console.log('===== AdMobBanner: error: ', error);
-  };
+  // const handleAdFailedToLoad = (error) => {
+  //   console.log('===== AdMobBanner: error: ', error);
+  // };
 
-  const renderAdmob = () => {
-    const adMobId = ADMOB_CONFIG[Platform.OS].banner.test_id;
+  // const renderAdmob = () => {
+  //   const adMobId = ADMOB_CONFIG[Platform.OS].banner.test_id;
 
-    return (
-      <AdMobBanner
-        adSize="fullBanner"
-        adUnitID={adMobId}
-        testDevices={[AdMobBanner.simulatorId]}
-        onAdFailedToLoad={(error) => handleAdFailedToLoad(error)}
-      />
-    );
-  };
+  //   return (
+  //     <AdMobBanner
+  //       adSize="fullBanner"
+  //       adUnitID={adMobId}
+  //       testDevices={[AdMobBanner.simulatorId]}
+  //       onAdFailedToLoad={(error) => handleAdFailedToLoad(error)}
+  //     />
+  //   );
+  // };
 
   return (
     <Provider store={store}>
@@ -62,9 +62,9 @@ const App: () => React$Node = () => {
         <SafeAreaView style={{flex: 1}}>
           <Routes />
         </SafeAreaView>
-        <SafeAreaView style={{flex: 0, backgroundColor: '#000000'}}>
+        {/* <SafeAreaView style={{flex: 0, backgroundColor: '#000000'}}>
           {renderAdmob()}
-        </SafeAreaView>
+        </SafeAreaView> */}
       </PersistGate>
     </Provider>
   );

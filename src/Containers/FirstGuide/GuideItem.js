@@ -5,26 +5,36 @@ import LinearGradient from 'react-native-linear-gradient';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const GuideItem = ({item}) => {
+const GuideItem = ({item, top, bottom}) => {
   const goNext = () => {
     Actions[item.link]();
   };
   return (
     <TouchableOpacity onPress={goNext}>
-      <LinearGradient
-        colors={['#ffffff', '#f1f1f1']}
-        style={GuideItemStyles.nextBg}>
-        <AutoHeightImage width={84} source={item.img} />
-        <View style={GuideItemStyles.textArea}>
-          <Text style={GuideItemStyles.nextText}>{item.content}</Text>
-        </View>
-        <View style={GuideItemStyles.iconBg}>
-          <Image
-            style={GuideItemStyles.iconNextImg}
-            source={require('../../assets/images/icons-36-white.png')}
-          />
-        </View>
-      </LinearGradient>
+      <View
+        style={[
+          GuideItemStyles.bg,
+          top ? GuideItemStyles.topItem : null,
+          bottom ? GuideItemStyles.bottomItem : null,
+        ]}>
+        <LinearGradient
+          colors={['#ffffff', '#f1f1f1']}
+          style={[
+            GuideItemStyles.nextBg,
+            top ? GuideItemStyles.topItem : GuideItemStyles.bottomItem,
+          ]}>
+          <AutoHeightImage width={84} source={item.img} />
+          <View style={GuideItemStyles.textArea}>
+            <Text style={GuideItemStyles.nextText}>{item.content}</Text>
+          </View>
+          <View style={GuideItemStyles.iconBg}>
+            <Image
+              style={GuideItemStyles.iconNextImg}
+              source={require('../../assets/images/icons-36-white.png')}
+            />
+          </View>
+        </LinearGradient>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -32,16 +42,24 @@ const GuideItem = ({item}) => {
 export default GuideItem;
 
 const GuideItemStyles = StyleSheet.create({
-  bgImg: {
-    width: '100%',
-    height: '100%',
+  bg: {
+    borderColor: '#aaa',
+    borderWidth: 1,
+    borderTopWidth: 0,
+  },
+  topItem: {
+    borderTopWidth: 1,
+    borderTopRightRadius: 8,
+    borderTopLeftRadius: 8,
+  },
+  bottomItem: {
+    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 8,
   },
   nextBg: {
     padding: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    borderColor: '#aaa',
-    borderWidth: 1,
   },
   textArea: {
     width: responsiveWidth(100) - 130,

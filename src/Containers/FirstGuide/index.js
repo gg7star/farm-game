@@ -52,14 +52,11 @@ const FirstGuide = () => {
         <Header title="畑っぴガイド" />
         <AutoHeightImage
           width={responsiveWidth(100)}
-          source={{
-            uri:
-              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/firstguide/topbana.png',
-          }}
+          source={require('../../assets/images/firstguide/topbana.png')}
         />
 
         {guideList.map((item, i) => (
-          <GuideItem key={i} item={item} />
+          <GuideItem key={i} item={item} top={i === 0} bottom={i === 5} />
         ))}
         <Text>{'\n\n\n\n\n\n'}</Text>
       </ScrollView>
