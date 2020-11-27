@@ -14,20 +14,18 @@ import { Actions } from 'react-native-router-flux';
 const MContent = ({item}) => {
 
   const cropClick = () => {
-    if (item.option === '無料ゲーム'){
-      Actions.farmName({gameData: item});
-      // Actions.admob({nextPage: 'farmName', state: {gameData: item}});
-    } else if (item.option === '一発畑') {
-      Actions.cropDetails(item.id);
-    } else {
-      Actions.eventTitleAll();
-    }
-  }
+    Actions.farmName({gameData: item});
+    // if (item.option === '無料ゲーム') {
+    //   Actions.farmName({gameData: item});
+    //   // Actions.admob({nextPage: 'farmName', state: {gameData: item}});
+    // } else if (item.option === '一発畑') {
+    //   Actions.cropDetails(item.id);
+    // } else {
+    //   Actions.eventTitleAll();
+    // }
+  };
   return (
-    <TouchableOpacity 
-      style={MContentStyles.bg}
-      onPress={() => cropClick()}
-    >
+    <TouchableOpacity style={MContentStyles.bg} onPress={() => cropClick()}>
       <View style={{flexDirection: 'row', height: 18}}>
         {
           (item.option && item.option.length > 1) && <View style={MContentStyles.option}>

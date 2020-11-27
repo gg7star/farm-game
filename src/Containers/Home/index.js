@@ -40,26 +40,26 @@ const homeBtnList = [
 ];
 
 const categoryTabList = [
-  {
-    title: '果物',
-    bgColor: '#FF9354',
-  },
+  // {
+  //   title: '果物',
+  //   bgColor: '#FF9354',
+  // },
   {
     title: '野菜',
     bgColor: '#FFC638',
   },
-  {
-    title: '動物・\nその他',
-    bgColor: '#53C93C',
-  },
+  // {
+  //   title: '動物・\nその他',
+  //   bgColor: '#53C93C',
+  // },
   {
     title: 'イベント',
     bgColor: '#46CEF0',
   },
-  {
-    title: '無料ｹﾞｰﾑ',
-    bgColor: '#B84DFF',
-  },
+  // {
+  //   title: '無料ｹﾞｰﾑ',
+  //   bgColor: '#B84DFF',
+  // },
 ];
 
 const categories = [
@@ -296,8 +296,8 @@ const categories = [
         inGameDay: '45分',
         address: '青森県弘前市 せいの農園'
       },
-      option: ' '
-    }
+      option: ' ',
+    },
   ],
   [
     {
@@ -878,7 +878,7 @@ const categories = [
       option: '無料ゲーム'
     }
   ]
-]
+];
 
 const accountList = [
   {
@@ -1000,10 +1000,7 @@ const Home = () => {
 
         <AutoHeightImage
           width={responsiveWidth(100)}
-          source={{
-            uri:
-            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/top_img.png'
-          }}
+          source={require('../../assets/images/banner.png')}
         />
 
         <View style={HomeStyle.topBtn}>
@@ -1041,7 +1038,10 @@ const Home = () => {
           <View style={{flexDirection: 'row'}}>
             {
               categoryTabList.map((item, i) => (
-                <TouchableOpacity key={i} style={{width: '20%'}} onPress={() => setTabItem(i)}>
+              <TouchableOpacity
+                key={i}
+                style={{width: '50%'}}
+                onPress={() => setTabItem(i)}>
                   <CategoryTab item={item} />
                 </TouchableOpacity>
               ))

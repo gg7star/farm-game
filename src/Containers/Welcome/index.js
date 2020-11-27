@@ -118,13 +118,14 @@ const Welcome = () => {
         </View> */}
         <TouchableOpacity onPress={goHome} style={{alignItems: 'center'}}>
           <ImageBackground
-            style={{width: 200, height: 40}}
-            imageStyle={{borderRadius: 10}}
+            style={{width: responsiveWidth(100), height: 40}}
+            // imageStyle={{borderRadius: 10}}
+            resizeMode='repeat'
             source={{
               uri:
                 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg2.gif',
             }}>
-            <Text style={styles.tabTitle}>スタート</Text>
+            <Text style={[styles.tabTitle, {fontWeight: 'bold', fontSize: 20}]}>スタート</Text>
           </ImageBackground>
         </TouchableOpacity>
 
@@ -312,7 +313,7 @@ const styles = StyleSheet.create({
   tabTitle: {
     color: '#663300',
     marginTop: 10,
-    textAlign: 'center' 
+    textAlign: 'center',
   },
   accordion: {
     flexDirection: 'row',
