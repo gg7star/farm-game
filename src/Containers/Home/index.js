@@ -1012,7 +1012,7 @@ const Home = () => {
         </View>
 
         <View style={{alignItems: 'center'}}>
-          <View style={HomeStyle.introPart}>
+          {/* <View style={HomeStyle.introPart}>
             <Text style={HomeStyle.introText}>
               サービス終了日の4月30日が近づいてまいりました。
               {'\n'}
@@ -1022,7 +1022,7 @@ const Home = () => {
               {'\n'}
               ご確認のほどお願いいたします。
             </Text>
-          </View>
+          </View> */}
           {/* <TouchableOpacity onPress={() => eventImgClick()}>
             <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
           </TouchableOpacity> */}
