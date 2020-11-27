@@ -45,7 +45,7 @@ const categoryTabList = [
   //   bgColor: '#FF9354',
   // },
   {
-    title: '野菜',
+    title: '一般ゲーム',
     bgColor: '#FFC638',
   },
   // {
@@ -53,7 +53,7 @@ const categoryTabList = [
   //   bgColor: '#53C93C',
   // },
   {
-    title: 'イベント',
+    title: '抽選ゲーム',
     bgColor: '#46CEF0',
   },
   // {
@@ -985,15 +985,12 @@ const Home = () => {
         <View style={HomeStyle.header}>
           <View style={HomeStyle.headerNews}></View>
           <View style={HomeStyle.headerAccount}>
-            <Text
-              style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
+            <Text style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
               会員番号:000011
             </Text>
             <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
               <Text style={{color: '#67b500', fontSize: 12}}>[管理者]</Text>
-              <Text style={{color: '#212121', fontSize: 12}}>
-                スライムさん
-              </Text>
+              <Text style={{color: '#212121', fontSize: 12}}>スライムさん</Text>
             </View>
           </View>
         </View>
@@ -1029,9 +1026,22 @@ const Home = () => {
           {/* <TouchableOpacity onPress={() => eventImgClick()}>
             <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
           </TouchableOpacity> */}
-          
-          <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png'}} />
-          <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png'}} />
+          <AutoHeightImage
+            width={responsiveWidth(98)}
+            style={HomeStyle.eventImg}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png',
+            }}
+          />
+          <AutoHeightImage
+            width={responsiveWidth(98)}
+            style={HomeStyle.eventImg}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png',
+            }}
+          />
         </View>
 
         <View style={HomeStyle.corner}>
@@ -1113,7 +1123,7 @@ const HomeStyle = StyleSheet.create({
     height: 32,
     marginVertical: 2,
     marginLeft: 4,
-    position: 'relative'
+    position: 'relative',
   },
   headerAccount: {
     backgroundColor: '#dcedc8',
@@ -1121,7 +1131,7 @@ const HomeStyle = StyleSheet.create({
     right: 0,
     borderRadius: 4,
     height: 32,
-    margin: 2,    
+    margin: 2,
   },
   topBtn: {
     flexDirection: 'row',
@@ -1136,11 +1146,11 @@ const HomeStyle = StyleSheet.create({
     borderRadius: 8,
   },
   introText: {
-    color: '#630'
+    color: '#630',
   },
   eventImg: {
     borderRadius: 8,
-    overflow: "hidden",
+    overflow: 'hidden',
     margin: '1%',
     borderColor: '#fff',
     borderWidth: 2,
@@ -1160,19 +1170,19 @@ const HomeStyle = StyleSheet.create({
   subMenu: {
     backgroundColor: '#67B500',
     paddingBottom: '1%',
-    borderRadius: 8,    
+    borderRadius: 8,
   },
   subMenuContent: {
     marginHorizontal: '1%',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   subMenuTitle: {
     color: '#fff',
     fontSize: 14,
     fontWeight: 'bold',
-    padding: 6,   
-  }
-})
+    padding: 6,
+  },
+});

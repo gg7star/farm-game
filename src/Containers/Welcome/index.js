@@ -120,12 +120,14 @@ const Welcome = () => {
           <ImageBackground
             style={{width: responsiveWidth(100), height: 40}}
             // imageStyle={{borderRadius: 10}}
-            resizeMode='repeat'
+            resizeMode="repeat"
             source={{
               uri:
                 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg2.gif',
             }}>
-            <Text style={[styles.tabTitle, {fontWeight: 'bold', fontSize: 20}]}>スタート</Text>
+            <Text style={[styles.tabTitle, {fontWeight: 'bold', fontSize: 20}]}>
+              スタート
+            </Text>
           </ImageBackground>
         </TouchableOpacity>
 
@@ -150,7 +152,7 @@ const Welcome = () => {
                   }}>
                   <Text style={styles.tabTitle}>どんなゲームなの？</Text>
                 </ImageBackground>
-              }                
+              }
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -185,16 +187,14 @@ const Welcome = () => {
                   />
               </View>
             ))
-            :
-            tab2ImgList.map((item, i) => (
-              <View key={i}>
+            : tab2ImgList.map((item, i) => (
+                <View key={i}>
                   <AutoHeightImage
                     width={responsiveWidth(100)}
                     source={{uri: item}}
                   />
-              </View>
-            ))
-          }
+                </View>
+              ))}
 
           <Image
             style={{height: 2, width: '100%'}}
@@ -219,36 +219,58 @@ const Welcome = () => {
                 expanded ?
                 <Image
                   style={styles.openClose}
-                  source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_none.png'}} />
+                    source={{
+                      uri:
+                        'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_none.png',
+                    }}
+                  />
                 :
-                <Image style={styles.openClose} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_plus.png'}} />
+                  <Image
+                    style={styles.openClose}
+                    source={{
+                      uri:
+                        'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_plus.png',
+                    }}
+                  />
               }
               </ImageBackground>
             </TouchableOpacity>
 
             {
               expanded && <View style={[styles.accordionBody, {width: 320}]}>
-                <ImageBackground style={{borderRadius: 10, padding: 10}} imageStyle={styles.accordionImgBg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png'}}>
-                  {
-                    accordionList.map((item, i) => (
-                      <AccordionItem key={i} item={item} top={i===0} bottom={(i+1)===accordionList.length} />
-                    ))
-                  }
+                <ImageBackground
+                  style={{borderRadius: 10, padding: 10}}
+                  imageStyle={styles.accordionImgBg}
+                  source={{
+                    uri:
+                      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png',
+                  }}>
+                  {accordionList.map((item, i) => (
+                    <AccordionItem
+                      key={i}
+                      item={item}
+                      top={i === 0}
+                      bottom={i + 1 === accordionList.length}
+                    />
+                  ))}
                 </ImageBackground>
               </View>
             }
           </View>
 
-          <AutoHeightImage width={responsiveWidth(100)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/ground/ground_bg5.png'}} />
-
+          <AutoHeightImage
+            width={responsiveWidth(100)}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/ground/ground_bg5.png',
+            }}
+          />
         </View>
         <View style={{width: '100%', height: 10}} />
-      </ScrollView>   
-      
+      </ScrollView>
     </View>
-    
-  )
-}
+  );
+};
 
 export default Welcome;
 
@@ -256,7 +278,7 @@ const styles = StyleSheet.create({
   headerLogin: {
     height: 47,
     margin: 0,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   logo: {
     width: 95,
@@ -264,19 +286,19 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginRight: 5,
     marginLeft: 5,
-    marginBottom: 5
+    marginBottom: 5,
   },
   logoText: {
     color: '#ccff33',
     fontSize: 10,
     display: 'flex',
     marginTop: 30,
-    marginLeft: -10
+    marginLeft: -10,
   },
   logoTouch: {
     bottom: 0,
     right: 0,
-    position: 'absolute'
+    position: 'absolute',
   },
   loginBtn: {
     width: 109,
@@ -284,14 +306,14 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginRight: 5,
     marginLeft: 5,
-    marginBottom: 5,    
+    marginBottom: 5,
   },
   imgEvent: {
     width: '98%',
     height: 67,
     borderRadius: 2,
     padding: 4,
-    flex: 1
+    flex: 1,
   },
   tabItem: {
     fontWeight: 'bold',
@@ -333,10 +355,10 @@ const styles = StyleSheet.create({
   accordionBg: {
     width: 320,
     height: 44,
-    borderRadius: 10
+    borderRadius: 10,
   },
   accordionImgBg: {
-    borderRadius: 10
+    borderRadius: 10,
   },
   accordionBody: {
     flexDirection: 'row',
@@ -347,6 +369,6 @@ const styles = StyleSheet.create({
     borderColor: '#663300',
     borderWidth: 1,
     borderStyle: 'solid',
-    borderRadius: 10
-  }
-})
+    borderRadius: 10,
+  },
+});
