@@ -44,26 +44,14 @@ const homeBtnList = [
 ];
 
 const categoryTabList = [
-  // {
-  //   title: '果物',
-  //   bgColor: '#FF9354',
-  // },
   {
     title: '一般ゲーム',
     bgColor: '#FFC638',
   },
-  // {
-  //   title: '動物・\nその他',
-  //   bgColor: '#53C93C',
-  // },
   {
     title: '抽選ゲーム',
     bgColor: '#46CEF0',
   },
-  // {
-  //   title: '無料ｹﾞｰﾑ',
-  //   bgColor: '#B84DFF',
-  // },
 ];
 
 const categories = [
@@ -1216,7 +1204,6 @@ const HomeStyle = StyleSheet.create({
     },
   },
   tabContent: {
-    // padding: 4,
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
     height: responsiveHeight(100) - 155 - (188 * responsiveWidth(100)) / 375,
