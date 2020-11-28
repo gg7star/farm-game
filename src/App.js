@@ -50,18 +50,26 @@ const App: () => React$Node = () => {
   //   );
   // };
 
+  const bgColor = isDarkMode ? '#000000' : '#FFFFFF';
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <SafeAreaView
           style={{
             flex: 0,
-            backgroundColor: isDarkMode ? '#000000' : '#FFFFFF',
+            backgroundColor: bgColor,
           }}
         />
         <SafeAreaView style={{flex: 1}}>
           <Routes />
         </SafeAreaView>
+        <SafeAreaView
+          style={{
+            flex: 0,
+            backgroundColor: bgColor,
+          }}
+        />
         {/* <SafeAreaView style={{flex: 0, backgroundColor: '#000000'}}>
           {renderAdmob()}
         </SafeAreaView> */}
