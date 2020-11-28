@@ -60,11 +60,6 @@ const Welcome = () => {
     setExpanded(!expanded);
   };
 
-  const goLogin = () => {
-    // Actions.admob({nextPage: 'login'});
-    Actions.login();
-  };
-
   const goHome = () => {
     Actions.home();
   };
@@ -72,201 +67,188 @@ const Welcome = () => {
   return (
     <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
       <ScrollView>
-        <ImageBackground
-          style={styles.headerLogin}
-          source={{
-            uri:
-              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg4.gif',
-          }}>
-          <Image
+        <TouchableOpacity onPress={goHome}>
+          {/* <ImageBackground
+            style={styles.headerLogin}
             source={{
               uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/logo2.png',
-            }}
-            style={styles.logo}
-            resizeMode="cover"
-          />
-          <Text style={styles.logoText}>～手のひらの小さな農園～</Text>
-          <TouchableOpacity style={styles.logoTouch}>
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg4.gif',
+            }}>
             <Image
               source={{
                 uri:
-                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/btn/ftop_login.png',
+                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/logo2.png',
               }}
-              style={styles.loginBtn}
+              style={styles.logo}
+              resizeMode="cover"
             />
-          </TouchableOpacity>
-        </ImageBackground>
-
-        <View>
-          <AutoHeightImage
-            width={responsiveWidth(100)}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/ftop/img_ftop.png',
-            }}
-          />
-        </View>
-        {/* <View style={{alignItems: 'center'}}>
-          <Image
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png',
-            }}
-            style={styles.imgEvent}
-          />
-        </View> */}
-        <TouchableOpacity onPress={goHome} style={{alignItems: 'center'}}>
-          <ImageBackground
-            style={{width: responsiveWidth(100), height: 40}}
-            // imageStyle={{borderRadius: 10}}
-            resizeMode="repeat"
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg2.gif',
-            }}>
-            <Text style={[styles.tabTitle, {fontWeight: 'bold', fontSize: 20}]}>
-              スタート
-            </Text>
-          </ImageBackground>
-        </TouchableOpacity>
-
-        <View>
-          <View style={{flexDirection: 'row'}}>
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() => setActiveTab(true)}>
-              {activeTab ?
-                <LinearGradient
-                  colors={['#cfc', '#9c0']}
-                  style={[styles.tabImgGradient, styles.tabImgBg]}>
-                  <Text style={styles.tabTitle}>どんなゲームなの？</Text>
-                </LinearGradient>
-                :
-                <ImageBackground
-                  style={styles.tabBg}
-                  imageStyle={styles.tabImgBg}
-                  source={{
-                    uri:
-                      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg2.gif',
-                  }}>
-                  <Text style={styles.tabTitle}>どんなゲームなの？</Text>
-                </ImageBackground>
-              }
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() => setActiveTab(false)}>
-              {activeTab ?
-                <ImageBackground
-                  style={styles.tabBg}
-                  imageStyle={styles.tabImgBg}
-                  source={{
-                    uri:
-                      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg2.gif',
-                  }}>
-                  <Text style={styles.tabTitle}>ユーザーレビュー</Text>
-                </ImageBackground>
-                :
-                <LinearGradient
-                  colors={['#cfc', '#9c0']}
-                  style={[styles.tabImgGradient, styles.tabImgBg]}>
-                  <Text style={styles.tabTitle}>ユーザーレビュー</Text>
-                </LinearGradient>
-              }
-            </TouchableOpacity>
-          </View>
-
-          {activeTab ?
-            tab1ImgList.map((item, i) => (
-              <View key={i}>
-                  <AutoHeightImage
-                    width={responsiveWidth(100)}
-                    source={{uri: item}}
-                  />
-              </View>
-            ))
-            : tab2ImgList.map((item, i) => (
-                <View key={i}>
-                  <AutoHeightImage
-                    width={responsiveWidth(100)}
-                    source={{uri: item}}
-                  />
-                </View>
-              ))}
-
-          <Image
-            style={{height: 2, width: '100%'}}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/deco/category_innerlinebg.png',
-            }}
-          />
-
-          <Text>{'\n\n'}</Text>
-          <View style={{alignItems: 'center'}}>
-            <TouchableOpacity onPress={() => toggleExpand()}>
-              <ImageBackground
-                style={[styles.accordionBg, styles.accordion]}
-                imageStyle={styles.accordionImgBg}
+            <Text style={styles.logoText}>～手のひらの小さな農園～</Text>
+            <TouchableOpacity style={styles.logoTouch}>
+              <Image
                 source={{
                   uri:
-                    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png',
-                }}>
-              <Text>サポートメニュー</Text>
-              {
-                expanded ?
-                <Image
-                  style={styles.openClose}
-                    source={{
-                      uri:
-                        'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_none.png',
-                    }}
-                  />
-                :
-                  <Image
-                    style={styles.openClose}
-                    source={{
-                      uri:
-                        'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_plus.png',
-                    }}
-                  />
-              }
-              </ImageBackground>
+                    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/btn/ftop_login.png',
+                }}
+                style={styles.loginBtn}
+              />
             </TouchableOpacity>
+          </ImageBackground> */}
 
-            {
-              expanded && <View style={[styles.accordionBody, {width: 320}]}>
+          <View>
+            <AutoHeightImage
+              width={responsiveWidth(100)}
+              source={require('../../assets/images/Top_Welcome.png')}
+            />
+          </View>
+          <View style={{alignItems: 'center'}}>
+            <AutoHeightImage
+              width={304}
+              source={require('../../assets/images/Start.png')}
+            />
+          </View>
+          <View style={{alignItems: 'flex-end'}}>
+            <AutoHeightImage
+              width={172}
+              source={require('../../assets/images/model_change.png')}
+            />
+          </View>
+
+          <View>
+            <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity
+                style={styles.tabItem}
+                onPress={() => setActiveTab(true)}>
+                {activeTab ? (
+                  <LinearGradient
+                    colors={['#cfc', '#9c0']}
+                    style={[styles.tabImgGradient, styles.tabImgBg]}>
+                    <Text style={styles.tabTitle}>どんなゲームなの？</Text>
+                  </LinearGradient>
+                ) : (
+                  <ImageBackground
+                    style={styles.tabBg}
+                    imageStyle={styles.tabImgBg}
+                    source={{
+                      uri:
+                        'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg2.gif',
+                    }}>
+                    <Text style={styles.tabTitle}>どんなゲームなの？</Text>
+                  </ImageBackground>
+                )}
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.tabItem}
+                onPress={() => setActiveTab(false)}>
+                {activeTab ? (
+                  <ImageBackground
+                    style={styles.tabBg}
+                    imageStyle={styles.tabImgBg}
+                    source={{
+                      uri:
+                        'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg2.gif',
+                    }}>
+                    <Text style={styles.tabTitle}>ユーザーレビュー</Text>
+                  </ImageBackground>
+                ) : (
+                  <LinearGradient
+                    colors={['#cfc', '#9c0']}
+                    style={[styles.tabImgGradient, styles.tabImgBg]}>
+                    <Text style={styles.tabTitle}>ユーザーレビュー</Text>
+                  </LinearGradient>
+                )}
+              </TouchableOpacity>
+            </View>
+
+            {activeTab
+              ? tab1ImgList.map((item, i) => (
+                  <View key={i}>
+                    <AutoHeightImage
+                      width={responsiveWidth(100)}
+                      source={{uri: item}}
+                    />
+                  </View>
+                ))
+              : tab2ImgList.map((item, i) => (
+                  <View key={i}>
+                    <AutoHeightImage
+                      width={responsiveWidth(100)}
+                      source={{uri: item}}
+                    />
+                  </View>
+                ))}
+
+            <Image
+              style={{height: 2, width: '100%'}}
+              source={{
+                uri:
+                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/deco/category_innerlinebg.png',
+              }}
+            />
+
+            <Text>{'\n\n'}</Text>
+            <View style={{alignItems: 'center'}}>
+              <TouchableOpacity onPress={() => toggleExpand()}>
                 <ImageBackground
-                  style={{borderRadius: 10, padding: 10}}
+                  style={[styles.accordionBg, styles.accordion]}
                   imageStyle={styles.accordionImgBg}
                   source={{
                     uri:
                       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png',
                   }}>
-                  {accordionList.map((item, i) => (
-                    <AccordionItem
-                      key={i}
-                      item={item}
-                      top={i === 0}
-                      bottom={i + 1 === accordionList.length}
+                <Text>サポートメニュー</Text>
+                  {expanded ? (
+                    <Image
+                      style={styles.openClose}
+                      source={{
+                        uri:
+                          'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_none.png',
+                      }}
+                      />
+                  ) : (
+                    <Image
+                      style={styles.openClose}
+                      source={{
+                        uri:
+                          'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_plus.png',
+                      }}
                     />
-                  ))}
+                  )}
                 </ImageBackground>
-              </View>
-            }
-          </View>
+              </TouchableOpacity>
 
-          <AutoHeightImage
-            width={responsiveWidth(100)}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/ground/ground_bg5.png',
-            }}
-          />
-        </View>
-        <View style={{width: '100%', height: 10}} />
+              {expanded && (
+                <View style={[styles.accordionBody, {width: 320}]}>
+                  <ImageBackground
+                    style={{borderRadius: 10, padding: 10}}
+                    imageStyle={styles.accordionImgBg}
+                    source={{
+                      uri:
+                        'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/paper1.png',
+                    }}>
+                    {accordionList.map((item, i) => (
+                      <AccordionItem
+                        key={i}
+                        item={item}
+                        top={i === 0}
+                        bottom={i + 1 === accordionList.length}
+                      />
+                    ))}
+                  </ImageBackground>
+                </View>
+              )}
+            </View>
+
+            <AutoHeightImage
+              width={responsiveWidth(100)}
+              source={{
+                uri:
+                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/ground/ground_bg5.png',
+              }}
+            />
+          </View>
+          <View style={{width: '100%', height: 10}} />
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );

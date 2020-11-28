@@ -4,15 +4,29 @@ import LinearGradient from 'react-native-linear-gradient';
 
 const selectItem = [0, -36];
 
-const SubItem = ({item}) => {
+const SubItem = ({item, id, status, handleClick, top, bottom}) => {
   return (
-    <TouchableOpacity style={SubItemStyles.bg}>
+    <TouchableOpacity
+      style={[
+        SubItemStyles.bg,
+        top ? SubItemStyles.topItem : null,
+        bottom ? SubItemStyles.bottomItem : null,
+        {marginTop: top ? 10 : 0},
+      ]}
+      onPress={() => handleClick(id)}>
       <LinearGradient
         colors={['#f9f9f9', '#eeeeee']}
-        style={SubItemStyles.bgGradient}>
+        style={[
+          SubItemStyles.bgGradient,
+          top ? SubItemStyles.topItem : null,
+          bottom ? SubItemStyles.bottomItem : null,
+        ]}>
         <View style={SubItemStyles.iconBg}>
           <Image
-            style={[SubItemStyles.iconImg, {marginLeft: selectItem[0]}]}
+            style={[
+              SubItemStyles.iconImg,
+              {marginLeft: selectItem[status ? 1 : 0]},
+            ]}
             source={require('../../assets/images/icons-18-white.png')}
           />
         </View>
@@ -28,6 +42,7 @@ const SubItemStyles = StyleSheet.create({
   bg: {
     borderWidth: 1,
     borderColor: '#aaa',
+    borderTopWidth: 0,
   },
   bgGradient: {
     flexDirection: 'row',
@@ -49,5 +64,14 @@ const SubItemStyles = StyleSheet.create({
   iconImg: {
     width: 776,
     height: 18,
+  },
+  topItem: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderTopWidth: 1,
+  },
+  bottomItem: {
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
 });

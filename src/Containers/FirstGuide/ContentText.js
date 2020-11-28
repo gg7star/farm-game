@@ -16,7 +16,7 @@ const ContentTextStyles = StyleSheet.create({
     marginHorizontal: 5,
     backgroundColor: '#f60',
     borderRadius: 10,
-    marginBottom: 10,
+    marginVertical: 10,
   },
   text: {
     color: '#fff',

@@ -1,16 +1,9 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
 const CategoryTab = ({item}) => {
   return (
-    <View style={[CategoryTabStyles.bg, {backgroundColor: item.bgColor}]}>
+    <View style={CategoryTabStyles.bg}>
       <View style={CategoryTabStyles.textBg}>
         <Text>{item.title}</Text>
       </View>
@@ -29,10 +22,10 @@ const CategoryTabStyles = StyleSheet.create({
   },
   textBg: {
     backgroundColor: '#fff',
-    width: '87%',
-    height: 38,
+    width: '93%',
+    height: 50,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-  }
-})
+  },
+});

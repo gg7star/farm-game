@@ -30,6 +30,7 @@ import Kiyaku from '../Containers/Kiyaku';
 import FirstGuide from '../Containers/FirstGuide';
 import FirstGuidePage1 from '../Containers/FirstGuide/FirstGuidePage1';
 import FirstGuidePage2 from '../Containers/FirstGuide/FirstGuidePage2';
+import FirstGuidePage3 from '../Containers/FirstGuide/FirstGuidePage3';
 
 const Routes = () => (
   <Router>
@@ -114,6 +115,7 @@ const Routes = () => (
       <Scene key="firstGuide" component={FirstGuide} hideNavBar />
       <Scene key="firstGuidePage1" component={FirstGuidePage1} hideNavBar />
       <Scene key="firstGuidePage2" component={FirstGuidePage2} hideNavBar />
+      <Scene key="firstGuidePage3" component={FirstGuidePage3} hideNavBar />
     </Scene>
   </Router>
 );
