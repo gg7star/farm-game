@@ -69,7 +69,7 @@ const TopHatakeMenu = ({handleClick}) => {
                 todoIconList.map((item, i) => (
                   i < 4 && <TouchableOpacity onPress={handleClickAction}>
                     <AutoHeightImage
-                      key={i}
+                      key={`auto-height-image-1-${i}`}
                       width={responsiveWidth(15)}
                       source={{uri: item.icon}}
                     />
@@ -82,7 +82,7 @@ const TopHatakeMenu = ({handleClick}) => {
                 todoIconList.map((item, i) => (
                   (i >= 4 && i < 7) && <TouchableOpacity onPress={handleClickAction}>
                     <AutoHeightImage
-                      key={i}
+                      key={`auto-height-image-2-${i}`}
                       width={responsiveWidth(15)}
                       source={{uri: item.icon}}
                     />
