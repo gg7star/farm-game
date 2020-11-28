@@ -15,24 +15,23 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import TopNana from './TopNana';
 
 const GameEngine = ({clickTopNana, clickTopHatakeMenu}) => {
-
   return (
     <View style={GameEngineStyles.bg}>
-      <TouchableOpacity 
-        style={GameEngineStyles.kakashi}
-        onPress={clickTopNana}
-      >
+      <TouchableOpacity style={GameEngineStyles.kakashi} onPress={clickTopNana}>
         <AutoHeightImage
           width={responsiveWidth(20)}
-          source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/kakashi/10.gif'}}       
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/kakashi/10.gif',
+          }}
         />
       </TouchableOpacity>
       <TouchableWithoutFeedback onPress={clickTopHatakeMenu}>
         <View  style={GameEngineStyles.hatake}></View>
       </TouchableWithoutFeedback>
     </View>
-  )
-}
+  );
+};
 
 export default GameEngine;
 

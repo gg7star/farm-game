@@ -99,37 +99,31 @@ const FarmTop = ({farmInfo}) => {
       style={FarmTopStyles.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
-      <ScrollView style={{flexDirection: 'column'}}>
-        <View style={FarmTopStyles.header}>
-          <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
-        </View>
+      <View style={FarmTopStyles.header}>
+        <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
+      </View>
 
-        <GameBgImg item={gameBgData} />
-        <Weather clickWeather={showWeather} />
-        <Nutrition />
-        <Moisture />
-        <Calendar />
-        <GameEngine
-          clickTopNana={showNanaSpot}
-          clickTopHatakeMenu={showTopHatakeMenu}
-        />
+      <GameBgImg item={gameBgData} />
+      <Weather clickWeather={showWeather} />
+      <Nutrition />
+      <Moisture />
+      <Calendar />
+      <GameEngine
+        clickTopNana={showNanaSpot}
+        clickTopHatakeMenu={showTopHatakeMenu}
+      />
 
-        {
-          curNanaTag && <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
-        }
+      {curNanaTag && (
+        <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
+      )}
 
-        {
-          topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} />
-        }
+      {topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} />}
 
-        <GameProgressBar />
-        <GameMenu />
-                  
-      </ScrollView>
+      <GameProgressBar />
+      <GameMenu />
     </ImageBackground>
-  
-  )
-}
+  );
+};
 
 export default FarmTop;
 

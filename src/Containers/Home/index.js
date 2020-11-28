@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   Animated,
   StyleSheet,
@@ -10,7 +10,10 @@ import {
   ImageBackground,
 } from 'react-native';
 
-import {responsiveWidth} from 'react-native-responsive-dimensions';
+import {
+  responsiveWidth,
+  responsiveHeight,
+} from 'react-native-responsive-dimensions';
 
 import AutoHeightImage from 'react-native-auto-height-image';
 
@@ -968,6 +971,16 @@ const Home = () => {
     }
   };
 
+  const scrollRef = useRef();
+
+  const moveTab = (e) => {
+    if (e === 0) {
+      scrollRef.current.scrollTo({x: 0, animated: true});
+    } else {
+      scrollRef.current.scrollTo({x: responsiveWidth(100), animated: true});
+    }
+  };
+
   // const eventImgClick = () => {
   //   Actions.event();
   // };
@@ -991,130 +1004,139 @@ const Home = () => {
       style={HomeStyle.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
-      <ScrollView>
-        {/* <View style={HomeStyle.header}>
-          <View style={HomeStyle.headerNews}></View>
-          <View style={HomeStyle.headerAccount}>
-            <Text style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
-              会員番号:000011
-            </Text>
-            <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
-              <Text style={{color: '#67b500', fontSize: 12}}>[管理者]</Text>
-              <Text style={{color: '#212121', fontSize: 12}}>スライムさん</Text>
-            </View>
+      {/* <View style={HomeStyle.header}>
+        <View style={HomeStyle.headerNews}></View>
+        <View style={HomeStyle.headerAccount}>
+          <Text style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
+            会員番号:000011
+          </Text>
+          <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
+            <Text style={{color: '#67b500', fontSize: 12}}>[管理者]</Text>
+            <Text style={{color: '#212121', fontSize: 12}}>スライムさん</Text>
           </View>
-        </View> */}
+        </View>
+      </View> */}
 
+      <AutoHeightImage
+        width={responsiveWidth(100)}
+        source={require('../../assets/images/Home_Top.png')}
+      />
+
+      {/* <View style={HomeStyle.topBtn}>
+        {homeBtnList.map((item, i) => (
+          <HomeButton
+            key={i}
+            item={item}
+            handleClick={homeBtnClick}
+            index={i}
+          />
+        ))}
+      </View> */}
+
+      {/* <View style={{alignItems: 'center'}}>
         <AutoHeightImage
-          width={responsiveWidth(100)}
-          source={require('../../assets/images/Home_Top.png')}
+          width={responsiveWidth(98)}
+          style={HomeStyle.eventImg}
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png',
+          }}
         />
+        <AutoHeightImage
+          width={responsiveWidth(98)}
+          style={HomeStyle.eventImg}
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png',
+          }}
+        />
+      </View> */}
 
-        {/* <View style={HomeStyle.topBtn}>
-          {homeBtnList.map((item, i) => (
-            <HomeButton
+      {/* <ScrollView
+        horizontal={true}
+        decelerationRate={0}
+        snapToInterval={responsiveWidth(100)}
+        snapToAlignment={'center'}>
+        <View style={{width: responsiveWidth(100)}}>
+          <CategoryTab item={categoryTabList[0]} />
+          <CategoryTabContent item={categories[0]} />
+        </View>
+        <View style={{width: responsiveWidth(100)}}>
+          <CategoryTab item={categoryTabList[1]} />
+          <CategoryTabContent item={categories[1]} />
+        </View> style={tabItem === i ? HomeStyle.shadow : null}
+      </ScrollView> */}
+
+      <View style={HomeStyle.corner}>
+        <View style={{flexDirection: 'row'}}>
+          {categoryTabList.map((item, i) => (
+            <TouchableHighlight
               key={i}
-              item={item}
-              handleClick={homeBtnClick}
-              index={i}
-            />
+              onPress={() => moveTab(i)}
+              style={[
+                HomeStyle.tabTitle,
+                {
+                  backgroundColor:
+                    tabItem === i ? categoryTabList[i].bgColor : '#fff',
+                },
+              ]}>
+              <View>
+                <CategoryTab item={item} />
+              </View>
+            </TouchableHighlight>
           ))}
-        </View> */}
-
-        {/* <View style={{alignItems: 'center'}}>
-          <AutoHeightImage
-            width={responsiveWidth(98)}
-            style={HomeStyle.eventImg}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_2/bn.png',
-            }}
-          />
-          <AutoHeightImage
-            width={responsiveWidth(98)}
-            style={HomeStyle.eventImg}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png',
-            }}
-          />
-        </View> */}
-
-        {/* <ScrollView
+        </View>
+        <ScrollView
           horizontal={true}
           decelerationRate={0}
           snapToInterval={responsiveWidth(100)}
-          snapToAlignment={'center'}>
-          <View style={{width: responsiveWidth(100)}}>
-            <CategoryTab item={categoryTabList[0]} />
-            <CategoryTabContent item={categories[0]} />
-          </View>
-          <View style={{width: responsiveWidth(100)}}>
-            <CategoryTab item={categoryTabList[1]} />
-            <CategoryTabContent item={categories[1]} />
-          </View> style={tabItem === i ? HomeStyle.shadow : null}
-        </ScrollView> */}
-
-        <View style={HomeStyle.corner}>
-          <View style={{flexDirection: 'row'}}>
-            {categoryTabList.map((item, i) => (
-              <TouchableHighlight
-                key={i}
-                style={[
-                  HomeStyle.tabTitle,
-                  {
-                    backgroundColor:
-                      tabItem === i ? categoryTabList[i].bgColor : '#fff',
-                  },
-                ]}>
-                <View>
-                  <CategoryTab item={item} />
+          snapToAlignment={'center'}
+          ref={scrollRef}
+          // ref={(c) => {
+          //   scrollRef = c;
+          // }}
+          onScroll={(e) => handleTab(e)}>
+          {/* {categories.map(
+            (item, i) =>
+              tabItem === i && (
+                <View key={i} style={HomeStyle.tabContent}>
+                  <CategoryTabContent item={item} />
                 </View>
-              </TouchableHighlight>
-            ))}
-          </View>
-          <ScrollView
-            horizontal={true}
-            decelerationRate={0}
-            snapToInterval={responsiveWidth(100)}
-            snapToAlignment={'center'}
-            onScroll={(e) => handleTab(e)}>
-            {/* {categories.map(
-              (item, i) =>
-                tabItem === i && (
-                  <View key={i} style={HomeStyle.tabContent}>
-                    <CategoryTabContent item={item} />
-                  </View>
-                ),
-            )} */}
-            <View style={HomeStyle.tabContent}>
+              ),
+          )} */}
+          <View style={HomeStyle.tabContent}>
+            <ScrollView>
               <CategoryTabContent item={categories[0]} />
-            </View>
-            <View style={HomeStyle.tabContent}>
+              <Text>{'\n\n'}</Text>
+            </ScrollView>
+          </View>
+          <View style={HomeStyle.tabContent}>
+            <ScrollView>
               <CategoryTabContent item={categories[1]} />
-            </View>
-          </ScrollView>
+              <Text>{'\n\n'}</Text>
+            </ScrollView>
+          </View>
+        </ScrollView>
+      </View>
+
+      {/* <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+        <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
+        <View style={HomeStyle.subMenuContent}>
+          {accountList.map((item, i) => (
+            <SubMenu key={i} item={item} />
+          ))}
         </View>
+      </View> */}
 
-        {/* <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
-          <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
-          <View style={HomeStyle.subMenuContent}>
-            {accountList.map((item, i) => (
-              <SubMenu key={i} item={item} />
-            ))}
-          </View>
-        </View> */}
-
-        {/* <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
-          <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
-          <View style={HomeStyle.subMenuContent}>
-            {supplyList.map((item, i) => (
-              <SubMenu key={i} item={item} />
-            ))}
-          </View>
-        </View> */}
-        <Text>{'\n\n\n'}</Text>
-      </ScrollView>
+      {/* <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+        <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
+        <View style={HomeStyle.subMenuContent}>
+          {supplyList.map((item, i) => (
+            <SubMenu key={i} item={item} />
+          ))}
+        </View>
+      </View> */}
+      <Text>{'\n\n\n'}</Text>
       {/* {notation && <NotationModal notationClose={notationClose} />} */}
       <Menu />
     </ImageBackground>
@@ -1123,7 +1145,7 @@ const Home = () => {
 
 export default Home;
 
-const HomeStyle = StyleSheet.create({  
+const HomeStyle = StyleSheet.create({
   bgImg: {
     width: '100%',
     height: '100%',
@@ -1197,6 +1219,7 @@ const HomeStyle = StyleSheet.create({
     // padding: 4,
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
+    height: responsiveHeight(100) - 155 - (188 * responsiveWidth(100)) / 375,
   },
   subMenu: {
     backgroundColor: '#67B500',
