@@ -44,13 +44,14 @@ const Menu = () => {
     Actions.myfarm();
   };
 
-  const goNews = () => {
-    Actions.news();
-  };
+  // const goNews = () => {
+  //   Actions.news();
+  // };
 
   return (
     <View>
-      {myMenu && <View style={MenuStyles.modalContent}>
+      {myMenu && (
+        <View style={MenuStyles.modalContent}>
           <TouchableOpacity
             style={MenuStyles.modalClose}
             onPress={() => setMyMenu(false)}>
@@ -77,7 +78,7 @@ const Menu = () => {
             }}
           />
         </View>
-      }
+      )}
       <View style={MenuStyles.bg}>
         <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goHome()}>
           <Image
@@ -119,7 +120,7 @@ const Menu = () => {
             <Text style={MenuStyles.text}>MY MENU</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goNews()}>
+        {/* <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goNews()}>
           <Image
             source={{
               uri:
@@ -139,7 +140,7 @@ const Menu = () => {
             }}
             style={{width: 80, height: 90}}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
@@ -160,7 +161,7 @@ const MenuStyles = StyleSheet.create({
     flexDirection: 'row',
   },
   eachMenu: {
-    width: '25%',
+    width: '33.333%',
     zIndex: 10,
     backgroundColor: '#67b500',
     borderRightColor: '#388e3c',

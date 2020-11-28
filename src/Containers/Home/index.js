@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {
-  SafeAreaView,
+  Animated,
   StyleSheet,
   ScrollView,
   View,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   ImageBackground,
 } from 'react-native';
 
@@ -880,101 +881,110 @@ const categories = [
   ]
 ];
 
-const accountList = [
-  {
-    name: '所持P:70327っぴ',
-    link: 'point',
-  },
-  {
-    name: '作物出荷情報',
-    link: 'news',
-  },
-  {
-    name: 'ﾕｰｻﾞｰ情報の確認',
-    link: 'profile',
-  },
-  {
-    name: 'ランキング',
-    link: 'ranking',
-  },
-  {
-    name: '送付手続き待ち',
-    link: 'waitDelivery',
-  },
-];
+// const accountList = [
+//   {
+//     name: '所持P:70327っぴ',
+//     link: 'point',
+//   },
+//   {
+//     name: '作物出荷情報',
+//     link: 'news',
+//   },
+//   {
+//     name: 'ﾕｰｻﾞｰ情報の確認',
+//     link: 'profile',
+//   },
+//   {
+//     name: 'ランキング',
+//     link: 'ranking',
+//   },
+//   {
+//     name: '送付手続き待ち',
+//     link: 'waitDelivery',
+//   },
+// ];
 
-const supplyList = [
-  {
-    name: 'お問い合わせ',
-    link: 'contact',
-  },
-  {
-    name: 'ヤマトメールサービス',
-    link: 'yamato',
-  },
-  {
-    name: 'Twitter',
-    link: 'https://twitter.com/hatakeppi',
-  },
-  {
-    name: 'facebook',
-    link: 'https://www.facebook.com/profile.php?id=100009453335924',
-  },
-  {
-    name: 'ご利用規約',
-    link: 'kiyaku',
-  },
-  {
-    name: '対応機種',
-    link: '/support/kisyu',
-  },
-  {
-    name: '個人情報保護方針',
-    link: '/support/privacy',
-  },
-  {
-    name: '特定商取引法表示',
-    link: '/support/tokutei',
-  },
-  {
-    name: '運営会社',
-    link: '/support/company',
-  },
-  {
-    name: 'ログアウト',
-    link: '/doLogout',
-  },
-  {
-    name: '会員解除',
-    link: '/regist/leave',
-  },
-];
+// const supplyList = [
+//   {
+//     name: 'お問い合わせ',
+//     link: 'contact',
+//   },
+//   {
+//     name: 'ヤマトメールサービス',
+//     link: 'yamato',
+//   },
+//   {
+//     name: 'Twitter',
+//     link: 'https://twitter.com/hatakeppi',
+//   },
+//   {
+//     name: 'facebook',
+//     link: 'https://www.facebook.com/profile.php?id=100009453335924',
+//   },
+//   {
+//     name: 'ご利用規約',
+//     link: 'kiyaku',
+//   },
+//   {
+//     name: '対応機種',
+//     link: '/support/kisyu',
+//   },
+//   {
+//     name: '個人情報保護方針',
+//     link: '/support/privacy',
+//   },
+//   {
+//     name: '特定商取引法表示',
+//     link: '/support/tokutei',
+//   },
+//   {
+//     name: '運営会社',
+//     link: '/support/company',
+//   },
+//   {
+//     name: 'ログアウト',
+//     link: '/doLogout',
+//   },
+//   {
+//     name: '会員解除',
+//     link: '/regist/leave',
+//   },
+// ];
 
 const Home = () => {
   const [loadTime, setLoadTime] = useState(true);
   const [tabItem, setTabItem] = useState(0);
-  const [notation, setNotation] = useState(false);
+  // const [notation, setNotation] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setLoadTime(false), 100);
   }, []);
 
-  const eventImgClick = () => {
-    Actions.event();
-  };
-
-  const homeBtnClick = (e) => {
-    if (e === 0) {
-      Actions.tutorial();
-    } else if (e === 1) {
-      setNotation(true);
+  const handleTab = (e) => {
+    if (e.nativeEvent.contentOffset.x >= responsiveWidth(100)) {
+      setTabItem(1);
     } else {
-      Actions.ranking();
+      setTabItem(0);
     }
   };
-  const notationClose = () => {
-    setNotation(false);
-  };
+
+  // const eventImgClick = () => {
+  //   Actions.event();
+  // };
+
+  // const homeBtnClick = (e) => {
+  //   if (e === 0) {
+  //     Actions.tutorial();
+  //   } else if (e === 1) {
+  //     setNotation(true);
+  //   } else {
+  //     Actions.ranking();
+  //   }
+  // };
+  // const notationClose = () => {
+  //   setNotation(false);
+  // };
+
   if (loadTime) return <Loader />;
   return (
     <ImageBackground
@@ -982,7 +992,7 @@ const Home = () => {
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
       <ScrollView>
-        <View style={HomeStyle.header}>
+        {/* <View style={HomeStyle.header}>
           <View style={HomeStyle.headerNews}></View>
           <View style={HomeStyle.headerAccount}>
             <Text style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
@@ -993,14 +1003,14 @@ const Home = () => {
               <Text style={{color: '#212121', fontSize: 12}}>スライムさん</Text>
             </View>
           </View>
-        </View>
+        </View> */}
 
         <AutoHeightImage
           width={responsiveWidth(100)}
-          source={require('../../assets/images/banner.png')}
+          source={require('../../assets/images/Home_Top.png')}
         />
 
-        <View style={HomeStyle.topBtn}>
+        {/* <View style={HomeStyle.topBtn}>
           {homeBtnList.map((item, i) => (
             <HomeButton
               key={i}
@@ -1009,23 +1019,9 @@ const Home = () => {
               index={i}
             />
           ))}
-        </View>
+        </View> */}
 
-        <View style={{alignItems: 'center'}}>
-          {/* <View style={HomeStyle.introPart}>
-            <Text style={HomeStyle.introText}>
-              サービス終了日の4月30日が近づいてまいりました。
-              {'\n'}
-              今一度今後のスケジュールをご確認くださるようお願いいたします。
-              {'\n'}{'\n'}
-              4月8日(水）12：00を最終出荷手続き日とさせていただいております。
-              {'\n'}
-              ご確認のほどお願いいたします。
-            </Text>
-          </View> */}
-          {/* <TouchableOpacity onPress={() => eventImgClick()}>
-            <AutoHeightImage width={responsiveWidth(98)} style={HomeStyle.eventImg} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_1/bn.png'}} />
-          </TouchableOpacity> */}
+        {/* <View style={{alignItems: 'center'}}>
           <AutoHeightImage
             width={responsiveWidth(98)}
             style={HomeStyle.eventImg}
@@ -1042,70 +1038,95 @@ const Home = () => {
                 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/event/event191030_3/bn.png',
             }}
           />
-        </View>
+        </View> */}
+
+        {/* <ScrollView
+          horizontal={true}
+          decelerationRate={0}
+          snapToInterval={responsiveWidth(100)}
+          snapToAlignment={'center'}>
+          <View style={{width: responsiveWidth(100)}}>
+            <CategoryTab item={categoryTabList[0]} />
+            <CategoryTabContent item={categories[0]} />
+          </View>
+          <View style={{width: responsiveWidth(100)}}>
+            <CategoryTab item={categoryTabList[1]} />
+            <CategoryTabContent item={categories[1]} />
+          </View> style={tabItem === i ? HomeStyle.shadow : null}
+        </ScrollView> */}
 
         <View style={HomeStyle.corner}>
           <View style={{flexDirection: 'row'}}>
-            {
-              categoryTabList.map((item, i) => (
-              <TouchableOpacity
+            {categoryTabList.map((item, i) => (
+              <TouchableHighlight
                 key={i}
-                style={{width: '50%'}}
-                onPress={() => setTabItem(i)}>
+                style={[
+                  HomeStyle.tabTitle,
+                  {
+                    backgroundColor:
+                      tabItem === i ? categoryTabList[i].bgColor : '#fff',
+                  },
+                ]}>
+                <View>
                   <CategoryTab item={item} />
-                </TouchableOpacity>
-              ))
-            }
+                </View>
+              </TouchableHighlight>
+            ))}
           </View>
-
-          {
-            categories.map((item, i) => (
-              tabItem === i && <View key={i} style={[HomeStyle.tabContent, {backgroundColor: categoryTabList[i].bgColor}]}>
-                <CategoryTabContent item={item} index={i} />
-              </View>
-            ))
-          }
+          <ScrollView
+            horizontal={true}
+            decelerationRate={0}
+            snapToInterval={responsiveWidth(100)}
+            snapToAlignment={'center'}
+            onScroll={(e) => handleTab(e)}>
+            {/* {categories.map(
+              (item, i) =>
+                tabItem === i && (
+                  <View key={i} style={HomeStyle.tabContent}>
+                    <CategoryTabContent item={item} />
+                  </View>
+                ),
+            )} */}
+            <View style={HomeStyle.tabContent}>
+              <CategoryTabContent item={categories[0]} />
+            </View>
+            <View style={HomeStyle.tabContent}>
+              <CategoryTabContent item={categories[1]} />
+            </View>
+          </ScrollView>
         </View>
 
-        <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+        {/* <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
           <Text style={HomeStyle.subMenuTitle}>◆アカウント</Text>
           <View style={HomeStyle.subMenuContent}>
-            {
-              accountList.map((item, i) => (
-                <SubMenu key={i} item={item} />
-              ))
-            }
+            {accountList.map((item, i) => (
+              <SubMenu key={i} item={item} />
+            ))}
           </View>
-        </View>
+        </View> */}
 
-        <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
+        {/* <View style={[HomeStyle.subMenu, HomeStyle.corner]}>
           <Text style={HomeStyle.subMenuTitle}>◆サポートメニュー</Text>
           <View style={HomeStyle.subMenuContent}>
-            {
-              supplyList.map((item, i) => (
-                <SubMenu key={i} item={item} />
-              ))
-            }
+            {supplyList.map((item, i) => (
+              <SubMenu key={i} item={item} />
+            ))}
           </View>
-        </View>    
-        <Text>{'\n\n'}</Text>               
-
-      </ScrollView>  
-      {
-        notation && <NotationModal notationClose={notationClose} />
-      }          
-      <Menu />                  
+        </View> */}
+        <Text>{'\n\n\n'}</Text>
+      </ScrollView>
+      {/* {notation && <NotationModal notationClose={notationClose} />} */}
+      <Menu />
     </ImageBackground>
-    
-  )
-}
+  );
+};
 
 export default Home;
 
-const HomeStyle = StyleSheet.create({
+const HomeStyle = StyleSheet.create({  
   bgImg: {
     width: '100%',
-    height: '100%',    
+    height: '100%',
   },
   header: {
     width: '100%',
@@ -1156,14 +1177,24 @@ const HomeStyle = StyleSheet.create({
     borderWidth: 2,
   },
   corner: {
-    marginHorizontal: 8,
-    marginVertical: 16,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     overflow: 'hidden',
   },
+  tabTitle: {
+    width: '50%',
+    backgroundColor: '#fff',
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOpacity: 1,
+    shadowOffset: {
+      height: 5,
+      width: 4,
+    },
+  },
   tabContent: {
-    padding: 4,
+    // padding: 4,
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
   },

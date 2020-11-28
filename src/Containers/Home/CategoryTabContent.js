@@ -8,12 +8,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import MContent from './MContent.js'
+import MContent from './MContent.js';
 
-const CategoryTabContent = ({item, index}) => {
+const CategoryTabContent = ({item}) => {
   return (
     <View>
-      {
+      {/* {
         index === 3 && <View style={CategoryTabContentStyles.title}>
           <Text style={CategoryTabContentStyles.titleText}>お得News★</Text>
         </View>
@@ -22,28 +22,26 @@ const CategoryTabContent = ({item, index}) => {
         index === 4 && <View style={CategoryTabContentStyles.title}>
           <Text style={CategoryTabContentStyles.titleText}>遊びやすい無料ゲーム♪</Text>
         </View>
-      }
-      {
-        item.map((eachItem, i) => (
-          <MContent key={i} item={eachItem} />
-        ))
-      }
+      } */}
+      {item.map((eachItem, i) => (
+        <MContent key={i} item={eachItem} />
+      ))}
     </View>
-  )
-}
+  );
+};
 
 export default CategoryTabContent;
 
-const CategoryTabContentStyles = StyleSheet.create({
-  title: {
-    backgroundColor: 'rgba(0, 0, 0, 0.35)',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 8
-  },
-  titleText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    marginVertical: 4
-  }
-})
+// const CategoryTabContentStyles = StyleSheet.create({
+//   title: {
+//     backgroundColor: 'rgba(0, 0, 0, 0.35)',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     marginTop: 8,
+//   },
+//   titleText: {
+//     color: '#fff',
+//     fontWeight: 'bold',
+//     marginVertical: 4,
+//   },
+// });

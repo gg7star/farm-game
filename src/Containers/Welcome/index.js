@@ -60,19 +60,12 @@ const Welcome = () => {
     setExpanded(!expanded);
   };
 
-  const goLogin = () => {
-    // Actions.admob({nextPage: 'login'});
-    Actions.login();
-  };
-
   const goHome = () => {
     Actions.home();
   };
 
   return (
-    <View
-      style={{flex: 1, backgroundColor: '#f0ffe0'}}
-      >
+    <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
       <ScrollView>
         <TouchableOpacity onPress={goHome}>
           {/* <ImageBackground

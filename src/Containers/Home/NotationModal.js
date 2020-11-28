@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
-import { Actions } from 'react-native-router-flux';
 
 const NotationModal = ({notationClose}) => {
-
   return (
     <View style={NotationModalStyles.modalContent}>
-      <TouchableOpacity style={NotationModalStyles.modalClose} onPress={() => notationClose()}>
-        <Image source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png'}} style={{width: 37, height: 37}} />
+      <TouchableOpacity
+        style={NotationModalStyles.modalClose}
+        onPress={() => notationClose()}>
+        <Image
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png',
+          }}
+          style={{width: 37, height: 37}}
+        />
       </TouchableOpacity>
-      <View
-        style={NotationModalStyles.contentText}
-      >
+      <View style={NotationModalStyles.contentText}>
         <Text style={{fontSize: 12, lineHeight: 17}}>
           【収穫目安P】{'\n '}
           収穫に必要な最低限のポイント（っぴ）{'\n'}
@@ -37,11 +34,16 @@ const NotationModal = ({notationClose}) => {
           期間中に獲得したmptの合計値で決まるよ。上位を目指すなら作物のmptを気にしてみてね♪{'\n'}
         </Text>
       </View>
-      
-      <AutoHeightImage width={responsiveWidth(90)} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png'}} />
+      <AutoHeightImage
+        width={responsiveWidth(90)}
+        source={{
+          uri:
+            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png',
+        }}
+      />
     </View>
-  )
-}
+  );
+};
 
 export default NotationModal;
 

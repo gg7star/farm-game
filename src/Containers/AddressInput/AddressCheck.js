@@ -135,7 +135,7 @@ const AddressCheckStyles = StyleSheet.create({
     color: '#fff',
     margin: 8,
     fontSize: 12,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   shadow: {
     shadowColor: '#fff',
@@ -143,7 +143,7 @@ const AddressCheckStyles = StyleSheet.create({
     shadowOffset: {
       height: 1,
       width: 2,
-    }
+    },
   },
   logo: {
     flexDirection: 'row',
