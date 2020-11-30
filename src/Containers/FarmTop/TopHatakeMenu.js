@@ -57,9 +57,7 @@ const todoIconList = [
 
 const TopHatakeMenu = ({handleClick}) => {
   const handleClickIcon = (index) => {
-    // Actions.admob({nextPage: 'home'});
-    // console.log(61, index)
-    Actions.admob();
+    Actions.admob({nextPage: 'farmTop'});
   };
 
   return (
