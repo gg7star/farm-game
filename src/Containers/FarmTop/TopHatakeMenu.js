@@ -58,7 +58,8 @@ const todoIconList = [
 const TopHatakeMenu = ({handleClick}) => {
   const handleClickIcon = (index) => {
     // Actions.admob({nextPage: 'home'});
-    console.log(61, index)
+    // console.log(61, index)
+    Actions.admob();
   };
 
   return (
@@ -78,9 +79,9 @@ const TopHatakeMenu = ({handleClick}) => {
               {todoIconList.map(
                 (item, i) =>
                   i < 4 && (
-                    <TouchableOpacity onPress={() => handleClickIcon(i)}>
+                    <TouchableOpacity key={`${i}`} onPress={() => handleClickIcon(i)}>
                       <AutoHeightImage
-                        key={i}
+                        key={`auto-height-image-1-${i}`}
                         width={responsiveWidth(15)}
                         source={{uri: item.icon}}
                       />
@@ -93,9 +94,9 @@ const TopHatakeMenu = ({handleClick}) => {
                 (item, i) =>
                   i >= 4 &&
                   i < 7 && (
-                    <TouchableOpacity onPress={() => handleClickIcon(i)}>
+                    <TouchableOpacity  key={`${i}`} onPress={() => handleClickIcon(i)}>
                       <AutoHeightImage
-                        key={i}
+                        key={`auto-height-image-2-${i}`}
                         width={responsiveWidth(15)}
                         source={{uri: item.icon}}
                       />

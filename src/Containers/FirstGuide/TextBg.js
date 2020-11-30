@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
-import TextBgList from './TextBgList';
+// import TextBgList from './TextBgList';
 
 const bgColor = ['#FFCC99', '#FF9966'];
 
