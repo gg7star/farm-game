@@ -117,7 +117,7 @@ const FarmTop = ({farmInfo}) => {
         <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
       )}
 
-      {topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} />}
+      {topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} farmInfo={farmInfo} />}
 
       <GameProgressBar />
       <GameMenu />

@@ -159,10 +159,7 @@ const AdMob = (props) => {
     if (admob) {
       const {counter} = props.admobCounter;
       const totalCount = getTotalAdmobCounter(interstitialAdmob, rewardAdmob);
-      console.log('===== props.admobCounter: ', props.admobCounter);
-      console.log('===== admobCounter, totalCount: ', counter, totalCount);
       currentAdmob = getCurrentShowAdmob(admob, counter);
-      console.log('===== currentAdmob: ', currentAdmob);
       if (!currentAdmob) onGoBack();
       // Show admob
       if (currentAdmob.admob_type === 'Interstitial') {
