@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity, Modal} from 'react-native';
 
 import {
   responsiveHeight,
@@ -50,7 +50,13 @@ const Menu = () => {
 
   return (
     <View style={MenuStyles.bg}>
-      {myMenu && (
+      <Modal
+        transparent={true}
+        visible={myMenu}
+        onRequestClose={() => {
+          console.log("Modal has been closed.");
+        }}
+      >
         <View style={MenuStyles.modalContent}>
           <TouchableOpacity
             style={MenuStyles.modalClose}
@@ -78,7 +84,36 @@ const Menu = () => {
             }}
           />
         </View>
-      )}
+      </Modal>
+      {/* {myMenu && (
+        <View style={MenuStyles.modalContent}>
+          <TouchableOpacity
+            style={MenuStyles.modalClose}
+            onPress={() => setMyMenu(false)}>
+            <Image
+              source={{
+                uri:
+                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png',
+              }}
+              style={{width: 37, height: 37}}
+            />
+          </TouchableOpacity>
+          <View style={MenuStyles.menuBtn}>
+            {menuList.map((item, i) => (
+              <View key={i} style={MenuStyles.eachBtn}>
+                <MenuBtn item={item} />
+              </View>
+            ))}
+          </View>
+          <AutoHeightImage
+            width={responsiveWidth(90)}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png',
+            }}
+          />
+        </View>
+      )} */}
       <View style={MenuStyles.bg}>
         <TouchableOpacity style={MenuStyles.eachMenu} onPress={() => goHome()}>
           <Image
@@ -189,8 +224,8 @@ const MenuStyles = StyleSheet.create({
   },
   modalContent: {
     left: '5%',
-    top: -responsiveHeight(65),
-    position: 'absolute',
+    top: responsiveHeight(20),
+    // position: 'absolute',
     zIndex: 60,
     width: '90%',
   },
