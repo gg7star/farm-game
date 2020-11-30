@@ -1,22 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const userSlice = createSlice({
+const admobSlice = createSlice({
   name: 'admob',
   initialState: {
-    admobSettings: {},
-    presentCount: 0,
+    settings: [],
     error: null,
   },
   reducers: {
     setAdmobSettings(state, action) {
-      return {...state, admobSettings: action.payload, presentCount: 0, err: null};
-    },
-    increasePresentCount(state) {
-      state.presentCount += 1;
+      return {settings: action.payload, err: null};
     },
   },
 });
 
-const { actions, reducer } = userSlice;
-export const { setUser, logout } = actions;
+const { actions, reducer } = admobSlice;
+export const { setAdmobSettings } = actions;
+
+
 export default reducer;

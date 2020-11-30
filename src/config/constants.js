@@ -60,3 +60,9 @@ export const ADMOB_STATUS = {
     description: 'Started the advertising for video.',
   },
 };
+
+export const ADMOB_TYPE_ENUM = {
+  Interstitial: 'Interstitial',
+  Reward: 'Reward',
+  Banner: 'Banner',
+}

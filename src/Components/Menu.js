@@ -49,7 +49,7 @@ const Menu = () => {
   // };
 
   return (
-    <View>
+    <View style={MenuStyles.bg}>
       {myMenu && (
         <View style={MenuStyles.modalContent}>
           <TouchableOpacity
@@ -151,7 +151,7 @@ export default Menu;
 const MenuStyles = StyleSheet.create({
   bg: {
     height: 50,
-    zIndex: 100,
+    zIndex: 1000,
     width: '100%',
     position: 'absolute',
     bottom: 0,

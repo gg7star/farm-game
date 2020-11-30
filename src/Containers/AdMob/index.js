@@ -1,12 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {View, Platform, Text, TouchableOpacity} from 'react-native';
 import {Actions} from 'react-native-router-flux';
+import {connect, useDispatch} from 'react-redux';
 import {AdMobRewarded, AdMobInterstitial} from 'react-native-admob';
 import {ADMOB_CONFIG, ADMOB_STATUS} from '../../config/constants';
+import { resetPresentCount, increasePresentCount } from '../../redux/reducers/admobCounterSlice';
+import { getAdmobSettingByType, getCurrentShowAdmob, getTotalAdmobCounter } from './utils';
 
 const AdMob = (props) => {
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(ADMOB_STATUS.LOADING);
+  // const [interstitialAdmob, setInterstitialAdmob] = useState(null);
+  // const [rewardAdmob, setRewardAdmob] = useState(null);
+  const dispatch = useDispatch();
 
   const initAdMobRewarded = () => {
     // Test mode
@@ -90,16 +96,21 @@ const AdMob = (props) => {
   };
 
   useEffect(() => {
+    // Get admob settings from global
+    const admob = props.admob;
+    interstitialAdmob = getAdmobSettingByType(admob, 'Interstitial');
+    rewardAdmob = getAdmobSettingByType(admob, 'Reward');
+
     // Init reward
-    initAdMobRewarded();
+    initAdMobRewarded(interstitialAdmob);
     // showRewarded();
 
     // Init initerstitial
-    initAdMobInterstitial();
-    showInterstitial();
+    initAdMobInterstitial(rewardAdmob);
+
+    showAdmob(interstitialAdmob, rewardAdmob);
 
     return () => {
-      console.log('====== removeAllListeners');
       AdMobRewarded.removeAllListeners();
       AdMobInterstitial.removeAllListeners();
     };
@@ -112,8 +123,8 @@ const AdMob = (props) => {
     }
   }, [status]);
 
-  const showRewarded = () => {
-    console.log('===== loading: ', status, error);
+  const showRewarded = (rewardAdmob) => {
+    console.log('===== loading Rewarded: ', status, error);
     AdMobRewarded.requestAd()
       .then(() => {
         AdMobRewarded.showAd();
@@ -128,9 +139,9 @@ const AdMob = (props) => {
     // await AdMobRewarded.showAd(); //.catch((error) => console.warn('===== reward error: ', error));
   };
 
-  const showInterstitial = () => {
+  const showInterstitial = (interstitialAdmob) => {
     // AdMobInterstitial.showAd().catch((err) => console.warn(err));
-
+    console.log('===== loading Interstitial: ', status, error);
     AdMobInterstitial.requestAd()
       .then(() => {
         AdMobInterstitial.showAd();
@@ -142,6 +153,31 @@ const AdMob = (props) => {
         setError(error);
       });
   };
+
+  const showAdmob = (interstitialAdmob, rewardAdmob) => {
+    const admob = props.admob;
+    if (admob) {
+      const {counter} = props.admobCounter;
+      const totalCount = getTotalAdmobCounter(interstitialAdmob, rewardAdmob);
+      console.log('===== props.admobCounter: ', props.admobCounter);
+      console.log('===== admobCounter, totalCount: ', counter, totalCount);
+      currentAdmob = getCurrentShowAdmob(admob, counter);
+      console.log('===== currentAdmob: ', currentAdmob);
+      if (!currentAdmob) return;
+      // Show admob
+      if (currentAdmob.admob_type === 'Interstitial') {
+        showInterstitial();
+      } else if (currentAdmob.admob_type === 'Reward') {
+        showRewarded();
+      }
+      // Reset counter.
+      if (counter == totalCount) {
+        dispatch(resetPresentCount());
+      }
+      // Increase counter
+      dispatch(increasePresentCount());
+    };
+  }
 
   const onGoBack = () => {
     Actions.pop();
@@ -192,4 +228,10 @@ const AdMob = (props) => {
   );
 };
 
-export default AdMob;
+// export default AdMob;
+const mapStateToProps = (state) => ({
+  admob: state.admob || {},
+  admobCounter: state.admobCounter || 0,
+});
+
+export default connect(mapStateToProps)(AdMob);
