@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 
 import Dash from 'react-native-dash';
-import { responsiveWidth } from 'react-native-responsive-dimensions';
-import { Actions } from 'react-native-router-flux';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
+import {Actions} from 'react-native-router-flux';
 
 const MContent = ({item}) => {
 
@@ -116,7 +116,6 @@ const MContentStyles = StyleSheet.create({
     height: 100,
     width: responsiveWidth(100),
     padding: 4,
-    // marginHorizontal: '1%',
     backgroundColor: '#fff',
   },
   mimg: {
