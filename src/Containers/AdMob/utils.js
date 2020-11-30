@@ -28,6 +28,11 @@ export function getCurrentShowAdmob(admob, currentCounter) {
 
   var totalCount = getTotalAdmobCounter(interstitialAdmob, rewardAdmob);
   if (totalCount == 0) return interstitialAdmob;
+  if (!interstitialAdmob.visiable) {
+    if (rewardAdmob.visiable)
+      return rewardAdmob;
+    return null;
+  } 
   // Get first item by priority
   var firstAdmob = null;
   var secondAdmob = null;

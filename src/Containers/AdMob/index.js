@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Platform, Text, TouchableOpacity} from 'react-native';
+import {View, Platform, Text, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import {connect, useDispatch} from 'react-redux';
 import {AdMobRewarded, AdMobInterstitial} from 'react-native-admob';
@@ -163,7 +163,7 @@ const AdMob = (props) => {
       console.log('===== admobCounter, totalCount: ', counter, totalCount);
       currentAdmob = getCurrentShowAdmob(admob, counter);
       console.log('===== currentAdmob: ', currentAdmob);
-      if (!currentAdmob) return;
+      if (!currentAdmob) onGoBack();
       // Show admob
       if (currentAdmob.admob_type === 'Interstitial') {
         showInterstitial();
@@ -190,6 +190,16 @@ const AdMob = (props) => {
     }
   };
 
+  const renderStatus = () => {
+    if (status.status === ADMOB_STATUS.LOADING.status) {
+      return (
+        <ActivityIndicator size="large" />
+      )
+    } else {
+      return status.description;
+    }
+  }
+
   return (
     <View
       style={{
@@ -208,7 +218,9 @@ const AdMob = (props) => {
           {status && (
             <React.Fragment>
               <Text style={{fontSize: 18, textAlign: 'center', color: '#FFF'}}>
-                {status.description}
+                { status.status === ADMOB_STATUS.LOADING.status ? (
+                  <ActivityIndicator size="large" />
+                ) : (status.description)}
               </Text>
             </React.Fragment>
           )}
