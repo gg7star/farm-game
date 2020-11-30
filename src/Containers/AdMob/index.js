@@ -217,11 +217,13 @@ const AdMob = (props) => {
           onPress={onClickScreen}>
           {status && (
             <React.Fragment>
-              <Text style={{fontSize: 18, textAlign: 'center', color: '#FFF'}}>
-                { status.status === ADMOB_STATUS.LOADING.status ? (
-                  <ActivityIndicator size="large" />
-                ) : (status.description)}
-              </Text>
+              { status.status === ADMOB_STATUS.LOADING.status ? (
+                <ActivityIndicator size="large" />
+              ) : (
+                <Text style={{fontSize: 18, textAlign: 'center', color: '#FFF'}}>
+                  status.description
+                </Text>
+              )}
             </React.Fragment>
           )}
           {error && (
