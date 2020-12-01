@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   ImageBackground,
+  Image,
+  Modal,
 } from 'react-native';
 
 import {
@@ -18,6 +20,7 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import {Actions} from 'react-native-router-flux';
+import {SliderBox} from "react-native-image-slider-box";
 
 import Menu from '../../Components/Menu';
 
@@ -945,6 +948,12 @@ const categories = [
 const Home = () => {
   const [loadTime, setLoadTime] = useState(true);
   const [tabItem, setTabItem] = useState(0);
+  const [newNotification, setNewNotification] = useState(false);
+  const [sImg, setSImg] = useState([
+    require('../../assets/images/Home_Top1.png'),
+    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
+    require('../../assets/images/Home_Top1.png'),
+  ]);
   // const [notation, setNotation] = useState(false);
 
   useEffect(() => {
@@ -971,6 +980,10 @@ const Home = () => {
         animated: true,
       });
     }
+  };
+
+  const goNews = () => {
+    setNewNotification(true);
   };
 
   // const eventImgClick = () => {
@@ -1010,11 +1023,29 @@ const Home = () => {
       </View> */}
 
       <ScrollView>
-
-        <AutoHeightImage
+        <View>
+          <SliderBox
+            images={sImg}
+            sliderBoxHeight={120}
+            onCurrentImagePressed={(index) =>
+              console.warn(`image ${index} pressed`)
+            }
+          />
+        </View>
+        {/* <AutoHeightImage
           width={responsiveWidth(100)}
-          source={require('../../assets/images/Home_Top.png')}
-        />
+          source={require('../../assets/images/Home_Top1.png')}
+        /> */}
+
+        <TouchableOpacity style={HomeStyle.newsImgArea} onPress={goNews}>
+          <Image
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
+            }}
+            style={HomeStyle.newsImg}
+          />
+        </TouchableOpacity>
 
         {/* <View style={HomeStyle.topBtn}>
           {homeBtnList.map((item, i) => (
@@ -1080,7 +1111,11 @@ const Home = () => {
               </TouchableHighlight>
             ))}
           </View>
-          <View style={{height: 100 * categories[tabItem].length + 60}}>
+          <View
+            style={{
+              height:
+                (responsiveWidth(30) + 20) * categories[tabItem].length + 60,
+            }}>
             <ScrollView
               horizontal={true}
               decelerationRate={0}
@@ -1132,6 +1167,40 @@ const Home = () => {
       {/* <Text>{'\n\n\n'}</Text> */}
       {/* {notation && <NotationModal notationClose={notationClose} />} */}
       <Menu />
+      <Modal
+        transparent={true}
+        visible={newNotification}
+        onRequestClose={() => {
+          console.log("Modal has been closed.");
+        }}>
+        <View style={HomeStyle.modalContent}>
+          <TouchableOpacity
+            style={HomeStyle.modalCloseTop}
+            onPress={() => setNewNotification(false)}>
+            <Image
+              source={{
+                uri:
+                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png',
+              }}
+              style={{width: 37, height: 37}}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={HomeStyle.modalClose}
+            onPress={() => setNewNotification(false)}>
+            <View style={[HomeStyle.modalCloseBtn, HomeStyle.shadow]}>
+              <Text style={{color: '#fff'}}>OK</Text>
+            </View>
+          </TouchableOpacity>
+          <AutoHeightImage
+            width={responsiveWidth(90)}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png',
+            }}
+          />
+        </View>
+      </Modal>
     </ImageBackground>
   );
 };
@@ -1191,6 +1260,15 @@ const HomeStyle = StyleSheet.create({
     borderColor: '#fff',
     borderWidth: 2,
   },
+  newsImgArea: {
+    position: 'absolute',
+    top: 30,
+    right: 30,
+  },
+  newsImg: {
+    width: 50,
+    height: 50,
+  },
   corner: {
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
@@ -1230,5 +1308,32 @@ const HomeStyle = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     padding: 6,
+  },
+  modalContent: {
+    left: '5%',
+    top: responsiveHeight(20),
+    zIndex: 60,
+    width: '90%',
+  },
+  modalClose: {
+    position: 'absolute',
+    bottom: 50,
+    zIndex: 200,
+    alignItems: 'center',
+    left: responsiveWidth(20),
+  },
+  modalCloseBtn: {
+    width: responsiveWidth(50),
+    height: 50,
+    backgroundColor: '#2c6782',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+  },
+  modalCloseTop: {
+    position: 'absolute',
+    right: '6%',
+    top: '3%',
+    zIndex: 200,
   },
 });

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
+  Image,
   View,
   Text,
   TouchableWithoutFeedback,
@@ -11,6 +11,9 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import Dash from 'react-native-dash';
+import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+
+import AutoHeightImage from 'react-native-auto-height-image';
 
 import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
@@ -31,7 +34,15 @@ const gameBgData = {
   river: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/river/1110.gif',
   tree: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/tree/1110.gif',
   hatake: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/hatake/1101.gif',
-}
+};
+const bgData = {
+  sky: require('../../assets/images/bg_game/sky/A04.gif'),
+  house: require('../../assets/images/bg_game/house/A11.gif'),
+  ground: require('../../assets/images/bg_game/ground/1101.gif'),
+  river: require('../../assets/images/bg_game/river/1110.gif'),
+  tree: require('../../assets/images/bg_game/tree/1110.gif'),
+  hatake: require('../../assets/images/bg_game/hatake/1110.gif'),
+};
 
 const nanaSpot = 'スライムさん、こんにちは♪菜々と一緒にキャベツを作って餃子をゲットしよう♪\nまずはハウスの骨組みを建てよう！';
 
@@ -74,12 +85,12 @@ const FarmTop = ({farmInfo}) => {
 
   const closeTopNana = () => {
     setCurNanaTag(undefined);
-  }
+  };
 
   const showNanaSpot = () => {
     setCurNanaTag('nana');
     setTopNana(nanaSpot);
-  }
+  };
 
   const showWeather = () => {
     setCurNanaTag('weather');
@@ -103,7 +114,21 @@ const FarmTop = ({farmInfo}) => {
         <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
       </View>
 
-      <GameBgImg item={gameBgData} />
+      {/* <GameBgImg /> */}
+      <View style={{height: 400}}>
+        <Image source={bgData.sky} style={GameBgImgStyles.skyImg} />
+        <Image source={bgData.hatake} style={GameBgImgStyles.screenImg} />
+        <Image source={bgData.ground} style={GameBgImgStyles.screenImg} />
+        <TouchableWithoutFeedback>
+          <AutoHeightImage
+            width={responsiveWidth(41)}
+            source={bgData.house}
+            style={GameBgImgStyles.houseImg}
+          />
+        </TouchableWithoutFeedback>
+        <Image source={bgData.river} style={GameBgImgStyles.screenImg} />
+        <Image source={bgData.tree} style={GameBgImgStyles.screenImg} />
+      </View>
       <Weather clickWeather={showWeather} />
       <Nutrition />
       <Moisture />
@@ -151,5 +176,27 @@ const FarmTopStyles = StyleSheet.create({
     lineHeight: 28,
     color: '#fff',
     fontWeight: 'bold'
-  }
-})
+  },
+});
+
+const GameBgImgStyles = StyleSheet.create({
+  skyImg: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: responsiveWidth(100),
+    height: 150,
+  },
+  screenImg: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    width: responsiveWidth(100),
+    height: 400,
+  },
+  houseImg: {
+    position: 'absolute',
+    top: 70,
+    left: '48%',
+  },
+});

@@ -11,39 +11,32 @@ import {
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const GameBgImg = ({item}) => {
+const bgData = {
+  sky: require('../assets/images/bg_game/sky/A04.gif'),
+  house: require('../assets/images/bg_game/house/A11.gif'),
+  ground: require('../assets/images/bg_game/ground/1101.gif'),
+  river: require('../assets/images/bg_game/river/1110.gif'),
+  tree: require('../assets/images/bg_game/tree/1110.gif'),
+  hatake: require('../assets/images/bg_game/hatake/1110.gif'),
+};
+const GameBgImg = () => {
   return (
     <View style={{height: 400}}>
-      <Image
-        source={{uri: item.sky}}
-        style={GameBgImgStyles.skyImg}
-      />
-      <Image
-        source={{uri: item.ground}}
-        style={GameBgImgStyles.screenImg}
-      />
+      {/* <Image source={bgData.sky} style={GameBgImgStyles.skyImg} /> */}
+      {/* <Image source={bgData.hatake} style={GameBgImgStyles.screenImg} /> */}
+      {/* <Image source={bgData.ground} style={GameBgImgStyles.screenImg} /> */}
       <TouchableWithoutFeedback>
         <AutoHeightImage
           width={responsiveWidth(41)}
-          source={{uri: item.house}}
+          source={bgData.house}
           style={GameBgImgStyles.houseImg}
         />
-      </TouchableWithoutFeedback>      
-      <Image
-        source={{uri: item.river}}
-        style={GameBgImgStyles.screenImg}
-      />
-      <Image
-        source={{uri: item.tree}}
-        style={GameBgImgStyles.screenImg}
-      />
-      <Image
-        source={{uri: item.hatake}}
-        style={GameBgImgStyles.screenImg}
-      />
+      </TouchableWithoutFeedback>
+      {/* <Image source={bgData.river} style={GameBgImgStyles.screenImg} /> */}
+      {/* <Image source={bgData.tree} style={GameBgImgStyles.screenImg} /> */}
     </View>
-  )
-}
+  );
+};
 
 export default GameBgImg;
 
@@ -66,5 +59,5 @@ const GameBgImgStyles = StyleSheet.create({
     position: 'absolute',
     top: 70,
     left: '48%',
-  }
-})
+  },
+});

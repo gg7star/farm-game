@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, TouchableOpacity, Modal} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Modal,
+} from 'react-native';
 
 import {
   responsiveHeight,
@@ -55,8 +62,7 @@ const Menu = () => {
         visible={myMenu}
         onRequestClose={() => {
           console.log("Modal has been closed.");
-        }}
-      >
+        }}>
         <View style={MenuStyles.modalContent}>
           <TouchableOpacity
             style={MenuStyles.modalClose}
