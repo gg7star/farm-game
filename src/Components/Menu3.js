@@ -11,7 +11,7 @@ const Menu3 = ({item}) => {
     Actions.myfarm();
   };
   const goMyMenu = () => {
-    Actions.myMenu();
+    Actions.menuList();
   };
 
   return (

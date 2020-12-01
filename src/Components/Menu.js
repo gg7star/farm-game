@@ -51,6 +51,10 @@ const Menu = () => {
     Actions.myfarm();
   };
 
+  const goMenu = () => {
+    Actions.menuList();
+  };
+
   // const goNews = () => {
   //   Actions.news();
   // };
@@ -149,7 +153,7 @@ const Menu = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={MenuStyles.eachMenu}
-          onPress={() => setMyMenu(true)}>
+          onPress={() => goMenu()}>
           <Image
             source={{
               uri:

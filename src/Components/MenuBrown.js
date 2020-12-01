@@ -21,7 +21,7 @@ const MenuBrown = () => {
   };
 
   const goMyMenu = () => {
-    Actions.myMenu();
+    Actions.menuList();
   };
 
   const goMyFarm = () => {
