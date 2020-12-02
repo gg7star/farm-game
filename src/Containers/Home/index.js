@@ -956,9 +956,9 @@ const Home = () => {
   ]);
   // const [notation, setNotation] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => setLoadTime(false), 100);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => setLoadTime(false), 100);
+  // }, []);
 
   const handleTab = (e) => {
     if (e.nativeEvent.contentOffset.x >= responsiveWidth(100)) {
@@ -1003,7 +1003,7 @@ const Home = () => {
   //   setNotation(false);
   // };
 
-  if (loadTime) return <Loader />;
+  // if (loadTime) return <Loader />;
   return (
     <ImageBackground
       style={HomeStyle.bgImg}
