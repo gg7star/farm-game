@@ -71,6 +71,7 @@ const FarmTop = ({farmInfo}) => {
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
   const [topHatakeMenu, setTopHatakeMenu] = useState(false);
+  const [showAdmob, setShowAdmob] = useState(false);
 
   const closeTopNana = () => {
     setCurNanaTag(undefined);
@@ -93,6 +94,10 @@ const FarmTop = ({farmInfo}) => {
   const closeTopHatakeMenu = () => {
     setTopHatakeMenu(false);
   };
+
+  const ShowAdmobCallback = () => {
+    
+  }
 
   return (
     <ImageBackground
@@ -117,7 +122,7 @@ const FarmTop = ({farmInfo}) => {
         <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
       )}
 
-      {topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} farmInfo={farmInfo} />}
+      {topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} handleShowAdmob={ShowAdmobCallback} farmInfo={farmInfo} />}
 
       <GameProgressBar />
       <GameMenu />
