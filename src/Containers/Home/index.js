@@ -1194,10 +1194,7 @@ const Home = () => {
           </TouchableOpacity>
           <AutoHeightImage
             width={responsiveWidth(90)}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/bg99.png',
-            }}
+            source={require('../../assets/images/bg99.png')}
           />
         </View>
       </Modal>
