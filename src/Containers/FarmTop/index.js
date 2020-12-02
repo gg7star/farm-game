@@ -7,6 +7,7 @@ import {
   Text,
   TouchableWithoutFeedback,
   ImageBackground,
+  Modal,
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -26,6 +27,7 @@ import Calendar from './Calendar';
 import GameEngine from './GameEngine';
 import TopNana from './TopNana';
 import TopHatakeMenu from './TopHatakeMenu';
+import AdMob from '../AdMob';
 
 const gameBgData = {
   sky: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/sky/A04.gif',
@@ -77,7 +79,7 @@ const weatherList = [
   }
 ]
 
-const FarmTop = ({farmInfo}) => {
+const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
@@ -106,8 +108,10 @@ const FarmTop = ({farmInfo}) => {
     setTopHatakeMenu(false);
   };
 
-  const ShowAdmobCallback = () => {
-    
+  const showAdmobCallback = (isShow) => {
+    console.log('===== showAdmobCallback: isShow: ', isShow);
+    setShowAdmob(isShow);
+    // Actions.admob({nextPage: 'farmTop', state: {farmInfo: farmInfo}});
   }
 
   return (
@@ -147,10 +151,19 @@ const FarmTop = ({farmInfo}) => {
         <TopNana item={curNanaTag} data={topNana} handleClick={closeTopNana} />
       )}
 
-      {topHatakeMenu && <TopHatakeMenu handleClick={closeTopHatakeMenu} handleShowAdmob={ShowAdmobCallback} farmInfo={farmInfo} />}
+      {(topHatakeMenu || (currentSelectedItem > 0)) && <TopHatakeMenu handleClick={closeTopHatakeMenu} handleShowAdmob={() => showAdmobCallback(true)} farmInfo={farmInfo} />}
 
       <GameProgressBar />
       <GameMenu />
+      {/* <Modal
+        transparent={true}
+        visible={showAdmob}
+        onRequestClose={() => {
+          console.log("Modal has been closed.");
+          showAdmobCallback(false);
+        }}> */}
+          {/* <AdMob visible={showAdmob} handleClose={() => showAdmobCallback(false)}/> */}
+      {/* </Modal> */}
     </ImageBackground>
   );
 };

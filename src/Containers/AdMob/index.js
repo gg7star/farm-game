@@ -39,6 +39,7 @@ const AdMob = (props) => {
       (err) => {
         console.warn(err);
         setStatus(ADMOB_STATUS.FAILED_TO_LOADE);
+        onGoBack();
       },
     );
     // adOpened
@@ -55,6 +56,7 @@ const AdMob = (props) => {
     AdMobRewarded.addEventListener(ADMOB_STATUS.CLOSED.status, () => {
       console.log('AdMobRewarded => adClosed');
       setStatus(ADMOB_STATUS.CLOSED);
+      onGoBack();
     });
     // adLeftApplication
     AdMobRewarded.addEventListener(ADMOB_STATUS.LEFT_APPLICATION.status, () => {
@@ -79,6 +81,7 @@ const AdMob = (props) => {
     AdMobInterstitial.addEventListener('adFailedToLoad', error => {
       console.warn(error);
       setStatus(ADMOB_STATUS.FAILED_TO_LOADE);
+      onGoBack()
     });
     AdMobInterstitial.addEventListener('adOpened', () => {
       console.log('AdMobInterstitial => adOpened');
@@ -88,6 +91,7 @@ const AdMob = (props) => {
       console.log('AdMobInterstitial => adClosed');
       setStatus(ADMOB_STATUS.CLOSED);
       // AdMobInterstitial.requestAd().catch(error => console.warn(error));
+      onGoBack()
     });
     AdMobInterstitial.addEventListener('adLeftApplication', () => {
       console.log('AdMobInterstitial => adLeftApplication');
@@ -95,7 +99,7 @@ const AdMob = (props) => {
     });
   };
 
-  useEffect(() => {
+  const initialize = () => {
     // Get admob settings from global
     const admob = props.admob;
     interstitialAdmob = getAdmobSettingByType(admob, 'Interstitial');
@@ -109,19 +113,16 @@ const AdMob = (props) => {
     initAdMobInterstitial(rewardAdmob);
 
     showAdmob(interstitialAdmob, rewardAdmob);
+  };
+
+  useEffect(() => {
+    initialize();
 
     return () => {
       AdMobRewarded.removeAllListeners();
       AdMobInterstitial.removeAllListeners();
     };
   }, []);
-
-  useEffect(() => {
-    console.log('updated ADMOB_STATUS', status);
-    if (status.status !== ADMOB_STATUS.LOADING.status) {
-      onGoBack();
-    }
-  }, [status]);
 
   const showRewarded = (rewardAdmob) => {
     console.log('===== loading Rewarded: ', status, error);
@@ -177,7 +178,8 @@ const AdMob = (props) => {
   }
 
   const onGoBack = () => {
-    Actions.pop();
+    AdMobRewarded.removeAllListeners();
+    AdMobInterstitial.removeAllListeners();
     props.nextPage && Actions[props.nextPage](props.state ? {...props.state} : {});
   };
 
@@ -207,6 +209,7 @@ const AdMob = (props) => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'stretch',
+        zIndex: 1
       }}>
       <View style={{justifyConetnet: 'center', flex: 1}}>
         <TouchableOpacity
@@ -218,7 +221,7 @@ const AdMob = (props) => {
                 <ActivityIndicator size="large" />
               ) : (
                 <Text style={{fontSize: 18, textAlign: 'center', color: '#FFF'}}>
-                  status.description
+                  {status.description}
                 </Text>
               )}
             </React.Fragment>
