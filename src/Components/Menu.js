@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, TouchableOpacity, Modal} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Modal,
+} from 'react-native';
 
 import {
   responsiveHeight,
@@ -44,6 +51,10 @@ const Menu = () => {
     Actions.myfarm();
   };
 
+  const goMenu = () => {
+    Actions.menuList();
+  };
+
   // const goNews = () => {
   //   Actions.news();
   // };
@@ -55,8 +66,7 @@ const Menu = () => {
         visible={myMenu}
         onRequestClose={() => {
           console.log("Modal has been closed.");
-        }}
-      >
+        }}>
         <View style={MenuStyles.modalContent}>
           <TouchableOpacity
             style={MenuStyles.modalClose}
@@ -143,7 +153,7 @@ const Menu = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={MenuStyles.eachMenu}
-          onPress={() => setMyMenu(true)}>
+          onPress={() => goMenu()}>
           <Image
             source={{
               uri:

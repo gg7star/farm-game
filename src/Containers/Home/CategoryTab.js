@@ -1,6 +1,11 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
+import {
+  responsiveWidth,
+  responsiveHeight,
+} from 'react-native-responsive-dimensions';
+
 const CategoryTab = ({item}) => {
   return (
     <View style={CategoryTabStyles.bg}>
@@ -15,7 +20,7 @@ export default CategoryTab;
 
 const CategoryTabStyles = StyleSheet.create({
   bg: {
-    height: 55,
+    height: responsiveHeight(5),
     paddingVertical: 6,
     alignItems: 'center',
     justifyContent: 'center',
@@ -23,7 +28,7 @@ const CategoryTabStyles = StyleSheet.create({
   textBg: {
     backgroundColor: '#fff',
     width: '93%',
-    height: 50,
+    height: responsiveHeight(4),
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',

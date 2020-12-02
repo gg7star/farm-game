@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import AutoHeightImage from 'react-native-auto-height-image';
 
 import Dash from 'react-native-dash';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
@@ -43,9 +44,13 @@ const MContent = ({item}) => {
           />
         </View>
       </View>
-      <View style={{marginTop: 6, flexDirection: 'row', alignItems: 'center'}}>
-        <Image source={{uri: item.Mimg}} style={MContentStyles.mimg} />
-        <View style={{width: '80%'}}>
+      <View style={{marginTop: 6, flexDirection: 'row'}}>
+        {/* <Image source={{uri: item.Mimg}} style={MContentStyles.mimg} /> */}
+        <AutoHeightImage
+          width={responsiveWidth(30)}
+          source={{uri: item.Mimg}}
+        />
+        <View style={{width: responsiveWidth(50)}}>
           {item.Mcaption.harvestGuide && (
             <View style={{flexDirection: 'row'}}>
               <Text style={MContentStyles.mContentText}>・収穫目安P：</Text>
@@ -113,7 +118,7 @@ export default MContent;
 
 const MContentStyles = StyleSheet.create({
   bg: {
-    height: 100,
+    height: 150,
     width: responsiveWidth(100),
     padding: 4,
     backgroundColor: '#fff',
@@ -123,15 +128,15 @@ const MContentStyles = StyleSheet.create({
     height: 64,
   },
   mTitle: {
-    width: '80%',
+    width: responsiveWidth(70),
     position: 'absolute',
-    left: 72,
+    left: responsiveWidth(31),
   },
   option: {
     backgroundColor: '#e91e63',
     paddingVertical: 2,
     borderRadius: 2,
-    width: 64,
+    width: responsiveWidth(30),
     height: 14,
     alignItems: 'center',
     justifyContent: 'center',
@@ -141,7 +146,7 @@ const MContentStyles = StyleSheet.create({
     color: '#fff',
   },
   mContentText: {
-    fontSize: 11,
+    fontSize: 14,
   },
   mArrow: {
     transform: [{rotate: '90deg'}],
