@@ -19,56 +19,23 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import Header from '../../Components/Header.js';
 import HeaderBrownBar from '../../Components/HeaderBrownBar.js';
 
+const companyContent =
+  '運営会社：株式会社ｴﾙﾃﾞｨ\n資本金7,209万円 (2013年12月27日現在)\n設立：2010年9月16日\n所在地：〒275-0026 千葉県習志野市谷津2-7-21\n代表取締役社長：宮崎 尚登';
 const Company = () => {
   return (
     <ImageBackground
       style={CompanyStyles.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/wall_2.png')}>
-      <ScrollView>
-        <HeaderBrownBar />
-        <Header title="ポイント購入" />
+      <HeaderBrownBar />
+      <Header title="運営会社" />
 
-        <LinearGradient
-          colors={['#f9f9f9', '#eeeeee']}
-          style={CompanyStyles.content}>
-          <Text style={CompanyStyles.contentText}>
-            ゲームに関してのお問い合わせは、メールにてお願い致します。
-          </Text>
-        </LinearGradient>
-
-        <LinearGradient
-          colors={['#6facd5', '#497bae']}
-          style={CompanyStyles.subTitle}>
-          <Text style={CompanyStyles.subTitleText}>メールアドレス</Text>
-        </LinearGradient>
-
-        <TouchableOpacity>
-          <LinearGradient
-            colors={['#ffffff', '#f1f1f1']}
-            style={CompanyStyles.nextBg}>
-            <Text style={CompanyStyles.nextText}>info@ld-inc.jp</Text>
-            <View style={CompanyStyles.iconBg}>
-              <Image
-                style={CompanyStyles.iconNextImg}
-                source={require('../../assets/images/icons-36-white.png')}
-              />
-            </View>
-          </LinearGradient>
-        </TouchableOpacity>
-
-        <LinearGradient
-          colors={['#f9f9f9', '#eeeeee']}
-          style={CompanyStyles.bottomContent}>
-          <Text style={CompanyStyles.contentText}>
-            ※PCからのﾒｰﾙを受信できるようﾄﾞﾒｲﾝ制限解除をお願いいたします。制限解除頂けない場合、ご連絡が遅れる場合がありますのでご了承ください。
-            {'\n'}
-            ※尚、制限解除された方は、初回のﾒｰﾙに「制限解除済み」と記載ください。
-          </Text>
-        </LinearGradient>
-      </ScrollView>
+      <LinearGradient
+        colors={['#f9f9f9', '#eeeeee']}
+        style={CompanyStyles.content}>
+        <Text style={CompanyStyles.contentText}>{companyContent}</Text>
+      </LinearGradient>
     </ImageBackground>
-  
   );
 };
 
@@ -118,6 +85,7 @@ const CompanyStyles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 8,
     color: '#333333',
+    lineHeight: 30,
   },
   content: {
     borderColor: '#aaa',
