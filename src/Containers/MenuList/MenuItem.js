@@ -31,11 +31,12 @@ const urlWeb = [
 ];
 const MenuItem = ({item}) => {
   const goNext = () => {
-    var includeItem = urlWeb.includes(item.name)
+    var includeItem = urlWeb.includes(item.name);
     if (includeItem) {
       Linking.openURL(item.link);
+    } else {
+      Actions[item.link]();
     }
-    Actions[item.link]();
   };
   return (
     <TouchableOpacity style={MenuItemStyle.bg} onPress={() => goNext()}>
