@@ -55,7 +55,7 @@ const menuItems = [
   // },
   {
     name: 'よくある質問',
-    link: 'profile',
+    link: 'https://twitter.com/hatakeppi',
   },
   {
     name: 'Twitter',
@@ -63,7 +63,7 @@ const menuItems = [
   },
   {
     name: 'Instagram',
-    link: 'profile',
+    link: 'https://twitter.com/hatakeppi',
   },
   {
     name: '評価して応援する',
@@ -75,15 +75,15 @@ const menuItems = [
   },
   {
     name: '個人情報保護方針',
-    link: 'profile',
+    link: 'https://twitter.com/hatakeppi',
   },
   {
     name: '運営会社',
-    link: 'profile',
+    link: 'https://twitter.com/hatakeppi',
   },
   {
     name: 'ご利用規約',
-    link: 'profile',
+    link: 'https://twitter.com/hatakeppi',
   },
 ];
 
