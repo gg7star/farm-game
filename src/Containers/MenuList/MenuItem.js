@@ -40,7 +40,14 @@ const MenuItem = ({item}) => {
   };
   return (
     <TouchableOpacity style={MenuItemStyle.bg} onPress={() => goNext()}>
-      <Text>{item.name}</Text>
+      <AutoHeightImage
+        width={40}
+        source={{
+          uri:
+            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0100.gif',
+        }}
+      />
+      <Text style={{fontSize: 20, marginLeft: 10}}>{item.name}</Text>
     </TouchableOpacity>
   );
 };
@@ -54,5 +61,6 @@ const MenuItemStyle = StyleSheet.create({
     borderColor: '#eee',
     borderWidth: 0.5,
     padding: 10,
+    alignItems: 'center',
   },
 });

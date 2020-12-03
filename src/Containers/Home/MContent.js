@@ -16,7 +16,7 @@ import {Actions} from 'react-native-router-flux';
 const MContent = ({item}) => {
 
   const cropClick = () => {
-    Actions.farmName({gameData: item});
+    Actions.cropDetails({gameData: item});
     // if (item.option === '無料ゲーム') {
     //   Actions.farmName({gameData: item});
     //   // Actions.admob({nextPage: 'farmName', state: {gameData: item}});

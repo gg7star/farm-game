@@ -30,6 +30,7 @@ import CategoryTab from './CategoryTab.js';
 import CategoryTabContent from './CategoryTabContent.js';
 import SubMenu from './SubMenu.js';
 import NotationModal from './NotationModal.js';
+import News from '../News';
 
 const homeBtnList = [
   {
@@ -1022,11 +1023,23 @@ const Home = () => {
         </View>
       </View> */}
 
+      <TouchableOpacity style={HomeStyle.newsImgArea} onPress={goNews}>
+        <Image
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
+          }}
+          style={HomeStyle.newsImg}
+        />
+      </TouchableOpacity>
+
       <ScrollView>
         <View>
           <SliderBox
             images={sImg}
             sliderBoxHeight={120}
+            autoplay={true}
+            circleLoop={true}
             onCurrentImagePressed={(index) =>
               console.warn(`image ${index} pressed`)
             }
@@ -1036,16 +1049,6 @@ const Home = () => {
           width={responsiveWidth(100)}
           source={require('../../assets/images/Home_Top1.png')}
         /> */}
-
-        <TouchableOpacity style={HomeStyle.newsImgArea} onPress={goNews}>
-          <Image
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
-            }}
-            style={HomeStyle.newsImg}
-          />
-        </TouchableOpacity>
 
         {/* <View style={HomeStyle.topBtn}>
           {homeBtnList.map((item, i) => (
@@ -1166,7 +1169,7 @@ const Home = () => {
       </ScrollView>
       {/* <Text>{'\n\n\n'}</Text> */}
       {/* {notation && <NotationModal notationClose={notationClose} />} */}
-      <Menu />
+      <Menu item='Home' />
       <Modal
         transparent={true}
         visible={newNotification}
@@ -1174,28 +1177,23 @@ const Home = () => {
           console.log("Modal has been closed.");
         }}>
         <View style={HomeStyle.modalContent}>
-          <TouchableOpacity
-            style={HomeStyle.modalCloseTop}
-            onPress={() => setNewNotification(false)}>
-            <Image
-              source={{
-                uri:
-                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png',
-              }}
-              style={{width: 37, height: 37}}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={HomeStyle.modalClose}
-            onPress={() => setNewNotification(false)}>
-            <View style={[HomeStyle.modalCloseBtn, HomeStyle.shadow]}>
-              <Text style={{color: '#fff'}}>OK</Text>
-            </View>
-          </TouchableOpacity>
-          <AutoHeightImage
-            width={responsiveWidth(90)}
-            source={require('../../assets/images/bg99.png')}
-          />
+          <ImageBackground
+            style={{width: '100%', height: responsiveHeight(85)}}
+            resizeMode="repeat"
+            source={require('../../assets/images/category_bg2.gif')}>
+            <TouchableOpacity
+              style={HomeStyle.modalCloseTop}
+              onPress={() => setNewNotification(false)}>
+              <Image
+                source={{
+                  uri:
+                    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png',
+                }}
+                style={{width: 37, height: 37}}
+              />
+            </TouchableOpacity>
+            <News />
+          </ImageBackground>
         </View>
       </Modal>
     </ImageBackground>
@@ -1261,6 +1259,7 @@ const HomeStyle = StyleSheet.create({
     position: 'absolute',
     top: 30,
     right: 30,
+    zIndex: 1000,
   },
   newsImg: {
     width: 50,
@@ -1307,30 +1306,23 @@ const HomeStyle = StyleSheet.create({
     padding: 6,
   },
   modalContent: {
-    left: '5%',
-    top: responsiveHeight(20),
+    left: '2%',
+    top: responsiveHeight(10),
     zIndex: 60,
-    width: '90%',
-  },
-  modalClose: {
-    position: 'absolute',
-    bottom: 50,
-    zIndex: 200,
-    alignItems: 'center',
-    left: responsiveWidth(20),
-  },
-  modalCloseBtn: {
-    width: responsiveWidth(50),
-    height: 50,
-    backgroundColor: '#2c6782',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 16,
+    width: '96%',
+    borderRadius: 8,
+    borderWidth: 5,
+    borderColor: '#c30',
   },
   modalCloseTop: {
     position: 'absolute',
     right: '6%',
-    top: '3%',
+    top: 10,
     zIndex: 200,
+  },
+  modalBg: {
+    position: 'absolute',
+    top: 0,
+    zIndex: -1,
   },
 });
