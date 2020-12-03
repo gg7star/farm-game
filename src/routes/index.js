@@ -40,6 +40,7 @@ import {setAdmobSettings} from '../redux/reducers/admobSlice';
 import {getAdmobSettingByType} from '../Containers/AdMob/utils';
 import MenuList from '../Containers/MenuList';
 import Company from '../Containers/Support';
+import Tokutei from '../Containers/Support/Tokutei';
 
 const Routes = (props) => {
   const [gotAdmobSetting, setGotAdmobSetting] = useState(false);
@@ -214,6 +215,7 @@ const Routes = (props) => {
             />
             <Scene key="menuList" component={MenuList} hideNavBar />
             <Scene key="company" component={Company} hideNavBar />
+            <Scene key="tokutei" component={Tokutei} hideNavBar />
           </Scene>
         </Router>
       </SafeAreaView>

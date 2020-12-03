@@ -38,10 +38,6 @@ const menuItems = [
     link: 'news',
   },
   {
-    name: 'プロフィール',
-    link: 'profile',
-  },
-  {
     name: '送付手続き',
     link: 'waitDelivery',
   },

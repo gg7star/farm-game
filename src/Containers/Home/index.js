@@ -950,9 +950,9 @@ const Home = () => {
   const [tabItem, setTabItem] = useState(0);
   const [newNotification, setNewNotification] = useState(false);
   const [sImg, setSImg] = useState([
-    require('../../assets/images/Home_Top1.png'),
-    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bt05.png',
-    require('../../assets/images/Home_Top1.png'),
+    require('../../assets/images/rotebunner/rotebunner1.png'),
+    require('../../assets/images/rotebunner/rotebunner2.png'),
+    require('../../assets/images/rotebunner/rotebunner3.png'),
   ]);
   // const [notation, setNotation] = useState(false);
 
