@@ -96,11 +96,11 @@ const MyFarm = (props) => {
             </ImageBackground>
           </View>
         </ScrollView>
-        <Menu />
+        <Menu item='myfarm' />
     </ImageBackground>
   
-  )
-}
+  );
+};
 
 // export default MyFarm;
 

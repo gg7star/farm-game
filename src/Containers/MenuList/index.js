@@ -38,10 +38,6 @@ const menuItems = [
     link: 'news',
   },
   {
-    name: 'プロフィール',
-    link: 'profile',
-  },
-  {
     name: '送付手続き',
     link: 'waitDelivery',
   },
@@ -93,9 +89,12 @@ const MenuList = () => {
       style={MenuListStyle.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
-      {menuItems.map((item, i) => (
-        <MenuItem key={i} item={item} />
-      ))}
+      <ScrollView>
+        {menuItems.map((item, i) => (
+          <MenuItem key={i} item={item} />
+        ))}
+        <Text>{'\n\n'}</Text>
+      </ScrollView>
       <Menu />
     </ImageBackground>
   );

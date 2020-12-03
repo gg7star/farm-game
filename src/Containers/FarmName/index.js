@@ -19,13 +19,13 @@ import GameMenu from '../../Components/GameMenu';
 import Panel from './Panel.js';
 
 const gameBgData = {
-  sky: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/sky/A04.gif',
-  ground: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/ground/1110.gif',
-  house: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/house/A11.gif',
-  river: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/river/1110.gif',
-  tree: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/tree/1110.gif',
-  hatake: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/hatake/1101.gif',
-}
+  sky: require('../../assets/images/bg_game/sky/A04.gif'),
+  house: require('../../assets/images/bg_game/house/A11.gif'),
+  ground: require('../../assets/images/bg_game/ground/1101.gif'),
+  river: require('../../assets/images/bg_game/river/1110.gif'),
+  tree: require('../../assets/images/bg_game/tree/1110.gif'),
+  hatake: require('../../assets/images/bg_game/hatake/1110.gif'),
+};
 const FarmName = ({gameData}) => {
 
   // const [farmNameData, setFarmNameData] = useState(undefined)
@@ -47,17 +47,15 @@ const FarmName = ({gameData}) => {
       style={FarmNameStyles.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
-      <ScrollView>
-        <View style={FarmNameStyles.header}>
-          <View style={FarmNameStyles.headerText}>
-            <Text style={FarmNameStyles.headerContent}>{gameData.Mtitle}</Text>
-          </View>
+      <View style={FarmNameStyles.header}>
+        <View style={FarmNameStyles.headerText}>
+          <Text style={FarmNameStyles.headerContent}>{gameData.Mtitle}</Text>
         </View>
+      </View>
 
-        <GameBgImg item={gameBgData} />
-        <Panel item={gameData.Mcaption} name={gameData.Mtitle + '農場'} />
-        <GameMenu />
-      </ScrollView>
+      <GameBgImg bgData={gameBgData} />
+      <Panel item={gameData.Mcaption} name={gameData.Mtitle + '農場'} />
+      <GameMenu />
     </ImageBackground>
   );
 };

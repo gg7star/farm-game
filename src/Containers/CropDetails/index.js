@@ -80,7 +80,10 @@ const goodPointTextData = {
   ]
 }
 
-const CropDetails = ({param}) => {
+const CropDetails = ({gameData}) => {
+  const goFarm = () => {
+    Actions.farmName({gameData: gameData});
+  };
 
   return (
     <ImageBackground
@@ -155,7 +158,7 @@ const CropDetails = ({param}) => {
       </View>
 
       {/* PlayBtn */}
-      <View style={CropDetailsStyles.playBtnBox}>
+      <TouchableOpacity style={CropDetailsStyles.playBtnBox} onPress={goFarm}>
         <View
           style={CropDetailsStyles.playBtnCenter}
         >
@@ -171,7 +174,7 @@ const CropDetails = ({param}) => {
           ▶
         </Text>
 
-      </View>
+      </TouchableOpacity>
 
       <Menu />
     </ImageBackground>

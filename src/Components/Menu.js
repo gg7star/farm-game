@@ -40,15 +40,19 @@ const menuList = [
   },
 ];
 
-const Menu = () => {
+const Menu = ({item}) => {
   const [myMenu, setMyMenu] = useState(false);
 
   const goHome = () => {
-    Actions.home();
+    if (item !== 'Home') {
+      Actions.home();
+    }
   };
 
   const goMyFarm = () => {
-    Actions.myfarm();
+    if (item !== 'myfarm') {
+      Actions.myfarm();
+    }
   };
 
   const goMenu = () => {
