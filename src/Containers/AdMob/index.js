@@ -218,10 +218,10 @@ const AdMob = (props) => {
           {status && (
             <React.Fragment>
               { status.status === ADMOB_STATUS.LOADING.status ? (
-                <ActivityIndicator size="large" />
+                <ActivityIndicator size="large" color = '#CECECE' />
               ) : (
                 <Text style={{fontSize: 18, textAlign: 'center', color: '#FFF'}}>
-                  {status.description}
+                  {/* {status.description} */}
                 </Text>
               )}
             </React.Fragment>
