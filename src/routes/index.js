@@ -41,6 +41,8 @@ import {getAdmobSettingByType} from '../Containers/AdMob/utils';
 import MenuList from '../Containers/MenuList';
 import Company from '../Containers/Support';
 import Tokutei from '../Containers/Support/Tokutei';
+import Kisyu from '../Containers/Support/Kisyu';
+import Privacy from '../Containers/Support/Privacy';
 
 const Routes = (props) => {
   const [gotAdmobSetting, setGotAdmobSetting] = useState(false);
@@ -206,8 +208,16 @@ const Routes = (props) => {
             <Scene key="admob" component={AdMob} hideNavBar />
             <Scene key="kiyaku" component={Kiyaku} hideNavBar />
             <Scene key="firstGuide" component={FirstGuide} hideNavBar />
-            <Scene key="firstGuidePage1" component={FirstGuidePage1} hideNavBar />
-            <Scene key="firstGuidePage2" component={FirstGuidePage2} hideNavBar />
+            <Scene
+              key="firstGuidePage1"
+              component={FirstGuidePage1}
+              hideNavBar
+            />
+            <Scene
+              key="firstGuidePage2"
+              component={FirstGuidePage2}
+              hideNavBar
+            />
             <Scene
               key="firstGuidePage3"
               component={FirstGuidePage3}
@@ -216,6 +226,8 @@ const Routes = (props) => {
             <Scene key="menuList" component={MenuList} hideNavBar />
             <Scene key="company" component={Company} hideNavBar />
             <Scene key="tokutei" component={Tokutei} hideNavBar />
+            <Scene key="kisyu" component={Kisyu} hideNavBar />
+            <Scene key="privacy" component={Privacy} hideNavBar />
           </Scene>
         </Router>
       </SafeAreaView>

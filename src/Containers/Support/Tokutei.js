@@ -32,41 +32,6 @@ const TokuteiStyles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  nextBg: {
-    padding: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderColor: '#aaa',
-    borderWidth: 1,
-  },
-  nextText: {
-    color: '#2f3e46',
-    fontWeight: 'bold',
-    width: '95%',
-  },
-  iconBg: {
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    width: 18,
-    height: 18,
-    borderRadius: 9,
-    overflow: 'hidden',
-  },
-  iconNextImg: {
-    width: 776,
-    height: 18,
-    marginLeft: -108,
-  },
-  subTitle: {
-    paddingHorizontal: 15,
-    paddingVertical: 8,
-    borderColor: '#456f9a',
-    borderWidth: 1,
-  },
-  subTitleText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 14,
-  },
   contentText: {
     fontSize: 12,
     marginBottom: 8,
