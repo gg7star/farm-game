@@ -951,6 +951,7 @@ const Home = () => {
   const [tabItem, setTabItem] = useState(0);
   const [newNotification, setNewNotification] = useState(false);
   const [sImg, setSImg] = useState([
+    require('../../assets/images/Home_Top1.png'),
     require('../../assets/images/rotebunner/rotebunner1.png'),
     require('../../assets/images/rotebunner/rotebunner2.png'),
     require('../../assets/images/rotebunner/rotebunner3.png'),
@@ -1169,7 +1170,7 @@ const Home = () => {
       </ScrollView>
       {/* <Text>{'\n\n\n'}</Text> */}
       {/* {notation && <NotationModal notationClose={notationClose} />} */}
-      <Menu item='Home' />
+      <Menu item="Home" />
       <Modal
         transparent={true}
         visible={newNotification}
@@ -1178,8 +1179,9 @@ const Home = () => {
         }}>
         <View style={HomeStyle.modalContent}>
           <ImageBackground
-            style={{width: '100%', height: responsiveHeight(85)}}
+            style={{width: '100%', height: responsiveHeight(87)}}
             resizeMode="repeat"
+            imageStyle={HomeStyle.modalBgImg}
             source={require('../../assets/images/category_bg2.gif')}>
             <TouchableOpacity
               style={HomeStyle.modalCloseTop}
@@ -1307,9 +1309,12 @@ const HomeStyle = StyleSheet.create({
   },
   modalContent: {
     left: '2%',
-    top: responsiveHeight(10),
+    top: responsiveHeight(7),
     zIndex: 60,
     width: '96%',
+    height: responsiveHeight(86),
+  },
+  modalBgImg: {
     borderRadius: 8,
     borderWidth: 5,
     borderColor: '#c30',

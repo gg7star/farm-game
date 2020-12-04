@@ -95,7 +95,7 @@ const MenuList = () => {
         ))}
         <Text>{'\n\n'}</Text>
       </ScrollView>
-      <Menu />
+      <Menu item="menuList" />
     </ImageBackground>
   );
 };

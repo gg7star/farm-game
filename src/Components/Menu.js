@@ -56,7 +56,9 @@ const Menu = ({item}) => {
   };
 
   const goMenu = () => {
-    Actions.menuList();
+    if (item !== 'menuList') {
+      Actions.menuList();
+    }
   };
 
   // const goNews = () => {

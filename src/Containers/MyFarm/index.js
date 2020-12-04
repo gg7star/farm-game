@@ -19,7 +19,7 @@ import { Actions } from 'react-native-router-flux';
 import Menu from '../../Components/Menu';
 
 import Farm from './Farm.js';
-import { apiMyFarm } from '../../services/apis/myfarm';
+import {apiMyFarm} from '../../services/apis/myfarm';
 
 const farmList = [
   {
@@ -46,11 +46,11 @@ const farmList = [
     farmImg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
     cropImg: ''
   }
-]
+];
 const MyFarm = (props) => {
   const getFarms = async () => {
     const myFarms = await apiMyFarm(11);
-  }
+  };
 
   getFarms();
 
@@ -59,46 +59,43 @@ const MyFarm = (props) => {
       style={MyFarmStyles.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
-        <ScrollView style={{flexDirection: 'column'}}>
-          <View style={MyFarmStyles.header}>
-            <Text style={MyFarmStyles.headerText}>MY FARM</Text>
-            <View style={MyFarmStyles.headerAccount}>
-              <Text 
-              style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
-                会員番号:000011
-              </Text>
-              <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
-                <Text style={{color: '#67b500', fontSize: 12}}>
-                  [管理者]
-                </Text>    
-                <Text 
-                style={{color: '#212121', fontSize: 12}}>
-                  スライムさん
-                </Text>
-              </View>
+      <ScrollView style={{flexDirection: 'column'}}>
+        <View style={MyFarmStyles.header}>
+          <Text style={MyFarmStyles.headerText}>MY FARM</Text>
+          <View style={MyFarmStyles.headerAccount}>
+            <Text style={{color: '#212121', fontSize: 12, textAlign: 'right'}}>
+              会員番号:000011
+            </Text>
+            <View style={{paddingHorizontal: 4, flexDirection: 'row'}}>
+              <Text style={{color: '#67b500', fontSize: 12}}>[管理者]</Text>
+              <Text style={{color: '#212121', fontSize: 12}}>スライムさん</Text>
             </View>
           </View>
-          
-          <TouchableOpacity style={MyFarmStyles.farmNews}>
-            <Text style={{color: '#ff0000'}}>[重要]</Text>
-            <Text>初めて作物を収穫された方へ</Text>
-          </TouchableOpacity>
+        </View>
+        <TouchableOpacity style={MyFarmStyles.farmNews}>
+          <Text style={{color: '#ff0000'}}>[重要]</Text>
+          <Text>初めて作物を収穫された方へ</Text>
+        </TouchableOpacity>
 
-          <View style={MyFarmStyles.farmData}>
-            <ImageBackground style={{width: '100%'}} imageStyle={{borderRadius: 8}} source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/20150422/category_bg2.gif'}} resizeMode='repeat'>
-              <View style={MyFarmStyles.myFarmTable}>
-                {
-                  farmList.map((item, i) => (
-                    <Farm key={i} item={item} />
-                  ))
-                }
-              </View>
-            </ImageBackground>
-          </View>
-        </ScrollView>
-        <Menu item='myfarm' />
+        <View style={MyFarmStyles.farmData}>
+          <ImageBackground
+            style={{width: '100%'}}
+            imageStyle={{borderRadius: 8}}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/20150422/category_bg2.gif',
+            }}
+            resizeMode="repeat">
+            <View style={MyFarmStyles.myFarmTable}>
+              {farmList.map((item, i) => (
+                <Farm key={i} item={item} />
+              ))}
+            </View>
+          </ImageBackground>
+        </View>
+      </ScrollView>
+      <Menu item="myfarm" />
     </ImageBackground>
-  
   );
 };
 
@@ -126,7 +123,7 @@ const MyFarmStyles = StyleSheet.create({
     right: 0,
     borderRadius: 4,
     height: 32,
-    margin: 2,    
+    margin: 2,
   },
   headerText: {
     color: '#fff',
@@ -138,7 +135,7 @@ const MyFarmStyles = StyleSheet.create({
     padding: 8,
     margin: 8,
     borderRadius: 8,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   farmData: {
     marginHorizontal: 8,
