@@ -1206,7 +1206,7 @@ export default Home;
 
 const HomeStyle = StyleSheet.create({
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
   header: {

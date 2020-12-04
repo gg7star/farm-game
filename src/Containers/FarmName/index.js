@@ -11,7 +11,7 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import Dash from 'react-native-dash';
-
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import { apiFarmNameByCropId } from '../../services/apis/un_page_data';
 
 import GameBgImg from '../../Components/GameBgImg';
@@ -64,7 +64,7 @@ export default FarmName;
 
 const FarmNameStyles = StyleSheet.create({
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
   header: {

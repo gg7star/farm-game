@@ -11,7 +11,7 @@ import {
   Image
 } from 'react-native';
 
-import { responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 
 import { Actions } from 'react-native-router-flux';
 import Dash from 'react-native-dash';
@@ -74,7 +74,7 @@ export default WaitDelivery;
 
 const WaitDeliveryStyles = StyleSheet.create({
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
   content: {

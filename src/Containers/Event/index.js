@@ -11,7 +11,7 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import Dash from 'react-native-dash';
-
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import Header from '../../Components/Header'
 
 
@@ -170,7 +170,7 @@ export default Event;
 
 const EventStyles = StyleSheet.create({
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
   corner: {
@@ -180,10 +180,9 @@ const EventStyles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 8,
     marginVertical: 16,
-    borderRadius: 8,
   },
   prizeText: {
-    backgroundColor: '#67b500',    
+    backgroundColor: '#67b500',
     borderLeftColor: 'rgba(0, 0, 0, 0.3)',
     borderLeftWidth: 16,
     borderStyle: 'solid',

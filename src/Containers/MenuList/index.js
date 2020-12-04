@@ -104,7 +104,7 @@ export default MenuList;
 
 const MenuListStyle = StyleSheet.create({
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
 });

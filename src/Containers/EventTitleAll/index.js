@@ -11,7 +11,7 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import Dash from 'react-native-dash';
-
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import Header from '../../Components/Header';
 import Menu from '../../Components/Menu';
 
@@ -84,7 +84,7 @@ export default EventTitleAll;
 
 const EventTitleAllStyles = StyleSheet.create({
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
   corner: {

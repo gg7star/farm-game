@@ -132,7 +132,7 @@ const LoginStyle = StyleSheet.create({
     flex: 1,
   },
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
   header: {

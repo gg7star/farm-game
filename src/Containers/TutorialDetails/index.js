@@ -55,8 +55,7 @@ const TutorialDetails = ({param}) => {
     <ImageBackground
       style={TutorialDetailsStyles.bgImg}
       resizeMode="repeat"
-      source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/bg_pattern01.png'}}
-    >
+      source={require('../../assets/images/bg_pattern.png')}>
       <ScrollView style={{flexDirection: 'column'}}>
         <Header title={'ゲームガイド【' + (param + 1) +'/7】'} />
         
@@ -155,7 +154,7 @@ export default TutorialDetails;
 
 const TutorialDetailsStyles = StyleSheet.create({
   bgImg: {
-    width: '100%',
+    width: responsiveWidth(100),
     height: '100%',
   },
   corner: {
@@ -165,13 +164,12 @@ const TutorialDetailsStyles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 8,
     marginVertical: 16,
-    borderRadius: 8,
   },
   prizeText: {
-    backgroundColor: '#67b500',    
+    backgroundColor: '#67b500',
     borderLeftColor: 'rgba(0, 0, 0, 0.3)',
     borderLeftWidth: 16,
-    borderStyle: 'solid',    
+    borderStyle: 'solid',
   },
   topCorner: {
     borderTopRightRadius: 8,
