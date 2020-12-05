@@ -43,6 +43,7 @@ import Company from '../Containers/Support';
 import Tokutei from '../Containers/Support/Tokutei';
 import Kisyu from '../Containers/Support/Kisyu';
 import Privacy from '../Containers/Support/Privacy';
+import Growth from '../Containers/Growth';
 
 const Routes = (props) => {
   const [gotAdmobSetting, setGotAdmobSetting] = useState(false);
@@ -228,6 +229,7 @@ const Routes = (props) => {
             <Scene key="tokutei" component={Tokutei} hideNavBar />
             <Scene key="kisyu" component={Kisyu} hideNavBar />
             <Scene key="privacy" component={Privacy} hideNavBar />
+            <Scene key="growth" component={Growth} hideNavBar />
           </Scene>
         </Router>
       </SafeAreaView>

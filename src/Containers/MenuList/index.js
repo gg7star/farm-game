@@ -45,10 +45,10 @@ const menuItems = [
     name: '送付先情報',
     link: 'addressList',
   },
-  // {
-  //   name: '栽培履歴',
-  //   link: 'growthList',
-  // },
+  {
+    name: '栽培履歴',
+    link: 'growth',
+  },
   {
     name: 'よくある質問',
     link: 'https://twitter.com/hatakeppi',
