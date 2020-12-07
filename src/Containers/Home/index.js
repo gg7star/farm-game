@@ -951,10 +951,12 @@ const Home = () => {
   const [tabItem, setTabItem] = useState(0);
   const [newNotification, setNewNotification] = useState(false);
   const [sImg, setSImg] = useState([
-    require('../../assets/images/rotebunner/processed.jpeg'),
-    require('../../assets/images/rotebunner/main_480_01.png'),
-    require('../../assets/images/rotebunner/main_480_02.png'),
-    require('../../assets/images/rotebunner/main_480_03.png'),
+    require('../../assets/images/rotebunner/main_bunner_01.png'),
+    require('../../assets/images/rotebunner/main_bunner_02.png'),
+    require('../../assets/images/rotebunner/main_bunner_03.png'),
+    require('../../assets/images/rotebunner/main_bunner_04.png'),
+    require('../../assets/images/rotebunner/main_bunner_05.png'),
+    require('../../assets/images/rotebunner/main_bunner_06.png'),
   ]);
   // const [notation, setNotation] = useState(false);
 

@@ -97,19 +97,19 @@ const Welcome = () => {
           <View>
             <AutoHeightImage
               width={responsiveWidth(100)}
-              source={require('../../assets/images/Top_Welcome.png')}
+              source={require('../../assets/images/Welcome_top.png')}
             />
           </View>
-          <View style={{alignItems: 'center'}}>
+          <View style={{alignItems: 'center', marginVertical: 20}}>
             <AutoHeightImage
               width={304}
-              source={require('../../assets/images/Start.png')}
+              source={require('../../assets/images/start_button.png')}
             />
           </View>
           <View style={{alignItems: 'flex-end'}}>
             <AutoHeightImage
               width={172}
-              source={require('../../assets/images/model_change.png')}
+              source={require('../../assets/images/phone_change.png')}
             />
           </View>
 
