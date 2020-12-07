@@ -19,6 +19,8 @@ import {
 
 import AutoHeightImage from 'react-native-auto-height-image';
 
+import {apiWeather} from '../../services/apis/weathers';
+
 import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
 
@@ -270,8 +272,8 @@ var Constants = {
 const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
-  const [topHatakeMenu, setTopHatakeMenu] = useState(currentSelectedItem);
-  const [topItemMenu, setTopItemMenu] = useState(true);
+  const [topHatakeMenu, setTopHatakeMenu] = useState(undefined);
+  const [topItemMenu, setTopItemMenu] = useState(currentSelectedItem);
   const [showAdmob, setShowAdmob] = useState(false);
 
   const closeTopNana = () => {
@@ -283,9 +285,12 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     setTopNana(nanaSpot);
   };
 
-  const showWeather = () => {
-    setCurNanaTag('weather');
-    setTopNana(weatherList);
+  const showWeather = async () => {
+    const response = await apiWeather(farmInfo.farmId);
+    if (response && response.weather_predictions) {
+      setTopNana(response.weather_predictions);
+      setCurNanaTag('weather');
+    }
   };
 
   const showTopHatakeMenu = () => {
@@ -301,7 +306,8 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const handleClickItem = (ItemIndex) => {
-    console.log("Item name:", ItemIndex);
+    setTopHatakeMenu(false);
+    setTopItemMenu(ItemIndex + 1);
   };
 
   return (

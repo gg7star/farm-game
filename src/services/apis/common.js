@@ -41,6 +41,7 @@ export const query = async function (path, options = {}, useToken = true) {
     userInfo = await getLocalToken();
   }
   const token = userInfo && userInfo.token;
+  // const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MTEsIm1haWxfYWRkcmVzcyI6ImFyYWlAdW5saW1pdGVkLmNvLmpwIiwiZXhwIjoxNjA3NDM2MDM3LCJvcmlnX2lhdCI6MTYwNzM0OTYzN30.keouQhTSS8AHyKoRpqsaaWOqzSSTNTamkmE199PqOAU';
   if (token) {
     options.headers['Authorization'] = `Bearer ${token}`;
   }
@@ -55,6 +56,7 @@ export const query = async function (path, options = {}, useToken = true) {
   };
 
   const response = await fetch(request);
+  console.log(59, response, request);
 
   if (response.status >= 200 && response.status < 300) {
     if (options && options.responseType === 'blob') {

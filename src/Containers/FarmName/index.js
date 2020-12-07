@@ -27,7 +27,6 @@ const gameBgData = {
   hatake: require('../../assets/images/bg_game/hatake/1110.gif'),
 };
 const FarmName = ({gameData}) => {
-
   // const [farmNameData, setFarmNameData] = useState(undefined)
 
   // const getFarmData = async () => {
