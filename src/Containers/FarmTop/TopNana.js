@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import {
   StyleSheet,
   ScrollView,
@@ -6,55 +7,45 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 const TopNana = ({item, data, handleClick}) => {
-
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
       <View style={TopNanaStyles.bg}>
-        <View
-          style={TopNanaStyles.dialog}
-        >
-          {
-            item === 'nana' ? <Text
-              style={TopNanaStyles.dialogText}
-            >
-              {data}
-            </Text>
-            :
+        <View style={TopNanaStyles.dialog}>
+          {item === 'nana' ? (
+            <Text style={TopNanaStyles.dialogText}>{data}</Text>
+          ) : (
             <View style={{margin: 8}}>
-              {
-                data.map((each, i) => (
-                  <View key={i} style={TopNanaStyles.weather}>
-                    <Text
-                      style={TopNanaStyles.weatherText}
-                    >
-                      {each.date}
-                    </Text>
-                    <AutoHeightImage
-                      width={24}
-                      source={{uri: each.image}}
-                    />  
-                  </View>
-                ))
-              }
+              {data.map((each, i) => (
+                <View key={i} style={TopNanaStyles.weather}>
+                  <Text style={TopNanaStyles.weatherText}>
+                    {moment(each.date).add(i, 'days').format('M')}月
+                    {moment(each.date).add(i, 'days').format('D')}日
+                  </Text>
+                  <AutoHeightImage width={24} source={{uri: each.image}} />
+                </View>
+              ))}
             </View>
-          }
+          )}
         </View>
         <AutoHeightImage
           width={144}
-          source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/nana.png'}}
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/nana.png',
+          }}
           style={TopNanaStyles.nanaImg}
-        />   
+        />
       </View>
-    </TouchableWithoutFeedback>    
-  )
-}
+    </TouchableWithoutFeedback>
+  );
+};
 
 export default TopNana;
 

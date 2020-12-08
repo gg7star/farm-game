@@ -9,29 +9,33 @@ import {
   ImageBackground,
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 const Farm = ({item}) => {
   const goFarmTop = () => {
-    Actions.farmTop({farmInfo: item})
-  }
+    Actions.farmTop({farmInfo: item, currentSelectedItem: null});
+  };
   return (
     <TouchableOpacity style={FarmStyles.bg} onPress={goFarmTop}>
       <View>
-        <ImageBackground source={{uri: item.farmImg}} style={{width: '100%', aspectRatio: 1}}>
+        <ImageBackground
+          source={{uri: item.farmImg}}
+          style={{width: '100%', aspectRatio: 1}}>
           <View style={FarmStyles.nameArea}>
-          <Text style={FarmStyles.name}>{item.name}{'\n'}{item.date}</Text>
+            <Text style={FarmStyles.name}>
+              {item.name}
+              {'\n'}
+              {item.date}
+            </Text>
           </View>
-          {
-            item.cropImg.length > 0 && <Image source={{uri: item.cropImg}} style={FarmStyles.crop} />
-          }
-          
+          {item.cropImg.length > 0 && (
+            <Image source={{uri: item.cropImg}} style={FarmStyles.crop} />
+          )}
         </ImageBackground>
       </View>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 export default Farm;
 
@@ -41,15 +45,15 @@ const FarmStyles = StyleSheet.create({
     margin: '0.5%',
     borderRadius: 4,
     borderColor: '#fff',
-    borderWidth: 2
+    borderWidth: 2,
   },
   nameArea: {
-    backgroundColor: 'rgba(0, 0, 0, 0.4)'
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   name: {
     color: '#fff',
     fontSize: 10,
-    padding: '1%'
+    padding: '1%',
   },
   crop: {
     width: '50%',
@@ -58,5 +62,5 @@ const FarmStyles = StyleSheet.create({
     zIndex: 2,
     bottom: 2,
     right: 2,
-  }
-})
+  },
+});
