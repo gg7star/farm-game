@@ -86,5 +86,5 @@ const styles = StyleSheet.create({
     marginTop: 3,
     height: 20,
     width: 20,
-  }
-})
+  },
+});

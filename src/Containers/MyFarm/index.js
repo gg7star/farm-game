@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React from 'react';
+import {connect} from 'react-redux';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   ImageBackground,
 
 } from 'react-native';
 
-import { responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 
 import { Actions } from 'react-native-router-flux';
 

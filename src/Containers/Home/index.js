@@ -69,9 +69,9 @@ const categories = [
         trainingGuide: '-日前後',
         mpt: '-mpt',
         inGameDay: '-分',
-        address: '静岡県焼津市 シックスベリーファーマーズ'
+        address: '静岡県焼津市 シックスベリーファーマーズ',
       },
-      option: '一発畑'
+      option: '一発畑',
     },
     {
       id: 'crop1524',

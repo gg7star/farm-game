@@ -313,7 +313,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   return (
     <ImageBackground
       style={FarmTopStyles.bgImg}
-      resizeMode="repeat"
+      resizeMode="cover"
       source={require('../../assets/images/bg_pattern.png')}>
       <View style={FarmTopStyles.header}>
         <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>

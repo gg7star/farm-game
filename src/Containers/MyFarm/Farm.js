@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -15,11 +15,17 @@ const Farm = ({item}) => {
   const goFarmTop = () => {
     Actions.farmTop({farmInfo: item, currentSelectedItem: null});
   };
+  const [valid, setValid] = useState(true);
   return (
     <TouchableOpacity style={FarmStyles.bg} onPress={goFarmTop}>
       <View>
         <ImageBackground
-          source={{uri: item.farmImg}}
+          onError={() => setValid(false)}
+          source={{
+            uri: valid
+              ? item.farmImg
+              : 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
+          }}
           style={{width: '100%', aspectRatio: 1}}>
           <View style={FarmStyles.nameArea}>
             <Text style={FarmStyles.name}>
