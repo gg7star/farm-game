@@ -57,7 +57,7 @@ const todoIconList = [
 
 const TopHatakeMenu = ({handleClick, handleClickItem, farmInfo}) => {
   const handleClickIcon = (index) => {
-    // handleClickItem(index);
+    handleClickItem(index);
     Actions.admob({
       nextPage: 'farmTop',
       state: {farmInfo: farmInfo, currentSelectedItem: 1},
