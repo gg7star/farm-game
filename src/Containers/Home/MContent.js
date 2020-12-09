@@ -29,6 +29,9 @@ const MContent = ({item}) => {
     //   Actions.eventTitleAll();
     // }
   };
+  const goFarmDetails = () => {
+    Actions.farmDetails();
+  };
   return (
     <TouchableOpacity style={MContentStyles.bg} onPress={() => cropClick()}>
       <View style={{flexDirection: 'row', height: 18}}>
@@ -97,7 +100,9 @@ const MContent = ({item}) => {
             </View>
           )}
           {item.Mcaption.address && (
-            <TouchableOpacity style={MContentStyles.farmName}>
+            <TouchableOpacity
+              style={MContentStyles.farmName}
+              onPress={goFarmDetails}>
               <AutoHeightImage
                 width={60}
                 source={require('../../assets/images/10_1.png')}
