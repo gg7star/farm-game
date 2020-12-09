@@ -15,8 +15,19 @@ import {responsiveWidth} from 'react-native-responsive-dimensions';
 import {Actions} from 'react-native-router-flux';
 
 const Crop = ({item}) => {
+  const cropClick = () => {
+    Actions.cropDetails({gameData: item});
+    // if (item.option === '無料ゲーム') {
+    //   Actions.farmName({gameData: item});
+    //   // Actions.admob({nextPage: 'farmName', state: {gameData: item}});
+    // } else if (item.option === '一発畑') {
+    //   Actions.cropDetails(item.id);
+    // } else {
+    //   Actions.eventTitleAll();
+    // }
+  };
   return (
-    <TouchableOpacity style={CropStyles.bg}>
+    <TouchableOpacity style={CropStyles.bg} onPress={cropClick}>
       <View style={{flexDirection: 'row', height: 18}}>
         {item.option && item.option.length > 1 && (
           <View style={CropStyles.option}>

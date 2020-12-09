@@ -91,7 +91,7 @@ const MContent = ({item}) => {
             </View>
           )}
           {item.Mcaption.address && (
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', marginTop: 10}}>
               <AutoHeightImage
                 width={25}
                 source={require('../../assets/images/location.png')}
@@ -103,8 +103,8 @@ const MContent = ({item}) => {
             <TouchableOpacity
               style={MContentStyles.farmName}
               onPress={goFarmDetails}>
-              <AutoHeightImage
-                width={60}
+              <Image
+                // resizeMode="contain"
                 source={require('../../assets/images/10_1.png')}
                 style={MContentStyles.farmmer}
               />
@@ -171,6 +171,7 @@ const MContentStyles = StyleSheet.create({
   mContentText: {
     fontSize: 14,
     fontWeight: 'bold',
+    lineHeight: 20,
   },
   mArrow: {
     transform: [{rotate: '90deg'}],
@@ -180,10 +181,13 @@ const MContentStyles = StyleSheet.create({
     alignItems: 'center',
   },
   farmmer: {
-    borderRadius: 25,
+    borderRadius: 50,
     borderWidth: 3,
     borderColor: '#fff',
     zIndex: 1,
+    width: 50,
+    height: 50,
+    marginLeft: -5,
   },
   farmNameBg: {
     width: responsiveWidth(50),

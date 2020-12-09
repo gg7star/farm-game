@@ -878,7 +878,7 @@ const FarmDetails = () => {
         {categories[0].map((item, i) => i < 3 && <Crop item={item} key={i} />)}
         <Text>{'\n\n\n'}</Text>
       </ScrollView>
-      <Menu item="Home" />
+      <Menu />
     </ImageBackground>
   );
 };
