@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect, useDispatch} from 'react-redux';
 import {
   StyleSheet,
   ScrollView,
@@ -14,6 +15,9 @@ import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import AccordionItem from './AccordionItem';
+import {loginWithAPI} from '../../services/apis/auth';
+import {apiMemberById} from '../../services/apis/users';
+import {setUser} from '../../redux/reducers/userSlice';
 
 const tab1ImgList = [
   'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/ftop/img_ftop2.png',
@@ -59,9 +63,20 @@ const Welcome = () => {
   const toggleExpand = () => {
     setExpanded(!expanded);
   };
-
-  const goHome = () => {
-    Actions.home();
+  const dispatch = useDispatch();
+  const goHome = async () => {
+    const response = await loginWithAPI({
+      mail_address: 'arai@unlimited.co.jp',
+      password: '8888',
+    });
+    if (response && response.member) {
+      const userInfo = await apiMemberById(response.member.id);
+      if (userInfo) {
+        dispatch(setUser(userInfo));
+        Actions.home();
+      }
+    }
+    // Actions.home();
   };
 
   return (

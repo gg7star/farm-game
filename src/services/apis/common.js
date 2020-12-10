@@ -56,7 +56,6 @@ export const query = async function (path, options = {}, useToken = true) {
   };
 
   const response = await fetch(request);
-  console.log(59, response, request);
 
   if (response.status >= 200 && response.status < 300) {
     if (options && options.responseType === 'blob') {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -19,9 +19,9 @@ import {
 
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import {apiWeather} from '../../services/apis/weathers';
+import {apiFarmData} from '../../services/apis/farm_data';
 
-import GameBgImg from '../../Components/GameBgImg';
+// import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
 
 import GameProgressBar from './GameProgressBar';
@@ -34,6 +34,7 @@ import TopNana from './TopNana';
 import TopHatakeMenu from './TopHatakeMenu';
 import TopItemMenu from './TopItemMenu';
 import AdMob from '../AdMob';
+import FarmBgImg from './FarmBgImg';
 
 // const gameBgData = {
 //   sky: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/sky/A04.gif',
@@ -275,6 +276,21 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [topHatakeMenu, setTopHatakeMenu] = useState(undefined);
   const [topItemMenu, setTopItemMenu] = useState(currentSelectedItem);
   const [showAdmob, setShowAdmob] = useState(false);
+  const [bgImg, setBgImg] = useState([]);
+
+  // useEffect(() => {
+  //   getFarmData();
+  // }, []);
+  const getBgImg = async () => {
+    console.log(285, 'Farm Data');
+    const response = await apiFarmData(farmInfo.farmId);
+    console.log(287, response);
+    if (response && response.images.imgAdd) {
+      setBgImg(response.images.imgAdd);
+      // console.log(304, response);
+    }
+  };
+  getBgImg();
 
   const closeTopNana = () => {
     setCurNanaTag(undefined);
@@ -286,10 +302,11 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const showWeather = async () => {
-    const response = await apiWeather(farmInfo.farmId);
+    const response = await apiFarmData(farmInfo.farmId);
     if (response && response.weather_predictions) {
       setTopNana(response.weather_predictions);
       setCurNanaTag('weather');
+      console.log(304, response);
     }
   };
 
@@ -313,13 +330,13 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   return (
     <ImageBackground
       style={FarmTopStyles.bgImg}
-      resizeMode="cover"
+      resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
       <View style={FarmTopStyles.header}>
         <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
       </View>
 
-      <GameBgImg bgData={bgData} />
+      {bgImg.length > 0 && <FarmBgImg bgData={bgImg} />}
       <Weather clickWeather={showWeather} />
       <Nutrition />
       <Moisture />
@@ -343,8 +360,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
       {topItemMenu && <TopItemMenu handleClick={closeTopItemMenu} />}
 
-      <GameProgressBar />
-      <GameMenu />
+      <View style={FarmTopStyles.bottomItem}>
+        <GameProgressBar />
+        <GameMenu />
+      </View>
     </ImageBackground>
   );
 };
@@ -375,5 +394,10 @@ const FarmTopStyles = StyleSheet.create({
     lineHeight: 28,
     color: '#fff',
     fontWeight: 'bold',
+  },
+  bottomItem: {
+    position: 'absolute',
+    top: 440,
+    zIndex: 100,
   },
 });

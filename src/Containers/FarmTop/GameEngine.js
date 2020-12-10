@@ -18,13 +18,13 @@ const GameEngine = ({clickTopNana, clickTopHatakeMenu}) => {
   return (
     <View style={GameEngineStyles.bg}>
       <TouchableOpacity style={GameEngineStyles.kakashi} onPress={clickTopNana}>
-        <AutoHeightImage
+        {/* <AutoHeightImage
           width={responsiveWidth(20)}
           source={{
             uri:
               'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/kakashi/10.gif',
           }}
-        />
+        /> */}
       </TouchableOpacity>
       <TouchableWithoutFeedback onPress={clickTopHatakeMenu}>
         <View  style={GameEngineStyles.hatake}></View>
@@ -45,15 +45,17 @@ const GameEngineStyles = StyleSheet.create({
   },
   kakashi: {
     position: 'absolute',
-    top: 150,
-    left: -10
+    top: 160,
+    left: 10,
+    width: responsiveWidth(15),
+    height: 110,
   },
   hatake: {
     width: responsiveWidth(75),
     height: 128,
     top: 200,
     left: responsiveWidth(16),
-    position: 'absolute'
+    position: 'absolute',
   },
   house: {
     width: responsiveWidth(41),

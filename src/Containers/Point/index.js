@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -8,27 +8,44 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
-  StatusBar,
-  Dimensions,
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
-import { responsiveHeight, responsiveWidth, useResponsiveHeight, useResponsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import Header from '../../Components/Header.js';
 import HeaderBrownBar from '../../Components/HeaderBrownBar.js';
 
-const pointData = {
-  name: '現在のポイント:70327っぴ',
-  date: '2020年04月01日をもってポイント購入は停止致しました。',
-}
+import {apiPoint} from '../../services/apis/point';
 
-const Point = () => {
+// const pointData = {
+//   title: '現在のポイント:70327っぴ',
+//   news: '2020年04月01日をもってポイント購入は停止致しました。',
+// };
 
+const Point = (props) => {
+  const [member, setMember] = useState(undefined);
+  useEffect(() => {
+    console.log('===== props.user: ', props.user);
+    const user = props.user && props.user.user;
+    user && user.id && setMember(user.id);
+  }, []);
   const goHistory = () => {
-    Actions.pointHistory()
-  }
+    Actions.pointHistory();
+  };
+
+  const [pointData, setPointData] = useState({});
+
+  const getPoint = async () => {
+    if (member) {
+      const response = await apiPoint(member);
+      if (response) {
+        setPointData(response);
+      }
+    }
+  };
+  getPoint();
 
   return (
     <ImageBackground
@@ -36,21 +53,26 @@ const Point = () => {
       resizeMode="repeat"
       source={require('../../assets/images/backimg-bg.png')}>
       <ScrollView>
-        <HeaderBrownBar /> 
-        <Header title='ポイント購入' />
+        <HeaderBrownBar />
+        <Header title="ポイント購入" />
 
         <View style={PointStyles.name}>
-          <Text style={PointStyles.nameText}>
-            {pointData.name}
-          </Text>
+          {pointData && (
+            <Text style={PointStyles.nameText}>{pointData.title}</Text>
+          )}
         </View>
 
-        <AutoHeightImage width={responsiveWidth(100)} source={require('../../assets/images/listtop.png')} />
+        <AutoHeightImage
+          width={responsiveWidth(100)}
+          source={require('../../assets/images/listtop.png')}
+        />
 
         <View style={PointStyles.content}>
           <LinearGradient colors={['#fffadf', '#fff3a5']}>
-            <Text style={PointStyles.dateText}>{pointData.date}</Text>
-          </LinearGradient>  
+            {pointData && (
+              <Text style={PointStyles.dateText}>{pointData.news}</Text>
+            )}
+          </LinearGradient>
           <LinearGradient colors={['#6facd5', '#497bae']}>
             <Text style={[PointStyles.dateText, {color: '#fff'}]}>
               ポイント購入履歴
@@ -68,22 +90,19 @@ const Point = () => {
                 />
               </View>
             </TouchableOpacity>
-          </LinearGradient>        
+          </LinearGradient>
         </View>
-        
-      </ScrollView>   
-      
+      </ScrollView>
     </ImageBackground>
-  
-  )
-}
+  );
+};
 
-export default Point;
+// export default Point;
 
-const PointStyles = StyleSheet.create({  
+const PointStyles = StyleSheet.create({
   bgImg: {
     width: '100%',
-    height: '100%',    
+    height: '100%',
   },
   name: {
     margin: '5%',
@@ -105,17 +124,17 @@ const PointStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     margin: 10,
-    color: '#222222'
+    color: '#222222',
   },
   history: {
     marginVertical: 25,
-    marginLeft: 15
+    marginLeft: 15,
   },
   historyText: {
     color: '#630',
     fontSize: 16,
     fontWeight: 'bold',
-    width: '90%'
+    width: '90%',
   },
   iconBg: {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -125,11 +144,17 @@ const PointStyles = StyleSheet.create({
     right: 10,
     top: '25%',
     borderRadius: 9,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   iconNextImg: {
     width: 776,
     height: 18,
-    marginLeft: -108
-  }
-})
+    marginLeft: -108,
+  },
+});
+
+const mapStateToProps = (state) => ({
+  user: state.user || {},
+});
+
+export default connect(mapStateToProps)(Point);

@@ -21,7 +21,7 @@ import {apiMyFarm} from '../../services/apis/myfarm';
 
 const farmList = [
   {
-    farmId: 26,
+    farmId: 364180,
     name: '無料ゲーム：白菜農場',
     date: '155日目',
     farmImg:
@@ -30,7 +30,7 @@ const farmList = [
       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/1609/icon.png',
   },
   {
-    farmId: 26,
+    farmId: 364197,
     name: 'はちみつ(小瓶セット)農場',
     date: '7日目',
     farmImg:
@@ -39,7 +39,7 @@ const farmList = [
       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/555/icon.png',
   },
   {
-    farmId: 26,
+    farmId: 364197,
     name: '',
     date: '',
     farmImg:
@@ -47,7 +47,7 @@ const farmList = [
     cropImg: '',
   },
   {
-    farmId: 26,
+    farmId: 364197,
     name: '',
     date: '',
     farmImg:

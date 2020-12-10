@@ -8,21 +8,22 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 const Nutrition = ({item}) => {
-
-
   return (
-    <View style={NutritionStyles.bg}>   
+    <View style={NutritionStyles.bg}>
       <AutoHeightImage
         width={responsiveWidth(16)}
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/para1.png'}} 
+        source={{
+          uri:
+            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/para1.png',
+        }}
       />
     </View>
-  )
-}
+  );
+};
 
 export default Nutrition;
 

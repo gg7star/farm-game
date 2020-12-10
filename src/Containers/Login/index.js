@@ -20,7 +20,6 @@ import { apiMemberById } from '../../services/apis/users';
 import { setUser } from '../../redux/reducers/userSlice';
 
 const Login = (props) => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
