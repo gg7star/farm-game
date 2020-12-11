@@ -3,11 +3,14 @@ import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
 
-const GameMenu = ({item}) => {
+const GameMenu = ({handleClickMenu}) => {
+  // clearInterval(window.interval);
   const goHome = () => {
+    handleClickMenu();
     Actions.home();
   };
   const goMyFarm = () => {
+    handleClickMenu();
     Actions.myfarm();
   };
 

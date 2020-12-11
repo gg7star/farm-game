@@ -23,7 +23,7 @@ import AutoHeightImage from 'react-native-auto-height-image';
 const imgRate = responsiveWidth(100) / 240;
 
 const FarmBgImg = ({bgData}) => {
-  console.log(39, bgData);
+  // console.log(39, bgData);
   return (
     <View style={{height: 400}}>
       {bgData.map((item, i) => (

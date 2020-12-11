@@ -71,8 +71,7 @@ const AddressInput = () => {
               boxStyle={{backgroundColor: 'transparent'}}
               textStyle={AddressInputStyles.contentText}
             />
-            <Text
-              style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
+            <Text style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
               ※本人…畑っぴをご利用されているご自身{'\n'}
               ※本人以外…プレゼント、ご家族ご友人宛てなど
             </Text>

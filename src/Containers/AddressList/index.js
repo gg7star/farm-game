@@ -32,7 +32,7 @@ const addresses = [
 const AddressList = () => {
 
   const getAddressList = async () => {
-    const addresses = await apiAddressList('11');
+    const addresses = await apiAddressList(11);
     console.log(addresses);
   };
 
@@ -53,25 +53,21 @@ const AddressList = () => {
             style={AddressListStyles.subTitle}>
             <Text style={{color: '#fff'}}>お届け先の登録/変更</Text>
           </LinearGradient>
-          {
-            addresses.map((item, i) => (
-              <EachAddress key={i} item={item} />
-            ))
-          }
+          {addresses.map((item, i) => (
+            <EachAddress key={i} item={item} />
+          ))}
         </View>
-      </ScrollView>   
-      
+      </ScrollView>
     </ImageBackground>
-
   );
 };
 
 export default AddressList;
 
-const AddressListStyles = StyleSheet.create({  
+const AddressListStyles = StyleSheet.create({
   bgImg: {
     width: '100%',
-    height: '100%',    
+    height: '100%',
   },
   content: {
     width: '100%',

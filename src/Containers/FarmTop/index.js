@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   Image,
   View,
@@ -21,7 +20,6 @@ import AutoHeightImage from 'react-native-auto-height-image';
 
 import {apiFarmData} from '../../services/apis/farm_data';
 
-// import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
 
 import GameProgressBar from './GameProgressBar';
@@ -35,24 +33,6 @@ import TopHatakeMenu from './TopHatakeMenu';
 import TopItemMenu from './TopItemMenu';
 import AdMob from '../AdMob';
 import FarmBgImg from './FarmBgImg';
-
-// const gameBgData = {
-//   sky: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/sky/A04.gif',
-//   ground: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/ground/1110.gif',
-//   house: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/house/A11.gif',
-//   river: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/river/1110.gif',
-//   tree: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/tree/1110.gif',
-//   hatake: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/bg/hatake/1101.gif',
-// };
-
-const bgData = {
-  sky: require('../../assets/images/bg_game/sky/A04.gif'),
-  house: require('../../assets/images/bg_game/house/A11.gif'),
-  ground: require('../../assets/images/bg_game/ground/1101.gif'),
-  river: require('../../assets/images/bg_game/river/1110.gif'),
-  tree: require('../../assets/images/bg_game/tree/1110.gif'),
-  hatake: require('../../assets/images/bg_game/hatake/1110.gif'),
-};
 
 const nanaSpot =
   'スライムさん、こんにちは♪菜々と一緒にキャベツを作って餃子をゲットしよう♪\nまずはハウスの骨組みを建てよう！';
@@ -270,7 +250,9 @@ var Constants = {
   },
 };
 
+var _interval;
 const FarmTop = ({farmInfo, currentSelectedItem}) => {
+  const [loadTime, setLoadTime] = useState(0);
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
   const [topHatakeMenu, setTopHatakeMenu] = useState(undefined);
@@ -278,19 +260,31 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [showAdmob, setShowAdmob] = useState(false);
   const [bgImg, setBgImg] = useState([]);
 
-  // useEffect(() => {
-  //   getFarmData();
-  // }, []);
   const getBgImg = async () => {
     console.log(285, 'Farm Data');
     const response = await apiFarmData(farmInfo.farmId);
-    console.log(287, response);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
-      // console.log(304, response);
     }
   };
-  getBgImg();
+
+  const callImg = () => {
+    if (loadTime === 0) {
+      getBgImg();
+    }
+    setLoadTime((loadTime + 1) % 10);
+  };
+
+  useEffect(() => {
+    _interval= setInterval(() => callImg(), 10000);
+    return () => {
+      clearInterval(_interval);
+    };
+  }, []);
+
+  const closeTimer = () => {
+    clearInterval(_interval);
+  };
 
   const closeTopNana = () => {
     setCurNanaTag(undefined);
@@ -362,7 +356,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
       <View style={FarmTopStyles.bottomItem}>
         <GameProgressBar />
-        <GameMenu />
+        <GameMenu handleClickMenu={closeTimer} />
       </View>
     </ImageBackground>
   );

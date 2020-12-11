@@ -25,7 +25,7 @@ const contentList = [
     link: 'ranking',
   },
   {
-    name: '所持ポイント：70327っぴ',
+    name: '所持ポイント',
     link: 'point',
   },
   {

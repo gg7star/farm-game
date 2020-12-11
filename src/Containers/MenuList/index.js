@@ -37,10 +37,10 @@ const menuItems = [
     name: '作物出荷状況',
     link: 'news',
   },
-  {
-    name: '送付手続き',
-    link: 'waitDelivery',
-  },
+  // {
+  //   name: '送付手続き',
+  //   link: 'waitDelivery',
+  // },
   {
     name: '送付先情報',
     link: 'addressList',
