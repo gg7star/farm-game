@@ -6505,6 +6505,11 @@ react-native-dash@^0.0.11:
     prop-types "^15.5.10"
     react-native-measureme "0.0.2"
 
+react-native-device-info@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-7.0.0.tgz#6d930364ad510fd96d8a22479e5abc1dbe37cc84"
+  integrity sha512-2EcvtTt8O9coZ2TFW8kopfEV/TX5FNmsXJejJvk4bm6ydocyeddCiXicjLub7zWehO4ilLFm6P5swPFQaq0AMQ==
+
 react-native-gesture-handler@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.9.0.tgz#e441b1c0277c3fd4ca3e5c58fdd681e2f0ceddf0"

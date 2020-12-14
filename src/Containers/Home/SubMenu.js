@@ -40,6 +40,6 @@ const SubMenuStyles = StyleSheet.create({
     top: 10,
     position: 'absolute',
     transform: [{rotate: '90deg'}],
-    color: '#67b500'
-  }
-})
+    color: '#67b500',
+  },
+});

@@ -10,11 +10,7 @@ import {
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
-import Dash from 'react-native-dash';
-import {
-  responsiveHeight,
-  responsiveWidth,
-} from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 
 import AutoHeightImage from 'react-native-auto-height-image';
 
@@ -261,22 +257,25 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [bgImg, setBgImg] = useState([]);
 
   const getBgImg = async () => {
-    console.log(285, 'Farm Data');
+    // console.log(285, 'Farm Data');
     const response = await apiFarmData(farmInfo.farmId);
+    // console.log(262, response);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
     }
   };
 
+  bgImg.length === 0 && getBgImg();
+
   const callImg = () => {
-    if (loadTime === 0) {
+    if (loadTime === 1) {
       getBgImg();
     }
     setLoadTime((loadTime + 1) % 10);
   };
 
   useEffect(() => {
-    _interval= setInterval(() => callImg(), 10000);
+    _interval= setInterval(() => callImg(), 100000);
     return () => {
       clearInterval(_interval);
     };
@@ -348,6 +347,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         <TopHatakeMenu
           handleClick={closeTopHatakeMenu}
           handleClickItem={handleClickItem}
+          handleCloseTimer={closeTimer}
           farmInfo={farmInfo}
         />
       )}

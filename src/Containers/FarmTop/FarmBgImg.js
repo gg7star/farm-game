@@ -1,24 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
-  ScrollView,
   View,
   Text,
   Image,
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
-
-// const bgData = {
-//   sky: require('../assets/images/bg_game/sky/A04.gif'),
-//   house: require('../assets/images/bg_game/house/A11.gif'),
-//   ground: require('../assets/images/bg_game/ground/1101.gif'),
-//   river: require('../assets/images/bg_game/river/1110.gif'),
-//   tree: require('../assets/images/bg_game/tree/1110.gif'),
-//   hatake: require('../assets/images/bg_game/hatake/1110.gif'),
-// };
 
 const imgRate = responsiveWidth(100) / 240;
 

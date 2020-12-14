@@ -20,32 +20,31 @@ import {
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import {Actions} from 'react-native-router-flux';
-import {SliderBox} from "react-native-image-slider-box";
+import {SliderBox} from 'react-native-image-slider-box';
 
 import Menu from '../../Components/Menu';
 
-import Loader from './Loader.js';
-import HomeButton from './HomeButton.js';
+// import HomeButton from './HomeButton.js';
 import CategoryTab from './CategoryTab.js';
 import CategoryTabContent from './CategoryTabContent.js';
-import SubMenu from './SubMenu.js';
-import NotationModal from './NotationModal.js';
+// import SubMenu from './SubMenu.js';
+// import NotationModal from './NotationModal.js';
 import News from '../News';
 
-const homeBtnList = [
-  {
-    text: ['ゲーム', 'ガイド '],
-    bgColor: '#23A029',
-  },
-  {
-    text: [' 表記に', 'ついて'],
-    bgColor: '#B37A00',
-  },
-  {
-    text: [' MPT', 'ランキング '],
-    bgColor: '#67B500',
-  },
-];
+// const homeBtnList = [
+//   {
+//     text: ['ゲーム', 'ガイド '],
+//     bgColor: '#23A029',
+//   },
+//   {
+//     text: [' 表記に', 'ついて'],
+//     bgColor: '#B37A00',
+//   },
+//   {
+//     text: [' MPT', 'ランキング '],
+//     bgColor: '#67B500',
+//   },
+// ];
 
 const categoryTabList = [
   {
@@ -960,10 +959,6 @@ const Home = () => {
   ]);
   // const [notation, setNotation] = useState(false);
 
-  // useEffect(() => {
-  //   setTimeout(() => setLoadTime(false), 100);
-  // }, []);
-
   const handleTab = (e) => {
     if (e.nativeEvent.contentOffset.x >= responsiveWidth(100)) {
       setTabItem(1);
@@ -1007,7 +1002,6 @@ const Home = () => {
   //   setNotation(false);
   // };
 
-  // if (loadTime) return <Loader />;
   return (
     <ImageBackground
       style={HomeStyle.bgImg}

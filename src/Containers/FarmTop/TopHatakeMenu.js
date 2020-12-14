@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   ScrollView,
@@ -11,6 +11,8 @@ import {
 import {Actions} from 'react-native-router-flux';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
+
+import {apiFarmTopMenus} from '../../services/apis/game_farm';
 
 const todoIconList = [
   {
@@ -55,65 +57,87 @@ const todoIconList = [
   },
 ];
 
-const TopHatakeMenu = ({handleClick, handleClickItem, farmInfo}) => {
+const TopHatakeMenu = ({
+  handleClick,
+  handleClickItem,
+  handleCloseTimer,
+  farmInfo,
+}) => {
+  const [iconList, setIconList] = useState([]);
   const handleClickIcon = (index) => {
     handleClickItem(index);
+    handleCloseTimer();
     Actions.admob({
       nextPage: 'farmTop',
       state: {farmInfo: farmInfo, currentSelectedItem: 1},
     });
   };
 
+  const getTopMenus = async () => {
+    const response = await apiFarmTopMenus(farmInfo.farmId);
+    console.log(78, response);
+    if (response) {
+      setIconList(response);
+    }
+  };
+  iconList.length === 0 && getTopMenus();
+
+  // useEffect(() => {
+  //   getTopMenus();
+  // }, []);
+
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
       <View style={TopHatakeMenuStyles.bg}>
-        <View style={TopHatakeMenuStyles.content}>
-          <AutoHeightImage
-            width={responsiveWidth(50)}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/images/crops/1608/photo/0.gif',
-            }}
-            style={{left: '5%'}}
-          />
-          <View style={{marginTop: '3%'}}>
-            <View style={{flexDirection: 'row'}}>
-              {todoIconList.map(
-                (item, i) =>
-                  i < 4 && (
-                    <TouchableOpacity key={`${i}`} onPress={() => handleClickIcon(i)}>
-                      <AutoHeightImage
-                        key={`auto-height-image-1-${i}`}
-                        width={responsiveWidth(15)}
-                        source={{uri: item.icon}}
-                      />
-                    </TouchableOpacity>
-                  ),
-              )}
-            </View>
-            <View style={{flexDirection: 'row'}}>
-              {todoIconList.map(
-                (item, i) =>
-                  i >= 4 &&
-                  i < 7 && (
-                    <TouchableOpacity  key={`${i}`} onPress={() => handleClickIcon(i)}>
-                      <AutoHeightImage
-                        key={`auto-height-image-2-${i}`}
-                        width={responsiveWidth(15)}
-                        source={{uri: item.icon}}
-                      />
-                    </TouchableOpacity>
-                  ),
-              )}
-            </View>
+        {iconList.length > 0 && (
+          <View style={TopHatakeMenuStyles.content}>
             <AutoHeightImage
-              key={7}
-              width={responsiveWidth(15)}
-              source={{uri: todoIconList[7].icon}}
-              style={{left: responsiveWidth(60)}}
+              width={responsiveWidth(50)}
+              source={{
+                uri: iconList[0].image,
+              }}
+              style={{left: '5%'}}
             />
+            <View style={{marginTop: '3%'}}>
+              <View style={{flexDirection: 'row'}}>
+                {iconList.map(
+                  (item, i) =>
+                    i > 0 &&
+                    i < 5 && (
+                      <TouchableOpacity key={`${i}`} onPress={() => handleClickIcon(i)}>
+                        <AutoHeightImage
+                          key={`auto-height-image-1-${i}`}
+                          width={responsiveWidth(15)}
+                          source={{uri: item.image}}
+                        />
+                      </TouchableOpacity>
+                    ),
+                )}
+              </View>
+              <View style={{flexDirection: 'row'}}>
+                {iconList.map(
+                  (item, i) =>
+                    i >= 5 &&
+                    i < 8 && (
+                      <TouchableOpacity  key={`${i}`} onPress={() => handleClickIcon(i)}>
+                        <AutoHeightImage
+                          key={`auto-height-image-2-${i}`}
+                          width={responsiveWidth(15)}
+                          source={{uri: item.image}}
+                        />
+                      </TouchableOpacity>
+                    ),
+                )}
+              </View>
+              <AutoHeightImage
+                key={iconList.length - 1}
+                width={responsiveWidth(15)}
+                source={{uri: iconList[iconList.length - 1].image}}
+                style={{left: responsiveWidth(60)}}
+              />
+            </View>
           </View>
-        </View>
+        )}
       </View>
     </TouchableWithoutFeedback>
   );

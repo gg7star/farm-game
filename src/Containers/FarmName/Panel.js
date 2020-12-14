@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -19,8 +18,8 @@ const Panel = ({item, name}) => {
   const [farmName, setFarmName] = useState(name);
 
   const inputFarmName = (e) => {
-    setFarmName(e)
-  }
+    setFarmName(e);
+  };
 
   const submitFarm = () => {
     console.log('Submit')
@@ -29,24 +28,23 @@ const Panel = ({item, name}) => {
   return (
     <View style={PanelStyles.bg}>
       <View style={PanelStyles.name}>
-        <Text style={PanelStyles.nameText}>
-          農場の名前を決めてね♪
-        </Text>
-      </View>  
+        <Text style={PanelStyles.nameText}>農場の名前を決めてね♪</Text>
+      </View>
       <View style={PanelStyles.content}>
         <View style={PanelStyles.nanaImg}>
           <AutoHeightImage
             width={144}
-            source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/nana.png'}}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/nana.png',
+            }}
             style={{marginLeft: -12, marginTop: -20}}
           />
         </View>
         <View style={{margin: 8}}>
           <Text>
             <Text style={{color: '#00cc33', fontSize: 12}}>★</Text>
-            <Text style={{color: '#666666', fontSize: 12}}>
-            収穫目安
-            </Text>
+            <Text style={{color: '#666666', fontSize: 12}}>収穫目安</Text>
             <Text style={{color: '#00cc33', fontSize: 12}}>★</Text>
           </Text>
           <Text>
@@ -75,15 +73,14 @@ const Panel = ({item, name}) => {
         returnKeyType='next'
         onChange={inputFarmName}
       />
-      <TouchableOpacity 
+      <TouchableOpacity
         style={[PanelStyles.submit, PanelStyles.shadow]}
-        onPress={submitFarm}
-      >
+        onPress={submitFarm}>
         <Text style={PanelStyles.submitText}>農場を作る</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 export default Panel;
 
@@ -118,7 +115,7 @@ const PanelStyles = StyleSheet.create({
     flexDirection: 'row',
     margin: 8,
     borderRadius: 8,
-    backgroundColor: '#ffc'
+    backgroundColor: '#ffc',
   },
   nanaImg: {
     width: 120,
@@ -133,7 +130,7 @@ const PanelStyles = StyleSheet.create({
     borderWidth: 1,
     color: '#333',
     borderRadius: 12,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   submit: {
     borderColor: '#145072',
@@ -156,5 +153,5 @@ const PanelStyles = StyleSheet.create({
       height: 1,
       width: 4,
     },
-  }
-})
+  },
+});

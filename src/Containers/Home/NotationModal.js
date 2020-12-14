@@ -66,6 +66,6 @@ const NotationModalStyles = StyleSheet.create({
     left: '5%',
     top: '3%',
     zIndex: 1,
-    width: '91%'
-  }
-})
+    width: '91%',
+  },
+});

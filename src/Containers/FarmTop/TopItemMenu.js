@@ -22,9 +22,15 @@ const itemList = [
   },
 ];
 
-const TopItemMenu = ({handleClick, handleClickItem, farmInfo}) => {
+const TopItemMenu = ({
+  handleClick,
+  handleCloseTimer,
+  handleClickItem,
+  farmInfo,
+}) => {
   const handleClickIcon = (index) => {
     handleClickItem(index);
+    handleCloseTimer();
     // Actions.admob({
     //   nextPage: 'farmTop',
     //   state: {farmInfo: farmInfo, currentSelectedItem: 1},

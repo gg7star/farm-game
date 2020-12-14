@@ -1,28 +1,23 @@
 import React from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-
-} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
 
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
 
 const Loader = () => {
   return (
-    <View
-    style={LoaderStyles.bg}
-    >
-      <Image 
-      source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/loading.gif'}} 
-      style={LoaderStyles.image} />
+    <View style={LoaderStyles.bg}>
+      <Image
+        source={{
+          uri:
+            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img7/loading.gif',
+        }}
+        style={LoaderStyles.image}
+      />
       <Text style={LoaderStyles.text}>よみこみ中だよ...</Text>
     </View>
-  )
-}
+  );
+};
 
 export default Loader;
 
@@ -46,5 +41,5 @@ const LoaderStyles = StyleSheet.create({
   text: {
     color: '#fff',
     textAlign: 'center',
-  }
-})
+  },
+});

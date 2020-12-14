@@ -13,9 +13,11 @@ import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
+import DeviceInfo from 'react-native-device-info';
 
 import AccordionItem from './AccordionItem';
 import {loginWithAPI} from '../../services/apis/auth';
+import {signupWithAPI} from '../../services/apis/auth';
 import {apiMemberById} from '../../services/apis/users';
 import {setUser} from '../../redux/reducers/userSlice';
 
@@ -65,9 +67,15 @@ const Welcome = () => {
   };
   const dispatch = useDispatch();
   const goHome = async () => {
+    let uniqueId = DeviceInfo.getUniqueId();
+
+    const signUp = await signupWithAPI({
+      udid: uniqueId,
+      password: '',
+    });
     const response = await loginWithAPI({
-      mail_address: 'arai@unlimited.co.jp',
-      password: '8888',
+      udid: uniqueId,
+      password: '',
     });
     if (response && response.member) {
       const userInfo = await apiMemberById(response.member.id);
