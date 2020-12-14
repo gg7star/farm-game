@@ -6,11 +6,11 @@ import {Actions} from 'react-native-router-flux';
 const GameMenu = ({handleClickMenu}) => {
   // clearInterval(window.interval);
   const goHome = () => {
-    handleClickMenu();
+    handleClickMenu && handleClickMenu();
     Actions.home();
   };
   const goMyFarm = () => {
-    handleClickMenu();
+    handleClickMenu && handleClickMenu();
     Actions.myfarm();
   };
 

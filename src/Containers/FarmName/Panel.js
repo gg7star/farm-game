@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {connect, useDispatch} from 'react-redux';
 import {
   StyleSheet,
   ScrollView,
@@ -9,21 +10,34 @@ import {
   ImageBackground,
 } from 'react-native';
 
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import { loginWithAPI } from '../../services/apis/auth';
-
-const Panel = ({item, name}) => {
-  const [farmName, setFarmName] = useState(name);
+import {apiCreateFarmWithCropId} from '../../services/apis/farm_data';
+// , {item, name, cropId}
+const Panel = (props) => {
+  const [farmName, setFarmName] = useState(props.name);
 
   const inputFarmName = (e) => {
     setFarmName(e);
   };
 
-  const submitFarm = () => {
-    console.log('Submit')
-  }
+  const submitFarm = async () => {
+    console.log('Submit = ', props.user.user.id);
+    const response = await apiCreateFarmWithCropId({
+      name: props.name,
+      crop_id: 1058,
+      member_id: props.user.user.id,
+    });
+    console.log(32, response);
+    if (response && response.id) {
+      const farmInfo = {
+        farmId: response.id,
+        name: props.name,
+      };
+      Actions.farmTop({farmInfo: farmInfo, currentSelectedItem: null});
+    }
+  };
 
   return (
     <View style={PanelStyles.bg}>
@@ -50,7 +64,7 @@ const Panel = ({item, name}) => {
           <Text>
             <Text style={{color: '#666666', fontSize: 12}}>現実時間の</Text>
             <Text style={{color: '#ff5500', fontSize: 12}}>
-              {item.trainingGuide.split('前後')}
+              {props.item.trainingGuide.split('前後')}
             </Text>
             <Text style={{color: '#666666', fontSize: 12}}>前後</Text>
           </Text>
@@ -62,15 +76,15 @@ const Panel = ({item, name}) => {
           <Text>
             <Text style={{color: '#666666', fontSize: 12}}>現実時間の</Text>
             <Text style={{color: '#ff5500', fontSize: 12}}>
-              {item.inGameDay}
+              {props.item.inGameDay}
             </Text>
           </Text>
         </View>
       </View>
-      <TextInput 
+      <TextInput
         style={[PanelStyles.inputName, PanelStyles.shadow]}
         value={farmName}
-        returnKeyType='next'
+        returnKeyType="next"
         onChange={inputFarmName}
       />
       <TouchableOpacity
@@ -82,7 +96,7 @@ const Panel = ({item, name}) => {
   );
 };
 
-export default Panel;
+// export default Panel;
 
 const PanelStyles = StyleSheet.create({
   bg: {
@@ -155,3 +169,9 @@ const PanelStyles = StyleSheet.create({
     },
   },
 });
+
+const mapStateToProps = (state) => ({
+  user: state.user || {},
+});
+
+export default connect(mapStateToProps)(Panel);

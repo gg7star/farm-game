@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import React, {useState} from 'react';
+import {connect, useDispatch} from 'react-redux';
 
 import {
   SafeAreaView,
@@ -29,14 +29,18 @@ const addresses = [
     name: 'AAA',
   },
 ];
-const AddressList = () => {
+const AddressList = (props) => {
+  const [addressList, setAddressList] = useState([]);
 
   const getAddressList = async () => {
-    const addresses = await apiAddressList(11);
-    console.log(addresses);
+    // const response = await apiAddressList(props.user.user.id);
+    const response = await apiAddressList(11);
+    if (response && response.dataset) {
+      setAddressList(response.dataset);
+    }
   };
 
-  // getAddressList();
+  addressList.length === 0 && getAddressList();
 
   return (
     <ImageBackground
@@ -53,7 +57,7 @@ const AddressList = () => {
             style={AddressListStyles.subTitle}>
             <Text style={{color: '#fff'}}>お届け先の登録/変更</Text>
           </LinearGradient>
-          {addresses.map((item, i) => (
+          {addressList.map((item, i) => (
             <EachAddress key={i} item={item} />
           ))}
         </View>
@@ -62,7 +66,7 @@ const AddressList = () => {
   );
 };
 
-export default AddressList;
+// export default AddressList;
 
 const AddressListStyles = StyleSheet.create({
   bgImg: {
@@ -89,6 +93,9 @@ const AddressListStyles = StyleSheet.create({
   },
 });
 
-// const mapStateToProps = (state) => ({
-//   user: state.user || {},
-// });
+const mapStateToProps = (state) => ({
+  user: state.user || {},
+});
+
+export default connect(mapStateToProps)(AddressList);
+

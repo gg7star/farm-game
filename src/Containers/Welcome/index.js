@@ -227,7 +227,7 @@ const Welcome = () => {
                         uri:
                           'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/acordion/point_none.png',
                       }}
-                      />
+                    />
                   ) : (
                     <Image
                       style={styles.openClose}

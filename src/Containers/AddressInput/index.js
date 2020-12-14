@@ -21,9 +21,9 @@ import Header from '../../Components/Header.js';
 import HeaderBrownBar from '../../Components/HeaderBrownBar.js';
 
 const prefectures = [
-  {label: 'Football', value: 'football'},
-  {label: 'Baseball', value: 'baseball'},
-  {label: 'Volleyball', value: 'volleyball'},
+  {label: '北海道', value: '北海道'},
+  {label: '青森県', value: '青森県'},
+  {label: '東京都', value: '東京都'},
 ];
 
 const myself = [
@@ -35,12 +35,40 @@ const myself = [
   },
 ];
 
-const AddressInput = () => {
+const AddressInput = ({addressInfo}) => {
   const goAddressCheck = () => {
-    Actions.addressCheck();
+    console.log(40, addressInfo);
+    // Actions.addressCheck();
   };
 
-  const [slt, setSlt] = useState(false);
+  const [slt, setSlt] = useState(-1);
+  const [inputData, setInputData] = useState({
+    name_kanji_sei: '',
+    name_kanji_mei: '',
+    name_kana_sei: '',
+    name_kana_mei: '',
+    zip: '',
+    area: 0,
+    str_area: '東京都',
+    addr1: '',
+    addr2: '',
+    tel: '',
+    tel_mobile: '',
+    memo: '',
+    reserved1: 0,
+    str_reserved1: '本人',
+  });
+  const [area, setArea] = useState('東京都');
+
+  if (addressInfo && slt === -1) {
+    if (addressInfo.str_reserved1 === '本人以外') {
+      setSlt(2);
+    } else {
+      setSlt(1);
+    }
+    setInputData(addressInfo);
+    setArea(addressInfo.str_area);
+  }
 
   return (
     <ImageBackground
@@ -65,11 +93,12 @@ const AddressInput = () => {
           <LinearGradient
             colors={['#f9f9f9', '#eeeeee']}
             style={AddressInputStyles.subTitle}>
-            <RadioButtonRN 
+            <RadioButtonRN
               data={myself}
-              style={AddressInputStyles.radioArea} 
+              style={AddressInputStyles.radioArea}
               boxStyle={{backgroundColor: 'transparent'}}
               textStyle={AddressInputStyles.contentText}
+              initial={slt}
             />
             <Text style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
               ※本人…畑っぴをご利用されているご自身{'\n'}
@@ -89,14 +118,17 @@ const AddressInput = () => {
               姓:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>はだ</Text>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.name_kana_sei}
+              </Text>
             </View>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               名:
             </Text>
-
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>あきら</Text>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.name_kana_mei}
+              </Text>
             </View>
           </LinearGradient>
 
@@ -114,14 +146,91 @@ const AddressInput = () => {
               セイ:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>はだ</Text>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.name_kanji_sei}
+              </Text>
             </View>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               メイ:
             </Text>
 
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>あきら</Text>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.name_kanji_mei}
+              </Text>
+            </View>
+          </LinearGradient>
+
+          <LinearGradient
+            colors={['#6facd5', '#497bae']}
+            style={AddressInputStyles.subTitle}>
+            <Text style={AddressInputStyles.subTitleText}>メールアドレス</Text>
+          </LinearGradient>
+          <LinearGradient 
+            colors={['#f9f9f9', '#eeeeee']}
+            style={AddressInputStyles.subTitle}>
+            <View style={AddressInputStyles.inputArea}>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.memo}
+              </Text>
+            </View>
+            <Text style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
+              ※作物の配送に関するご連絡をする場合があります。
+              収穫者ご本人のメールアドレスを必ずご入力ください。また、ld-inc.jpからのメールを受信できるよう設定を変更してください。
+            </Text>
+          </LinearGradient>
+
+          <LinearGradient
+            colors={['#6facd5', '#497bae']}
+            style={AddressInputStyles.subTitle}>
+            <Text style={AddressInputStyles.subTitleText}>住所</Text>
+          </LinearGradient>
+          <LinearGradient
+            colors={['#f9f9f9', '#eeeeee']}
+            style={AddressInputStyles.subTitle}>
+            <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
+              郵便番号:
+            </Text>
+            <View style={AddressInputStyles.inputArea}>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.zip}
+              </Text>
+            </View>
+            <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
+              都道府県:
+            </Text>
+            <View style={AddressInputStyles.inputArea}>
+              <RNPickerSelect
+                onValueChange={(value) => setArea(value)}
+                items={prefectures}
+                value={area}
+                style={{
+                  inputAndroid: {
+                    backgroundColor: 'transparent',
+                  },
+                  iconContainer: {
+                    top: 5,
+                    right: 15,
+                  },
+                }}
+                userNativeAndroidPickerStyle={false}
+              />
+            </View>
+            <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
+              市町村、番地:
+            </Text>
+            <View style={AddressInputStyles.inputArea}>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.addr1}
+              </Text>
+            </View>
+            <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
+              マンション、アパート名:
+            </Text>
+            <View style={AddressInputStyles.inputArea}>
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.addr2}
+              </Text>
             </View>
           </LinearGradient>
 
@@ -129,143 +238,58 @@ const AddressInput = () => {
             colors={['#6facd5', '#497bae']}
             style={AddressInputStyles.subTitle}>
             <Text style={AddressInputStyles.subTitleText}>
-              メールアドレス
+              連絡先(両方とも入力必須/携帯はハイフン不要)
             </Text>
           </LinearGradient>
           <LinearGradient 
             colors={['#f9f9f9', '#eeeeee']}
-            style = {AddressInputStyles.subTitle}>
-            <View style={AddressInputStyles.inputArea}>
-              <Text 
-                style={AddressInputStyles.contentText}
-              >
-                hada@unlimited.co.jp
-              </Text>
-            </View>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginVertical: 8}]}
-            >
-              ※作物の配送に関するご連絡をする場合があります。 収穫者ご本人のメールアドレスを必ずご入力ください。また、ld-inc.jpからのメールを受信できるよう設定を変更してください。
-            </Text>
-          </LinearGradient>
-
-          <LinearGradient 
-            colors={['#6facd5', '#497bae']}
-            style = {AddressInputStyles.subTitle}>
-            <Text style={AddressInputStyles.subTitleText}>住所</Text>
-          </LinearGradient>
-          <LinearGradient 
-            colors={['#f9f9f9', '#eeeeee']}
-            style = {AddressInputStyles.subTitle}>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginTop: 8}]}
-            >
-              郵便番号:
-            </Text>
-            <View style={AddressInputStyles.inputArea}>
-              <Text 
-                style={AddressInputStyles.contentText}
-              >
-                1500042
-              </Text>
-            </View>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginTop: 8}]}
-            >
-              都道府県:
-            </Text>
-            <View style={AddressInputStyles.inputArea}>
-              <RNPickerSelect
-                onValueChange={(value) => console.log(value)}
-                items={prefectures}
-                // value={'volleyball'}
-              />
-            </View>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginTop: 8}]}
-            >
-              市町村、番地:
-            </Text>
-            <View style={AddressInputStyles.inputArea}>
-              <Text 
-                style={AddressInputStyles.contentText}
-              >
-                渋谷区宇田川町
-              </Text>
-            </View>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginTop: 8}]}
-            >
-              マンション、アパート名:
-            </Text>
-            <View style={AddressInputStyles.inputArea}>
-              <Text 
-                style={AddressInputStyles.contentText}
-              >
-                ４２－８－２０２
-              </Text>
-            </View>              
-          </LinearGradient>
-
-          <LinearGradient 
-            colors={['#6facd5', '#497bae']}
-            style = {AddressInputStyles.subTitle}>
-            <Text style={AddressInputStyles.subTitleText}>連絡先(両方とも入力必須/携帯はハイフン不要)</Text>
-          </LinearGradient>            
-          <LinearGradient 
-            colors={['#f9f9f9', '#eeeeee']}
-            style = {AddressInputStyles.subTitle}>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginTop: 8}]}
-            >
+            style={AddressInputStyles.subTitle}>
+            <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               電話番号:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text 
-                style={AddressInputStyles.contentText}
-              >
-                0334621930
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.tel}
               </Text>
             </View>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginTop: 8}]}
-            >
+            <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               携帯番号:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text 
-                style={AddressInputStyles.contentText}
-              >
-                
+              <Text style={AddressInputStyles.contentText}>
+                {inputData.tel_mobile}
               </Text>
             </View>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginVertical: 8}]}
-            >
-              ※連絡可能な電話番号が1つの場合は同じ番号を両方に入力して下さい。{'\n'}
+            <Text style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
+              ※連絡可能な電話番号が1つの場合は同じ番号を両方に入力して下さい。
+              {'\n'}
               ※商品お届け時に不在の場合はヤマト運輸がご連絡するため、着信がリアルタイムでわかる電話番号でお願いします
             </Text>
           </LinearGradient>
 
-          <LinearGradient 
+          <LinearGradient
             colors={['#6facd5', '#497bae']}
-            style = {AddressInputStyles.subTitle}>
-            <Text style={AddressInputStyles.subTitleText}>ヤマトの便利なメールサービス</Text>
-          </LinearGradient>            
-          <LinearGradient 
+            style={AddressInputStyles.subTitle}>
+            <Text style={AddressInputStyles.subTitleText}>
+              ヤマトの便利なメールサービス
+            </Text>
+          </LinearGradient>
+          <LinearGradient
             colors={['#f9f9f9', '#eeeeee']}
-            style = {AddressInputStyles.subTitle}>
-            <Text 
-              style={[AddressInputStyles.contentText, {marginVertical: 8}]}
-            >
+            style={AddressInputStyles.subTitle}>
+            <Text style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
               ☆登録するとスムーズに受け取りができます！！
             </Text>
           </LinearGradient>
           <TouchableOpacity>
             <LinearGradient 
               colors={['#ffefaa', '#ffe155']}
-              style = {AddressInputStyles.yamatoBg}>
-              <Text style={[AddressInputStyles.contentText, {marginVertical: 8, width: '95%'}]}>
+              style={AddressInputStyles.yamatoBg}>
+              <Text
+                style={[
+                  AddressInputStyles.contentText,
+                  {marginVertical: 8, width: '95%'},
+                ]}>
                 利用する方はコチラから
               </Text>
               <View style={AddressInputStyles.iconBg}>
@@ -281,13 +305,8 @@ const AddressInput = () => {
             <ImageBackground
               style={AddressInputStyles.registBg}
               resizeMode="repeat"
-              source={require('../../assets/images/submenubg.png')}
-            >
-              <Text
-                style={{color: '#630'}}
-              >
-                ※最大5件まで登録できます。
-              </Text>
+              source={require('../../assets/images/submenubg.png')} >
+              <Text style={{color: '#630'}}>※最大5件まで登録できます。</Text>
             </ImageBackground>
           </View>
 

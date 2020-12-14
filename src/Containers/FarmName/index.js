@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
+
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
@@ -12,7 +12,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Dash from 'react-native-dash';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
-import { apiFarmNameByCropId } from '../../services/apis/un_page_data';
+import {apiFarmNameByCropId} from '../../services/apis/un_page_data';
 
 import GameBgImg from '../../Components/GameBgImg';
 import GameMenu from '../../Components/GameMenu';
@@ -53,7 +53,11 @@ const FarmName = ({gameData}) => {
       </View>
 
       <GameBgImg bgData={gameBgData} />
-      <Panel item={gameData.Mcaption} name={gameData.Mtitle + '農場'} />
+      <Panel
+        item={gameData.Mcaption}
+        name={gameData.Mtitle + '農場'}
+        cropId={gameData.id}
+      />
       <GameMenu />
     </ImageBackground>
   );
@@ -76,7 +80,7 @@ const FarmNameStyles = StyleSheet.create({
     borderBottomWidth: 2,
     zIndex: 49,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headerText: {
     width: '80%',
@@ -84,12 +88,12 @@ const FarmNameStyles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderRadius: 8,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headerContent: {
     fontSize: 14,
     paddingVertical: 2,
     paddingHorizontal: '1%',
-    lineHeight: 28
-  }
-})
+    lineHeight: 28,
+  },
+});

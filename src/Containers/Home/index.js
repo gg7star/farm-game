@@ -1171,7 +1171,7 @@ const Home = () => {
         transparent={true}
         visible={newNotification}
         onRequestClose={() => {
-          console.log("Modal has been closed.");
+          console.log('Modal has been closed.');
         }}>
         <View style={HomeStyle.modalContent}>
           <ImageBackground

@@ -20,14 +20,19 @@ import AutoHeightImage from 'react-native-auto-height-image';
 
 const EachAddress = ({item}) => {
   const goAddressInput = () => {
-    Actions.addressInput();
+    Actions.addressInput({addressInfo: item});
   };
   return (
     <TouchableOpacity onPress={goAddressInput}>
       <LinearGradient
         colors={['#ffffff', '#f1f1f1']}
         style={EachAddressStyles.bg}>
-        <Text style={{fontSize: 12, width: '95%'}}>{item.name}</Text>
+        <Text style={{fontSize: 12, width: '95%'}}>
+          {item.name_kana_sei + '  ' + item.name_kana_mei}({item.str_reserved1})
+          {'\n'}〒{item.zip}
+          {'\n'}
+          {item.addr1}
+        </Text>
         <View style={EachAddressStyles.iconBg}>
           <Image
             style={EachAddressStyles.iconNextImg}

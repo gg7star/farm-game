@@ -157,7 +157,6 @@ const LoginStyle = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 8,
     marginVertical: 16,
-    borderRadius: 8,
   },
   formTitle: {
     color: '#fff',
@@ -167,10 +166,10 @@ const LoginStyle = StyleSheet.create({
     paddingHorizontal: 4,
   },
   prizeText: {
-    backgroundColor: '#67b500',    
+    backgroundColor: '#67b500',
     borderLeftColor: 'rgba(0, 0, 0, 0.3)',
     borderLeftWidth: 16,
-    borderStyle: 'solid',    
+    borderStyle: 'solid',
   },
   topCorner: {
     borderTopRightRadius: 8,
@@ -181,7 +180,7 @@ const LoginStyle = StyleSheet.create({
     marginVertical: 16,
   },
   container: {
-    paddingTop: 23
+    paddingTop: 23,
   },
   input: {
     paddingHorizontal: 1,
@@ -191,7 +190,7 @@ const LoginStyle = StyleSheet.create({
     borderRadius: 8,
     borderBottomColor: 'rgb(118, 118, 118)',
     borderRightColor: 'rgb(118, 118, 118)',
-    borderWidth: 2
+    borderWidth: 2,
   },
   submitButton: {
     paddingVertical: 16,
@@ -212,7 +211,6 @@ const LoginStyle = StyleSheet.create({
     marginVertical: 4,
     backgroundColor: 'rgba(29, 187, 47, 1.00)',
     lineHeight: 16,
-    // marginBottom: 8,
     borderRadius: 8,
   },
   forgotPasswordText: {
@@ -221,7 +219,6 @@ const LoginStyle = StyleSheet.create({
     marginVertical: 4,
   },
 });
-
 
 const mapStateToProps = (state) => ({
   user: state.user || {},
