@@ -88,7 +88,7 @@ const MenuList = () => {
     <ImageBackground
       style={MenuListStyle.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.png')}>
+      source={require('../../assets/images/bg_pattern.gif')}>
       <ScrollView>
         {menuItems.map((item, i) => (
           <MenuItem key={i} item={item} />

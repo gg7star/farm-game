@@ -658,9 +658,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development: Radik Dev (7C558AWAJ4)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Comicul Inc., (6CXM3M45YA)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.11;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 6CXM3M45YA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HatakeGame/Info.plist;
@@ -670,9 +670,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.comicul-inc.farm";
+				PRODUCT_BUNDLE_IDENTIFIER = com.potikuru.farm;
 				PRODUCT_NAME = HatakeGame;
-				PROVISIONING_PROFILE_SPECIFIER = "farm-game-dev";
+				PROVISIONING_PROFILE_SPECIFIER = "farm-game-prod";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -685,9 +685,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Development: Radik Dev (7C558AWAJ4)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: Comicul Inc., (6CXM3M45YA)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.0.11;
+				CURRENT_PROJECT_VERSION = 1.0.1;
 				DEVELOPMENT_TEAM = 6CXM3M45YA;
 				INFOPLIST_FILE = HatakeGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -696,9 +696,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.comicul-inc.farm";
+				PRODUCT_BUNDLE_IDENTIFIER = com.potikuru.farm;
 				PRODUCT_NAME = HatakeGame;
-				PROVISIONING_PROFILE_SPECIFIER = "farm-game-dev";
+				PROVISIONING_PROFILE_SPECIFIER = "farm-game-prod";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

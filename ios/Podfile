@@ -11,7 +11,8 @@ target 'HatakeGame' do
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
-
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+  
   target 'HatakeGameTests' do
     inherit! :complete
     # Pods for testing

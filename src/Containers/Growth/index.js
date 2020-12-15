@@ -50,7 +50,7 @@ const Growth = (props) => {
     <ImageBackground
       style={GrowthStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.png')}>
+      source={require('../../assets/images/bg_pattern.gif')}>
       <ScrollView style={{flexDirection: 'column'}}>
         <View style={GrowthStyles.header}>
           <Text style={GrowthStyles.headerText}>栽培履歴</Text>

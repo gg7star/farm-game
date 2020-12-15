@@ -43,7 +43,7 @@ const WaitDelivery2 = () => {
     <ImageBackground
       style={WaitDelivery2Styles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.png')}>
+      source={require('../../assets/images/bg_pattern.gif')}>
       <ScrollView style={{flexDirection: 'column'}}>
         <Header title='送付手続き' />
         
