@@ -89,54 +89,28 @@ const Welcome = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
-      <ScrollView>
-        <TouchableOpacity onPress={goHome}>
-          {/* <ImageBackground
-            style={styles.headerLogin}
-            source={{
-              uri:
-                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/bg/category_bg4.gif',
-            }}>
-            <Image
-              source={{
-                uri:
-                  'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/logo2.png',
-              }}
-              style={styles.logo}
-              resizeMode="cover"
-            />
-            <Text style={styles.logoText}>～手のひらの小さな農園～</Text>
-            <TouchableOpacity style={styles.logoTouch}>
-              <Image
-                source={{
-                  uri:
-                    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/btn/ftop_login.png',
-                }}
-                style={styles.loginBtn}
-              />
-            </TouchableOpacity>
-          </ImageBackground> */}
+      {/* <ScrollView> */}
+      <TouchableOpacity onPress={goHome}>
+        <View>
+          <AutoHeightImage
+            width={responsiveWidth(100)}
+            source={require('../../assets/images/Welcome_top.png')}
+          />
+        </View>
+        <View style={{alignItems: 'center', marginVertical: 20}}>
+          <AutoHeightImage
+            width={304}
+            source={require('../../assets/images/start_button.png')}
+          />
+        </View>
+        <View style={{alignItems: 'flex-end'}}>
+          <AutoHeightImage
+            width={172}
+            source={require('../../assets/images/phone_change.png')}
+          />
+        </View>
 
-          <View>
-            <AutoHeightImage
-              width={responsiveWidth(100)}
-              source={require('../../assets/images/Welcome_top.png')}
-            />
-          </View>
-          <View style={{alignItems: 'center', marginVertical: 20}}>
-            <AutoHeightImage
-              width={304}
-              source={require('../../assets/images/start_button.png')}
-            />
-          </View>
-          <View style={{alignItems: 'flex-end'}}>
-            <AutoHeightImage
-              width={172}
-              source={require('../../assets/images/phone_change.png')}
-            />
-          </View>
-
-          <View>
+          {/* <View>
             <View style={{flexDirection: 'row'}}>
               <TouchableOpacity
                 style={styles.tabItem}
@@ -269,10 +243,10 @@ const Welcome = () => {
                   'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/ground/ground_bg5.png',
               }}
             />
-          </View>
-          <View style={{width: '100%', height: 10}} />
-        </TouchableOpacity>
-      </ScrollView>
+          </View> */}
+        <View style={{width: '100%', height: 10}} />
+      </TouchableOpacity>
+      {/* </ScrollView> */}
     </View>
   );
 };
