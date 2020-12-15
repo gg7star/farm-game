@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   ImageBackground,
   Modal,
+  ActivityIndicator,
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
@@ -255,6 +256,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [topItemMenu, setTopItemMenu] = useState(currentSelectedItem);
   const [showAdmob, setShowAdmob] = useState(false);
   const [bgImg, setBgImg] = useState([]);
+  const [curWeather, setCurWeather] = useState(undefined);
 
   const getBgImg = async () => {
     // console.log(285, 'Farm Data');
@@ -262,6 +264,11 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     // console.log(262, response);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
+    }
+
+    const responseWeather = await apiFarmData(farmInfo.farmId);
+    if (responseWeather && responseWeather.weather_predictions) {
+      setCurWeather(response.weather_predictions);
     }
   };
 
@@ -299,7 +306,6 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     if (response && response.weather_predictions) {
       setTopNana(response.weather_predictions);
       setCurNanaTag('weather');
-      console.log(304, response);
     }
   };
 
@@ -315,9 +321,9 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     setTopItemMenu(false);
   };
 
-  const handleClickItem = (ItemIndex) => {
+  const handleClickItem = (ItemName) => {
     setTopHatakeMenu(false);
-    setTopItemMenu(ItemIndex + 1);
+    setTopItemMenu(ItemName);
   };
 
   return (
@@ -330,10 +336,16 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       </View>
 
       {bgImg.length > 0 && <FarmBgImg bgData={bgImg} />}
-      <Weather clickWeather={showWeather} />
+      <Weather clickWeather={showWeather} curWeather={curWeather} />
       <Nutrition />
       <Moisture />
       <Calendar />
+      {/* <ActivityIndicator
+        size="large"
+        style={FarmTopStyles.loading}
+        animating={true}
+        color="#67b500"
+      /> */}
       <GameEngine
         clickTopNana={showNanaSpot}
         clickTopHatakeMenu={showTopHatakeMenu}
@@ -393,5 +405,11 @@ const FarmTopStyles = StyleSheet.create({
     position: 'absolute',
     top: 440,
     zIndex: 100,
+  },
+  loading: {
+    position: 'absolute',
+    top: 250,
+    left: responsiveWidth(45),
+    zIndex: 200,
   },
 });

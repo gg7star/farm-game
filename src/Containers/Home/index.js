@@ -1311,7 +1311,6 @@ const HomeStyle = StyleSheet.create({
     height: responsiveHeight(86),
   },
   modalBgImg: {
-    // borderRadius: 8,
     borderWidth: 5,
     borderColor: '#c30',
   },

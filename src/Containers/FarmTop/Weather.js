@@ -12,19 +12,37 @@ import {
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const Weather = ({clickWeather}) => {
-
+const Weather = ({clickWeather, curWeather}) => {
   return (
     <TouchableWithoutFeedback onPress={clickWeather}>
-      <View style={WeatherStyles.bg}>   
-        <AutoHeightImage
+      <View style={WeatherStyles.bg}>
+        {curWeather ? (
+          <AutoHeightImage
+            width={responsiveWidth(16)}
+            source={{
+              uri: curWeather[0].image,
+            }}
+          />
+        ) : (
+          <AutoHeightImage
+            width={responsiveWidth(16)}
+            source={{
+              uri:
+                'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather.png',
+            }}
+          />
+        )}
+        {/* <AutoHeightImage
           width={responsiveWidth(16)}
-          source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather.png'}} 
-        />
+          source={{
+            uri:
+              'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/weather.png',
+          }}
+        /> */}
       </View>
     </TouchableWithoutFeedback>
-  )
-}
+  );
+};
 
 export default Weather;
 

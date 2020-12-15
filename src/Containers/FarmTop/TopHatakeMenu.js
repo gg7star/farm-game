@@ -64,8 +64,8 @@ const TopHatakeMenu = ({
   farmInfo,
 }) => {
   const [iconList, setIconList] = useState([]);
-  const handleClickIcon = (index) => {
-    handleClickItem(index);
+  const handleClickIcon = (name) => {
+    handleClickItem(name);
     handleCloseTimer();
     Actions.admob({
       nextPage: 'farmTop',
@@ -119,7 +119,7 @@ const TopHatakeMenu = ({
                   (item, i) =>
                     i >= 5 &&
                     i < 8 && (
-                      <TouchableOpacity  key={`${i}`} onPress={() => handleClickIcon(i)}>
+                      <TouchableOpacity  key={`${i}`} onPress={() => handleClickIcon(item.name)}>
                         <AutoHeightImage
                           key={`auto-height-image-2-${i}`}
                           width={responsiveWidth(15)}

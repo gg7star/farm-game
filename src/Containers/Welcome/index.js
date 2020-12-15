@@ -21,6 +21,8 @@ import {signupWithAPI} from '../../services/apis/auth';
 import {apiMemberById} from '../../services/apis/users';
 import {setUser} from '../../redux/reducers/userSlice';
 
+import Spinner from 'react-native-loading-spinner-overlay';
+
 const tab1ImgList = [
   'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/ftop/img_ftop2.png',
   'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/ftop/img_ftop3.png',
@@ -61,6 +63,7 @@ const accordionList = [
 const Welcome = () => {
   const [activeTab, setActiveTab] = useState(true);
   const [expanded, setExpanded] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState(false);
 
   const toggleExpand = () => {
     setExpanded(!expanded);
@@ -68,6 +71,7 @@ const Welcome = () => {
   const dispatch = useDispatch();
   const goHome = async () => {
     let uniqueId = DeviceInfo.getUniqueId();
+    setLoadingStatus(true);
 
     const signUp = await signupWithAPI({
       udid: uniqueId,
@@ -82,6 +86,7 @@ const Welcome = () => {
       if (userInfo) {
         dispatch(setUser(userInfo));
         Actions.home();
+        setLoadingStatus(false);
       }
     }
     // Actions.home();
@@ -89,6 +94,7 @@ const Welcome = () => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
+      <Spinner visible={loadingStatus} />
       {/* <ScrollView> */}
       <TouchableOpacity onPress={goHome}>
         <View>

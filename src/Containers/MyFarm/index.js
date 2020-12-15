@@ -21,7 +21,7 @@ import {apiMyFarm} from '../../services/apis/myfarm';
 
 const farmList = [
   {
-    farmId: 364180,
+    farmId: 362971,
     name: '無料ゲーム：白菜農場',
     date: '155日目',
     farmImg:

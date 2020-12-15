@@ -13,8 +13,8 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Dash from 'react-native-dash';
-import { responsiveWidth } from 'react-native-responsive-dimensions';
-import { Actions } from 'react-native-router-flux';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
+import {Actions} from 'react-native-router-flux';
 import { loginWithAPI } from '../../services/apis/auth';
 import { apiMemberById } from '../../services/apis/users';
 import { setUser } from '../../redux/reducers/userSlice';
@@ -117,7 +117,7 @@ const Login = (props) => {
                 dashColor='rgb(142, 142, 142)'
                 dashThickness={1} />
                 <Text style={{height: 8}}>{'\n'}</Text>
-              </View>              
+              </View>
             </View>
           </View>
         </ScrollView>

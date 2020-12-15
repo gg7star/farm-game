@@ -12,19 +12,20 @@ import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimen
 import AutoHeightImage from 'react-native-auto-height-image';
 
 const Calendar = ({item}) => {
-
-
   return (
-    <View style={CalendarStyles.bg}>   
+    <View style={CalendarStyles.bg}>
       <AutoHeightImage
         width={responsiveWidth(20)}
-        source={{uri: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/calendar_base.png'}} 
+        source={{
+          uri:
+            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/calendar_base.png',
+        }}
       />
       <Text style={CalendarStyles.monthText}>December</Text>
-      <Text style={CalendarStyles.dayText}>7</Text>
+      <Text style={CalendarStyles.dayText}>12</Text>
     </View>
-  )
-}
+  );
+};
 
 export default Calendar;
 
@@ -36,7 +37,7 @@ const CalendarStyles = StyleSheet.create({
     left: responsiveWidth(78),
     top: 50,
     zIndex: 1,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   monthText: {
     color: '#fff',
@@ -46,7 +47,7 @@ const CalendarStyles = StyleSheet.create({
     top: responsiveWidth(4),
     fontWeight: 'bold',
     width: 60,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   dayText: {
     fontSize: 40,
@@ -56,5 +57,5 @@ const CalendarStyles = StyleSheet.create({
     width: 80,
     textAlign: 'center',
     // fontWeight: 'bold'
-  }
-})
+  },
+});
