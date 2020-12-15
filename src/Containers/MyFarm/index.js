@@ -67,7 +67,7 @@ const MyFarm = (props) => {
       style={MyFarmStyles.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
-      <ScrollView style={{flexDirection: 'column'}}>
+      <ScrollView>
         <View style={MyFarmStyles.header}>
           <Text style={MyFarmStyles.headerText}>MY FARM</Text>
           <View style={MyFarmStyles.headerAccount}>
@@ -88,7 +88,7 @@ const MyFarm = (props) => {
         <View style={MyFarmStyles.farmData}>
           <ImageBackground
             style={{width: '100%'}}
-            imageStyle={{borderRadius: 8}}
+            // imageStyle={{borderRadius: 8}}
             source={{
               uri:
                 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/20150422/category_bg2.gif',
@@ -113,6 +113,7 @@ const MyFarmStyles = StyleSheet.create({
   bgImg: {
     width: responsiveWidth(100),
     height: '100%',
+    // marginRight: -50
   },
   header: {
     width: '100%',
@@ -154,7 +155,7 @@ const MyFarmStyles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    padding: '1%',
+    padding: '0%',
   },
 });
 

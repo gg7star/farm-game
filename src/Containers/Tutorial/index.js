@@ -33,7 +33,7 @@ const Tutorial = () => {
     <ImageBackground
       style={TutorialStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.png')}>
+      source={require('../../assets/images/bg_pattern_1.gif')}>
       <ScrollView>
         <Header title="ゲームガイド" />
         <View style={TutorialStyles.corner}>

@@ -1006,7 +1006,7 @@ const Home = () => {
     <ImageBackground
       style={HomeStyle.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.png')}>
+      source={require('../../assets/images/bg_pattern_1.gif')}>
       {/* <View style={HomeStyle.header}>
         <View style={HomeStyle.headerNews}></View>
         <View style={HomeStyle.headerAccount}>
@@ -1311,7 +1311,7 @@ const HomeStyle = StyleSheet.create({
     height: responsiveHeight(86),
   },
   modalBgImg: {
-    borderRadius: 8,
+    // borderRadius: 8,
     borderWidth: 5,
     borderColor: '#c30',
   },

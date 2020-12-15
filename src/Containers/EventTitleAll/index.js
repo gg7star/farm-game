@@ -35,7 +35,7 @@ const EventTitleAll = () => {
     <ImageBackground
       style={EventTitleAllStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.png')}>
+      source={require('../../assets/images/bg_pattern_1.gif')}>
         <ScrollView style={{flexDirection: 'column'}}>
           <Header title='称号保持者' />
           
