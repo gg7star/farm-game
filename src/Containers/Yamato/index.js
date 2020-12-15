@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   Text,
@@ -97,9 +96,7 @@ const Yamato = () => {
         <LinearGradient
           colors={['#6facd5', '#497bae']}
           style={YamatoStyles.subTitle}>
-          <Text style={YamatoStyles.subTitleText}>
-            登録手順はとても簡単!!
-          </Text>
+          <Text style={YamatoStyles.subTitleText}>登録手順はとても簡単!!</Text>
         </LinearGradient>
         <LinearGradient
           colors={['#f9f9f9', '#eeeeee']}
@@ -163,7 +160,6 @@ const Yamato = () => {
       </ScrollView>
       <Menu3 />
     </ImageBackground>
-  
   );
 };
 

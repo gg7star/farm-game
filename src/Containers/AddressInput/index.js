@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
+  TextInput,
   Image,
   ImageBackground,
   TouchableOpacity,
@@ -36,11 +36,6 @@ const myself = [
 ];
 
 const AddressInput = ({addressInfo}) => {
-  const goAddressCheck = () => {
-    console.log(40, addressInfo);
-    // Actions.addressCheck();
-  };
-
   const [slt, setSlt] = useState(-1);
   const [inputData, setInputData] = useState({
     name_kanji_sei: '',
@@ -70,6 +65,32 @@ const AddressInput = ({addressInfo}) => {
     setArea(addressInfo.str_area);
   }
 
+  const handleChangeValue = (e, key) => {
+    let tempData = {};
+    tempData = inputData;
+    tempData[key] = e.nativeEvent.text;
+    setInputData(tempData);
+  };
+
+  const handleSelectValue = (e) => {
+    let tempData = {};
+    tempData = inputData;
+    tempData.str_reserved1 = e.label;
+    setInputData(tempData);
+  };
+
+  const goAddressCheck = () => {
+    let tempData = {};
+    tempData = inputData;
+    tempData.str_area = area;
+    setInputData(tempData);
+    Actions.addressCheck({addressInfo: inputData});
+  };
+
+  const goYamato = () => {
+    Actions.yamato();
+  };
+
   return (
     <ImageBackground
       style={AddressInputStyles.bgImg}
@@ -95,6 +116,7 @@ const AddressInput = ({addressInfo}) => {
             style={AddressInputStyles.subTitle}>
             <RadioButtonRN
               data={myself}
+              selectedBtn={(e) => handleSelectValue(e)}
               style={AddressInputStyles.radioArea}
               boxStyle={{backgroundColor: 'transparent'}}
               textStyle={AddressInputStyles.contentText}
@@ -105,7 +127,7 @@ const AddressInput = ({addressInfo}) => {
               ※本人以外…プレゼント、ご家族ご友人宛てなど
             </Text>
           </LinearGradient>
-          <LinearGradient 
+          <LinearGradient
             colors={['#6facd5', '#497bae']}
             style={AddressInputStyles.subTitle}>
             <Text style={AddressInputStyles.subTitleText}>お名前(漢字)</Text>
@@ -118,17 +140,25 @@ const AddressInput = ({addressInfo}) => {
               姓:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.name_kana_sei}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.name_kana_sei}
+                onChange={(e) => handleChangeValue(e, 'name_kana_sei')}
+              />
             </View>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               名:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.name_kana_mei}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.name_kana_mei}
+                onChange={(e) => handleChangeValue(e, 'name_kana_mei')}
+              />
             </View>
           </LinearGradient>
 
@@ -139,25 +169,33 @@ const AddressInput = ({addressInfo}) => {
               お名前(カタカナ)
             </Text>
           </LinearGradient>
-          <LinearGradient 
+          <LinearGradient
             colors={['#f9f9f9', '#eeeeee']}
             style={AddressInputStyles.subTitle}>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               セイ:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.name_kanji_sei}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.name_kanji_sei}
+                onChange={(e) => handleChangeValue(e, 'name_kanji_sei')}
+              />
             </View>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               メイ:
             </Text>
 
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.name_kanji_mei}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.name_kanji_mei}
+                onChange={(e) => handleChangeValue(e, 'name_kanji_mei')}
+              />
             </View>
           </LinearGradient>
 
@@ -170,9 +208,13 @@ const AddressInput = ({addressInfo}) => {
             colors={['#f9f9f9', '#eeeeee']}
             style={AddressInputStyles.subTitle}>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.memo}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.memo}
+                onChange={(e) => handleChangeValue(e, 'memo')}
+              />
             </View>
             <Text style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
               ※作物の配送に関するご連絡をする場合があります。
@@ -192,9 +234,13 @@ const AddressInput = ({addressInfo}) => {
               郵便番号:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.zip}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.zip}
+                onChange={(e) => handleChangeValue(e, 'zip')}
+              />
             </View>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               都道府県:
@@ -220,17 +266,25 @@ const AddressInput = ({addressInfo}) => {
               市町村、番地:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.addr1}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.addr1}
+                onChange={(e) => handleChangeValue(e, 'addr1')}
+              />
             </View>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               マンション、アパート名:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.addr2}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.addr2}
+                onChange={(e) => handleChangeValue(e, 'addr2')}
+              />
             </View>
           </LinearGradient>
 
@@ -241,24 +295,32 @@ const AddressInput = ({addressInfo}) => {
               連絡先(両方とも入力必須/携帯はハイフン不要)
             </Text>
           </LinearGradient>
-          <LinearGradient 
+          <LinearGradient
             colors={['#f9f9f9', '#eeeeee']}
             style={AddressInputStyles.subTitle}>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               電話番号:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.tel}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.tel}
+                onChange={(e) => handleChangeValue(e, 'tel')}
+              />
             </View>
             <Text style={[AddressInputStyles.contentText, {marginTop: 8}]}>
               携帯番号:
             </Text>
             <View style={AddressInputStyles.inputArea}>
-              <Text style={AddressInputStyles.contentText}>
-                {inputData.tel_mobile}
-              </Text>
+              <TextInput
+                style={AddressInputStyles.contentText}
+                underlineColorAndroid="transparent"
+                autoCapitalize="none"
+                defaultValue={inputData.tel_mobile}
+                onChange={(e) => handleChangeValue(e, 'tel_mobile')}
+              />
             </View>
             <Text style={[AddressInputStyles.contentText, {marginVertical: 8}]}>
               ※連絡可能な電話番号が1つの場合は同じ番号を両方に入力して下さい。
@@ -281,8 +343,8 @@ const AddressInput = ({addressInfo}) => {
               ☆登録するとスムーズに受け取りができます！！
             </Text>
           </LinearGradient>
-          <TouchableOpacity>
-            <LinearGradient 
+          <TouchableOpacity onPress={goYamato}>
+            <LinearGradient
               colors={['#ffefaa', '#ffe155']}
               style={AddressInputStyles.yamatoBg}>
               <Text
@@ -305,7 +367,7 @@ const AddressInput = ({addressInfo}) => {
             <ImageBackground
               style={AddressInputStyles.registBg}
               resizeMode="repeat"
-              source={require('../../assets/images/submenubg.png')} >
+              source={require('../../assets/images/submenubg.png')}>
               <Text style={{color: '#630'}}>※最大5件まで登録できます。</Text>
             </ImageBackground>
           </View>
@@ -357,6 +419,7 @@ const AddressInputStyles = StyleSheet.create({
     color: '#222',
     fontWeight: 'bold',
     lineHeight: 18,
+    width: '100%',
   },
   radioArea: {
     marginHorizontal: 4,

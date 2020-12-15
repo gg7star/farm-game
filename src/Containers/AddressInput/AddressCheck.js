@@ -13,8 +13,16 @@ import {
 import {Actions} from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 
-const AddressCheck = () => {
+const AddressCheck = ({addressInfo}) => {
   const [slt, setSlt] = useState(false);
+
+  const goAddressInput = () => {
+    Actions.addressInput({addressInfo: addressInfo});
+  };
+
+  const goRegist = () => {
+    console.log('Regist');
+  };
 
   return (
     <ImageBackground
@@ -54,7 +62,7 @@ const AddressCheck = () => {
           colors={['#f9f9f9', '#eeeeee']}
           style={AddressCheckStyles.subTitle}>
           <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
-            名前：はだ　あきら様
+            名前：{addressInfo.name_kana_sei + '  ' + addressInfo.name_kana_mei}
           </Text>
         </LinearGradient>
 
@@ -62,18 +70,60 @@ const AddressCheck = () => {
           colors={['#f9f9f9', '#eeeeee']}
           style={AddressCheckStyles.subTitle}>
           <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
-            カナ：はだ　あきら様
+            カナ：
+            {addressInfo.name_kanji_sei + '  ' + addressInfo.name_kanji_mei}
+          </Text>
+        </LinearGradient>
+
+        <LinearGradient
+          colors={['#f9f9f9', '#eeeeee']}
+          style={AddressCheckStyles.subTitle}>
+          <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
+            種別：{addressInfo.str_reserved1}
+          </Text>
+        </LinearGradient>
+
+        <LinearGradient
+          colors={['#f9f9f9', '#eeeeee']}
+          style={AddressCheckStyles.subTitle}>
+          <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
+            mail：{addressInfo.memo}
+          </Text>
+        </LinearGradient>
+
+        <LinearGradient
+          colors={['#f9f9f9', '#eeeeee']}
+          style={AddressCheckStyles.subTitle}>
+          <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
+            住所：〒{addressInfo.zip}
+            {'\n'}
+            {addressInfo.str_area +
+              '  ' +
+              addressInfo.addr1 +
+              '  ' +
+              addressInfo.addr2}
+          </Text>
+        </LinearGradient>
+
+        <LinearGradient
+          colors={['#f9f9f9', '#eeeeee']}
+          style={AddressCheckStyles.subTitle}>
+          <Text style={[AddressCheckStyles.contentText, {marginTop: 8}]}>
+            連絡先(どちらか必須)
+            {'\n'}
+            電話：{addressInfo.tel}
+            {'\n'}
+            携帯：{addressInfo.tel_mobile}
           </Text>
         </LinearGradient>
 
         <View style={{flexDirection: 'row', width: '100%'}}>
-          <TouchableOpacity style={AddressCheckStyles.submit}>
+          <TouchableOpacity
+            style={AddressCheckStyles.submit}
+            onPress={goRegist}>
             <LinearGradient
               colors={['#5f9cc5', '#396b9e']}
-              style={[
-                AddressCheckStyles.submitBtn,
-                AddressCheckStyles.shadow,
-              ]}>
+              style={[AddressCheckStyles.submitBtn, AddressCheckStyles.shadow]}>
               <Text
                 style={[
                   AddressCheckStyles.contentText,
@@ -83,7 +133,7 @@ const AddressCheck = () => {
               </Text>
             </LinearGradient>
           </TouchableOpacity>
-          <TouchableOpacity style={AddressCheckStyles.submit}>
+          <TouchableOpacity style={AddressCheckStyles.submit} onPress={goAddressInput}>
             <LinearGradient
               colors={['#ffefaa', '#ffe155']}
               style={[
