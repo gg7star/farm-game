@@ -45,7 +45,7 @@ const FarmName = ({gameData}) => {
     <ImageBackground
       style={FarmNameStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.gif')}>
+      source={require('../../assets/images/bg_pattern.png')}>
       <View style={FarmNameStyles.header}>
         <View style={FarmNameStyles.headerText}>
           <Text style={FarmNameStyles.headerContent}>{gameData.Mtitle}</Text>

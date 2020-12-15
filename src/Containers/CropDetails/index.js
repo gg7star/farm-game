@@ -88,7 +88,7 @@ const CropDetails = ({gameData}) => {
     <ImageBackground
       style={CropDetailsStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.gif')}>
+      source={require('../../assets/images/bg_pattern.png')}>
       <ScrollView>
         <Header title="商品詳細" />
         <FirstView item={firstViewData} />

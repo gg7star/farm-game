@@ -1006,7 +1006,7 @@ const Home = () => {
     <ImageBackground
       style={HomeStyle.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.gif')}>
+      source={require('../../assets/images/bg_pattern_1.gif')}>
       {/* <View style={HomeStyle.header}>
         <View style={HomeStyle.headerNews}></View>
         <View style={HomeStyle.headerAccount}>

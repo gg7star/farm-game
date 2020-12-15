@@ -294,7 +294,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 6CXM3M45YA;
+						DevelopmentTeam = XAJZFH4MWK;
 						LastSwiftMigration = 1120;
 						ProvisioningStyle = Manual;
 					};
@@ -658,10 +658,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Comicul Inc., (6CXM3M45YA)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: POCHIKURU, K.K. (XAJZFH4MWK)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.1;
-				DEVELOPMENT_TEAM = 6CXM3M45YA;
+				DEVELOPMENT_TEAM = XAJZFH4MWK;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HatakeGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -672,7 +672,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.potikuru.farm;
 				PRODUCT_NAME = HatakeGame;
-				PROVISIONING_PROFILE_SPECIFIER = "farm-game-prod";
+				PROVISIONING_PROFILE_SPECIFIER = potikuru_farm_prod;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -685,10 +685,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Comicul Inc., (6CXM3M45YA)";
+				CODE_SIGN_IDENTITY = "Apple Distribution: POCHIKURU, K.K. (XAJZFH4MWK)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1.0.1;
-				DEVELOPMENT_TEAM = 6CXM3M45YA;
+				DEVELOPMENT_TEAM = XAJZFH4MWK;
 				INFOPLIST_FILE = HatakeGame/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -698,7 +698,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.potikuru.farm;
 				PRODUCT_NAME = HatakeGame;
-				PROVISIONING_PROFILE_SPECIFIER = "farm-game-prod";
+				PROVISIONING_PROFILE_SPECIFIER = potikuru_farm_prod;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

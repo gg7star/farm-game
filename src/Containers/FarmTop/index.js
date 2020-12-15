@@ -324,7 +324,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     <ImageBackground
       style={FarmTopStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.gif')}>
+      source={require('../../assets/images/bg_pattern_1.gif')}>
       <View style={FarmTopStyles.header}>
         <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
       </View>

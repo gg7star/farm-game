@@ -856,7 +856,7 @@ const FarmDetails = () => {
     <ImageBackground
       style={FarmDetailsStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.gif')}>
+      source={require('../../assets/images/bg_pattern_1.gif')}>
       <ScrollView>
         <View>
           <SliderBox

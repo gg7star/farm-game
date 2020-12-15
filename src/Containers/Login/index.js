@@ -62,7 +62,7 @@ const Login = (props) => {
       <ImageBackground
         style={LoginStyle.bgImg}
         resizeMode="repeat"
-        source={require('../../assets/images/bg_pattern.gif')}>
+        source={require('../../assets/images/bg_pattern_1.gif')}>
         <ScrollView>
           <View style={LoginStyle.header}>
             <Text style={LoginStyle.headerText}>ログイン</Text>

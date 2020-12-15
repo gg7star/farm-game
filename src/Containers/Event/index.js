@@ -25,7 +25,7 @@ const Event = () => {
     <ImageBackground
       style={EventStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern.gif')}>
+      source={require('../../assets/images/bg_pattern_1.gif')}>
         <ScrollView>
           <Header title='サービス終了のお知らせ' />
           
