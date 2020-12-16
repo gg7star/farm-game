@@ -1,4 +1,4 @@
-package com.hatakegame;
+package com.potikuru.farm;
 
 import com.facebook.react.ReactActivity;
 
