@@ -11,7 +11,10 @@ import {
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
-import {responsiveWidth} from 'react-native-responsive-dimensions';
+import {
+  responsiveWidth,
+  responsiveHeight,
+} from 'react-native-responsive-dimensions';
 
 import AutoHeightImage from 'react-native-auto-height-image';
 
@@ -370,6 +373,11 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         <GameProgressBar />
         <GameMenu handleClickMenu={closeTimer} />
       </View>
+      <Image
+        source={require('../../assets/images/bg_pattern.png')}
+        style={FarmTopStyles.bgBottomImg}
+        resizeMode="repeat"
+      />
     </ImageBackground>
   );
 };
@@ -380,6 +388,13 @@ const FarmTopStyles = StyleSheet.create({
   bgImg: {
     width: responsiveWidth(100),
     height: '100%',
+  },
+  bgBottomImg: {
+    position: 'absolute',
+    zIndex: 1,
+    top: 440,
+    width: responsiveWidth(100),
+    height: responsiveHeight(100) - 440,
   },
   header: {
     width: '100%',

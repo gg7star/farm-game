@@ -7,12 +7,11 @@ import {
   Text,
   TouchableOpacity,
   ImageBackground,
-
 } from 'react-native';
 
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 import Menu from '../../Components/Menu';
 
@@ -21,7 +20,7 @@ import {apiMyFarm} from '../../services/apis/myfarm';
 
 const farmList = [
   {
-    farmId: 362971,
+    farmId: 364197,
     name: '無料ゲーム：白菜農場',
     date: '155日目',
     farmImg:
