@@ -6,11 +6,13 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  ActivityIndicator,
 } from 'react-native';
 import {Actions} from 'react-native-router-flux';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import {apiFarmTopMenus} from '../../services/apis/game_farm';
 
@@ -64,6 +66,7 @@ const TopHatakeMenu = ({
   farmInfo,
 }) => {
   const [iconList, setIconList] = useState([]);
+  const [loading, setLoading] = useState(false);
   const handleClickIcon = (name) => {
     handleClickItem(name);
     handleCloseTimer();
@@ -74,11 +77,14 @@ const TopHatakeMenu = ({
   };
 
   const getTopMenus = async () => {
+    !loading && setLoading(true);
     const response = await apiFarmTopMenus(farmInfo.farmId);
     console.log(78, response);
     if (response) {
       setIconList(response);
+      loading && setLoading(false);
     }
+    loading && setLoading(false);
   };
   iconList.length === 0 && getTopMenus();
 
@@ -89,6 +95,13 @@ const TopHatakeMenu = ({
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
       <View style={TopHatakeMenuStyles.bg}>
+        {/* <ActivityIndicator
+          size="large"
+          style={TopHatakeMenuStyles.loading}
+          animating={loading}
+          color="#67b500"
+        /> */}
+        <Spinner visible={loading} />
         {iconList.length > 0 && (
           <View style={TopHatakeMenuStyles.content}>
             <AutoHeightImage
@@ -157,5 +170,11 @@ const TopHatakeMenuStyles = StyleSheet.create({
     position: 'absolute',
     top: '25%',
     left: '22%',
+  },
+  loading: {
+    position: 'absolute',
+    top: 250,
+    left: responsiveWidth(45),
+    zIndex: 1000,
   },
 });

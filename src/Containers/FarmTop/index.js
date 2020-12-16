@@ -17,6 +17,7 @@ import {
 } from 'react-native-responsive-dimensions';
 
 import AutoHeightImage from 'react-native-auto-height-image';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import {apiFarmData} from '../../services/apis/farm_data';
 
@@ -260,13 +261,16 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [showAdmob, setShowAdmob] = useState(false);
   const [bgImg, setBgImg] = useState([]);
   const [curWeather, setCurWeather] = useState(undefined);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const getBgImg = async () => {
+    !imageLoading && setImageLoading(true);
     // console.log(285, 'Farm Data');
     const response = await apiFarmData(farmInfo.farmId);
     // console.log(262, response);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
+      imageLoading && setImageLoading(false);
     }
 
     const responseWeather = await apiFarmData(farmInfo.farmId);
@@ -305,15 +309,17 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const showWeather = async () => {
+    !imageLoading && setImageLoading(true);
     const response = await apiFarmData(farmInfo.farmId);
     if (response && response.weather_predictions) {
       setTopNana(response.weather_predictions);
       setCurNanaTag('weather');
+      imageLoading && setImageLoading(false);
     }
   };
 
   const showTopHatakeMenu = () => {
-    setTopHatakeMenu(true);
+    !topHatakeMenu && setTopHatakeMenu(true);
   };
 
   const closeTopHatakeMenu = () => {
@@ -346,9 +352,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       {/* <ActivityIndicator
         size="large"
         style={FarmTopStyles.loading}
-        animating={true}
+        animating={imageLoading}
         color="#67b500"
       /> */}
+      <Spinner visible={imageLoading} />
       <GameEngine
         clickTopNana={showNanaSpot}
         clickTopHatakeMenu={showTopHatakeMenu}
@@ -373,11 +380,6 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         <GameProgressBar />
         <GameMenu handleClickMenu={closeTimer} />
       </View>
-      <Image
-        source={require('../../assets/images/bg_pattern.png')}
-        style={FarmTopStyles.bgBottomImg}
-        resizeMode="repeat"
-      />
     </ImageBackground>
   );
 };
@@ -388,13 +390,6 @@ const FarmTopStyles = StyleSheet.create({
   bgImg: {
     width: responsiveWidth(100),
     height: '100%',
-  },
-  bgBottomImg: {
-    position: 'absolute',
-    zIndex: 1,
-    top: 440,
-    width: responsiveWidth(100),
-    height: responsiveHeight(100) - 440,
   },
   header: {
     width: '100%',
@@ -418,7 +413,7 @@ const FarmTopStyles = StyleSheet.create({
   },
   bottomItem: {
     position: 'absolute',
-    top: 440,
+    top: responsiveWidth(100) + 40,
     zIndex: 100,
   },
   loading: {

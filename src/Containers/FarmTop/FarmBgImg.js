@@ -15,7 +15,7 @@ const imgRate = responsiveWidth(100) / 240;
 const FarmBgImg = ({bgData}) => {
   // console.log(39, bgData);
   return (
-    <View style={{height: 400}}>
+    <View style={{height: responsiveWidth(100)}}>
       {bgData.map((item, i) => (
         <Image
           key={i}
