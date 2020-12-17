@@ -67,6 +67,11 @@ const TopHatakeMenu = ({
 }) => {
   const [iconList, setIconList] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    getTopMenus();
+  }, []);
+
   const handleClickIcon = (name) => {
     handleClickItem(name);
     handleCloseTimer();
@@ -77,20 +82,14 @@ const TopHatakeMenu = ({
   };
 
   const getTopMenus = async () => {
-    !loading && setLoading(true);
+    setLoading(true);
     const response = await apiFarmTopMenus(farmInfo.farmId);
+    setLoading(false);
     console.log(78, response);
     if (response) {
       setIconList(response);
-      loading && setLoading(false);
     }
-    loading && setLoading(false);
   };
-  iconList.length === 0 && getTopMenus();
-
-  // useEffect(() => {
-  //   getTopMenus();
-  // }, []);
 
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
