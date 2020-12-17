@@ -263,14 +263,22 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [curWeather, setCurWeather] = useState(undefined);
   const [imageLoading, setImageLoading] = useState(false);
 
+  useEffect(() => {
+    getBgImg();
+    _interval= setInterval(() => callImg(), 100000);
+    return () => {
+      clearInterval(_interval);
+    };
+  }, []);
+
   const getBgImg = async () => {
-    !imageLoading && setImageLoading(true);
+    setImageLoading(true);
     // console.log(285, 'Farm Data');
     const response = await apiFarmData(farmInfo.farmId);
-    // console.log(262, response);
+    setImageLoading(false);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
-      imageLoading && setImageLoading(false);
+      // imageLoading && setImageLoading(false);
     }
 
     const responseWeather = await apiFarmData(farmInfo.farmId);
@@ -279,21 +287,12 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     }
   };
 
-  bgImg.length === 0 && getBgImg();
-
   const callImg = () => {
     if (loadTime === 1) {
       getBgImg();
     }
     setLoadTime((loadTime + 1) % 10);
   };
-
-  useEffect(() => {
-    _interval= setInterval(() => callImg(), 100000);
-    return () => {
-      clearInterval(_interval);
-    };
-  }, []);
 
   const closeTimer = () => {
     clearInterval(_interval);
@@ -309,12 +308,12 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const showWeather = async () => {
-    !imageLoading && setImageLoading(true);
+    setImageLoading(true);
     const response = await apiFarmData(farmInfo.farmId);
+    setImageLoading(false);
     if (response && response.weather_predictions) {
       setTopNana(response.weather_predictions);
       setCurNanaTag('weather');
-      imageLoading && setImageLoading(false);
     }
   };
 
