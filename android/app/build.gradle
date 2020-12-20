@@ -129,10 +129,10 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.hatakegame"
+        applicationId "com.potikuru.farm"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 3
         versionName "1.0"
         multiDexEnabled true
     }
