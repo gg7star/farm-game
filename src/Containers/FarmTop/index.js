@@ -5,6 +5,7 @@ import {
   View,
   Text,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   ImageBackground,
   Modal,
   ActivityIndicator,
@@ -16,10 +17,16 @@ import {
   responsiveHeight,
 } from 'react-native-responsive-dimensions';
 
+import LinearGradient from 'react-native-linear-gradient';
 import AutoHeightImage from 'react-native-auto-height-image';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import {apiFarmData} from '../../services/apis/farm_data';
+import {
+  apiFarmData,
+  apiDeleteFarm,
+  apiSubItems,
+  apiUseItems,
+} from '../../services/apis/farm_data';
 
 import GameMenu from '../../Components/GameMenu';
 
@@ -32,8 +39,11 @@ import GameEngine from './GameEngine';
 import TopNana from './TopNana';
 import TopHatakeMenu from './TopHatakeMenu';
 import TopItemMenu from './TopItemMenu';
+import TopActionMenu from './TopActionMenu';
 import AdMob from '../AdMob';
 import FarmBgImg from './FarmBgImg';
+import YesNoPanel from './YesNoPanel';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const nanaSpot =
   'スライムさん、こんにちは♪菜々と一緒にキャベツを作って餃子をゲットしよう♪\nまずはハウスの骨組みを建てよう！';
@@ -257,15 +267,21 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
   const [topHatakeMenu, setTopHatakeMenu] = useState(undefined);
-  const [topItemMenu, setTopItemMenu] = useState(currentSelectedItem);
-  const [showAdmob, setShowAdmob] = useState(false);
+  const [topItemMenu, setTopItemMenu] = useState(undefined);
+  const [itemName, setItemName] = useState({name: currentSelectedItem});
+  // const [showAdmob, setShowAdmob] = useState(false);
   const [bgImg, setBgImg] = useState([]);
   const [curWeather, setCurWeather] = useState(undefined);
   const [imageLoading, setImageLoading] = useState(false);
+  const [closeFarm, setCloseFarm] = useState(false);
+  const [point, setPoint] = useState(false);
+  const [panel, setPanel] = useState(undefined);
+  const [eventItem, setEventItem] = useState(undefined);
 
   useEffect(() => {
     getBgImg();
-    _interval= setInterval(() => callImg(), 100000);
+    currentSelectedItem && getSubItems();
+    _interval = setInterval(() => callImg(), 100000);
     return () => {
       clearInterval(_interval);
     };
@@ -287,8 +303,19 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     }
   };
 
+  const getSubItems = async (data) => {
+    setImageLoading(true);
+    console.log(300, data);
+    const response = await apiSubItems(farmInfo.farmId, data);
+    setImageLoading(false);
+    if (response && response.items) {
+      setTopItemMenu(response.items);
+      console.log(302, response.items);
+    }
+  };
+
   const callImg = () => {
-    if (loadTime === 1) {
+    if (loadTime === 0) {
       getBgImg();
     }
     setLoadTime((loadTime + 1) % 10);
@@ -331,7 +358,46 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const handleClickItem = (ItemName) => {
     setTopHatakeMenu(false);
-    setTopItemMenu(ItemName);
+    if (ItemName === 'topCloseIcon') {
+      setCloseFarm(true);
+    } else if (ItemName === 'topPiIcon') {
+      setPoint(true);
+    } else {
+      console.log(358, ItemName);
+      getSubItems(ItemName);
+    }
+  };
+
+  const goCloseFarm = async () => {
+    const response = await apiDeleteFarm(farmInfo.farmId);
+    if (response) {
+      setCloseFarm(false);
+      Actions.myfarm();
+    }
+  };
+
+  const handleClosePoint = () => {
+    setPoint(false);
+  };
+
+  const showYesNoPanel = (e) => {
+    setTopItemMenu(false);
+    setPanel(e);
+  };
+
+  const handleCloseYesNoPanel = () => {
+    setPanel(undefined);
+  };
+
+  const handleWorkItem = async () => {
+    setPanel(undefined);
+    console.log(391, 'Work Item');
+    setImageLoading(true);
+    const response = await apiUseItems(farmInfo.farmId, panel.item_id);
+    setImageLoading(false);
+    if (response && response.result_image) {
+      setEventItem(response.result_image);
+    }
   };
 
   return (
@@ -348,12 +414,6 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       <Nutrition />
       <Moisture />
       <Calendar />
-      {/* <ActivityIndicator
-        size="large"
-        style={FarmTopStyles.loading}
-        animating={imageLoading}
-        color="#67b500"
-      /> */}
       <Spinner visible={imageLoading} />
       <GameEngine
         clickTopNana={showNanaSpot}
@@ -373,7 +433,75 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         />
       )}
 
-      {topItemMenu && <TopItemMenu handleClick={closeTopItemMenu} />}
+      {topItemMenu && topItemMenu[0].type === 'action' && (
+        <TopActionMenu handleClick={closeTopItemMenu} itemList={topItemMenu} />
+      )}
+
+      {topItemMenu && topItemMenu[0].type === 'item' && (
+        <TopItemMenu
+          handleClick={closeTopItemMenu}
+          itemList={topItemMenu}
+          handleClickItem={showYesNoPanel}
+        />
+      )}
+
+      {closeFarm && (
+        <View style={FarmTopStyles.closeFarm}>
+          <View style={FarmTopStyles.closeHeader}>
+            <Text style={{color: '#fff'}}>農場閉鎖</Text>
+          </View>
+          <LinearGradient
+            colors={['#eee', '#ddd']}
+            style={FarmTopStyles.closeContent}>
+            <Text>本当に閉鎖してよろしいですか？{'\n'}</Text>
+            <Text style={{fontSize: 12}}>
+              ※閉鎖した農場は元には戻せません。
+            </Text>
+          </LinearGradient>
+          <LinearGradient
+            colors={['#eee', '#ddd']}
+            style={[FarmTopStyles.closeContent, FarmTopStyles.closeBottom]}>
+            <TouchableOpacity
+              style={FarmTopStyles.shadow}
+              onPress={goCloseFarm}>
+              <LinearGradient
+                colors={['#fdfdfd', '#eee']}
+                style={FarmTopStyles.closeBtn}>
+                <Text style={{fontWeight: 'bold'}}>農場を閉鎖する</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={FarmTopStyles.shadow}
+              onPress={() => setCloseFarm(false)}>
+              <LinearGradient
+                colors={['#fdfdfd', '#eee']}
+                style={FarmTopStyles.closeBtn}>
+                <Text style={{fontWeight: 'bold'}}>閉鎖しない</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </LinearGradient>
+        </View>
+      )}
+
+      {point && (
+        <YesNoPanel
+          title="ポイント購入"
+          content={['所持ポイント：65727っぴ']}
+          yesBtnName="ポイントを購入する"
+          goCancel={handleClosePoint}
+        />
+      )}
+
+      {panel && (
+        <YesNoPanel
+          title="農作業"
+          content={panel.content}
+          icon={panel.icon}
+          yesBtnName="使用する"
+          workItem={handleWorkItem}
+          goCancel={handleCloseYesNoPanel}
+        />
+      )}
 
       <View style={FarmTopStyles.bottomItem}>
         <GameProgressBar />
@@ -420,5 +548,54 @@ const FarmTopStyles = StyleSheet.create({
     top: 250,
     left: responsiveWidth(45),
     zIndex: 200,
+  },
+  closeFarm: {
+    position: 'absolute',
+    top: '20%',
+    marginHorizontal: '8%',
+    width: '84%',
+    borderRadius: 8,
+    zIndex: 30,
+  },
+  closeHeader: {
+    width: '100%',
+    height: 32,
+    backgroundColor: '#6c0',
+    borderTopColor: '#8bc34a',
+    borderBottomColor: '#8bc34a',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    zIndex: 30,
+    justifyContent: 'center',
+    paddingHorizontal: 15,
+  },
+  closeContent: {
+    borderColor: '#c6c6c6',
+    borderWidth: 0.5,
+    padding: 15,
+  },
+  closeBottom: {
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+  },
+  closeBtn: {
+    marginHorizontal: 5,
+    marginVertical: 3,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+  shadow: {
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowOffset: {
+      height: 1,
+      width: 4,
+    },
   },
 });

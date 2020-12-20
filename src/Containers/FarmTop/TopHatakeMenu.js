@@ -73,6 +73,7 @@ const TopHatakeMenu = ({
   }, []);
 
   const handleClickIcon = (name) => {
+    console.log(76, name);
     handleClickItem(name);
     handleCloseTimer();
     Actions.admob({
@@ -94,12 +95,6 @@ const TopHatakeMenu = ({
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
       <View style={TopHatakeMenuStyles.bg}>
-        {/* <ActivityIndicator
-          size="large"
-          style={TopHatakeMenuStyles.loading}
-          animating={loading}
-          color="#67b500"
-        /> */}
         <Spinner visible={loading} />
         {iconList.length > 0 && (
           <View style={TopHatakeMenuStyles.content}>
@@ -116,7 +111,7 @@ const TopHatakeMenu = ({
                   (item, i) =>
                     i > 0 &&
                     i < 5 && (
-                      <TouchableOpacity key={`${i}`} onPress={() => handleClickIcon(i)}>
+                      <TouchableOpacity key={`${i}`} onPress={() => handleClickIcon(item.name)}>
                         <AutoHeightImage
                           key={`auto-height-image-1-${i}`}
                           width={responsiveWidth(15)}
@@ -141,12 +136,17 @@ const TopHatakeMenu = ({
                     ),
                 )}
               </View>
-              <AutoHeightImage
-                key={iconList.length - 1}
-                width={responsiveWidth(15)}
-                source={{uri: iconList[iconList.length - 1].image}}
-                style={{left: responsiveWidth(60)}}
-              />
+              <TouchableOpacity
+                onPress={() =>
+                  handleClickIcon(iconList[iconList.length - 1].name)
+                }>
+                <AutoHeightImage
+                  key={iconList.length - 1}
+                  width={responsiveWidth(15)}
+                  source={{uri: iconList[iconList.length - 1].image}}
+                  style={{left: responsiveWidth(60)}}
+                />
+              </TouchableOpacity>
             </View>
           </View>
         )}

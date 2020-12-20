@@ -30,7 +30,9 @@ const Point = (props) => {
     console.log('===== props.user: ', props.user);
     const user = props.user && props.user.user;
     user && user.id && setMember(user.id);
+    getPoint();
   }, []);
+
   const goHistory = () => {
     Actions.pointHistory();
   };
@@ -45,7 +47,6 @@ const Point = (props) => {
       }
     }
   };
-  getPoint();
 
   return (
     <ImageBackground
@@ -96,8 +97,6 @@ const Point = (props) => {
     </ImageBackground>
   );
 };
-
-// export default Point;
 
 const PointStyles = StyleSheet.create({
   bgImg: {

@@ -5,34 +5,41 @@ import LinearGradient from 'react-native-linear-gradient';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const TopItem = ({item, bottom, handleClick}) => {
-  const clickItem = () => {
-    const data = {
-      item_id: item.item_id,
-      content: [item.item_name, item.item_description],
-      icon: item.image,
-    };
-    handleClick(data);
-  };
+const TopActionItem = ({item, top, bottom}) => {
   return (
-    <TouchableOpacity onPress={clickItem}>
+    <TouchableOpacity>
       <View
-        style={[TopItemStyles.bg, bottom ? TopItemStyles.bottomItem : null]}>
+        style={[
+          TopActionItemStyles.bg,
+          bottom ? TopActionItemStyles.bottomItem : null,
+          top ? TopActionItemStyles.topItem : null,
+        ]}>
         <LinearGradient
           colors={['#ffffff', '#f1f1f1']}
           style={[
-            TopItemStyles.nextBg,
-            bottom ? TopItemStyles.bottomItem : null,
+            TopActionItemStyles.nextBg,
+            top ? TopActionItemStyles.topItem : null,
+            bottom ? TopActionItemStyles.bottomItem : null,
           ]}>
           <AutoHeightImage width={25} source={{uri: item.image}} />
-          <View style={TopItemStyles.textArea}>
-            <Text style={[TopItemStyles.nextText]}>
-              {item.item_name}({item.life_span})
+          {item.checked && (
+            <AutoHeightImage
+              width={25}
+              source={require('../../assets/images/check.gif')}
+            />
+          )}
+          <View style={TopActionItemStyles.textArea}>
+            <Text
+              style={[
+                TopActionItemStyles.nextText,
+                {color: item.disabled ? '#999' : '#000'},
+              ]}>
+              {item.action_name}
             </Text>
           </View>
-          <View style={TopItemStyles.iconBg}>
+          <View style={TopActionItemStyles.iconBg}>
             <Image
-              style={TopItemStyles.iconNextImg}
+              style={TopActionItemStyles.iconNextImg}
               source={require('../../assets/images/icons-36-white.png')}
             />
           </View>
@@ -42,16 +49,16 @@ const TopItem = ({item, bottom, handleClick}) => {
   );
 };
 
-export default TopItem;
+export default TopActionItem;
 
-const TopItemStyles = StyleSheet.create({
+const TopActionItemStyles = StyleSheet.create({
   bg: {
     borderColor: '#aaa',
     borderWidth: 1,
     borderTopWidth: 0,
   },
   topItem: {
-    borderTopWidth: 1,
+    // borderTopWidth: 1,
     borderTopRightRadius: 8,
     borderTopLeftRadius: 8,
   },
