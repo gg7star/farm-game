@@ -95,26 +95,32 @@ const Welcome = () => {
   return (
     <View style={{flex: 1, backgroundColor: '#f0ffe0'}}>
       <Spinner visible={loadingStatus} />
-      {/* <ScrollView> */}
-      <TouchableOpacity onPress={goHome}>
-        <View>
-          <AutoHeightImage
-            width={responsiveWidth(100)}
-            source={require('../../assets/images/Welcome_top.png')}
-          />
-        </View>
-        <View style={{alignItems: 'center', marginVertical: 20}}>
-          <AutoHeightImage
-            width={304}
-            source={require('../../assets/images/start_button.png')}
-          />
-        </View>
-        <View style={{alignItems: 'flex-end'}}>
-          <AutoHeightImage
-            width={172}
-            source={require('../../assets/images/phone_change.png')}
-          />
-        </View>
+      <ScrollView>
+        <TouchableOpacity onPress={goHome}>
+          <View>
+            <AutoHeightImage
+              width={responsiveWidth(100)}
+              source={require('../../assets/images/main_upside.png')}
+            />
+          </View>
+          <View style={{alignItems: 'center', marginVertical: 20}}>
+            <AutoHeightImage
+              width={304}
+              source={require('../../assets/images/start_button.png')}
+            />
+          </View>
+          <View style={{alignItems: 'flex-end', marginBottom: 20}}>
+            <AutoHeightImage
+              width={172}
+              source={require('../../assets/images/phone_change.png')}
+            />
+          </View>
+          <View>
+            <AutoHeightImage
+              width={responsiveWidth(100)}
+              source={require('../../assets/images/main_downside.png')}
+            />
+          </View>
 
           {/* <View>
             <View style={{flexDirection: 'row'}}>
@@ -250,9 +256,9 @@ const Welcome = () => {
               }}
             />
           </View> */}
-        <View style={{width: '100%', height: 10}} />
-      </TouchableOpacity>
-      {/* </ScrollView> */}
+          <View style={{width: '100%', height: 10}} />
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };

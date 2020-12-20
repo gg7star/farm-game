@@ -111,7 +111,13 @@ const MContent = ({item}) => {
                 style={MContentStyles.farmNameBg}
                 imageStyle={{marginLeft: -15}}
                 source={require('../../assets/images/farm_name_pattern.png')}>
-                <Text style={MContentStyles.mContentText}>{addresses[1]}</Text>
+                <View style={MContentStyles.container}>
+                  <Text
+                    numberOfLines={1}
+                    style={[MContentStyles.mContentText, {flex: 1}]}>
+                    {addresses[1]}
+                  </Text>
+                </View>
               </ImageBackground>
             </TouchableOpacity>
           )}
@@ -166,6 +172,10 @@ const MContentStyles = StyleSheet.create({
   },
   optionText: {
     color: '#fff',
+  },
+  container: {
+    flexDirection: 'row',
+    paddingRight: 10,
   },
   mContentText: {
     fontSize: 14,
