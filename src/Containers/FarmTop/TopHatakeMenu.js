@@ -74,11 +74,11 @@ const TopHatakeMenu = ({
 
   const handleClickIcon = (name) => {
     console.log(76, name);
-    handleClickItem(name);
+    // handleClickItem(name);
     handleCloseTimer();
     Actions.admob({
       nextPage: 'farmTop',
-      state: {farmInfo: farmInfo, currentSelectedItem: 1},
+      state: {farmInfo: farmInfo, currentSelectedItem: name},
     });
   };
 

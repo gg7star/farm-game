@@ -280,7 +280,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   useEffect(() => {
     getBgImg();
-    currentSelectedItem && getSubItems();
+    currentSelectedItem && getSubItems(currentSelectedItem);
     _interval = setInterval(() => callImg(), 100000);
     return () => {
       clearInterval(_interval);
@@ -304,13 +304,15 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const getSubItems = async (data) => {
-    setImageLoading(true);
-    console.log(300, data);
-    const response = await apiSubItems(farmInfo.farmId, data);
-    setImageLoading(false);
-    if (response && response.items) {
-      setTopItemMenu(response.items);
-      console.log(302, response.items);
+    if (data) {
+      setImageLoading(true);
+      console.log(300, data);
+      const response = await apiSubItems(farmInfo.farmId, data);
+      setImageLoading(false);
+      if (response && response.items) {
+        setTopItemMenu(response.items);
+        console.log(302, response.items);
+      }
     }
   };
 
@@ -433,17 +435,24 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         />
       )}
 
-      {topItemMenu && topItemMenu[0].type === 'action' && (
-        <TopActionMenu handleClick={closeTopItemMenu} itemList={topItemMenu} />
-      )}
+      {topItemMenu &&
+        topItemMenu.length > 0 &&
+        topItemMenu[0].type === 'action' && (
+          <TopActionMenu
+            handleClick={closeTopItemMenu}
+            itemList={topItemMenu}
+          />
+        )}
 
-      {topItemMenu && topItemMenu[0].type === 'item' && (
-        <TopItemMenu
-          handleClick={closeTopItemMenu}
-          itemList={topItemMenu}
-          handleClickItem={showYesNoPanel}
-        />
-      )}
+      {topItemMenu &&
+        topItemMenu.length > 0 &&
+        topItemMenu[0].type === 'item' && (
+          <TopItemMenu
+            handleClick={closeTopItemMenu}
+            itemList={topItemMenu}
+            handleClickItem={showYesNoPanel}
+          />
+        )}
 
       {closeFarm && (
         <View style={FarmTopStyles.closeFarm}>
