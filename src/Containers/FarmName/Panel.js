@@ -14,7 +14,7 @@ import {Actions} from 'react-native-router-flux';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import {apiCreateFarmWithCropId} from '../../services/apis/farm_data';
-// , {item, name, cropId}
+
 const Panel = (props) => {
   const [farmName, setFarmName] = useState(props.name);
 
@@ -23,10 +23,10 @@ const Panel = (props) => {
   };
 
   const submitFarm = async () => {
-    console.log('Submit = ', props.user.user.id);
+    console.log('Submit = ', props.user.user.id, props.name, props.cropId);
     const response = await apiCreateFarmWithCropId({
       name: props.name,
-      crop_id: 1058,
+      crop_id: 1202,
       member_id: props.user.user.id,
     });
     console.log(32, response);

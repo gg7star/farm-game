@@ -29,23 +29,19 @@ const historyList = [
   },
 ];
 const PointHistory = (props) => {
-  const [member, setMember] = useState(undefined);
-  useEffect(() => {
-    const user = props.user && props.user.user;
-    user && user.id && setMember(user.id);
-  }, []);
-
   const [historyList, setHistoryList] = useState(undefined);
 
   const getPoint = async () => {
-    if (member) {
-      const response = await apiPointHistory(member);
-      if (response && response.dataset) {
-        setHistoryList(response.dataset);
-      }
+    const response = await apiPointHistory(props.user.user.id);
+    if (response && response.dataset) {
+      setHistoryList(response.dataset);
     }
   };
-  getPoint();
+
+  useEffect(() => {
+    getPoint();
+  }, []);
+
   return (
     <ImageBackground
       style={PointHistoryStyles.bgImg}

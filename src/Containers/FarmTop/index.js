@@ -280,24 +280,30 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   useEffect(() => {
     getBgImg();
-    currentSelectedItem && getSubItems(currentSelectedItem);
-    _interval = setInterval(() => callImg(), 100000);
-    return () => {
-      clearInterval(_interval);
-    };
+    if (currentSelectedItem === 'topCloseIcon') {
+      setCloseFarm(true);
+    } else if (currentSelectedItem === 'topPiIcon') {
+      setPoint(true);
+    } else {
+      currentSelectedItem && getSubItems(currentSelectedItem);
+      _interval = setInterval(() => callImg(), 100000);
+      return () => {
+        clearInterval(_interval);
+      };
+    }
   }, []);
 
   const getBgImg = async () => {
     setImageLoading(true);
     // console.log(285, 'Farm Data');
-    const response = await apiFarmData(farmInfo.farmId);
+    const response = await apiFarmData(farmInfo.id);
     setImageLoading(false);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
       // imageLoading && setImageLoading(false);
     }
 
-    const responseWeather = await apiFarmData(farmInfo.farmId);
+    const responseWeather = await apiFarmData(farmInfo.id);
     if (responseWeather && responseWeather.weather_predictions) {
       setCurWeather(response.weather_predictions);
     }
@@ -307,7 +313,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     if (data) {
       setImageLoading(true);
       console.log(300, data);
-      const response = await apiSubItems(farmInfo.farmId, data);
+      const response = await apiSubItems(farmInfo.id, data);
       setImageLoading(false);
       if (response && response.items) {
         setTopItemMenu(response.items);
@@ -338,7 +344,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const showWeather = async () => {
     setImageLoading(true);
-    const response = await apiFarmData(farmInfo.farmId);
+    const response = await apiFarmData(farmInfo.id);
     setImageLoading(false);
     if (response && response.weather_predictions) {
       setTopNana(response.weather_predictions);
@@ -371,7 +377,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const goCloseFarm = async () => {
-    const response = await apiDeleteFarm(farmInfo.farmId);
+    const response = await apiDeleteFarm(farmInfo.id);
     if (response) {
       setCloseFarm(false);
       Actions.myfarm();
@@ -395,7 +401,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     setPanel(undefined);
     console.log(391, 'Work Item');
     setImageLoading(true);
-    const response = await apiUseItems(farmInfo.farmId, panel.item_id);
+    const response = await apiUseItems(farmInfo.id, panel.item_id);
     setImageLoading(false);
     if (response && response.result_image) {
       setEventItem(response.result_image);

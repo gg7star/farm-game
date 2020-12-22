@@ -16,49 +16,6 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import {apiFarmTopMenus} from '../../services/apis/game_farm';
 
-const todoIconList = [
-  {
-    id: 'topTodoIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0100.gif',
-  },
-  {
-    id: 'topMoistureIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0300.gif',
-  },
-  {
-    id: 'topNutritionIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0400.gif',
-  },
-  {
-    id: 'topWeedIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0500.gif',
-  },
-  {
-    id: 'topChemiIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0200.gif',
-  },
-  {
-    id: 'topSpecialIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0600.gif',
-  },
-  {
-    id: 'topPiIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0700.gif',
-  },
-  {
-    id: 'topCloseIcon',
-    icon:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic0800.gif',
-  },
-];
-
 const TopHatakeMenu = ({
   handleClick,
   handleClickItem,
@@ -74,7 +31,6 @@ const TopHatakeMenu = ({
 
   const handleClickIcon = (name) => {
     console.log(76, name);
-    // handleClickItem(name);
     handleCloseTimer();
     Actions.admob({
       nextPage: 'farmTop',
@@ -84,7 +40,7 @@ const TopHatakeMenu = ({
 
   const getTopMenus = async () => {
     setLoading(true);
-    const response = await apiFarmTopMenus(farmInfo.farmId);
+    const response = await apiFarmTopMenus(farmInfo.id);
     setLoading(false);
     console.log(78, response);
     if (response) {

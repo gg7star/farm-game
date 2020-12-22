@@ -5,7 +5,8 @@ export async function apiFarmData(farm_id) {
 }
 
 export async function apiCreateFarmWithCropId(data) {
-  return await jsonQuery('/farm_data/create/', 'POST', data);
+  console.log(8, data);
+  return await jsonQuery('/game/farm/create/', 'POST', data);
 }
 
 export async function apiDeleteFarm(farm_id) {

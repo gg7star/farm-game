@@ -19,17 +19,8 @@ import HeaderBrownBar from '../../Components/HeaderBrownBar.js';
 
 import {apiPoint} from '../../services/apis/point';
 
-// const pointData = {
-//   title: '現在のポイント:70327っぴ',
-//   news: '2020年04月01日をもってポイント購入は停止致しました。',
-// };
-
 const Point = (props) => {
-  const [member, setMember] = useState(undefined);
   useEffect(() => {
-    console.log('===== props.user: ', props.user);
-    const user = props.user && props.user.user;
-    user && user.id && setMember(user.id);
     getPoint();
   }, []);
 
@@ -40,11 +31,9 @@ const Point = (props) => {
   const [pointData, setPointData] = useState({});
 
   const getPoint = async () => {
-    if (member) {
-      const response = await apiPoint(member);
-      if (response) {
-        setPointData(response);
-      }
+    const response = await apiPoint(props.user.user.id);
+    if (response) {
+      setPointData(response);
     }
   };
 
