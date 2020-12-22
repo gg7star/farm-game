@@ -9,4 +9,4 @@ cp -f ./customize_rn_packages/react-native-admob/android/src/main/java/com/sbuge
 cp -f ./customize_rn_packages/react-native-image-slider-box/dist/SliderBox.js ./node_modules/react-native-image-slider-box/dist/SliderBox.js 
 
 # Copy ReactNativeFlipper.js to fix image uploading issue in Android debug environment
-cp -f ./customize_rn_packages/android/app/src/debug/java/com/komikaru/ReactNativeFlipper.java ./android/app/src/debug/java/com/komikaru/ReactNativeFlipper.java
+cp -f ./customize_rn_packages/android/app/src/debug/java/com/potikuru/ReactNativeFlipper.java ./android/app/src/debug/java/com/potikuru/ReactNativeFlipper.java
