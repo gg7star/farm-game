@@ -10,23 +10,22 @@ import {
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const imgRate = responsiveWidth(100) / 240;
+const imgWidth = responsiveWidth(30);
+const imgRate = imgWidth / 240;
 
-const FarmBgImg = ({bgData}) => {
-  // console.log(39, bgData);
+const FarmBg = ({bgData}) => {
   return (
-    <View style={{height: responsiveWidth(100)}}>
+    <View style={{height: imgWidth}}>
       {bgData.map((item, i) => (
         <Image
           key={i}
           source={{uri: item[0], cache: 'force-cache'}}
           style={[
-            FarmBgImgStyles.screenImg,
+            FarmBgStyles.screenImg,
             {
               left: item[3] < 240 ? item[1] * imgRate : 0,
               top: item[3] < 240 ? item[2] * imgRate : 0,
             },
-            // {left: item[1] * imgRate, top: item[2] * imgRate},
             {width: item[3] * imgRate, height: item[4] * imgRate},
           ]}
         />
@@ -35,22 +34,22 @@ const FarmBgImg = ({bgData}) => {
   );
 };
 
-export default FarmBgImg;
+export default FarmBg;
 
-const FarmBgImgStyles = StyleSheet.create({
+const FarmBgStyles = StyleSheet.create({
   skyImg: {
     position: 'absolute',
     left: 0,
     top: 0,
-    width: responsiveWidth(100),
-    height: 150,
+    width: imgWidth,
+    height: 150 * imgRate,
   },
   screenImg: {
     position: 'absolute',
   },
   houseImg: {
     position: 'absolute',
-    top: 43 * (400 / 240),
+    top: 43 * (imgWidth / 240),
     left: '48%',
     width: 98 * imgRate,
     height: 72 * imgRate,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {
   StyleSheet,
@@ -16,50 +16,58 @@ import {Actions} from 'react-native-router-flux';
 import Menu from '../../Components/Menu';
 
 import Farm from './Farm.js';
-import {apiMyFarm} from '../../services/apis/myfarm';
+import {apiMyFarms} from '../../services/apis/farm_data';
 
-const farmList = [
-  {
-    id: 364197,
-    name: '無料ゲーム：白菜農場',
-    date: '155日目',
-    farmImg:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/364145.jpg',
-    cropImg:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/1609/icon.png',
-  },
-  {
-    id: 364197,
-    name: 'はちみつ(小瓶セット)農場',
-    date: '7日目',
-    farmImg:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/53541.jpg',
-    cropImg:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/555/icon.png',
-  },
-  {
-    id: 364197,
-    name: '',
-    date: '',
-    farmImg:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
-    cropImg: '',
-  },
-  {
-    id: 364197,
-    name: '',
-    date: '',
-    farmImg:
-      'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
-    cropImg: '',
-  },
-];
+// const farmList = [
+//   {
+//     id: 364197,
+//     name: '無料ゲーム：白菜農場',
+//     date: '155日目',
+//     farmImg:
+//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/364145.jpg',
+//     cropImg:
+//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/1609/icon.png',
+//   },
+//   {
+//     id: 364197,
+//     name: 'はちみつ(小瓶セット)農場',
+//     date: '7日目',
+//     farmImg:
+//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/53541.jpg',
+//     cropImg:
+//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/555/icon.png',
+//   },
+//   {
+//     id: 364197,
+//     name: '',
+//     date: '',
+//     farmImg:
+//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
+//     cropImg: '',
+//   },
+//   {
+//     id: 364197,
+//     name: '',
+//     date: '',
+//     farmImg:
+//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
+//     cropImg: '',
+//   },
+// ];
 const MyFarm = (props) => {
+  const [myFarmList, setMyFarmList] = useState(undefined);
   const getFarms = async () => {
-    const myFarms = await apiMyFarm(11);
+    // console.log(60, props.user.user.id);
+    const response = await apiMyFarms(props.user.user.id);
+    // console.log(62, response);
+    if (response && response.dataset) {
+      setMyFarmList(response.dataset);
+    }
   };
 
-  getFarms();
+  useEffect(() => {
+    getFarms();
+  }, []);
 
   return (
     <ImageBackground
@@ -79,10 +87,10 @@ const MyFarm = (props) => {
             </View>
           </View>
         </View>
-        <TouchableOpacity style={MyFarmStyles.farmNews}>
+        {/* <TouchableOpacity style={MyFarmStyles.farmNews}>
           <Text style={{color: '#ff0000'}}>[重要]</Text>
           <Text>初めて作物を収穫された方へ</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <View style={MyFarmStyles.farmData}>
           <ImageBackground
@@ -94,9 +102,8 @@ const MyFarm = (props) => {
             }}
             resizeMode="repeat">
             <View style={MyFarmStyles.myFarmTable}>
-              {farmList.map((item, i) => (
-                <Farm key={i} item={item} />
-              ))}
+              {myFarmList &&
+                myFarmList.map((item, i) => <Farm key={i} item={item} />)}
             </View>
           </ImageBackground>
         </View>

@@ -25,15 +25,15 @@ const Panel = (props) => {
   const submitFarm = async () => {
     console.log('Submit = ', props.user.user.id, props.name, props.cropId);
     const response = await apiCreateFarmWithCropId({
-      name: props.name,
+      name: farmName,
       crop_id: 1202,
       member_id: props.user.user.id,
     });
     console.log(32, response);
     if (response && response.id) {
       const farmInfo = {
-        farmId: response.id,
-        name: props.name,
+        id: response.id,
+        name: farmName,
       };
       Actions.farmTop({farmInfo: farmInfo, currentSelectedItem: null});
     }
@@ -85,7 +85,7 @@ const Panel = (props) => {
         style={[PanelStyles.inputName, PanelStyles.shadow]}
         value={farmName}
         returnKeyType="next"
-        onChange={inputFarmName}
+        onChangeText={(text) => inputFarmName(text)}
       />
       <TouchableOpacity
         style={[PanelStyles.submit, PanelStyles.shadow]}

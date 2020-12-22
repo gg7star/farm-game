@@ -18,6 +18,9 @@ export async function apiSubItems(farm_id, data) {
 }
 
 export async function apiUseItems(farm_id, item_id) {
-  console.log(20, 'use item === ', farm_id, 'item_id === ', item_id);
   return await jsonQuery(`/game/farm/${farm_id}/use_item/${item_id}`, 'POST');
+}
+
+export async function apiMyFarms(member_id) {
+  return await query(`/game/member/${member_id}/myfarms/`);
 }
