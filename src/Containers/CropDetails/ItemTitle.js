@@ -19,23 +19,21 @@ import Dash from 'react-native-dash';
 import Header from '../../Components/Header';
 
 
-const ItemTitle = ({item}) => {
-
+const ItemTitle = ({item, titleImg}) => {
   return (
-    <View 
-      style={[ItemTitleStyles.prizeText,    
-        ItemTitleStyles.topCorner]}
-    >
+    <View style={[ItemTitleStyles.prizeText, ItemTitleStyles.topCorner]}>
       <Image
         style={{width: 32, height: 32}}
-        source={{uri: item.titleImg}}
+        source={{
+          uri: titleImg,
+        }}
       />
       <Text style={[ItemTitleStyles.headerText, ItemTitleStyles.contentTitle]}>
-        {item.title}
+        {item.title ? item.title : item}
       </Text>
     </View>
-  )
-}
+  );
+};
 
 export default ItemTitle;
 

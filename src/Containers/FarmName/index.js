@@ -54,9 +54,10 @@ const FarmName = ({gameData}) => {
 
       <GameBgImg bgData={gameBgData} />
       <Panel
-        item={gameData.Mcaption}
+        cultivationDate={gameData.cultivationDate}
+        gameDay={gameData.gameDay}
         name={gameData.Mtitle + '農場'}
-        cropId={gameData.id}
+        cropId={gameData.cropId}
       />
       <GameMenu />
     </ImageBackground>

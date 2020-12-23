@@ -7,42 +7,29 @@ import {
 } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import { responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 
 import ItemTitle from './ItemTitle.js';
 
-const PrizePhoto = ({item}) => {
-
+const PrizePhoto = ({item, titleImg}) => {
   return (
-    <View
-      style={PrizePhotoStyles.corner}
-    >
-      <ItemTitle item={item} />
-      <View
-        style={{flexDirection: 'row'}}
-      >
-        <View
-          style={PrizePhotoStyles.shadow}
-        >
+    <View style={PrizePhotoStyles.corner}>
+      <ItemTitle item="お届け商品イメージ" titleImg={titleImg} />
+      <View style={{flexDirection: 'row'}}>
+        <View style={[PrizePhotoStyles.shadow]}>
           <AutoHeightImage
             width={responsiveWidth(50)}
-            source={{uri: item.photo}}
+            source={{uri: item.image}}
             style={{margin: 8}}
           />
         </View>
-        <View
-          style={{flex: 1}}
-        >
-          <Text
-            style={{fontSize: 14, margin: 8, lineHeight: 20}}
-          >
-            {item.text}
-          </Text>
-        </View>
+        <Text style={{fontSize: 14, margin: 8, lineHeight: 20, flex: 1}}>
+          {item.description}
+        </Text>
       </View>
     </View>
-  )
-}
+  );
+};
 
 export default PrizePhoto;
 
@@ -54,7 +41,6 @@ const PrizePhotoStyles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 8,
     marginVertical: 16,
-    borderRadius: 8,
   },
   shadow: {
     shadowOpacity: 0.3,
@@ -62,5 +48,5 @@ const PrizePhotoStyles = StyleSheet.create({
       height: 1,
       width: 1,
     },
-  }
-})
+  },
+});

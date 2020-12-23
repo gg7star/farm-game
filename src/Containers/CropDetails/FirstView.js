@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -12,27 +12,19 @@ import {
 } from 'react-native';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-import { responsiveWidth } from 'react-native-responsive-dimensions';
-import { Actions } from 'react-native-router-flux';
-import Dash from 'react-native-dash';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 
-import Header from '../../Components/Header';
 import ItemTitle from './ItemTitle.js';
 
-const FirstView = ({item}) => {
-
+const FirstView = ({title, titleImg, img}) => {
+  console.log(20, title);
   return (
-    <View
-      style={FirstViewStyles.corner}
-    >
-      <ItemTitle item={item} />
-      <AutoHeightImage
-        width={(responsiveWidth(100) - 16)}
-        source={{uri: item.fvImg}}
-      />
+    <View style={FirstViewStyles.corner}>
+      <ItemTitle item={title} titleImg={titleImg} />
+      <AutoHeightImage width={responsiveWidth(100) - 16} source={{uri: img}} />
     </View>
-  )
-}
+  );
+};
 
 export default FirstView;
 
@@ -44,13 +36,12 @@ const FirstViewStyles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 8,
     marginVertical: 16,
-    borderRadius: 8,
   },
   prizeText: {
-    backgroundColor: '#67b500',    
+    backgroundColor: '#67b500',
     borderLeftColor: 'rgba(0, 0, 0, 0.3)',
     borderLeftWidth: 16,
-    borderStyle: 'solid', 
+    borderStyle: 'solid',
     flexDirection: 'row',
     paddingVertical: 8,
     paddingHorizontal: 4,
@@ -74,5 +65,5 @@ const FirstViewStyles = StyleSheet.create({
   contentText: {
     marginBottom: 8,
     padding: 8,
-  }
-})
+  },
+});

@@ -26,7 +26,7 @@ const Panel = (props) => {
     console.log('Submit = ', props.user.user.id, props.name, props.cropId);
     const response = await apiCreateFarmWithCropId({
       name: farmName,
-      crop_id: 1202,
+      crop_id: props.cropId,
       member_id: props.user.user.id,
     });
     console.log(32, response);
@@ -64,7 +64,7 @@ const Panel = (props) => {
           <Text>
             <Text style={{color: '#666666', fontSize: 12}}>現実時間の</Text>
             <Text style={{color: '#ff5500', fontSize: 12}}>
-              {props.item.trainingGuide.split('前後')}
+              {props.cultivationDate}
             </Text>
             <Text style={{color: '#666666', fontSize: 12}}>前後</Text>
           </Text>
@@ -76,7 +76,7 @@ const Panel = (props) => {
           <Text>
             <Text style={{color: '#666666', fontSize: 12}}>現実時間の</Text>
             <Text style={{color: '#ff5500', fontSize: 12}}>
-              {props.item.inGameDay}
+              {props.gameDay}
             </Text>
           </Text>
         </View>

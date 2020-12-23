@@ -81,7 +81,14 @@ const goodPointTextData = {
 
 const CropDetails = ({gameData}) => {
   const goFarm = () => {
-    Actions.farmName({gameData: gameData});
+    console.log(84, gameData);
+    const data = {
+      Mtitle: gameData.farm_house.name,
+      cropId: gameData.crop.id,
+      cultivationDate: gameData.cultivation_date,
+      gameDay: gameData.game_day,
+    };
+    Actions.farmName({gameData: data});
   };
 
   return (
@@ -91,11 +98,31 @@ const CropDetails = ({gameData}) => {
       source={require('../../assets/images/bg_pattern.png')}>
       <ScrollView>
         <Header title="商品詳細" />
-        <FirstView item={firstViewData} />
-        <PrizePhoto item={prizePhotoData} />
-        <PrizeText item={prizeTextData} />
-        <GoodPointText item={goodPointTextData} />
-        <FarmerText item={farmerTextData} />
+        <FirstView
+          title={gameData.crop.name}
+          titleImg={firstViewData.titleImg}
+          img={gameData.product_image}
+        />
+        {gameData.base_farm_deliveries &&
+          gameData.base_farm_deliveries.map((item, i) => (
+            <PrizePhoto
+              item={item}
+              titleImg={prizePhotoData.titleImg}
+              key={i}
+            />
+          ))}
+        {/* <PrizePhoto item={prizePhotoData} /> */}
+
+        {/* <PrizeText item={prizeTextData} /> */}
+
+        {gameData.base_farm_amazings && (
+          <GoodPointText
+            item={gameData.base_farm_amazings}
+            titleImg={goodPointTextData.titleImg}
+          />
+        )}
+        {/* <GoodPointText item={goodPointTextData} /> */}
+        {/* <FarmerText item={farmerTextData} titleImg={farmerTextData.titleImg} /> */}
         <View style={{height: 200}} />
       </ScrollView>
 
@@ -116,7 +143,7 @@ const CropDetails = ({gameData}) => {
           </View>
         </View>
 
-        <View style={{flexDirection: 'row'}}>
+        {/* <View style={{flexDirection: 'row'}}>
           <View style={{width: '60%'}}>
             <Text style={CropDetailsStyles.bottomText}>
               【収穫目安P】4600っぴ
@@ -125,17 +152,17 @@ const CropDetails = ({gameData}) => {
           <View style={{width: '40%'}}>
             <Text style={CropDetailsStyles.bottomText}>【獲得mpt】-mpt</Text>
           </View>
-        </View>
+        </View> */}
 
         <View style={{flexDirection: 'row'}}>
           <View style={{width: '50%'}}>
             <Text style={CropDetailsStyles.bottomText}>
-              【育成目安】-日前後
+              【育成目安】{gameData.cultivation_date}日前後
             </Text>
           </View>
           <View style={{width: '50%'}}>
             <Text style={CropDetailsStyles.bottomText}>
-              【ゲーム内の一日】-分
+              【ゲーム内の一日】{gameData.game_day}分
             </Text>
           </View>
         </View>

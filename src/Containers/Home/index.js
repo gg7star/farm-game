@@ -1168,7 +1168,7 @@ const Home = () => {
                   <Text>{'\n\n'}</Text>
                 </View>
                 <View style={[HomeStyle.tabContent]}>
-                  {cropList && <CategoryTabContent item={recommends} />}
+                  {recommends && <CategoryTabContent item={recommends} />}
                   <Text>{'\n\n'}</Text>
                 </View>
               </ScrollView>

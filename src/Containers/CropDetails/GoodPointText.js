@@ -12,74 +12,54 @@ import Dash from 'react-native-dash';
 
 import ItemTitle from './ItemTitle.js';
 
-const GoodPointText = ({item}) => {
-
+const GoodPointText = ({item, titleImg}) => {
   return (
-    <View
-      style={GoodPointTextStyles.corner}
-    >
-      <ItemTitle item={item} />
-      {
-        item.content.map((each, i) => (
-          <View key={i}>
-            {
-              i > 0 && <Dash 
-                style={{height: 0.3, marginTop: 8}}
-                dashThickness={0.5} 
-              />
-            }
-            <View style={{alignItems: 'flex-start'}}>
-              <View style={GoodPointTextStyles.subTitleBg}>
-                <Text
-                  style={GoodPointTextStyles.subTitle}
-                >
-                  {each.subTitle}
-                </Text>
-              </View>
-            </View>
-            <View
-              style={GoodPointTextStyles.kokosugoTitleBg}
-            >
-              <Text
-                style={GoodPointTextStyles.kokosugoTitle}
-              >
-                {each.kokosugoTitle}
+    <View style={GoodPointTextStyles.corner}>
+      <ItemTitle item="ここがすごい！" titleImg={titleImg} />
+      {item.map((each, i) => (
+        <View key={i}>
+          {i > 0 && (
+            <Dash style={{height: 0.3, marginTop: 8}} dashThickness={0.5} />
+          )}
+          <View style={{alignItems: 'flex-start'}}>
+            <View style={GoodPointTextStyles.subTitleBg}>
+              <Text style={GoodPointTextStyles.subTitle}>
+                ◆ その
+                <View style={GoodPointTextStyles.circle}>
+                  <Text style={{color: '#fff'}}>{i + 1}</Text>
+                </View>{' '}
+                ◆
               </Text>
-              <Dash 
-                style={{height: 0.3}}
-                dashThickness={0.5} 
-                dashLength={1}
-                dashColor={'rgba(32, 164, 0, 1.00)'}
-              />
-            </View>
-            <View
-              style={{flexDirection: 'row'}}
-            >
-              <View
-              style={GoodPointTextStyles.shadow}
-              >
-                <AutoHeightImage
-                  width={responsiveWidth(45)}
-                  source={{uri: each.img}}
-                  style={GoodPointTextStyles.img}
-                />
-              </View>
-              <View
-                style={{flex: 1}}
-              >
-                <Text
-                  style={{fontSize: 14, margin: 8, lineHeight: 20}}
-                >
-                  {each.text}
-                </Text>
-              </View>
             </View>
           </View>
-        ))
-      }
+          <View style={GoodPointTextStyles.kokosugoTitleBg}>
+            <Text style={GoodPointTextStyles.kokosugoTitle}>{each.title}</Text>
+            <Dash
+              style={{height: 0.3}}
+              dashThickness={0.5}
+              dashLength={1}
+              dashColor={'rgba(32, 164, 0, 1.00)'}
+            />
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <View style={GoodPointTextStyles.shadow}>
+              <AutoHeightImage
+                width={responsiveWidth(45)}
+                source={{uri: each.image}}
+                style={GoodPointTextStyles.img}
+              />
+            </View>
+            <View style={{flex: 1}}>
+              <Text style={{fontSize: 14, margin: 8, lineHeight: 20}}>
+                {each.description}
+              </Text>
+            </View>
+          </View>
+        </View>
+      ))}
     </View>
-  )
-}
+  );
+};
 
 export default GoodPointText;
 
@@ -91,7 +71,6 @@ const GoodPointTextStyles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 8,
     marginVertical: 16,
-    borderRadius: 8,
   },
   subTitleBg: {
     backgroundColor: 'rgba(81, 106, 255, 1.00)',
@@ -103,11 +82,11 @@ const GoodPointTextStyles = StyleSheet.create({
     color: '#fff',
     marginHorizontal: 3,
     fontSize: 14,
-    lineHeight: 20
+    lineHeight: 20,
   },
   kokosugoTitle: {
     color: 'rgba(32, 164, 0, 1.00)',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   kokosugoTitleBg: {
     width: '90%',
@@ -126,5 +105,11 @@ const GoodPointTextStyles = StyleSheet.create({
       height: 1,
       width: 1,
     },
-  }
-})
+  },
+  circle: {
+    borderRadius: 15,
+    borderColor: '#fff',
+    borderWidth: 1,
+    paddingHorizontal: 3,
+  },
+});
