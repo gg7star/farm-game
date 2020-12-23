@@ -27,13 +27,6 @@ const PrizePhoto = ({item, titleImg}) => {
           {item.description}
         </Text>
       </View>
-      {/* <View style={{flexDirection: 'row'}}>
-        <AutoHeightImage
-          width={20}
-          source={require('../../assets/images/location1.png')}
-        />
-        <Text>{farmHouse.area}</Text>
-      </View> */}
     </View>
   );
 };

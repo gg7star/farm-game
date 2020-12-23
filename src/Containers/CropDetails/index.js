@@ -122,7 +122,13 @@ const CropDetails = ({gameData}) => {
           />
         )}
         {/* <GoodPointText item={goodPointTextData} /> */}
-        {/* <FarmerText item={farmerTextData} titleImg={farmerTextData.titleImg} /> */}
+        {gameData.farm_house && (
+          <FarmerText
+            item={gameData.farm_house}
+            farmName={gameData.name}
+            titleImg={farmerTextData.titleImg}
+          />
+        )}
         <View style={{height: 200}} />
       </ScrollView>
 

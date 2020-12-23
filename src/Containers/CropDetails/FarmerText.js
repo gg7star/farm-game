@@ -12,7 +12,7 @@ import Dash from 'react-native-dash';
 
 import ItemTitle from './ItemTitle.js';
 
-const FarmerText = ({item, titleImg}) => {
+const FarmerText = ({item, titleImg, farmName}) => {
   return (
     <View style={FarmerTextStyles.corner}>
       <ItemTitle item="生産者紹介" titleImg={titleImg} />
@@ -20,7 +20,7 @@ const FarmerText = ({item, titleImg}) => {
         <View style={{margin: 8, width: '50%'}}>
           <Text>
             【農園名】{'\n'}
-            {item.content[0]}
+            {farmName}
           </Text>
           <Dash
             style={{height: 0.3, marginBottom: 8}}
@@ -29,7 +29,7 @@ const FarmerText = ({item, titleImg}) => {
           />
           <Text>
             【農家名】{'\n'}
-            {item.content[1]}
+            {item.name}
           </Text>
           <Dash
             style={{height: 0.3, marginBottom: 8}}
@@ -38,13 +38,13 @@ const FarmerText = ({item, titleImg}) => {
           />
           <Text>
             【生産者さんから一言】{'\n'}
-            {item.content[2]}
+            {item.comment}
           </Text>
         </View>
         <View style={FarmerTextStyles.shadow}>
           <AutoHeightImage
             width={responsiveWidth(40)}
-            source={{uri: item.farmerImg}}
+            source={{uri: item.farm_house_images[0].image}}
             style={FarmerTextStyles.img}
           />
         </View>
