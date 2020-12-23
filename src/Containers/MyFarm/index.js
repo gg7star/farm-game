@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {responsiveWidth} from 'react-native-responsive-dimensions';
-
+import Spinner from 'react-native-loading-spinner-overlay';
 import {Actions} from 'react-native-router-flux';
 
 import Menu from '../../Components/Menu';
@@ -56,9 +56,12 @@ import {apiMyFarms} from '../../services/apis/farm_data';
 // ];
 const MyFarm = (props) => {
   const [myFarmList, setMyFarmList] = useState(undefined);
+  const [imageLoading, setImageLoading] = useState(false);
   const getFarms = async () => {
     // console.log(60, props.user.user.id);
+    setImageLoading(true);
     const response = await apiMyFarms(props.user.user.id);
+    setImageLoading(false);
     // console.log(62, response);
     if (response && response.dataset) {
       setMyFarmList(response.dataset);
@@ -74,6 +77,7 @@ const MyFarm = (props) => {
       style={MyFarmStyles.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern.png')}>
+      <Spinner visible={imageLoading} />
       <ScrollView>
         <View style={MyFarmStyles.header}>
           <Text style={MyFarmStyles.headerText}>MY FARM</Text>

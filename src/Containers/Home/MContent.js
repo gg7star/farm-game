@@ -14,9 +14,9 @@ import {responsiveWidth} from 'react-native-responsive-dimensions';
 import {Actions} from 'react-native-router-flux';
 
 const MContent = ({item}) => {
-  const addresses = item.Mcaption.address
-    ? item.Mcaption.address.split(' ')
-    : [];
+  // const addresses = item.Mcaption.address
+  //   ? item.Mcaption.address.split(' ')
+  //   : [];
   const cropClick = () => {
     Actions.cropDetails({gameData: item});
     // if (item.option === '無料ゲーム') {
@@ -34,13 +34,13 @@ const MContent = ({item}) => {
   return (
     <TouchableOpacity style={MContentStyles.bg} onPress={() => cropClick()}>
       <View style={{flexDirection: 'row', height: 18}}>
-        {item.option && item.option.length > 1 && (
-          <View style={MContentStyles.option}>
-            <Text style={MContentStyles.optionText}>{item.option}</Text>
-          </View>
-        )}
+        <View style={MContentStyles.option}>
+          <Text style={MContentStyles.optionText}>一般ゲーム</Text>
+        </View>
         <View style={MContentStyles.mTitle}>
-          <Text>{item.Mtitle}</Text>
+          <Text>
+            {item.crop.name}:{item.name}
+          </Text>
           <Dash
             style={{height: 0.3}}
             dashColor="rgb(142, 142, 142)"
@@ -53,7 +53,7 @@ const MContent = ({item}) => {
         {/* <Image source={{uri: item.Mimg}} style={MContentStyles.mimg} /> */}
         <AutoHeightImage
           width={responsiveWidth(30)}
-          source={{uri: item.Mimg}}
+          source={{uri: item.product_image}}
           style={{marginRight: 10}}
         />
         <View style={{width: responsiveWidth(50)}}>
@@ -65,11 +65,11 @@ const MContent = ({item}) => {
               </Text>
             </View>
           )} */}
-          {item.Mcaption.trainingGuide && (
+          {item.cultivation_date && (
             <View style={{flexDirection: 'row'}}>
               <Text style={MContentStyles.mContentText}>育成目安：</Text>
               <Text style={MContentStyles.mContentText}>
-                {item.Mcaption.trainingGuide}
+                {item.cultivation_date}日前後
               </Text>
             </View>
           )}
@@ -81,30 +81,31 @@ const MContent = ({item}) => {
               </Text>
             </View>
           )} */}
-          {item.Mcaption.inGameDay && (
+          {item.game_day && (
             <View style={{flexDirection: 'row'}}>
               <Text style={MContentStyles.mContentText}>ゲーム内の一日：</Text>
-              <Text style={MContentStyles.mContentText}>
-                {item.Mcaption.inGameDay}
-              </Text>
+              <Text style={MContentStyles.mContentText}>{item.game_day}分</Text>
             </View>
           )}
-          {item.Mcaption.address && (
+          {item.farm_house.area && (
             <View style={{flexDirection: 'row', marginTop: 10}}>
               <AutoHeightImage
                 width={25}
                 source={require('../../assets/images/location.png')}
               />
-              <Text style={MContentStyles.mContentText}>{addresses[0]}</Text>
+              <Text style={MContentStyles.mContentText}>
+                {item.farm_house.area}
+              </Text>
             </View>
           )}
-          {item.Mcaption.address && (
+          {item.farm_house.name && (
             <TouchableOpacity
               style={MContentStyles.farmName}
               onPress={goFarmDetails}>
               <Image
                 // resizeMode="contain"
-                source={require('../../assets/images/10_1.png')}
+                source={{uri: item.farm_house.farm_house_images[0].image}}
+                // source={require('../../assets/images/10_1.png')}
                 style={MContentStyles.farmmer}
               />
               <ImageBackground
@@ -115,20 +116,20 @@ const MContent = ({item}) => {
                   <Text
                     numberOfLines={1}
                     style={[MContentStyles.mContentText, {flex: 1}]}>
-                    {addresses[1]}
+                    {item.farm_house.name}
                   </Text>
                 </View>
               </ImageBackground>
             </TouchableOpacity>
           )}
-          {item.Mcaption.content && (
+          {/* {item.Mcaption.content && (
             <View style={{flexDirection: 'row', width: '80%'}}>
               <Text style={MContentStyles.mContentText}>・ </Text>
               <Text style={MContentStyles.mContentText}>
                 {item.Mcaption.content}
               </Text>
             </View>
-          )}
+          )} */}
         </View>
         <Text style={MContentStyles.mArrow}>▲</Text>
       </View>

@@ -16,11 +16,13 @@ import {
   responsiveWidth,
   responsiveHeight,
 } from 'react-native-responsive-dimensions';
-
+import Spinner from 'react-native-loading-spinner-overlay';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 import {Actions} from 'react-native-router-flux';
 import {SliderBox} from 'react-native-image-slider-box';
+
+import {apiBaseFarm, apiRecommends} from '../../services/apis/farmer';
 
 import Menu from '../../Components/Menu';
 
@@ -57,10 +59,26 @@ const categoryTabList = [
   },
 ];
 
+// {
+//   id: 'crop1058',
+//   cropId: 1058,
+//   Mimg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/nae7/1058/reco.png',
+//   Mtitle: 'きらぴ香',
+//   Mcaption: {
+//     harvestGuide: '4600っぴ',
+//     trainingGuide: '-日前後',
+//     mpt: '-mpt',
+//     inGameDay: '-分',
+//     address: '静岡県焼津市 シックスベリーファーマーズ',
+//   },
+//   option: '一発畑',
+// },
+
 const categories = [
   [
     {
       id: 'crop1058',
+      cropId: 1058,
       Mimg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/nae7/1058/reco.png',
       Mtitle: 'きらぴ香',
       Mcaption: {
@@ -74,6 +92,7 @@ const categories = [
     },
     {
       id: 'crop1524',
+      cropId: 1524,
       Mimg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/nae7/1524/reco.png',
       Mtitle: 'ダブル：きらぴ香',
       Mcaption: {
@@ -87,6 +106,7 @@ const categories = [
     },
     {
       id: 'crop1202',
+      cropId: 1202,
       Mimg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/nae7/1202/reco.png',
       Mtitle: '桃薫',
       Mcaption: {
@@ -100,6 +120,7 @@ const categories = [
     },
     {
       id: 'crop1203',
+      cropId: 1203,
       Mimg: 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/nae7/1203/reco.png',
       Mtitle: 'ダブル：桃薫',
       Mcaption: {
@@ -957,7 +978,36 @@ const Home = () => {
     require('../../assets/images/rotebunner/main_bunner_05.png'),
     require('../../assets/images/rotebunner/main_bunner_06.png'),
   ]);
-  // const [notation, setNotation] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
+  const [cropList, setCropList] = useState(undefined);
+  const [recommends, setRecommends] = useState(undefined);
+
+  useEffect(() => {
+    getCropList();
+    getRecommends();
+  }, []);
+
+  const getCropList = async () => {
+    // console.log(987, 'Home Crop List');
+    setImageLoading(true);
+    const response = await apiBaseFarm();
+    setImageLoading(false);
+    if (response) {
+      // console.log(989, response);
+      setCropList(response.dataset);
+    }
+  };
+
+  const getRecommends = async () => {
+    // console.log(1002, 'Home Recommends');
+    setImageLoading(true);
+    const response = await apiRecommends();
+    setImageLoading(false);
+    if (response) {
+      // console.log(1007, response);
+      setRecommends(response.dataset);
+    }
+  };
 
   const handleTab = (e) => {
     if (e.nativeEvent.contentOffset.x >= responsiveWidth(100)) {
@@ -985,28 +1035,12 @@ const Home = () => {
     setNewNotification(true);
   };
 
-  // const eventImgClick = () => {
-  //   Actions.event();
-  // };
-
-  // const homeBtnClick = (e) => {
-  //   if (e === 0) {
-  //     Actions.tutorial();
-  //   } else if (e === 1) {
-  //     setNotation(true);
-  //   } else {
-  //     Actions.ranking();
-  //   }
-  // };
-  // const notationClose = () => {
-  //   setNotation(false);
-  // };
-
   return (
     <ImageBackground
       style={HomeStyle.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern_1.gif')}>
+      <Spinner visible={imageLoading} />
       {/* <View style={HomeStyle.header}>
         <View style={HomeStyle.headerNews}></View>
         <View style={HomeStyle.headerAccount}>
@@ -1111,39 +1145,35 @@ const Home = () => {
               </TouchableHighlight>
             ))}
           </View>
-          <View
-            style={{
-              height:
-                (responsiveWidth(30) + 20) * categories[tabItem].length + 60,
-            }}>
-            <ScrollView
-              horizontal={true}
-              decelerationRate={0}
-              snapToInterval={responsiveWidth(100)}
-              snapToAlignment={'center'}
-              ref={scrollRef}
-              // ref={(c) => {
-              //   scrollRef = c;
-              // }}
-              onScroll={(e) => handleTab(e)}>
-              {/* {categories.map(
-                (item, i) =>
-                  tabItem === i && (
-                    <View key={i} style={HomeStyle.tabContent}>
-                      <CategoryTabContent item={item} />
-                    </View>
-                  ),
-              )} */}
-              <View style={[HomeStyle.tabContent]}>
-                <CategoryTabContent item={categories[0]} />
-                <Text>{'\n\n'}</Text>
-              </View>
-              <View style={[HomeStyle.tabContent]}>
-                <CategoryTabContent item={categories[1]} />
-                <Text>{'\n\n'}</Text>
-              </View>
-            </ScrollView>
-          </View>
+          {cropList && (<View
+              style={{
+                height:
+                  (responsiveWidth(30) + 20) *
+                    (tabItem === 0 ? cropList.length : recommends.length) +
+                  70,
+              }}>
+              <ScrollView
+                horizontal={true}
+                decelerationRate={0}
+                snapToInterval={responsiveWidth(100)}
+                snapToAlignment={'center'}
+                ref={scrollRef}
+                // ref={(c) => {
+                //   scrollRef = c;
+                // }}
+                onScroll={(e) => handleTab(e)}>
+                <View style={[HomeStyle.tabContent]}>
+                  {/* <CategoryTabContent item={categories[0]} /> */}
+                  {cropList && <CategoryTabContent item={cropList} />}
+                  <Text>{'\n\n'}</Text>
+                </View>
+                <View style={[HomeStyle.tabContent]}>
+                  {cropList && <CategoryTabContent item={recommends} />}
+                  <Text>{'\n\n'}</Text>
+                </View>
+              </ScrollView>
+            </View>
+          )}
         </View>
 
         {/* <View style={[HomeStyle.subMenu, HomeStyle.corner]}>

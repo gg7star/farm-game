@@ -14,7 +14,7 @@ import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimen
 import AutoHeightImage from 'react-native-auto-height-image';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-import {apiFarmTopMenus} from '../../services/apis/game_farm';
+import {apiFarmTopMenus} from '../../services/apis/farm_data';
 
 const TopHatakeMenu = ({
   handleClick,

@@ -13,6 +13,11 @@ export async function apiDeleteFarm(farm_id) {
   return await query(`/farm_data/${farm_id}/`);
 }
 
+export async function apiFarmTopMenus(farm_id) {
+  console.log(4, 'apiFarmTopMenus = ', farm_id);
+  return await query(`/game/farm/${farm_id}/top_menus/`);
+}
+
 export async function apiSubItems(farm_id, data) {
   return await query(`/game/farm/${farm_id}/sub_items/?name=${data}`);
 }
