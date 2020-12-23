@@ -29,13 +29,13 @@ const Crop = ({item}) => {
   return (
     <TouchableOpacity style={CropStyles.bg} onPress={cropClick}>
       <View style={{flexDirection: 'row', height: 18}}>
-        {item.option && item.option.length > 1 && (
-          <View style={CropStyles.option}>
-            <Text style={CropStyles.optionText}>{item.option}</Text>
-          </View>
-        )}
+        <View style={CropStyles.option}>
+          <Text style={CropStyles.optionText}>一般ゲーム</Text>
+        </View>
         <View style={CropStyles.mTitle}>
-          <Text>{item.Mtitle}</Text>
+          <Text>
+            {item.crop.name}:{item.name}
+          </Text>
           <Dash
             style={{height: 0.3}}
             dashColor="rgb(142, 142, 142)"
@@ -48,7 +48,7 @@ const Crop = ({item}) => {
         {/* <Image source={{uri: item.Mimg}} style={CropStyles.mimg} /> */}
         <AutoHeightImage
           width={responsiveWidth(30)}
-          source={{uri: item.Mimg}}
+          source={{uri: item.product_image}}
           style={{marginRight: 10}}
         />
         <View style={{width: responsiveWidth(50)}}>
@@ -60,26 +60,24 @@ const Crop = ({item}) => {
               </Text>
             </View>
           )} */}
-          {item.Mcaption.trainingGuide && (
+          {item.cultivation_date && (
             <View style={{flexDirection: 'row'}}>
               <Text style={CropStyles.mContentText}>育成目安：</Text>
               <Text style={CropStyles.mContentText}>
-                {item.Mcaption.trainingGuide}
+                {item.cultivation_date}日前後
               </Text>
             </View>
           )}
-          {item.Mcaption.mpt && (
+          {/* {item.Mcaption.mpt && (
             <View style={{flexDirection: 'row'}}>
               <Text style={CropStyles.mContentText}>・獲得mpt：</Text>
               <Text style={CropStyles.mContentText}>{item.Mcaption.mpt}</Text>
             </View>
-          )}
-          {item.Mcaption.inGameDay && (
+          )} */}
+          {item.game_day && (
             <View style={{flexDirection: 'row'}}>
               <Text style={CropStyles.mContentText}>ゲーム内の一日：</Text>
-              <Text style={CropStyles.mContentText}>
-                {item.Mcaption.inGameDay}
-              </Text>
+              <Text style={CropStyles.mContentText}>{item.game_day}分</Text>
             </View>
           )}
         </View>

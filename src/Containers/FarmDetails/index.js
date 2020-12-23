@@ -21,6 +21,9 @@ import AutoHeightImage from 'react-native-auto-height-image';
 
 import {Actions} from 'react-native-router-flux';
 import {SliderBox} from "react-native-image-slider-box";
+import Spinner from 'react-native-loading-spinner-overlay';
+
+import {apiFarmHouse} from '../../services/apis/farmer';
 
 import Menu from '../../Components/Menu';
 import Crop from './Crop';
@@ -844,19 +847,36 @@ const categories = [
   ]
 ];
 
-const FarmDetails = () => {
-  const [sImg, setSImg] = useState([
-    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/photo_farmer/83_1.png',
-    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/photo_farmer/10_1.png',
-    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/photo_farmer/11_1.png',
-    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/photo_farmer/12_1.png',
-  ]);
+const FarmDetails = ({farmHouseId}) => {
+  const [sImg, setSImg] = useState([]);
+  const [farmHouse, setFarmHouse] = useState(undefined);
+  const [imageLoading, setImageLoading] = useState(false);
+
+  useEffect(() => {
+    getFarmHouse();
+  }, []);
+
+  const getFarmHouse = async () => {
+    setImageLoading(true);
+    const response = await apiFarmHouse(farmHouseId);
+    setImageLoading(false);
+    if (response) {
+      console.log(864, response);
+      setFarmHouse(response);
+      let topImg = [];
+      for (let i = 0; i < response.farm_house_images.length; i++) {
+        topImg.push(response.farm_house_images[i].image);
+      }
+      setSImg(topImg);
+    }
+  };
 
   return (
     <ImageBackground
       style={FarmDetailsStyles.bgImg}
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern_1.gif')}>
+      <Spinner visible={imageLoading} />
       <ScrollView>
         <View>
           <SliderBox
@@ -869,13 +889,25 @@ const FarmDetails = () => {
             }
           />
         </View>
-        <View style={FarmDetailsStyles.content}>
-          <Text>きらぴ香</Text>
-          <View style={FarmDetailsStyles.btn}>
-            <Text style={{color: 'rgb(4, 164, 222)'}}>きらぴ香</Text>
+        {farmHouse && (
+          <View style={FarmDetailsStyles.content}>
+            <View style={{flexDirection: 'row'}}>
+              <AutoHeightImage
+                width={20}
+                source={require('../../assets/images/location1.png')}
+              />
+              <Text>{farmHouse.area}</Text>
+            </View>
+            <View style={FarmDetailsStyles.btn}>
+              <Text style={{color: 'rgb(4, 164, 222)'}}>きらぴ香</Text>
+            </View>
+            <Text>{farmHouse.comment}</Text>
           </View>
-        </View>
-        {categories[0].map((item, i) => i < 3 && <Crop item={item} key={i} />)}
+        )}
+        {farmHouse &&
+          farmHouse.farm_house_base_farms.map(
+            (item, i) => i < 3 && <Crop item={item} key={i} />,
+          )}
         <Text>{'\n\n\n'}</Text>
       </ScrollView>
       <Menu />

@@ -29,7 +29,7 @@ const MContent = ({item}) => {
     // }
   };
   const goFarmDetails = () => {
-    Actions.farmDetails();
+    Actions.farmDetails({farmHouseId: item.farm_house.id});
   };
   return (
     <TouchableOpacity style={MContentStyles.bg} onPress={() => cropClick()}>

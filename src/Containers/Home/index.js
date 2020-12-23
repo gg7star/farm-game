@@ -1145,7 +1145,8 @@ const Home = () => {
               </TouchableHighlight>
             ))}
           </View>
-          {cropList && (<View
+          {cropList && (
+            <View
               style={{
                 height:
                   (responsiveWidth(30) + 20) *
