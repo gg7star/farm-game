@@ -32,7 +32,7 @@ const menuItems = [
   },
   {
     name: '送付手続き待ち',
-    link: 'waitDelivery',
+    link: 'waitDelivery2',
     icon: require('../../assets/images/icons/send_processing.png'),
   },
   {

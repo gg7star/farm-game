@@ -15,7 +15,7 @@ import AutoHeightImage from 'react-native-auto-height-image';
 import TopItem from './TopItem';
 
 const TopItemMenu = ({handleClick, itemList, handleClickItem, farmInfo}) => {
-
+  console.log(18, itemList);
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
       <View style={TopItemMenuStyles.bg}>
@@ -34,7 +34,7 @@ const TopItemMenu = ({handleClick, itemList, handleClickItem, farmInfo}) => {
                     item={item}
                     key={i}
                     // bottom={i + 1 === itemList.length}
-                    bottom={i + 1 === 15}
+                    bottom={i + 1 === 15 || i + 1 === itemList.length}
                     handleClick={handleClickItem}
                   />
                 ),

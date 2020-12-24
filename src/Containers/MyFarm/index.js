@@ -27,7 +27,7 @@ const MyFarm = (props) => {
     setImageLoading(true);
     const response = await apiMyFarms(props.user.user.id);
     setImageLoading(false);
-    if (response && response.dataset) {
+    if (response) {
       let tempFarms = response.dataset;
       if (response.dataset.length < 12) {
         for (let i = response.dataset.length; i < 12; i++) {
@@ -175,9 +175,5 @@ const MyFarmStyles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   user: state.user || {},
 });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   loginActions: bindActionCreators(userActions.login, dispatch),
-// });
 
 export default connect(mapStateToProps)(MyFarm);

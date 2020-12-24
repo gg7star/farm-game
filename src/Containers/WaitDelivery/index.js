@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,22 +8,20 @@ import {
   TextInput,
   TouchableOpacity,
   ImageBackground,
-  Image
 } from 'react-native';
 
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 
-import { Actions } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 import Dash from 'react-native-dash';
 
 import Header from '../../Components/Header';
 import Menu from '../../Components/Menu';
 
 const WaitDelivery = () => {
-
   const goWaitDelivery2 = () => {
-    Actions.waitDelivery2()
-  }
+    Actions.waitDelivery2();
+  };
 
   return (
     <ImageBackground
@@ -31,26 +29,25 @@ const WaitDelivery = () => {
       resizeMode="repeat"
       source={require('../../assets/images/bg_pattern_1.gif')}>
       <ScrollView>
-        <Header title='送付手続き' />
-        
+        <Header title="送付手続き" />
         <View style={[WaitDeliveryStyles.content, WaitDeliveryStyles.shadow]}>
           <View style={{margin: 8}}>
             <View style={{alignItems: 'flex-start'}}>
-              <TouchableOpacity  style={WaitDeliveryStyles.waitDelivery2} onPress={goWaitDelivery2}>
+              <TouchableOpacity
+                style={WaitDeliveryStyles.waitDelivery2}
+                onPress={goWaitDelivery2}>
                 <Text style={WaitDeliveryStyles.waitDelivery2Text}>
                   手続き済みの作物 ▶
                 </Text>
               </TouchableOpacity>
             </View>
-            <Dash 
+            <Dash
               style={{height: 0.3, marginVertical: 4}}
-              dashColor='rgb(142, 142, 142)'
-              dashThickness={1} 
+              dashColor="rgb(142, 142, 142)"
+              dashThickness={1}
             />
           </View>
-          <View 
-            style={WaitDeliveryStyles.prizeText}
-          >
+          <View style={WaitDeliveryStyles.prizeText}>
             <Text style={WaitDeliveryStyles.subTitle}>
               手続き待ちの作物一覧
             </Text>
@@ -88,23 +85,23 @@ const WaitDeliveryStyles = StyleSheet.create({
     shadowOffset: {
       height: 0,
       width: 5,
-    }
+    },
   },
   waitDelivery2: {
     backgroundColor: 'rgba(29, 187, 47, 1.00)',
-    borderRadius: 4,   
-    marginVertical: 4, 
+    borderRadius: 4,
+    marginVertical: 4,
   },
   waitDelivery2Text: {
     color: '#fff',
     lineHeight: 30,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   prizeText: {
-    backgroundColor: '#67b500',    
+    backgroundColor: '#67b500',
     borderLeftColor: 'rgba(0, 0, 0, 0.3)',
     borderLeftWidth: 16,
-    borderStyle: 'solid',    
+    borderStyle: 'solid',
     marginTop: 4,
   },
   subTitle: {
@@ -114,4 +111,4 @@ const WaitDeliveryStyles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 4,
   },
-})
+});

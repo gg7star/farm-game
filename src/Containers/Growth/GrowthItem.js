@@ -25,19 +25,19 @@ const GrowthItem = ({item}) => {
     <View>
       <Text style={GrowthItemStyles.line}>
         <Text style={GrowthItemStyles.listName}>ゲーム名 ：</Text>
-        <Text>{item.gameName}</Text>
+        <Text>{item.crop_name}</Text>
       </Text>
       <Text style={GrowthItemStyles.line}>
         <Text style={GrowthItemStyles.listName}>農場名 ：</Text>
-        <Text>{item.gameName}</Text>
+        <Text>{item.crop_name}</Text>
       </Text>
       <Text style={GrowthItemStyles.line}>
         <Text style={GrowthItemStyles.listName}>育成期間 ：</Text>
-        <Text>{item.trainingPeriod}</Text>
+        <Text>{item.farm_create_date}</Text>
       </Text>
       <Text style={GrowthItemStyles.line}>
         <Text style={GrowthItemStyles.listName}>現在の状態 ：</Text>
-        <Text>{item.currentState}</Text>
+        <Text>{item.status}</Text>
       </Text>
       <Dash
         style={{height: 0.3, marginBottom: 8}}
