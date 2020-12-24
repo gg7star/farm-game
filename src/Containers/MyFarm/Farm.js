@@ -15,6 +15,7 @@ import {responsiveWidth} from 'react-native-responsive-dimensions';
 import FarmBg from './FarmBg';
 
 const Farm = ({item, check}) => {
+  console.log(18, check, item);
   const goFarmTop = () => {
     if (check) {
       Actions.farmTop({farmInfo: item.farm, currentSelectedItem: null});
@@ -70,12 +71,13 @@ const FarmStyles = StyleSheet.create({
     borderRadius: 4,
     borderColor: '#fff',
     borderWidth: 2,
+    flex: 1,
   },
   nameArea: {
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     position: 'absolute',
     top: 0,
-    width: responsiveWidth(30),
+    width: '100%',
   },
   name: {
     color: '#fff',

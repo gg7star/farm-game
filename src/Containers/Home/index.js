@@ -1213,10 +1213,7 @@ const Home = () => {
               style={HomeStyle.modalCloseTop}
               onPress={() => setNewNotification(false)}>
               <Image
-                source={{
-                  uri:
-                    'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/mymenu/back.png',
-                }}
+                source={require('../../assets/images/back.png')}
                 style={{width: 37, height: 37}}
               />
             </TouchableOpacity>

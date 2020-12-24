@@ -28,7 +28,17 @@ const MyFarm = (props) => {
     const response = await apiMyFarms(props.user.user.id);
     setImageLoading(false);
     if (response && response.dataset) {
-      setMyFarmList(response.dataset);
+      let tempFarms = response.dataset;
+      if (response.dataset.length < 12) {
+        for (let i = response.dataset.length; i < 12; i++) {
+          tempFarms.push({farm: {id: -1}});
+        }
+      } else if (response.dataset.length % 3 !== 0) {
+        for (let i = 0; i < response.dataset.length % 3; i++) {
+          tempFarms.push({farm: {id: -1}});
+        }
+      }
+      setMyFarmList(tempFarms);
     }
   };
 
@@ -72,13 +82,35 @@ const MyFarm = (props) => {
             <View style={MyFarmStyles.myFarmTable}>
               {myFarmList &&
                 myFarmList.map((item, i) => (
-                  <Farm key={i} item={item} check={true} />
+                  <View style={{flex: 1, flexDirection: 'row'}}>
+                    {i % 3 === 0 && (
+                      <Farm
+                        key={i}
+                        item={myFarmList[i]}
+                        check={myFarmList[i].farm.id > 0}
+                      />
+                    )}
+                    {i % 3 === 0 && (
+                      <Farm
+                        key={i + 1}
+                        item={myFarmList[i + 1]}
+                        check={myFarmList[i + 1].farm.id > 0}
+                      />
+                    )}
+                    {i % 3 === 0 && (
+                      <Farm
+                        key={i + 2}
+                        item={myFarmList[i + 2]}
+                        check={myFarmList[i + 2].farm.id > 0}
+                      />
+                    )}
+                  </View>
                 ))}
-              {newFarm.map(
+              {/* {newFarm.map(
                 (item, i) =>
                   i >= (myFarmList ? myFarmList.length : 0) &&
                   i < 13 && <Farm key={i} item={item} check={false} />,
-              )}
+              )} */}
             </View>
           </ImageBackground>
         </View>
@@ -132,8 +164,8 @@ const MyFarmStyles = StyleSheet.create({
     marginVertical: 16,
   },
   myFarmTable: {
-    flex: 1,
-    flexDirection: 'row',
+    // flex: 1,
+    // flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     padding: '0%',
