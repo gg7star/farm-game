@@ -25,8 +25,10 @@ const TopNana = ({item, data, handleClick}) => {
               {data.map((each, i) => (
                 <View key={i} style={TopNanaStyles.weather}>
                   <Text style={TopNanaStyles.weatherText}>
-                    {moment(each.date).add(i, 'days').format('M')}月
-                    {moment(each.date).add(i, 'days').format('D')}日
+                    {moment(each.date).format('M')}月
+                    {moment(each.date).format('D')}日
+                    {/* {moment(each.date).add(i, 'days').format('M')}月
+                    {moment(each.date).add(i, 'days').format('D')}日 */}
                   </Text>
                   <AutoHeightImage width={24} source={{uri: each.image}} />
                 </View>

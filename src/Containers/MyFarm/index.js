@@ -18,51 +18,15 @@ import Menu from '../../Components/Menu';
 import Farm from './Farm.js';
 import {apiMyFarms} from '../../services/apis/farm_data';
 
-// const farmList = [
-//   {
-//     id: 364197,
-//     name: '無料ゲーム：白菜農場',
-//     date: '155日目',
-//     farmImg:
-//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/364145.jpg',
-//     cropImg:
-//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/1609/icon.png',
-//   },
-//   {
-//     id: 364197,
-//     name: 'はちみつ(小瓶セット)農場',
-//     date: '7日目',
-//     farmImg:
-//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/farms/53541.jpg',
-//     cropImg:
-//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp/images/crops/555/icon.png',
-//   },
-//   {
-//     id: 364197,
-//     name: '',
-//     date: '',
-//     farmImg:
-//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
-//     cropImg: '',
-//   },
-//   {
-//     id: 364197,
-//     name: '',
-//     date: '',
-//     farmImg:
-//       'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/img/newcreate.png',
-//     cropImg: '',
-//   },
-// ];
+const newFarm = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
 const MyFarm = (props) => {
   const [myFarmList, setMyFarmList] = useState(undefined);
   const [imageLoading, setImageLoading] = useState(false);
   const getFarms = async () => {
-    // console.log(60, props.user.user.id);
     setImageLoading(true);
     const response = await apiMyFarms(props.user.user.id);
     setImageLoading(false);
-    // console.log(62, response);
     if (response && response.dataset) {
       setMyFarmList(response.dataset);
     }
@@ -107,7 +71,14 @@ const MyFarm = (props) => {
             resizeMode="repeat">
             <View style={MyFarmStyles.myFarmTable}>
               {myFarmList &&
-                myFarmList.map((item, i) => <Farm key={i} item={item} />)}
+                myFarmList.map((item, i) => (
+                  <Farm key={i} item={item} check={true} />
+                ))}
+              {newFarm.map(
+                (item, i) =>
+                  i >= (myFarmList ? myFarmList.length : 0) &&
+                  i < 13 && <Farm key={i} item={item} check={false} />,
+              )}
             </View>
           </ImageBackground>
         </View>

@@ -54,6 +54,6 @@ const WeatherStyles = StyleSheet.create({
     left: responsiveWidth(2),
     top: 50,
     zIndex: 2,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
-})
+});
