@@ -129,7 +129,7 @@ const CropDetails = ({gameData}) => {
             titleImg={farmerTextData.titleImg}
           />
         )}
-        <View style={{height: 200}} />
+        <View style={{height: 250}} />
       </ScrollView>
 
       <View style={CropDetailsStyles.gameText}>

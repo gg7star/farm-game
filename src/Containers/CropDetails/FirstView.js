@@ -37,15 +37,6 @@ const FirstViewStyles = StyleSheet.create({
     marginHorizontal: 8,
     marginVertical: 16,
   },
-  prizeText: {
-    backgroundColor: '#67b500',
-    borderLeftColor: 'rgba(0, 0, 0, 0.3)',
-    borderLeftWidth: 16,
-    borderStyle: 'solid',
-    flexDirection: 'row',
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-  },
   topCorner: {
     borderTopRightRadius: 8,
     borderTopLeftRadius: 8,

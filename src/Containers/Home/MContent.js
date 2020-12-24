@@ -38,9 +38,11 @@ const MContent = ({item}) => {
           <Text style={MContentStyles.optionText}>一般ゲーム</Text>
         </View>
         <View style={MContentStyles.mTitle}>
-          <Text>
-            {item.crop.name}:{item.name}
-          </Text>
+          <View style={MContentStyles.container}>
+            <Text numberOfLines={1} style={{flex: 1}}>
+              {item.crop.name}:{item.name}
+            </Text>
+          </View>
           <Dash
             style={{height: 0.3}}
             dashColor="rgb(142, 142, 142)"

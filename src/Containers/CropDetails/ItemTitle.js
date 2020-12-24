@@ -39,10 +39,10 @@ export default ItemTitle;
 
 const ItemTitleStyles = StyleSheet.create({
   prizeText: {
-    backgroundColor: '#67b500',    
-    borderLeftColor: 'rgba(0, 0, 0, 0.3)',
-    borderLeftWidth: 16,
-    borderStyle: 'solid', 
+    backgroundColor: '#67b500',
+    // borderLeftColor: 'rgba(0, 0, 0, 0.3)',
+    // borderLeftWidth: 16,
+    borderStyle: 'solid',
     flexDirection: 'row',
     paddingVertical: 8,
     paddingHorizontal: 4,
@@ -62,5 +62,5 @@ const ItemTitleStyles = StyleSheet.create({
     fontWeight: 'bold',
     paddingVertical: 8,
     paddingHorizontal: 4,
-  }
-})
+  },
+});

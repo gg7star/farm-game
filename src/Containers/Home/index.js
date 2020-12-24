@@ -1150,7 +1150,7 @@ const Home = () => {
               style={{
                 height:
                   (responsiveWidth(30) + 20) *
-                  (tabItem === 0 ? cropList.length + 1 : recommends.length + 1),
+                  (tabItem === 0 ? cropList.length + 2 : recommends.length + 2),
               }}>
               <ScrollView
                 horizontal={true}
