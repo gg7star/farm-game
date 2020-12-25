@@ -1,39 +1,39 @@
 export const ADMOB_CONFIG = {
   name: 'ポチくる',
   ios: {
-    id: 'ca-app-pub-4866324751233603~4180080712',
+    id: 'ca-app-pub-2840293697277448~4828394508',
     reward: {
-      live_id: 'ca-app-pub-4866324751233603/3086490898',
+      live_id: 'ca-app-pub-2840293697277448/8209277877',
       test_id: 'ca-app-pub-3940256099942544/5224354917',
-      unitName: 'Hatakeppi',
+      unitName: 'Potikuru_Rewards',
     },
     interstitial: {
-      live_id: 'ca-app-pub-4866324751233603/3945019254',
+      live_id: 'ca-app-pub-2840293697277448/5854577278',
       test_id: 'ca-app-pub-3940256099942544/1033173712',
-      unitName: 'Hatakeppi_Interstitial',
+      unitName: 'Potikuru_Interstitial',
     },
     banner: {
-      live_id: 'ca-app-pub-4866324751233603/3550461100',
+      live_id: 'ca-app-pub-2840293697277448/3092682561',
       test_id: 'ca-app-pub-3940256099942544/2934735716',
-      unitName: 'Hatakeppi_Interstitial',
+      unitName: 'Potikuru_Banner',
     },
   },
   android: {
-    id: 'ca-app-pub-4866324751233603~8927002753',
+    id: 'ca-app-pub-2840293697277448~1227033178',
     reward: {
-      live_id: 'ca-app-pub-4866324751233603/4353155315',
+      live_id: 'ca-app-pub-4866324751233603/3086490898',
       test_id: 'ca-app-pub-3940256099942544/5224354917',
-      unitName: 'Hatakeppi',
+      unitName: 'Potikuru_Rewards',
     },
     interstitial: {
-      live_id: 'ca-app-pub-4866324751233603/9923270094',
+      live_id: 'ca-app-pub-2840293697277448/7111818620',
       test_id: 'ca-app-pub-3940256099942544/1033173712',
-      unitName: 'Hatakeppi_Interstitial',
+      unitName: 'Potikuru_Interstitial',
     },
     banner: {
-      live_id: 'ca-app-pub-4866324751233603/1127284225',
+      live_id: 'ca-app-pub-2840293697277448/2681619027',
       test_id: 'ca-app-pub-3940256099942544/2934735716',
-      unitName: 'Hatakeppi_Interstitial',
+      unitName: 'Potikuru_Banner',
     },
   },
 };
