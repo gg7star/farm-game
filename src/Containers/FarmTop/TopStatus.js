@@ -11,27 +11,25 @@ import {
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const Nutrition = ({handleClickNutrition, item}) => {
+const TopStatus = ({handleClickNutrition}) => {
   const clickItem = () => {
     handleClickNutrition();
   };
   return (
-    <TouchableOpacity style={NutritionStyles.bg} onPress={() => clickItem()}>
+    <TouchableOpacity style={TopStatusStyles.bg} onPress={() => clickItem()}>
       <AutoHeightImage
         width={responsiveWidth(16)}
         source={{
           uri:
-            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/para2.png',
+            'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/ic_caution.gif',
         }}
-        style={{top: -1 * item.moisture * responsiveWidth(16)}}
       />
     </TouchableOpacity>
   );
 };
+export default TopStatus;
 
-export default Nutrition;
-
-const NutritionStyles = StyleSheet.create({
+const TopStatusStyles = StyleSheet.create({
   bg: {
     width: responsiveWidth(16),
     height: responsiveWidth(16),

@@ -46,6 +46,8 @@ import AdMob from '../AdMob';
 import FarmBgImg from './FarmBgImg';
 import YesNoPanel from './YesNoPanel';
 import FarmStatusList from './FarmStatusList';
+import TopStatus from './TopStatus';
+
 const nanaSpot =
   'スライムさん、こんにちは♪菜々と一緒にキャベツを作って餃子をゲットしよう♪\nまずはハウスの骨組みを建てよう！';
 
@@ -273,6 +275,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [itemName, setItemName] = useState({name: currentSelectedItem});
   // const [showAdmob, setShowAdmob] = useState(false);
   const [bgImg, setBgImg] = useState([]);
+  const [farmData, setFarmData] = useState(undefined);
   const [curWeather, setCurWeather] = useState(undefined);
   const [imageLoading, setImageLoading] = useState(false);
   const [closeFarm, setCloseFarm] = useState(false);
@@ -289,22 +292,22 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       setPoint(true);
     } else {
       currentSelectedItem && getSubItems(currentSelectedItem);
-      _interval = setInterval(() => callImg(), 300000);
-      return () => {
-        clearInterval(_interval);
-      };
+      // _interval = setInterval(() => callImg(), 300000);
+      // return () => {
+      //   clearInterval(_interval);
+      // };
     }
   }, []);
 
   const getBgImg = async () => {
     console.log(300, 'Background');
     setImageLoading(true);
-    // console.log(285, 'Farm Data');
     const response = await apiFarmData(farmInfo.id);
+    console.log(302, response);
     setImageLoading(false);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
-      // imageLoading && setImageLoading(false);
+      setFarmData(response.farm);
     }
 
     const responseWeather = await apiFarmData(farmInfo.id);
@@ -432,7 +435,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         console.log(432, 'New Load');
         setEventItem(undefined);
         getBgImg();
-      }, 5000);
+      }, 20000);
     }
   };
 
@@ -465,8 +468,18 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
       {bgImg.length > 0 && <FarmBgImg bgData={bgImg} />}
       <Weather clickWeather={showWeather} curWeather={curWeather} />
-      <Nutrition handleClickNutrition={handleClickNutrition} />
-      <Moisture handleClickNutrition={handleClickNutrition} />
+      {farmData && (
+        <Nutrition
+          handleClickNutrition={handleClickNutrition}
+          item={farmData}
+        />
+      )}
+      {farmData && (
+        <Moisture handleClickNutrition={handleClickNutrition} item={farmData} />
+      )}
+      {farmData && farmData.pest > 0 && farmData.disease && (
+        <TopStatus handleClickNutrition={handleClickNutrition} />
+      )}
       {farmStatus && (
         <FarmStatusList statusList={farmStatus} closeStatus={closeStatus} />
       )}
