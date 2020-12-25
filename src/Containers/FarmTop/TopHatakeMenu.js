@@ -16,12 +16,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import {apiFarmTopMenus} from '../../services/apis/farm_data';
 
-const TopHatakeMenu = ({
-  handleClick,
-  handleClickItem,
-  handleCloseTimer,
-  farmInfo,
-}) => {
+const TopHatakeMenu = ({handleClick, handleCloseTimer, farmInfo}) => {
   const [iconList, setIconList] = useState([]);
   const [loading, setLoading] = useState(false);
 

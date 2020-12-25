@@ -29,7 +29,7 @@ const TopItemMenu = ({handleClick, itemList, handleClickItem, farmInfo}) => {
             {itemList.map(
               (item, i) =>
                 i < 15 &&
-                Boolean(item.item_description) && (
+                (Boolean(item.item_description) || Boolean(item.note)) && (
                   <TopItem
                     item={item}
                     key={i}
