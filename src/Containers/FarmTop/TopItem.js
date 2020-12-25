@@ -7,9 +7,12 @@ import AutoHeightImage from 'react-native-auto-height-image';
 
 const TopItem = ({item, bottom, handleClick}) => {
   const clickItem = () => {
+    let content = Boolean(item.item_description)
+      ? item.item_description
+      : item.note;
     const data = {
       item_id: item.item_id,
-      content: [item.item_name, item.item_description],
+      content: [item.item_name, content],
       icon: item.image,
     };
     handleClick(data);

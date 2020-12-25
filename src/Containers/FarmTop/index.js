@@ -27,6 +27,7 @@ import {
   apiSubItems,
   apiUseItems,
   apiFarmStatus,
+  apiSubItemsByAction,
 } from '../../services/apis/farm_data';
 
 import GameMenu from '../../Components/GameMenu';
@@ -288,7 +289,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       setPoint(true);
     } else {
       currentSelectedItem && getSubItems(currentSelectedItem);
-      _interval = setInterval(() => callImg(), 100000);
+      _interval = setInterval(() => callImg(), 300000);
       return () => {
         clearInterval(_interval);
       };
@@ -296,6 +297,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   }, []);
 
   const getBgImg = async () => {
+    console.log(300, 'Background');
     setImageLoading(true);
     // console.log(285, 'Farm Data');
     const response = await apiFarmData(farmInfo.id);
@@ -366,17 +368,17 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     setTopItemMenu(false);
   };
 
-  const handleClickItem = (ItemName) => {
-    setTopHatakeMenu(false);
-    if (ItemName === 'topCloseIcon') {
-      setCloseFarm(true);
-    } else if (ItemName === 'topPiIcon') {
-      setPoint(true);
-    } else {
-      console.log(358, ItemName);
-      getSubItems(ItemName);
-    }
-  };
+  // const handleClickItem = (ItemName) => {
+  //   setTopHatakeMenu(false);
+  //   if (ItemName === 'topCloseIcon') {
+  //     setCloseFarm(true);
+  //   } else if (ItemName === 'topPiIcon') {
+  //     setPoint(true);
+  //   } else {
+  //     console.log(358, ItemName);
+  //     getSubItems(ItemName);
+  //   }
+  // };
 
   const goCloseFarm = async () => {
     const response = await apiDeleteFarm(farmInfo.id);
@@ -391,8 +393,24 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const showYesNoPanel = (e) => {
-    setTopItemMenu(false);
+    setTopItemMenu(undefined);
     setPanel(e);
+  };
+
+  const getSubItemsByAction = async (data) => {
+    if (data) {
+      setImageLoading(true);
+      const response = await apiSubItemsByAction(farmInfo.id, data);
+      setImageLoading(false);
+      if (response) {
+        setTopItemMenu(response.items);
+        console.log(406, response);
+      }
+    }
+  };
+
+  const clickAction = (e) => {
+    getSubItemsByAction(e.action_type);
   };
 
   const handleCloseYesNoPanel = () => {
@@ -401,13 +419,25 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const handleWorkItem = async () => {
     setPanel(undefined);
-    console.log(391, 'Work Item');
+    console.log(422, 'Work Item', farmInfo.id, panel);
     setImageLoading(true);
     const response = await apiUseItems(farmInfo.id, panel.item_id);
     setImageLoading(false);
+    console.log(426, response);
     if (response && response.result_image) {
-      setEventItem(response.result_image);
+      setEventItem(response.result_image.image);
+      console.log(428, response.result_image.image);
+      setPanel(undefined);
+      setTimeout(() => {
+        console.log(432, 'New Load');
+        setEventItem(undefined);
+        getBgImg();
+      }, 5000);
     }
+  };
+
+  const closeEventItem = () => {
+    setEventItem(undefined);
   };
 
   const handleClickNutrition = async () => {
@@ -454,7 +484,6 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       {topHatakeMenu && (
         <TopHatakeMenu
           handleClick={closeTopHatakeMenu}
-          handleClickItem={handleClickItem}
           handleCloseTimer={closeTimer}
           farmInfo={farmInfo}
         />
@@ -466,6 +495,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
           <TopActionMenu
             handleClick={closeTopItemMenu}
             itemList={topItemMenu}
+            handlieClickAction={clickAction}
           />
         )}
 
@@ -535,6 +565,20 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
           workItem={handleWorkItem}
           goCancel={handleCloseYesNoPanel}
         />
+      )}
+
+      {eventItem && (
+        <TouchableOpacity
+          onPress={closeEventItem}
+          style={FarmTopStyles.resImgArea}>
+          <AutoHeightImage
+            width={responsiveWidth(80)}
+            source={{
+              uri: eventItem,
+            }}
+            style={FarmTopStyles.resImg}
+          />
+        </TouchableOpacity>
       )}
 
       <View
@@ -638,5 +682,18 @@ const FarmTopStyles = StyleSheet.create({
       height: 1,
       width: 4,
     },
+  },
+  resImg: {
+    position: 'absolute',
+    top: 150,
+    left: responsiveWidth(10),
+  },
+  resImgArea: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 101,
+    width: responsiveWidth(100),
+    height: responsiveHeight(100),
   },
 });

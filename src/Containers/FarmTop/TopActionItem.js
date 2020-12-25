@@ -5,9 +5,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const TopActionItem = ({item, top, bottom}) => {
+const TopActionItem = ({item, handlieClickAction, top, bottom}) => {
+  const clickAction = () => {
+    if (!(item.check || item.disabled)) {
+      handlieClickAction(item);
+    }
+  };
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => clickAction()}>
       <View
         style={[
           TopActionItemStyles.bg,

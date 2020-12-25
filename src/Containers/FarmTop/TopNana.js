@@ -14,6 +14,7 @@ import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
 const TopNana = ({item, data, handleClick}) => {
+  console.log(17, data);
   return (
     <TouchableWithoutFeedback onPress={handleClick}>
       <View style={TopNanaStyles.bg}>
@@ -69,26 +70,26 @@ const TopNanaStyles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     backgroundColor: '#9c0',
-    opacity: 0.9
+    opacity: 0.9,
   },
   dialogText: {
     color: '#fff',
     margin: 8,
     width: '70%',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   nanaImg: {
     position: 'absolute',
     right: -30,
-    top: '32%'
+    top: '32%',
   },
   weather: {
     margin: 4,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   weatherText: {
     color: '#fff',
     fontWeight: 'bold',
-    width: '35%'
-  }
-})
+    width: '35%',
+  },
+});

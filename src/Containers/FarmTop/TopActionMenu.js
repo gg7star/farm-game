@@ -28,6 +28,7 @@ const TopActionMenu = ({
   handleCloseTimer,
   handleClickItem,
   farmInfo,
+  handlieClickAction,
 }) => {
   const handleClickIcon = (index) => {
     handleClickItem(index);
@@ -45,6 +46,7 @@ const TopActionMenu = ({
           {itemList.map((item, i) => (
             <TopActionItem
               item={item}
+              handlieClickAction={handlieClickAction}
               key={i}
               top={i === 0}
               bottom={i + 1 === itemList.length}
