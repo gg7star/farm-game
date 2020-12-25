@@ -8,8 +8,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
+import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
+
+const rate = responsiveWidth(100) / 400;
 
 const Calendar = ({item}) => {
   return (
@@ -41,21 +43,18 @@ const CalendarStyles = StyleSheet.create({
   },
   monthText: {
     color: '#fff',
-    fontSize: 10,
+    fontSize: 10 * rate,
     position: 'absolute',
-    // left: responsiveWidth(3),
     top: responsiveWidth(4),
     fontWeight: 'bold',
     width: 60,
     textAlign: 'center',
   },
   dayText: {
-    fontSize: 40,
+    fontSize: 40 * rate,
     position: 'absolute',
-    // left: responsiveWidth(5),
     top: responsiveWidth(7),
     width: 80,
     textAlign: 'center',
-    // fontWeight: 'bold'
   },
 });

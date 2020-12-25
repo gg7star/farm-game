@@ -82,24 +82,21 @@ const MyFarm = (props) => {
             <View style={MyFarmStyles.myFarmTable}>
               {myFarmList &&
                 myFarmList.map((item, i) => (
-                  <View style={{flex: 1, flexDirection: 'row'}}>
+                  <View style={{flex: 1, flexDirection: 'row'}} key={i}>
                     {i % 3 === 0 && (
                       <Farm
-                        key={i}
                         item={myFarmList[i]}
                         check={myFarmList[i].farm.id > 0}
                       />
                     )}
                     {i % 3 === 0 && (
                       <Farm
-                        key={i + 1}
                         item={myFarmList[i + 1]}
                         check={myFarmList[i + 1].farm.id > 0}
                       />
                     )}
                     {i % 3 === 0 && (
                       <Farm
-                        key={i + 2}
                         item={myFarmList[i + 2]}
                         check={myFarmList[i + 2].farm.id > 0}
                       />

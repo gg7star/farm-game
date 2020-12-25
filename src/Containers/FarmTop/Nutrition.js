@@ -11,9 +11,12 @@ import {
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
 
-const Nutrition = ({item}) => {
+const Nutrition = ({handleClickNutrition}) => {
+  const clickItem = () => {
+    handleClickNutrition();
+  };
   return (
-    <View style={NutritionStyles.bg}>
+    <TouchableOpacity style={NutritionStyles.bg} onPress={() => clickItem()}>
       <AutoHeightImage
         width={responsiveWidth(16)}
         source={{
@@ -21,7 +24,7 @@ const Nutrition = ({item}) => {
             'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/para1.png',
         }}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -34,7 +37,7 @@ const NutritionStyles = StyleSheet.create({
     position: 'absolute',
     left: responsiveWidth(20),
     top: 50,
-    zIndex: 1,
-    overflow: 'hidden'
+    zIndex: 2,
+    overflow: 'hidden',
   },
-})
+});

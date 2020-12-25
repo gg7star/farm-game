@@ -35,8 +35,11 @@ export async function apiWaitDelivery2(member_id) {
 }
 
 export async function apiGrowth(member_id, perPage, pageNum) {
-  console.log(38, "Growth = ", member_id, perPage, pageNum);
   return await query(
     `/game/member/${member_id}/growth_list/?per_page=${perPage}&page_no=${pageNum}`,
   );
+}
+
+export async function apiFarmStatus(farm_id) {
+  return await query(`/game/farm/${farm_id}/status`);
 }

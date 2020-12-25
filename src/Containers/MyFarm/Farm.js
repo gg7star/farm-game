@@ -15,7 +15,6 @@ import {responsiveWidth} from 'react-native-responsive-dimensions';
 import FarmBg from './FarmBg';
 
 const Farm = ({item, check}) => {
-  console.log(18, check, item);
   const goFarmTop = () => {
     if (check) {
       Actions.farmTop({farmInfo: item.farm, currentSelectedItem: null});

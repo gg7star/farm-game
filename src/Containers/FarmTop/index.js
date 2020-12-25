@@ -26,6 +26,7 @@ import {
   apiDeleteFarm,
   apiSubItems,
   apiUseItems,
+  apiFarmStatus,
 } from '../../services/apis/farm_data';
 
 import GameMenu from '../../Components/GameMenu';
@@ -43,8 +44,7 @@ import TopActionMenu from './TopActionMenu';
 import AdMob from '../AdMob';
 import FarmBgImg from './FarmBgImg';
 import YesNoPanel from './YesNoPanel';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import FarmStatusList from './FarmStatusList';
 const nanaSpot =
   'スライムさん、こんにちは♪菜々と一緒にキャベツを作って餃子をゲットしよう♪\nまずはハウスの骨組みを建てよう！';
 
@@ -262,6 +262,7 @@ var Constants = {
 };
 
 var _interval;
+
 const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [loadTime, setLoadTime] = useState(0);
   const [topNana, setTopNana] = useState(undefined);
@@ -277,6 +278,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [point, setPoint] = useState(false);
   const [panel, setPanel] = useState(undefined);
   const [eventItem, setEventItem] = useState(undefined);
+  const [farmStatus, setFarmStatus] = useState(undefined);
 
   useEffect(() => {
     getBgImg();
@@ -408,6 +410,20 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     }
   };
 
+  const handleClickNutrition = async () => {
+    setImageLoading(true);
+    const response = await apiFarmStatus(farmInfo.id);
+    console.log(416, farmInfo.id, response);
+    setImageLoading(false);
+    if (response) {
+      setFarmStatus(response);
+    }
+  };
+
+  const closeStatus = async () => {
+    setFarmStatus(undefined);
+  };
+
   return (
     <ImageBackground
       style={FarmTopStyles.bgImg}
@@ -419,8 +435,11 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
       {bgImg.length > 0 && <FarmBgImg bgData={bgImg} />}
       <Weather clickWeather={showWeather} curWeather={curWeather} />
-      <Nutrition />
-      <Moisture />
+      <Nutrition handleClickNutrition={handleClickNutrition} />
+      <Moisture handleClickNutrition={handleClickNutrition} />
+      {farmStatus && (
+        <FarmStatusList statusList={farmStatus} closeStatus={closeStatus} />
+      )}
       <Calendar />
       <Spinner visible={imageLoading} />
       <GameEngine
@@ -518,7 +537,14 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         />
       )}
 
-      <View style={FarmTopStyles.bottomItem}>
+      <View
+        style={[
+          FarmTopStyles.bottomItem,
+          {
+            bottom: farmStatus ? 0 : null,
+            top: farmStatus ? null : responsiveWidth(100) + 40,
+          },
+        ]}>
         <GameProgressBar />
         <GameMenu handleClickMenu={closeTimer} />
       </View>
