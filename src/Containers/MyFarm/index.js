@@ -26,6 +26,7 @@ const MyFarm = (props) => {
   const getFarms = async () => {
     setImageLoading(true);
     const response = await apiMyFarms(props.user.user.id);
+    console.log(29, response);
     setImageLoading(false);
     if (response) {
       let tempFarms = response.dataset;

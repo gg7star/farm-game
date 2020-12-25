@@ -427,7 +427,11 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     const response = await apiUseItems(farmInfo.id, panel.item_id);
     setImageLoading(false);
     console.log(426, response);
-    if (response && response.result_image) {
+    if (
+      response &&
+      response.result_image.image &&
+      response.result_image.image.length > 0
+    ) {
       setEventItem(response.result_image.image);
       console.log(428, response.result_image.image);
       setPanel(undefined);

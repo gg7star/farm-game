@@ -58,6 +58,7 @@ const FarmName = ({gameData}) => {
         gameDay={gameData.gameDay}
         name={gameData.Mtitle + '農場'}
         cropId={gameData.cropId}
+        baseFarmId={gameData.baseFarmId}
       />
       <GameMenu />
     </ImageBackground>

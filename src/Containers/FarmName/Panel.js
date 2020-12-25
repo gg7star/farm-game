@@ -23,11 +23,12 @@ const Panel = (props) => {
   };
 
   const submitFarm = async () => {
-    console.log('Submit = ', props.user.user.id, props.name, props.cropId);
+    console.log('Submit = ', props.user.user.id, farmName, props.cropId);
     const response = await apiCreateFarmWithCropId({
       name: farmName,
       crop_id: props.cropId,
       member_id: props.user.user.id,
+      base_farm_id: props.baseFarmId,
     });
     console.log(32, response);
     if (response && response.id) {

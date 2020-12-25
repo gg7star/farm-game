@@ -87,6 +87,7 @@ const CropDetails = ({gameData}) => {
       cropId: gameData.crop.id,
       cultivationDate: gameData.cultivation_date,
       gameDay: gameData.game_day,
+      baseFarmId: gameData.id,
     };
     Actions.farmName({gameData: data});
   };
