@@ -435,10 +435,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       setEventItem(response.result_image.image);
       console.log(428, response.result_image.image);
       setPanel(undefined);
+      getBgImg();
       setTimeout(() => {
         console.log(432, 'New Load');
         setEventItem(undefined);
-        getBgImg();
       }, 20000);
     }
   };
