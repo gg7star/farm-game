@@ -318,10 +318,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const getSubItems = async (data) => {
     if (data) {
-      setImageLoading(true);
+      // setImageLoading(true);
       console.log(322, data);
       const response = await apiSubItems(farmInfo.id, data);
-      setImageLoading(false);
+      // setImageLoading(false);
       if (response && response.items) {
         setTopItemMenu(response.items);
         console.log(327, response.items);
