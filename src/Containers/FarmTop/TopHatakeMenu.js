@@ -89,17 +89,18 @@ const TopHatakeMenu = ({handleClick, handleCloseTimer, farmInfo}) => {
                     ),
                 )}
               </View>
-              <TouchableOpacity
-                onPress={() =>
-                  handleClickIcon(iconList[iconList.length - 1].name)
-                }>
-                <AutoHeightImage
-                  key={iconList.length - 1}
-                  width={responsiveWidth(15)}
-                  source={{uri: iconList[iconList.length - 1].image}}
-                  style={{left: responsiveWidth(60)}}
-                />
-              </TouchableOpacity>
+              <View style={{left: responsiveWidth(60)}}>
+                <TouchableOpacity
+                  onPress={() =>
+                    handleClickIcon(iconList[iconList.length - 1].name)
+                  }>
+                  <AutoHeightImage
+                    key={iconList.length - 1}
+                    width={responsiveWidth(15)}
+                    source={{uri: iconList[iconList.length - 1].image}}
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         )}
