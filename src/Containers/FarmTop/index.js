@@ -385,10 +385,9 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const goCloseFarm = async () => {
     const response = await apiDeleteFarm(farmInfo.id);
-    if (response) {
-      setCloseFarm(false);
-      Actions.myfarm();
-    }
+    console.log(388, 'Delete Farm', response);
+    setCloseFarm(false);
+    Actions.myfarm();
   };
 
   const handleClosePoint = () => {

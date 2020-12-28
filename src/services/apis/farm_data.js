@@ -10,7 +10,8 @@ export async function apiCreateFarmWithCropId(data) {
 }
 
 export async function apiDeleteFarm(farm_id) {
-  return await query(`/farm_data/${farm_id}/`);
+  console.log(13, farm_id);
+  return await jsonQuery(`/farm_data/${farm_id}/`, 'DELETE');
 }
 
 export async function apiFarmTopMenus(farm_id) {
