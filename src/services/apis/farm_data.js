@@ -23,8 +23,8 @@ export async function apiSubItems(farm_id, data) {
   return await query(`/game/farm/${farm_id}/sub_items/?name=${data}`);
 }
 
-export async function apiUseItems(farm_id, item_id) {
-  return await jsonQuery(`/game/farm/${farm_id}/use_item/${item_id}/`, 'POST');
+export async function apiUseItems(farm_id, item_id, data) {
+  return await jsonQuery(`/game/farm/${farm_id}/use_item/${item_id}/`, 'POST', data);
 }
 
 export async function apiMyFarms(member_id) {
