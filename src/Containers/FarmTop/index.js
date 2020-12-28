@@ -300,10 +300,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   }, []);
 
   const getBgImg = async () => {
-    console.log(300, 'Background');
+    console.log(303, 'Background');
     setImageLoading(true);
     const response = await apiFarmData(farmInfo.id);
-    console.log(302, response);
+    console.log(306, response);
     setImageLoading(false);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
@@ -318,13 +318,13 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const getSubItems = async (data) => {
     if (data) {
-      setImageLoading(true);
-      console.log(300, data);
+      // setImageLoading(true);
+      console.log(322, data);
       const response = await apiSubItems(farmInfo.id, data);
-      setImageLoading(false);
+      // setImageLoading(false);
       if (response && response.items) {
         setTopItemMenu(response.items);
-        console.log(302, response.items);
+        console.log(327, response.items);
       }
     }
   };
@@ -402,9 +402,9 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const getSubItemsByAction = async (data) => {
     if (data) {
-      setImageLoading(true);
+      // setImageLoading(true);
       const response = await apiSubItemsByAction(farmInfo.id, data);
-      setImageLoading(false);
+      // setImageLoading(false);
       if (response) {
         setTopItemMenu(response.items);
         console.log(406, response);
@@ -422,11 +422,11 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const handleWorkItem = async () => {
     setPanel(undefined);
-    console.log(422, 'Work Item', farmInfo.id, panel);
-    setImageLoading(true);
+    console.log(425, 'Work Item', farmInfo.id, panel);
+    // setImageLoading(true);
     const response = await apiUseItems(farmInfo.id, panel.item_id);
-    setImageLoading(false);
-    console.log(426, response);
+    // setImageLoading(false);
+    console.log(429, response);
     if (
       response &&
       response.result_image.image &&
@@ -448,10 +448,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const handleClickNutrition = async () => {
-    setImageLoading(true);
+    // setImageLoading(true);
     const response = await apiFarmStatus(farmInfo.id);
-    console.log(416, farmInfo.id, response);
-    setImageLoading(false);
+    console.log(453, farmInfo.id, response);
+    // setImageLoading(false);
     if (response) {
       setFarmStatus(response);
     }
