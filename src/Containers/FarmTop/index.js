@@ -301,10 +301,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const getBgImg = async () => {
     console.log(303, 'Background');
-    setImageLoading(true);
+    // setImageLoading(true);
     const response = await apiFarmData(farmInfo.id);
     console.log(306, response);
-    setImageLoading(false);
+    // setImageLoading(false);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
       setFarmData(response.farm);
@@ -318,10 +318,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const getSubItems = async (data) => {
     if (data) {
-      // setImageLoading(true);
+      setImageLoading(true);
       console.log(322, data);
       const response = await apiSubItems(farmInfo.id, data);
-      // setImageLoading(false);
+      setImageLoading(false);
       if (response && response.items) {
         setTopItemMenu(response.items);
         console.log(327, response.items);
@@ -402,9 +402,9 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
 
   const getSubItemsByAction = async (data) => {
     if (data) {
-      // setImageLoading(true);
+      setImageLoading(true);
       const response = await apiSubItemsByAction(farmInfo.id, data);
-      // setImageLoading(false);
+      setImageLoading(false);
       if (response) {
         setTopItemMenu(response.items);
         console.log(406, response);
@@ -423,9 +423,9 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const handleWorkItem = async () => {
     setPanel(undefined);
     console.log(425, 'Work Item', farmInfo.id, panel);
-    // setImageLoading(true);
+    setImageLoading(true);
     const response = await apiUseItems(farmInfo.id, panel.item_id);
-    // setImageLoading(false);
+    setImageLoading(false);
     console.log(429, response);
     if (
       response &&
@@ -448,10 +448,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const handleClickNutrition = async () => {
-    // setImageLoading(true);
+    setImageLoading(true);
     const response = await apiFarmStatus(farmInfo.id);
     console.log(453, farmInfo.id, response);
-    // setImageLoading(false);
+    setImageLoading(false);
     if (response) {
       setFarmStatus(response);
     }
@@ -487,7 +487,9 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       {farmStatus && (
         <FarmStatusList statusList={farmStatus} closeStatus={closeStatus} />
       )}
-      <Calendar />
+      {curWeather && curWeather.length > 0 && (
+        <Calendar item={curWeather[0].date} />
+      )}
       <Spinner visible={imageLoading} />
       <GameEngine
         clickTopNana={showNanaSpot}

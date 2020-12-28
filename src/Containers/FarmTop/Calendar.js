@@ -10,10 +10,12 @@ import {
 
 import {responsiveWidth} from 'react-native-responsive-dimensions';
 import AutoHeightImage from 'react-native-auto-height-image';
+import moment from 'moment';
 
 const rate = responsiveWidth(100) / 400;
 
 const Calendar = ({item}) => {
+  console.log(17, 'Calendar', item);
   return (
     <View style={CalendarStyles.bg}>
       <AutoHeightImage
@@ -23,8 +25,10 @@ const Calendar = ({item}) => {
             'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/calendar_base.png',
         }}
       />
-      <Text style={CalendarStyles.monthText}>December</Text>
-      <Text style={CalendarStyles.dayText}>12</Text>
+      <Text style={CalendarStyles.monthText}>
+        {moment(item).format('MMMM')}
+      </Text>
+      <Text style={CalendarStyles.dayText}>{moment(item).format('D')}</Text>
     </View>
   );
 };
