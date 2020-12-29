@@ -14,6 +14,7 @@ const TopItem = ({item, bottom, handleClick}) => {
       item_id: item.item_id,
       content: [item.item_name, content],
       icon: item.image,
+      id: item.id
     };
     handleClick(data);
   };

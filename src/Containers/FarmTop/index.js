@@ -423,7 +423,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     setPanel(undefined);
     console.log(425, 'Work Item', farmInfo.id, panel);
     setImageLoading(true);
-    const response = await apiUseItems(farmInfo.id, panel.item_id);
+    const response = await apiUseItems(farmInfo.id, panel.item_id, {id: panel.id, item_id: panel.item_id});
     setImageLoading(false);
     console.log(429, response);
     if (
