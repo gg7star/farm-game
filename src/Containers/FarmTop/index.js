@@ -438,6 +438,9 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         console.log(432, 'New Load');
         closeEventItem();
       }, 20000);
+    } else if (response && response.error) {
+      setCurNanaTag('nana');
+      setTopNana(response.error);
     }
   };
 
