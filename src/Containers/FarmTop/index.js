@@ -9,6 +9,7 @@ import {
   ImageBackground,
   Modal,
   ActivityIndicator,
+  AppState,
 } from 'react-native';
 
 import {Actions} from 'react-native-router-flux';
@@ -266,7 +267,10 @@ var Constants = {
 
 var _interval;
 
+const BG_IMAGE_PATTERN_1 = require('../../assets/images/bg_pattern_1.gif');
+
 const FarmTop = ({farmInfo, currentSelectedItem}) => {
+  const [appState, setAppState] = useState(AppState.currentState);
   const [loadTime, setLoadTime] = useState(0);
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
@@ -284,7 +288,8 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [eventItem, setEventItem] = useState(undefined);
   const [farmStatus, setFarmStatus] = useState(undefined);
 
-  useEffect(() => {
+  const initialize = () => {
+    console.log('===== farmInfo, currentSelectedItem: ', farmInfo, currentSelectedItem);
     getBgImg();
     if (currentSelectedItem === 'topCloseIcon') {
       setCloseFarm(true);
@@ -297,6 +302,14 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       //   clearInterval(_interval);
       // };
     }
+  };
+
+  useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
+    initialize();
+    return (() => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    })
   }, []);
 
   const getBgImg = async () => {
@@ -328,6 +341,14 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
       }
     }
   };
+
+  const handleAppStateChange = (state) => {
+    console.log(state);
+    setAppState(state);
+    // if (state === 'active') {
+    //   initialize();
+    // }
+  }
 
   const callImg = () => {
     if (loadTime === 0) {
@@ -463,11 +484,13 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     setFarmStatus(undefined);
   };
 
+  console.log('===== bgImg: ', bgImg);
+
   return (
     <ImageBackground
       style={FarmTopStyles.bgImg}
       resizeMode="repeat"
-      source={require('../../assets/images/bg_pattern_1.gif')}>
+      source={BG_IMAGE_PATTERN_1}>
       <View style={FarmTopStyles.header}>
         <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
       </View>
