@@ -81,7 +81,7 @@ const TopNanaStyles = StyleSheet.create({
   nanaImg: {
     position: 'absolute',
     right: -30,
-    top: '32%',
+    top: responsiveWidth(100) - (355 * 144) / 175,
   },
   weather: {
     margin: 4,
