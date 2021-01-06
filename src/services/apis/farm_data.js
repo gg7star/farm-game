@@ -11,7 +11,7 @@ export async function apiCreateFarmWithCropId(data) {
 
 export async function apiDeleteFarm(farm_id) {
   console.log(13, farm_id);
-  return await jsonQuery(`/farm_data/${farm_id}/`, 'DELETE');
+  return await query(`/game/farm/${farm_id}/sub_items/?name=${'topCloseIcon'}`);
 }
 
 export async function apiFarmTopMenus(farm_id) {
