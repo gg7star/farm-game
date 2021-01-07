@@ -5,7 +5,7 @@ import {
   ScrollView,
   View,
   Text,
-  TouchableOpacity,
+  AppState,
   ImageBackground,
 } from 'react-native';
 
@@ -21,6 +21,7 @@ import {apiMyFarms} from '../../services/apis/farm_data';
 const newFarm = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const MyFarm = (props) => {
+  const [changed, setChanged] = useState(false);
   const [myFarmList, setMyFarmList] = useState(undefined);
   const [imageLoading, setImageLoading] = useState(false);
   const getFarms = async () => {
@@ -44,8 +45,16 @@ const MyFarm = (props) => {
   };
 
   useEffect(() => {
+    AppState.addEventListener('change', handleAppStateChange);
     getFarms();
+    return (() => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    });
   }, []);
+
+  const handleAppStateChange = (state) => {
+    setChanged((prevChanged) => !prevChanged);
+  };
 
   return (
     <ImageBackground
@@ -80,7 +89,7 @@ const MyFarm = (props) => {
                 'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/images/20150422/category_bg2.gif',
             }}
             resizeMode="repeat">
-            <View style={MyFarmStyles.myFarmTable}>
+            <View style={MyFarmStyles.myFarmTable} key={changed}>
               {myFarmList &&
                 myFarmList.map((item, i) => (
                   <View style={{flex: 1, flexDirection: 'row'}} key={i}>

@@ -271,7 +271,7 @@ const BG_IMAGE_PATTERN_1 = require('../../assets/images/bg_pattern_1.gif');
 
 const FarmTop = ({farmInfo, currentSelectedItem}) => {
   // const [appState, setAppState] = useState(AppState.currentState);
-  const [changed, setChanged] = useState(false)
+  const [changed, setChanged] = useState(false);
   const [loadTime, setLoadTime] = useState(0);
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
