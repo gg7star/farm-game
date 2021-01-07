@@ -23,7 +23,7 @@ const Nutrition = ({handleClickNutrition, item}) => {
           uri:
             'https://hatake.s3-ap-northeast-1.amazonaws.com/web-game/images/wapp3/css/img/para2.png',
         }}
-        style={{top: -1 * item.moisture * responsiveWidth(16)}}
+        style={{top: -1 * Math.round(item.moisture * 8 / 200) * responsiveWidth(16)}}
       />
     </TouchableOpacity>
   );
