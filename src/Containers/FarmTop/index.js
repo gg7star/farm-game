@@ -270,7 +270,8 @@ var _interval;
 const BG_IMAGE_PATTERN_1 = require('../../assets/images/bg_pattern_1.gif');
 
 const FarmTop = ({farmInfo, currentSelectedItem}) => {
-  const [appState, setAppState] = useState(AppState.currentState);
+  // const [appState, setAppState] = useState(AppState.currentState);
+  const [changed, setChanged] = useState(false)
   const [loadTime, setLoadTime] = useState(0);
   const [topNana, setTopNana] = useState(undefined);
   const [curNanaTag, setCurNanaTag] = useState(undefined);
@@ -287,6 +288,8 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   const [panel, setPanel] = useState(undefined);
   const [eventItem, setEventItem] = useState(undefined);
   const [farmStatus, setFarmStatus] = useState(undefined);
+
+  // const [bgState, setBgState] = useState(false);
 
   const initialize = () => {
     console.log('===== farmInfo, currentSelectedItem: ', farmInfo, currentSelectedItem);
@@ -305,6 +308,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   useEffect(() => {
+    console.log(308, 'Use Effect');
     AppState.addEventListener('change', handleAppStateChange);
     initialize();
     return (() => {
@@ -313,10 +317,10 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   }, []);
 
   const getBgImg = async () => {
-    console.log(303, 'Background');
+    console.log(319, 'Background');
     // setImageLoading(true);
     const response = await apiFarmData(farmInfo.id);
-    console.log(306, response);
+    console.log(322, response);
     // setImageLoading(false);
     if (response && response.images.imgAdd) {
       setBgImg(response.images.imgAdd);
@@ -343,12 +347,19 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
   };
 
   const handleAppStateChange = (state) => {
-    console.log(state);
-    setAppState(state);
+    console.log('changed-====');
+    setChanged((prevChanged) => !prevChanged);
+    // setAppState(state);
     // if (state === 'active') {
-    //   initialize();
+    //   if (bgState === false) {
+    //     initialize();
+    //   }
+    //   setBgState(true);
+    // } else if (state === 'inactive') {
+    //   console.log(357);
+    //   setBgState(false);
     // }
-  }
+  };
 
   const callImg = () => {
     if (loadTime === 0) {
@@ -484,7 +495,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
     setFarmStatus(undefined);
   };
 
-  console.log('===== bgImg: ', bgImg);
+  console.log(496, '===== bgImg: ', bgImg, bgImg);
 
   return (
     <ImageBackground
@@ -495,7 +506,7 @@ const FarmTop = ({farmInfo, currentSelectedItem}) => {
         <Text style={FarmTopStyles.headerText}>{farmInfo.name}</Text>
       </View>
 
-      {bgImg.length > 0 && <FarmBgImg bgData={bgImg} />}
+      {bgImg.length > 0 && <FarmBgImg bgData={bgImg} key={changed} />}
       <Weather clickWeather={showWeather} curWeather={curWeather} />
       {farmData && (
         <Nutrition

@@ -13,13 +13,13 @@ import AutoHeightImage from 'react-native-auto-height-image';
 const imgRate = responsiveWidth(100) / 240;
 
 const FarmBgImg = ({bgData}) => {
-  // console.log(39, bgData);
+  // console.log(16, 'FarmBg= ', bgData);
   return (
     <View style={{height: responsiveWidth(100)}}>
       {bgData.map((item, i) => (
         <Image
           key={i}
-          source={{uri: item[0], cache: 'force-cache'}}
+          source={{uri: item[0]}}
           style={[
             FarmBgImgStyles.screenImg,
             {
@@ -29,6 +29,7 @@ const FarmBgImg = ({bgData}) => {
             // {left: item[1] * imgRate, top: item[2] * imgRate},
             {width: item[3] * imgRate, height: item[4] * imgRate},
           ]}
+          // id={console.log('------', item[0])}
         />
       ))}
     </View>
